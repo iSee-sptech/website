@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>iSee</title>
+
+    <script src="js/funcoes.js"></script>
+    <link rel="stylesheet" href="./css/cadastro_func.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="logo"></div>
+
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a class="now">Isee</a></li>
+          <li><a href="signUp.html">Valores</a></li>
+          <li><a href="signUp.html">Contato</a></li>
+          <li><a href="signUp.html">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="texto">
+        <h1>Cadastre - se</h1>
+      </div>
+
+      <form id="form_cadastro_func">
+        <div class="campo_um">
+          <label for="">Nome Completo:</label>
+          <input type="text" id="input_nome_func" />
+
+          <label for="">E-mail:</label>
+          <input type="text" id="input_email_func" />
+
+          <label for="">Endereço (CEP):</label>
+          <input type="text" id="input_endereco_func" />
+
+          <label for="">Data de Nascimento:</label>
+          <input type="date" id="input_data_nasc_func" />
+
+          <label for="">Cargo</label>
+          <select name="" id="select_cargo_func">
+            <option value="">Gestor</option>
+            <option value="">Suporte</option>
+          </select>
+        </div>
+
+        <div class="campo_dois">
+          <label for="">CPF:</label>
+          <input type="number" id="input_cpf_func" />
+
+          <label for="">Celular/Telefone:</label>
+          <input type="number" id="input_cell_func" />
+
+          <label for="">Senha:</label>
+          <input type="password" id="input_senha_func" />
+
+          <label for="">Confirmar Senha:</label>
+          <input type="password" id="input_confirmacao_senha_func" />
+        </div>
+      </form>
+
+      <div class="botao_cadastro">
+        <button
+          id="botaoCadastroFuncionario"
+          type="button"
+          onclick="cadastrarFunc()"
+        >
+          Cadastrar
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  function cadastrarFunc() {
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeFuncVar = input_nome_func.value;
+    var emailFuncVar = input_email_func.value;
+    var enderecoFuncVar = input_endereco_func.value;
+    var dataNascFuncVar = input_data_nasc_func.value;
+    var cargoFuncVar = select_cargo_func.value;
+    var cpfFuncVar = input_cpf_func.value;
+    var celularFunc = input_cell_func.value;
+    var senhaFuncVar = input_senha_func.value;
+    var confirmacaoSenhaFuncVar = input_confirmacao_senha_func.value;
+
+    if (
+      nomeFuncVar == "" ||
+      emailFuncVar == "" ||
+      enderecoFuncVar == "" ||
+      dataFuncNascVar == "" ||
+      cpfFuncVar == "" ||
+      celularFunc == "" ||
+      senhaFuncVar == "" ||
+      confirmacaoSenhaFuncVar == ""
+    ) {
+      ("Preencha todos os campos <img src='assets/icons/icon_error.png'>");
+      setInterval(sumirMensagem, 4000);
+      return false;
+    }
+    if (
+      emailFuncVar.indexOf("@") < 3 ||
+      emailFuncVar.indexOf(".com") < 7 ||
+      emailFuncVar.length < 15
+    ) {
+      ("Ops, e-mail inválido! Verifique e tente novamente. <img src='assets/icons/icon_error.png'>");
+      setInterval(sumirMensagem, 4000);
+      return false;
+    }
+
+    if (senhaFuncVar != confirmacaoSenhaFuncVar) {
+      ("As senhas inseridas devem ser iguais! <img src='assets/icons/icon_error.png'>");
+      setInterval(sumirMensagem, 4000);
+      return false;
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeFuncVar,
+        emailServer: emailFuncVar,
+        enderecoServer: enderecoFuncVar,
+        dataNascServer: dataNascFuncVar,
+        cargoServer: cargofuncVar,
+        cpfServer: cpfFuncVar,
+        celularServer: celularFunc,
+        senhaServer: senhaFuncVar,
+        confirmarSenhaServer: confirmacaoSenhaFuncVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        Response.redirected = true;
+
+        if (resposta.ok) {
+          /*window.location = 'login.html';*/
+
+          cardCadastroload.style.display = "block";
+          mensagem_cadastro.innerHTML =
+            "Cadastro realizado com sucesso! redirecionando..<img src='assets/img/gif_loading.gif'>";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "4000");
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    cardCadastro.style.display = "none";
+  }
+</script>
