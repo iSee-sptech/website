@@ -171,7 +171,6 @@ html {
 }
 
 .container {
-
     width: 100vw;
     display: flex;
     justify-content: space-around;
@@ -189,7 +188,7 @@ html {
 
 .campo_um input {
     width: 27vw;
-    height: 10vh;
+    height: 8vh;
     margin-bottom: 2vh;
     border-radius: 6px;
     border: 1px solid #7D2DE2;
@@ -204,7 +203,7 @@ label {
     font-style: normal;
     font-weight: 150px;
     font-size: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 5px
 }
 
 .campo_dois {
@@ -219,17 +218,17 @@ label {
     width: 27vw;
     height: 9vh;
     margin-bottom: 2vh;
-    border-radius: 6px;
+    border-radius: 20px;
     border: 1px solid #7D2DE2;
     background-color: #161616;
     outline: none;
     color: #fff;
+    margin-bottom: 28vh;
 }
 
 .botoes{
     width: 100vw;
     display: flex;
-    margin-top: 5vh;
 }
 
 .botao_cadastro {
@@ -273,26 +272,15 @@ label {
     margin-right: 35vw;
 }
 
-#form_cadastro_func {
+#form_cadastro_maquina {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 
 }
 
-.container h1 {
+.container h1{
     margin-top: 10vh;
-    height: 18vh;
-    color: #fff;
-}
-
-.campo_um select {
-    width: 27vw;
-    height: 8vh;
-    margin-bottom: 2vh;
-    border-radius: 6px;
-    border: 1px solid #7D2DE2;
-    background-color: #161616;
-    outline: none;
+    height: 12vh;
     color: #fff;
 }
