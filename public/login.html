@@ -1,172 +1,194 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>IMMUNCOLD | LOGIN</title>
-
-    <script src="./js/funcoes.js"></script>
-
-    <link rel="shortcut icon" href="assets/img/logo_icon_nav.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="css/style-login.css">
+    <title>iSee - Login</title>
 </head>
-
 <body>
-
-    <!--Header-->
-
     <div class="header">
         <div class="container">
-            <p class="title">IMMUNCOLD</p>
-            <ul class="navbar">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="simulador.html">Simulador</a></li>
-                <li><a class="agora" href="login.html">Login</a></li>
-                <li><a href="cadastro.html">Cadastro</a></li>
-            </ul>
+            <div class="navbar">
+                <img src="" alt="">
+                <a href="">Home</a>
+                <a href="">Sobre</a>
+                <h1>I see</h1>
+                <a href="">Contato</a>
+                <a href="">Login</a>
+                <a href="">Cadastre-se</a>
+            </div>
         </div>
     </div>
-
-
-    <div class="banner">
-        <div class="container login">
-            <div class="card-login">
-                <h2>Faça seu login</h2>
+    <div class="login">
+            <div class="carrosel">ss</div>
+            <div class="form">
                 <form>
-                    <label for="emailInput"><img class="icon" src="assets/icons/iconuser.png">E-mail</label>
-                    <input id="emailInput" type="text" placeholder="Digite seu email">
-
-                    <label for="senhaInput"> <img class="icon" src="assets/icons/passwordicon.png">Senha</label>
-                    <input id="senhaInput" type="password" placeholder="******">
-
-                    <div class="esqueceu"> <a href="cadastro.html"> Não tem cadastro? Cadastre-se ja! </a> </div>
-
-                    <button type="button" onclick="entrar()">Entrar</button>
-                   
-                    <div class="cardredirecionar" id="cardredirecionar">
-                        <div id="mensagem_redirecionar"></div>
+                    <div class="titulo">
+                        <h1>Bem-vindo ao <span>I see.</span></h1>
+                    </div>
+                    <div class="input_login">
+                        <label for="">E-mail:</label>
+                        <input type="text">
+                        <label for="">Senha:</label>
+                        <input type="text">
+                    </div>
+                    <div class="opcoes">
+                        <div class="radio">
+                            <input type="radio" name="" id="radio">
+                            <label for="radio" class="radio-label">Lembrar Senha</label>
                         </div>
-
-                    </form>
-                </div>
-                <div class="cardErro" id="cardErro">
-                <div id="mensagem_erro"></div>
-                </div>
-                </div>
+                        <div>
+                            <a href="">Esqueci minha senha</a>
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <button>
+                            Entrar
+                        </button>
+                    </div>
+                    <div class="cadastro">
+                        <p>Não possui conta? <a href="">Cadastre-se</a></p>
+                    </div>
+                <form>
             </div>
-
-    <!--footer inicio-->
+        </div>
     <div class="footer">
         <div class="container">
-            <h5>ImmunCold company. Todos os direitos reservados &copy; 2022</h5>
+            <div class="titulo-footer">
+                <h1>I SEE</h1>
+            </div>
+            <div class="content-footer">
+                <div class="box-icon">
+                    <div class="icon">
+                        <a href="">
+                            <img src="assets/img/icon_facebook.png" alt="">
+                        </a>
+                        <a href="">
+                            <img src="assets/img/icon_twitter.png" alt="">
+                        </a>
+                        <a href="">
+                            <img src="assets/img/icon_telegram.png" alt="">
+                        </a>
+                        <a href="">
+                            <img src="assets/img/icon_instagram.png" alt="">
+                        </a>
+                        <a href="">
+                            <img src="assets/img/icon_linkedin.png" alt="">
+                        </a>               
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="services">
+                        <div class="title">
+                            <h2>
+                                Serviços
+                            </h2>
+                        </div>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        Alertas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        Monitoramento
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        Dashboard
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="social">
+                        <div class="title">
+                            <h2>
+                                Social
+                            </h2>
+                        </div>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        Instagram
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        Linkedin
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="help">
+                        <div class="title">
+                            <h2>
+                                Ajuda
+                            </h2>
+                        </div>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        Suporte
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        Contato
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="juridico">
+                        <div class="title">
+                            <h2>
+                                Ajuda
+                            </h2>
+                        </div>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        Termos e condições
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        Política de pivacidade
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        Ambiente confortável
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-copyright">
+                    <div class="copy">
+                        <p>
+                            Copyright © I SEE 2022
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!--footer fim-->
-
 </body>
-
 </html>
-
-<script>
-
-
-    function entrar() {
-
-        var emailVar = emailInput.value;
-        var senhaVar = senhaInput.value;
-
-        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"    
-            mensagem_erro.innerHTML = "Preencha todos os campos <img src='assets/icons/icon_error.png'>";
-            
-            setInterval(sumirMensagem, 4000)
-            return false;
-        }
-    
-
-        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Email inválido";
-            
-            setInterval(sumirMensagem, 4000)
-            return false;
-
-        } else if (senhaVar.length < 6) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Senha incorreta";
-
-            setInterval(sumirMensagem, 4000)
-            return false;
-        }
-
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = json.email_usuario;
-                    sessionStorage.NOME_USUARIO = json.nome_usuario;
-                    sessionStorage.ID_USUARIO = json.id_usuario;
-
-                    cardredirecionar.style.display = "block"    
-                    mensagem_redirecionar.innerHTML = "<img src='assets/img/gif_loading.gif'>";
-
-                    setTimeout(function () {
-                        window.location = "dashboard/dashboard.html";
-                    }, 4000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Email e/ou senha inválido(s)";
-
-            setInterval(sumirMensagem, 4000)
-            return false;
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
-</script>

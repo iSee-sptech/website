@@ -1,0 +1,262 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+    background-color: #FFFFFF;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    border-bottom: 5px solid #7D2DE2;
+    height: 46px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    align-items: center;
+}
+
+.navbar a {
+    text-decoration: none;
+    font-size: 22px;
+    color: #000000;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+}
+
+.login .container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+.carrosel {
+    background-color: antiquewhite;
+    width: 42%;
+}
+
+.form {
+    background-color: #161616;
+    width: 58%;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo {
+    color: #FFFFFF;
+    margin-top: 50px;
+}
+
+.titulo h1 {
+    text-align: left;
+    font-size: 45px;
+}
+
+.titulo span {
+    color: #7D2DE2;
+}
+
+.input_login {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+.input_login label {
+    font-size: 28px;
+    color: #FFFFFF;
+}
+
+.input_login input {
+    margin-bottom: 40px;
+    height: 60px;
+    width: 100%;
+    border: 2px solid #7D2DE2;
+    border-radius: 10px;
+    background-color: #161616;
+    font-size: 25px;
+    color: #FFFFFF;
+}
+
+.opcoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.radio {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    align-items: center;
+}
+
+.radio label {
+    color: #FFFFFF;
+    font-weight: bold;
+    display: flex;
+}
+
+#radio {
+    display: none;
+}
+
+.radio-label::before{
+    content: '';
+    display: block;
+    height: 15px;
+    width: 15px;
+    box-sizing: border-box;
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-top: 5px;
+    background-color: #161616;
+    cursor: pointer;
+}
+
+#radio:checked + .radio-label::before {
+    background-color: #7D2DE2;
+}
+
+.opcoes a {
+    color: #7D2DE2;
+    font-weight: bold;
+}
+
+.opcoes a:hover{
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.submit button {
+    width: 60%;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 25px;
+    color: #FFFFFF;
+    font-weight: bold;
+    background-color: #7D2DE2;
+    border: none;
+}
+
+.submit button:hover {
+    cursor: pointer;
+}
+
+.cadastro {
+    color: #FFFFFF;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.cadastro a {
+    color: #7D2DE2;
+}
+
+.cadastro a:hover{
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+.footer .container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.titulo-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.titulo-footer h1 {
+    color: #7D2DE2;
+}
+
+.content-footer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.content-footer .box-icon {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+.content-footer .box-icon .icon {
+    display: flex;
+    justify-content: space-between;
+    width: 15%;
+    margin-top: 25px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.content h2 {
+    margin-left: 12px;
+}
+
+.content a {
+    text-decoration: none;
+    color: #161616;
+}
+
+.content li {
+    margin-bottom: 10px;
+}
+
+.box-copyright {
+    display: flex;
+    margin-top: 25px;
+}
+
+.copy {
+    display: flex;
+    margin-left: 5%;
+}
+
+.copy p {
+    font-weight: bold;
+}
