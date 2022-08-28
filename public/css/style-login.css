@@ -46,9 +46,21 @@ body {
     width: 80%;
 }
 
-.carrosel {
-    background-color: antiquewhite;
+.carousel {
+    display: flex;
+    justify-content: right;
+    background-color: #FFFFFF;
     width: 42%;
+}
+
+.carousel .imagem {
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+
+.carousel img {
+    width: 80%;
 }
 
 .form {
@@ -260,3 +272,4 @@ form {
 .copy p {
     font-weight: bold;
 }
+
