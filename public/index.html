@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css\style.css">
+    <title>I SEE</title>
+</head>
+
+<body>
+
+    <div class="mobileHeader" id="headerMobile">
+        <div class="logo"></div>
+        <button class="menuMobile" onclick="btnMenu()">
+            <img src="assets/img/lineMenu.svg" alt="">
+        </button>
+    </div>
+
+    <div class="menuHambMobile" id="mobileHambMenu">
+
+        <div>
+            <h2>Home</h2>
+            <img style="margin-top: 2%; margin-bottom: 2%; width: 100vw;" src="assets/img/LineMobile.svg" alt="">
+            <h2>Sobre</h2>
+            <img style="margin-top: 2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
+            <h2>Valores</h2>
+            <img style="margin-top: 2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
+            <h2>Contato</h2>
+            <img style="margin-top:  2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
+            <div style="display: flex; flex-direction: row; gap: 2%;">
+                <h2>Login</h2>
+                <img src="assets/img/iconLogin.svg" alt="">
+            </div>
+        </div>
+
+    </div>
+
+
+
+    </div>
+
+    <header id="headerHidden">
+        <nav>
+            <div class="logo"></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li> <a class="now">Isee</a></li>
+                <li><a href="signUp.html">Valores</a></li>
+                <li><a href="signUp.html">Contato</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <div class="home">
+        <div class="containerHome">
+            <h1>Nós vemos, monitoramos seus caixas eletrônicos</h1>
+            <h4>Sistema de monitoramento para caixas eletrônicos, mais segurança para você!</h4>
+            <div class="alignRow" style="margin-top: 4%;">
+                <button class="button1" onclick="window.location.href='cadastroGestor.html'">Cadastre-se</button>
+                <button class="buttonPlus" style="margin-left: 3%;">+</button>
+                <h4 class="moreKnow">Saber mais</h4>
+                <button class="imgIcon"></button>
+                <button class="imgIcon2"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="services">
+        <h2 style="text-align: center;">Nossos Serviços</h2>
+
+        <div class="alignRow2">
+            <div class="alignColumn">
+                <img src="assets/img/iconAlert.svg">
+                <h4 style="margin-top: 20%; color: #000;">Alertas</h4>
+            </div>
+            <div class="alignColumn">
+                <img src="assets/img/Histórico icon.svg">
+                <h4 style="margin-top: 20%; color: #000;">Históricos</h4>
+            </div>
+            <div class="alignColumn">
+                <img src="assets/img/Métricas icon.svg">
+                <h4 style="margin-top: 20%; color: #000;">Métricas</h4>
+            </div>
+            <div class="alignColumn">
+                <img src="assets/img/iconCamera2.svg">
+                <h4 style="margin-top: 20%; color: #000;">Monitamento</h4>
+            </div>
+            <div class="alignColumn">
+                <img src="assets/img/🦆 iconStatus.svg">
+                <h4 style="margin-top: 20%; color: #000;">Status</h4>
+            </div>
+            <div class="alignColumn">
+                <img src="assets/img/iconDashboard.svg">
+                <h4 style="margin-top: 20%; color: #000;">Dashboard</h4>
+            </div>
+            <div class="alignColumn">
+                <img src="assets/img/iconEtiquetas.svg">
+                <h4 style="margin-top: 20%; color: #000;">Etiquetas</h4>
+            </div>
+        </div>
+
+        <div class="alignService" id="service1">
+            <div class="alignColumn">
+                <img src="assets/img/iconAlert.svg">
+                <h4 style="margin-top: 20%; color: #000;">Alertas</h4>
+            </div>
+            <div class="alignColumn">
+                <img src="assets/img/Histórico icon.svg">
+                <h4 style="margin-top: 20%; color: #000;">Históricos</h4>
+            </div>
+        </div>
+
+        <div class="alignService" id="service2">
+            <div class="alignColumn">
+                <img src="assets/img/Métricas icon.svg">
+                <h4 style="margin-top: 20%; color: #000;">Métricas</h4>
+            </div>
+            <div class="alignColumn">
+                <img src="assets/img/iconCamera2.svg">
+                <h4 style="margin-top: 20%; color: #000;">Monitamento</h4>
+            </div>
+        </div>
+
+        <div class="alignService" id="service3">
+            <div class="alignColumn">
+                <img src="assets/img/🦆 iconStatus.svg">
+                <h4 style="margin-top: 20%; color: #000;">Status</h4>
+            </div>
+            <div class="alignColumn">
+                <img src="assets/img/iconDashboard.svg">
+                <h4 style="margin-top: 20%; color: #000;">Dashboard</h4>
+            </div>
+        </div>
+
+        <div class="alignService" id="service4">
+            <div class="alignColumn">
+                <img src="assets/img/iconEtiquetas.svg">
+                <h4 style="margin-top: 20%; color: #000;">Etiquetas</h4>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="about">
+        <h2 style="text-align: center;">Sobre nós</h2>
+        <div class="containerAbout">
+            <h2 class="h2About">
+                <button style="background-color: transparent; border-color: transparent;"></button>
+                Nosso propósito é entregar maior usabilidade e simplicidade para as centrais de monitoramento de
+                caixa
+                eletrônico.
+                Com a nossa solução, acreditamos na melhora da qualidade operacional do setor, atráves de
+                automatizações
+                de notificações e alertas. Além disso, em nossa solução há um mapeamento do perfil dos caixas
+                utilizando-se etiquetas.
+            </h2>
+        </div>
+
+    </div>
+
+    <div class="values">
+        <img style="margin-top: 8%; margin-bottom: 8%;" src="assets/img/Line 1.svg" alt="">
+        <h2 style="text-align: center;">Nossos Valores</h2>
+
+        <div class="cardsValues">
+            <div class="card1Values">
+                <img src="assets/img/imgCard1.svg" alt="">
+                <h2 class="h2About">Segurança</h2>
+                <h4 class="h4Values">Garantir a segurança do seu caixa eletrônico
+                    é prioridade para nós, fazemos isso seguindo a sua regra de negócio e adaptando nosso sistema a
+                    elas.</h4>
+            </div>
+            <div class="card2Values">
+                <img height="120" src="assets/img/imgCard2.svg" alt="">
+                <h2 class="h2About">Paixão</h2>
+                <h4 class="h4Values">Na I see temos paixão no nosso trabalho trazer qualidade e facilidade de
+                    entendimento no sistema
+                    é
+                    também um dos nossos valores.</h4>
+            </div>
+        </div>
+        <div class="containerCard3Values">
+            <div class="card3Values">
+                <img src="assets/img/imgCard3.svg" alt="">
+                <h2 class="h2Card">Transparência</h2>
+                <h4 class="h4Values">Valorizamos a transparência com os nossos funcionários e clientes, procuramos
+                    sempre deixar
+                    claro
+                    nossos diferenciais e objetivos no mercado.</h4>
+            </div>
+        </div>
+    </div>
+
+    <img style="margin-top: 8%; margin-bottom: 2%;" src="assets/img/Line 1.svg" alt="">
+    <div class="contact">
+        <div class="leftContact">
+            <h2 style="text-align: center;">Contate-nos</h2>
+            <form action="">
+
+                <h4 id="contact2" style="font-size: calc(0.70em + 1vmin);" for="">Primeiro Nome:</h4>
+                <input class="input"  id="contact3" type="text" placeholder="Digite seu nome:">
+                <h4 id="contact4" style="font-size: calc(0.70em + 1vmin);" for="">Sobrenome:</h4>
+                <input class="input"  id="contact5" type="text" placeholder="Digite seu sobrenome:">
+
+                <div class="rowContact" id="contact1">
+                    <div>
+                        <h4 style="font-size: calc(0.70em + 1vmin);" for="">Primeiro Nome:</h4>
+                        <input type="text" placeholder="Digite seu nome:">
+                    </div>
+                    <div>
+                        <h4 style="font-size: calc(0.70em + 1vmin);" for="">Sobrenome:</h4>
+                        <input type="text" placeholder="Digite seu sobrenome:">
+                    </div>
+                </div>
+                <h4 style="font-size: calc(0.70em + 1vmin);" for="">Email:</h4>
+                <input class="input" type="email" placeholder="Digite seu email:">
+                <h4 style="font-size: calc(0.70em + 1vmin);" for="">Telefone:</h4>
+                <input class="input" type="number" placeholder="Digite seu Telefone:">
+                <h4 style="font-size: calc(0.70em + 1vmin);" for="">Mensagem:</h4>
+                <textarea rows="8"></textarea>
+
+                <button type="submit" class="buttonContact">Enviar</button>
+            </form>
+        </div>
+        <div class="rightContact" id="contactRight">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58511.7050228623!2d-46.66978186174616!3d-23.569105610189474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2b063f663%3A0xc567c0d16d0bc582!2sS%C3%A3o%20Paulo%20Tech%20School!5e0!3m2!1spt-BR!2sbr!4v1661629648262!5m2!1spt-BR!2sbr"
+                width="700" height="620" align="right" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <footer id="footer1">
+        <div class="rowFooter">
+            <img src="assets/img/social.svg" alt="">
+            <img src="assets/img/social-1.svg" alt="">
+            <img src="assets/img/social-2.svg" alt="">
+            <img src="assets/img/social-3.svg" alt="">
+            <img src="assets/img/social-4.svg" alt="">
+        </div>
+        <div class="rowFooter2">
+
+            <h2 style="color: #000;">Serviços</h2>
+            <h2 style="color: #000;">Social</h2>
+            <h2 style="color: #000;">Ajuda</h2>
+            <h2 style="color: #000;">Jurídico</h2>
+        </div>
+        <h2 style="margin-left: 2%;">I SEE</h2>
+
+        <div class="rowFooter2">
+
+            <h4 style="color: #000; font-weight: 200;">• Alertas</h4>
+            <h4 style="color: #000;  font-weight: 200; margin-left: 3%;">• Facebook</h4>
+            <h4 style="color: #000; font-weight: 200;">• Suporte</h4>
+            <h4 style="color: #000;  font-weight: 200; width: 9%;">• Termos e condições</h4>
+        </div>
+
+        <div class="rowFooter2">
+
+            <h4 style="color: #000; font-weight: 200; margin-left: 1.7%;">• Monitoramento</h4>
+            <h4 style="color: #000;  font-weight: 200; margin-left: -5%;">• Instagram</h4>
+            <h4 style="color: #000; font-weight: 200;">• Contato</h4>
+            <h4 style="color: #000;  font-weight: 200; width: 9%;">• Política de privacidades</h4>
+        </div>
+
+        <div class="rowFooter2">
+
+            <h4 style="color: #000; font-weight: 200; margin-left: 3%;">• Dashboard</h4>
+            <h4 style="color: #000;  font-weight: 200; margin-left: 3%;">• Linkedin</h4>
+            <h4 style="color: #000; font-weight: 200; margin-left: 1%;">• Localização</h4>
+            <h4 style="color: #000;  font-weight: 200; width: 9%;">• Ambiente Confortável</h4>
+        </div>
+    </footer>
+
+
+    <div class="footerMobile" id="footer2">
+        <h2>I SEE</h2>
+        <img style="margin-top: 2%; margin-bottom: 2%; width: 100vw;" src="assets/img/LineMobile.svg" alt="">
+        <h4 style="font-weight: bold; color: #000;">Serviços</h4>
+        <img style="margin-top: 2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
+        <h4 style="font-weight: bold; color: #000;">Social</h4>
+        <img style="margin-top: 2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
+        <h4 style="font-weight: bold; color: #000;">Ajuda</h4>
+        <img style="margin-top:  2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
+        <h4 style="font-weight: bold; color: #000;">Jurídico</h4>     
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    if (window.matchMedia("(max-width:769px)").matches) {
+        headerHidden.style.display = 'none'
+        headerMobile.style.display = 'flex'
+        contactRight.style.display = 'none'
+        contact1.style.display = 'none'
+        footer1.style.display = 'none'
+        console.log('a viewport tem menos de 769 pixels de largura')
+    } else {
+        console.log('a viewport tem mais que 769 pixels de largura')
+        headerMobile.style.display = 'none'
+        mobileHambMenu.style.display = 'none'
+        service1.style.display = 'none'
+        service2.style.display = 'none'
+        service3.style.display = 'none'
+        service4.style.display = 'none'
+        contact2.style.display = 'none'
+        contact3.style.display = 'none'
+        contact4.style.display = 'none'
+        contact5.style.display = 'none'
+        footer2.style.display = 'none'
+
+    }
+    var i = 0
+    function btnMenu() {
+        i++
+        if (i % 2 == 0) {
+            mobileHambMenu.style.display = 'none'
+        }
+        else {
+            mobileHambMenu.style.display = 'flex'
+        }
+        console.log(i)
+    }
+
+</script>

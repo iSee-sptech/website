@@ -26,54 +26,10 @@ function entrar(email, senha) {
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 function cadastrar(nome, email, endereco, dataNasc, cpf, celular, senha) {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
-    nome,
-    email,
-    endereco,
-    dataNasc,
-    cpf,
-    celular,
-    senha
-  );
 
-  // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-  //  e na ordem de inserção dos dados.
   var instrucao = `
-        INSERT INTO usuario (nome_usuario, telefone_usuario, email_usuario, senha_usuario, fk_empresa) VALUES ('${nome}', '${email}', '${endereco}', '${dataNasc}', '${cpf}'), '${celular}', '${senha}';
-    `;
-  console.log("Executando a instrução SQL: \n" + instrucao);
-  return database.executar(instrucao);
-}
-
-function cadastrarFunc(
-  nomeFunc,
-  emailFunc,
-  enderecoFunc,
-  dataNascFunc,
-  cargo,
-  cpfFunc,
-  celularFunc,
-  senhaFunc
-) {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
-    nomeFunc,
-    emailFunc,
-    enderecoFunc,
-    dataNascFunc,
-    cargo,
-    cpfFunc,
-    celularFunc,
-    senhaFunc
-  );
-
-  // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-  //  e na ordem de inserção dos dados.
-  var instrucao = `
-          INSERT INTO usuario (nome_usuario, telefone_usuario, email_usuario, senha_usuario, fk_empresa) VALUES ('${nomeFunc}', '${emailFunc}', '${enderecoFunc}', '${dataNascFunc}', '${cargo}','${cpfFunc}'), '${celularFunc}', '${senhaFunc}';
-      `;
-  console.log("Executando a instrução SQL: \n" + instrucao);
+  insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, cargoUsuario ) values ('${nome}', '${email}', '${endereco}', '${dataNasc}', '${cpf}', '${celular}', '${senha}', 'Gerente');
+  `;
   return database.executar(instrucao);
 }
 
@@ -81,5 +37,5 @@ module.exports = {
   entrar,
   cadastrar,
   listar,
-  cadastrarFunc,
+  // cadastrarFunc,
 };

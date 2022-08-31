@@ -87,94 +87,94 @@
 </html>
 
 <script>
-  function cadastrarFunc() {
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeFuncVar = input_nome_func.value;
-    var emailFuncVar = input_email_func.value;
-    var enderecoFuncVar = input_endereco_func.value;
-    var dataNascFuncVar = input_data_nasc_func.value;
-    var cargoFuncVar = select_cargo_func.value;
-    var cpfFuncVar = input_cpf_func.value;
-    var celularFunc = input_cell_func.value;
-    var senhaFuncVar = input_senha_func.value;
-    var confirmacaoSenhaFuncVar = input_confirmacao_senha_func.value;
+  // function cadastrarFunc() {
+  //   //Recupere o valor da nova input pelo nome do id
+  //   // Agora vá para o método fetch logo abaixo
+  //   var nomeFuncVar = input_nome_func.value;
+  //   var emailFuncVar = input_email_func.value;
+  //   var enderecoFuncVar = input_endereco_func.value;
+  //   var dataNascFuncVar = input_data_nasc_func.value;
+  //   var cargoFuncVar = select_cargo_func.value;
+  //   var cpfFuncVar = input_cpf_func.value;
+  //   var celularFunc = input_cell_func.value;
+  //   var senhaFuncVar = input_senha_func.value;
+  //   var confirmacaoSenhaFuncVar = input_confirmacao_senha_func.value;
 
-    if (
-      nomeFuncVar == "" ||
-      emailFuncVar == "" ||
-      enderecoFuncVar == "" ||
-      dataFuncNascVar == "" ||
-      cpfFuncVar == "" ||
-      celularFunc == "" ||
-      senhaFuncVar == "" ||
-      confirmacaoSenhaFuncVar == ""
-    ) {
-      ("Preencha todos os campos <img src='assets/icons/icon_error.png'>");
-      setInterval(sumirMensagem, 4000);
-      return false;
-    }
-    if (
-      emailFuncVar.indexOf("@") < 3 ||
-      emailFuncVar.indexOf(".com") < 7 ||
-      emailFuncVar.length < 15
-    ) {
-      ("Ops, e-mail inválido! Verifique e tente novamente. <img src='assets/icons/icon_error.png'>");
-      setInterval(sumirMensagem, 4000);
-      return false;
-    }
+  //   if (
+  //     nomeFuncVar == "" ||
+  //     emailFuncVar == "" ||
+  //     enderecoFuncVar == "" ||
+  //     dataFuncNascVar == "" ||
+  //     cpfFuncVar == "" ||
+  //     celularFunc == "" ||
+  //     senhaFuncVar == "" ||
+  //     confirmacaoSenhaFuncVar == ""
+  //   ) {
+  //     ("Preencha todos os campos <img src='assets/icons/icon_error.png'>");
+  //     setInterval(sumirMensagem, 4000);
+  //     return false;
+  //   }
+  //   if (
+  //     emailFuncVar.indexOf("@") < 3 ||
+  //     emailFuncVar.indexOf(".com") < 7 ||
+  //     emailFuncVar.length < 15
+  //   ) {
+  //     ("Ops, e-mail inválido! Verifique e tente novamente. <img src='assets/icons/icon_error.png'>");
+  //     setInterval(sumirMensagem, 4000);
+  //     return false;
+  //   }
 
-    if (senhaFuncVar != confirmacaoSenhaFuncVar) {
-      ("As senhas inseridas devem ser iguais! <img src='assets/icons/icon_error.png'>");
-      setInterval(sumirMensagem, 4000);
-      return false;
-    }
+  //   if (senhaFuncVar != confirmacaoSenhaFuncVar) {
+  //     ("As senhas inseridas devem ser iguais! <img src='assets/icons/icon_error.png'>");
+  //     setInterval(sumirMensagem, 4000);
+  //     return false;
+  //   }
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeFuncVar,
-        emailServer: emailFuncVar,
-        enderecoServer: enderecoFuncVar,
-        dataNascServer: dataNascFuncVar,
-        cargoServer: cargofuncVar,
-        cpfServer: cpfFuncVar,
-        celularServer: celularFunc,
-        senhaServer: senhaFuncVar,
-        confirmarSenhaServer: confirmacaoSenhaFuncVar,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+  //   // Enviando o valor da nova input
+  //   fetch("/usuarios/cadastrar", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       // crie um atributo que recebe o valor recuperado aqui
+  //       // Agora vá para o arquivo routes/usuario.js
+  //       nomeServer: nomeFuncVar,
+  //       emailServer: emailFuncVar,
+  //       enderecoServer: enderecoFuncVar,
+  //       dataNascServer: dataNascFuncVar,
+  //       cargoServer: cargofuncVar,
+  //       cpfServer: cpfFuncVar,
+  //       celularServer: celularFunc,
+  //       senhaServer: senhaFuncVar,
+  //       confirmarSenhaServer: confirmacaoSenhaFuncVar,
+  //     }),
+  //   })
+  //     .then(function (resposta) {
+  //       console.log("resposta: ", resposta);
 
-        Response.redirected = true;
+  //       Response.redirected = true;
 
-        if (resposta.ok) {
-          /*window.location = 'login.html';*/
+  //       if (resposta.ok) {
+  //         /*window.location = 'login.html';*/
 
-          cardCadastroload.style.display = "block";
-          mensagem_cadastro.innerHTML =
-            "Cadastro realizado com sucesso! redirecionando..<img src='assets/img/gif_loading.gif'>";
+  //         cardCadastroload.style.display = "block";
+  //         mensagem_cadastro.innerHTML =
+  //           "Cadastro realizado com sucesso! redirecionando..<img src='assets/img/gif_loading.gif'>";
 
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "4000");
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+  //         setTimeout(() => {
+  //           window.location = "login.html";
+  //         }, "4000");
+  //       }
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
 
-    return false;
-  }
+  //   return false;
+  // }
 
-  function sumirMensagem() {
-    cardCadastro.style.display = "none";
-  }
+  // function sumirMensagem() {
+  //   cardCadastro.style.display = "none";
+  // }
 </script>

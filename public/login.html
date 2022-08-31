@@ -1,198 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style-login.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>iSee - Login</title>
 </head>
+
 <body>
-    <div class="header">
-        <div class="container">
-            <div class="navbar">
-                <img src="" alt="">
-                <a href="">Home</a>
-                <a href="">Sobre</a>
-                <h1>I see</h1>
-                <a href="">Contato</a>
-                <a href="">Login</a>
-                <a href="">Cadastre-se</a>
-            </div>
-        </div>
-    </div>
+
+    <header id="headerHidden">
+        <nav>
+            <div class="logo"></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li> <a class="now">Isee</a></li>
+                <li><a href="signUp.html">Valores</a></li>
+                <li><a href="signUp.html">Contato</a></li>
+                <li><a href="signUp.html">Login</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
     <div class="login">
-            <div class="carousel">
-                <div class="imagem">
-                    <img src="assets/img/img_carousel.png" alt="">
-                </div>
+        <div class="carrossel">
+            <div style="width: 100%; height: 60%;" id="divImg1" onclick="img()">
+                <img src="assets/img/img_carousel.png" style="display: flex;" id="img1" width="96%" alt="">
             </div>
-            <div class="form">
-                <form>
-                    <div class="titulo">
-                        <h1>Bem-vindo ao <span>I see.</span></h1>
-                    </div>
-                    <div class="input_login">
-                        <label for="">E-mail:</label>
-                        <input type="text">
-                        <label for="">Senha:</label>
-                        <input type="text">
-                    </div>
-                    <div class="opcoes">
-                        <div class="radio">
-                            <input type="radio" name="" id="radio">
-                            <label for="radio" class="radio-label">Lembrar Senha</label>
-                        </div>
-                        <div>
-                            <a href="">Esqueci minha senha</a>
-                        </div>
-                    </div>
-                    <div class="submit">
-                        <button>
-                            Entrar
-                        </button>
-                    </div>
-                    <div class="cadastro">
-                        <p>Não possui conta? <a href="">Cadastre-se</a></p>
-                    </div>
-                <form>
+            <div class="row">
+                <button style="border-color: #7D2DE2;" class="carrosselButton1" id="buttonCarrossel1"></button>
+                <button class="carrosselButton1" id="buttonCarrossel2"></button>
+                <button class="carrosselButton1" id="buttonCarrossel3"></button>
             </div>
         </div>
-    <div class="footer">
-        <div class="container">
-            <div class="titulo-footer">
-                <h1>I SEE</h1>
-            </div>
-            <div class="content-footer">
-                <div class="box-icon">
-                    <div class="icon">
-                        <a href="">
-                            <img src="assets/img/icon_facebook.png" alt="">
-                        </a>
-                        <a href="">
-                            <img src="assets/img/icon_twitter.png" alt="">
-                        </a>
-                        <a href="">
-                            <img src="assets/img/icon_telegram.png" alt="">
-                        </a>
-                        <a href="">
-                            <img src="assets/img/icon_instagram.png" alt="">
-                        </a>
-                        <a href="">
-                            <img src="assets/img/icon_linkedin.png" alt="">
-                        </a>               
+
+        <div class="form">
+            <form>
+                <div class="titulo">
+                    <h1>Bem-vindo ao <span>I see</span>.</h1>
+                </div>
+                <div class="input_login">
+                    <label class="h4" for="">E-mail:</label>
+                    <input type="text">
+                    <label class="h4" for="">Senha:</label>
+                    <input type="text">
+                </div>
+                <div class="opcoes">
+                    <div class="radio">
+                        <input type="radio" name="" id="radio">
+                        <label for="radio" class="radio-label">Lembrar Senha</label>
+                    </div>
+                    <div>
+                        <h3 class="forgetPassword" onclick="window.location.href='redefinirSenha.html'">Esqueci a senha
+                        </h3>
                     </div>
                 </div>
-                <div class="content">
-                    <div class="services">
-                        <div class="title">
-                            <h2>
-                                Serviços
-                            </h2>
-                        </div>
-                        <div class="list">
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        Alertas
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Monitoramento
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Dashboard
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="social">
-                        <div class="title">
-                            <h2>
-                                Social
-                            </h2>
-                        </div>
-                        <div class="list">
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        Facebook
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Instagram
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Linkedin
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="help">
-                        <div class="title">
-                            <h2>
-                                Ajuda
-                            </h2>
-                        </div>
-                        <div class="list">
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        Suporte
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Contato
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="juridico">
-                        <div class="title">
-                            <h2>
-                                Judiciário
-                            </h2>
-                        </div>
-                        <div class="list">
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        Termos e condições
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Política de pivacidade
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Ambiente confortável
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="submit">
+                    <button>
+                        Entrar
+                    </button>
                 </div>
-                <div class="box-copyright">
-                    <div class="copy">
-                        <p>
-                            Copyright © I SEE 2022
-                        </p>
-                    </div>
+                <div class="cadastro">
+                    <h3 class="cadastroText">Não possui conta? <span class="forgetPassword"
+                            onclick="window.location.href='cadastroGestor.html'"
+                            style="font-weight: bold;">Cadastre-se</span></h3>
                 </div>
-            </div>
+                <form>
         </div>
     </div>
+
 </body>
+
 </html>
+
+<script>
+    i = 0;
+    function img() {
+        i++
+        if (i == 1) {
+            img1.src = "assets/img/backgroundHome.svg"
+            buttonCarrossel2.style.borderColor = "#7D2DE2"
+            buttonCarrossel1.style.borderColor = "#000"
+            buttonCarrossel3.style.borderColor = "#000"
+            console.log(i)
+        }
+        else if (i == 2) {
+            img1.src = "assets/img/dashboardAlert.svg"
+            buttonCarrossel3.style.borderColor = "#7D2DE2"
+            buttonCarrossel1.style.borderColor = "#000"
+            buttonCarrossel2.style.borderColor = "#000"
+            console.log(i)
+        }
+        else {
+            img1.src = "assets/img/img_carousel.png"
+            buttonCarrossel1.style.borderColor = "#7D2DE2"
+            buttonCarrossel2.style.borderColor = "#000"
+            buttonCarrossel3.style.borderColor = "#000"
+            i = 0
+            console.log(i)
+        }
+
+    }
+
+
+
+</script>
