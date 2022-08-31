@@ -18,7 +18,7 @@ function entrar(email, senha) {
     senha
   );
   var instrucao = `
-        SELECT * FROM usuario WHERE email_usuario = '${email}' AND senha_usuario = '${senha}';
+        SELECT * FROM usuarios WHERE emailUsuario = '${email}' AND senhaUsuario = '${senha}';
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
