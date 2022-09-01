@@ -103,7 +103,7 @@
             buttonCarrossel2.style.borderColor = "#000"
             buttonCarrossel3.style.borderColor = "#000"
             i = 0
-            console.log(i)
+            console.log(i) 
         }
 
     }
@@ -155,9 +155,10 @@
                     sessionStorage.nomeUsuario = json.nomeUsuario;
                     sessionStorage.idUsuario = json.idUsuario;
                     sessionStorage.cpfUsuario = json.cpfUsuario;
+                    sessionStorage.cargoUsuario = json.cargoUsuario;
 
                     setTimeout(function () {
-                        window.location = "telaPerfil.html";
+                        window.location = "dashboard/dashboard_gestor.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
