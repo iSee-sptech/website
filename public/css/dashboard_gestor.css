@@ -147,7 +147,7 @@ h4 {
 .container_btn_add {
   width: 30vw;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .container_btn_add div {

@@ -29,9 +29,7 @@ html {
 }
 
 .titulo {
-  font-size: calc(2em + 1vmin);
-  color: #ffffff;
-  font-weight: bold;
+  font-size: calc(1.60em + 1vmin);
 }
 
 p {
@@ -140,6 +138,7 @@ h4 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   justify-content: space-around;
   border-radius: 16px;
   border-color: transparent;
@@ -256,7 +255,10 @@ h4 {
   color: #ffffff;
   display: flex;
   justify-content: space-around;
+  justify-items: center;
+  text-align: center;
   align-items: center;
+  padding-top: 1.4%;
 }
 
 .navbar_bottom div {
