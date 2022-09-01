@@ -417,7 +417,7 @@ input {
     border-radius: 10px;
     box-sizing: border-box;
     width: 150%;
-    height: 7vh;
+    height: 10vh;
     color: #fff;
     background-color: transparent;
     text-align: center;
@@ -427,8 +427,8 @@ input {
     border: 1px solid #FFFFFF;
     border-radius: 10px;
     box-sizing: border-box;
-    width: 113%;
-    height: 9vh;
+    width: 116.5%;
+    height: 10vh;
     color: #fff;
     background-color: transparent;
     font-size: calc(0.70em + 1vmin);
@@ -450,8 +450,8 @@ textarea {
     border: 1px solid #FFFFFF;
     border-radius: 10px;
     box-sizing: border-box;
-    width: 113%;
-    height: 18vh;
+    width: 116.5%;
+    height: 26vh;
     font-size: calc(0.70em + 1vmin);
     color: #fff;
     background-color: transparent;
@@ -895,4 +895,16 @@ footer {
         padding-left: 4%;
         margin-top: 8%;
     }
+}
+
+@media only screen and (max-height: 680px) {    
+     .home {
+        height: 70vh;
+     }
+     .leftContact {
+         height: 110vh;
+     }
+     .rightContact {
+         height: 110vh;
+     }
 }
