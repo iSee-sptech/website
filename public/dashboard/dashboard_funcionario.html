@@ -1,126 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iSee</title>
-    <link rel="stylesheet" href="../css/dashboard_funcionario.css" />
-  </head>
 
-  <body>
-    <div class="first_section">
-      <div class="first_container">
-        <h1>Bom dia, <b>Nogueira!</b></h1>
-        <div class="modal_botao">
-          <div>
-            <h2 class="titulo">Alertas</h2>
-            <span>7</span>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iSee</title>
+  <link rel="stylesheet" href="../css/dashboard_funcionario.css" />
+</head>
 
-          <div>
-            <h2 class="titulo">Meus Caixas</h2>
-            <span>4</span>
-          </div>
+<body>
+  <div class="first_section">
+    <div class="first_container">
+      <h1 id="bem_vindo">Bem vindo</h1>
+      <div class="modal_botao">
+        <div>
+          <h2 class="titulo">Alertas</h2>
+          <span>7</span>
+        </div>
+
+        <div>
+          <h2 class="titulo">Meus Caixas</h2>
+          <span>4</span>
         </div>
       </div>
+    </div>
 
-      <div class="second_container">
-        <div class="modal_cadastrar">
-          <h2 class="titulo">Etiquetas</h2>
-          <div class="desc_etiqueta">
-            <h3>Problema no caixa 1 Alerta de uso excessivel de Ram</h3>
-          </div>
+    <div class="second_container">
+      <div class="modal_cadastrar">
+        <h2 class="titulo">Lembretes</h2>
+        <div class="desc_etiqueta">
+          <h3>Problema no caixa 1 Alerta de uso excessivel de Ram</h3>
         </div>
       </div>
-      <div class="container_notificacao">
-        <div class="navbar_notificacao">
-          <h2>Notificações</h2>
-          <img src="../assets/img/alert.svg" />
-          <div><img src="../assets/img/user.svg" /></div>
-        </div>
+    </div>
+    <div class="container_notificacao">
+      <div class="navbar_notificacao">
+        <h2>Notificações</h2>
+        <img src="../assets/img/alert.svg" />
+        <div><img src="../assets/img/user.svg" /></div>
+      </div>
 
-        <div class="container_rollbar">
-          <div class="notificacao">
-            <h3>Cadastro de suporte</h3>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-
-          <div class="notificacao">
-            <h3>Cadastro de suporte</h3>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h3>Cadastro de suporte</h3>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h3>Cadastro de suporte</h3>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h3>Cadastro de suporte</h3>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h3>Cadastro de suporte</h3>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h3>Cadastro de suporte</h3>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-        </div>
-
-        <div onclick="alertTeste()" class="btn_cadastrar_estag">
-          <h3>Cadastrar estagiario novo de suporte</h3>
+      <div class="container_rollbar">
+        <div class="notificacao">
+          <h3>Processos anormais caixa 2</h3>
           <p>27/08/2022 ás 14:18</p>
         </div>
-      </div>
-    </div>
 
-    <div class="container_navbar">
-      <div class="navbar_bottom">
-        <div class="btn_home">
-          <img src="../assets/img/home_icon.svg" />
-          <h2>Home</h2>
+        <div class="notificacao">
+          <h3>Processos anormais caixa 1</h3>
+          <p>27/08/2022 ás 14:18</p>
         </div>
-
-        <div class="btn_etiqueta">
-          <img src="../assets/img/etiqueta_icon.svg" />
-          <h2>Etiquetas</h2>
+        <div class="notificacao">
+          <h3>Lentidão caixa 3</h3>
+          <p>27/08/2022 ás 12:34</p>
         </div>
-
-        <div class="btn_historico">
-          <img src="../assets/img/historico_icon.svg" />
-          <h2>Histórico</h2>
+        <div class="notificacao">
+          <h3>Processos anormais caixa 3</h3>
+          <p>27/08/2022 ás 11:13</p>
         </div>
-
-        <div class="btn_dashboard">
-          <img src="../assets/img/dashboard_icon.svg" />
-          <h2>Dashboard</h2>
+        <div class="notificacao">
+          <h3>Processos anormais caixa 2</h3>
+          <p>27/08/2022 ás 10:00</p>
         </div>
-
-        <div class="btn_alerta">
-          <img src="../assets/img/alertas_icon.png" />
-          <h2>Alertas</h2>
+        <div class="notificacao">
+          <h3>Lentidão caixa 4</h3>
+          <p>27/08/2022 ás 08:18</p>
         </div>
-
-        <div class="btn_perfil">
-          <img src="../assets/img/userNavbar.svg" />
-          <h2>Perfil</h2>
-        </div>
-
-        <div class="btn_sair">
-          <img src="../assets/img/sair_icon.png" />
-          <h2>Sair</h2>
+        <div class="notificacao">
+          <h3>Processos anormais caixa 4</h3>
+          <p>27/08/2022 ás 07:00</p>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+
+  <div class="container_navbar">
+    <div class="navbar_bottom">
+      <div class="btn_home">
+        <img src="../assets/img/home_icon.svg" />
+        <h2>Home</h2>
+      </div>
+
+      <div class="btn_etiqueta">
+        <img src="../assets/img/etiqueta_icon.svg" />
+        <h2>Etiquetas</h2>
+      </div>
+
+      <div class="btn_historico">
+        <img src="../assets/img/historico_icon.svg" />
+        <h2>Histórico</h2>
+      </div>
+
+      <div class="btn_dashboard">
+        <img src="../assets/img/dashboard_icon.svg" />
+        <h2>Dashboard</h2>
+      </div>
+
+      <div class="btn_alerta">
+        <img src="../assets/img/alertas_icon.png" />
+        <h2>Alertas</h2>
+      </div>
+
+      <div class="btn_perfil">
+        <img src="../assets/img/userNavbar.svg" />
+        <h2>Perfil</h2>
+      </div>
+
+      <div class="btn_sair">
+        <img src="../assets/img/sair_icon.png" />
+        <h2>Sair</h2>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
 
 <script>
+  var dataAtual = new Date();
+  var hora = dataAtual.getHours();
+  var frase
+
+  var bemVindo = document.getElementById("bem_vindo")
+
+  if (hora >= 6 && hora < 13) {
+    frase = `Bom dia`
+  } else if (hora >= 13 && hora < 18) {
+    frase = `Boa tarde`
+  } else if (hora >= 18 || hora < 6) {
+    frase = `Boa noite`
+  }
+
+  bemVindo.innerHTML = `${frase}, nome`
+
   function alerteTeste() {
     alert("teste");
   }

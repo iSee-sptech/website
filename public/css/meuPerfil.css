@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* scrol bar temporaria*/
+/* *::-webkit-scrollbar {
+    width: 19px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #3B3B3B;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #7D2DE2;
+    border-radius: 2px;
+    border: -1px none #ffffff;
+  } */
+/* scrol bar temporaria */
+
+body, html{
+    width: 100vw;
+    background-color: #161616;
+}
+
+.titulo{
+    font-size: calc(2em + 1vmin);
+}
+
+p{
+    font-style: normal;
+    font-weight: 275;
+    font-size: calc(0.35em + 1vmin);
+    line-height: 21px;
+}
+
+b{
+    color: #7D2DE2;
+}
+
+h1{
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(3em + 1vmin);
+    line-height: 78px;
+    width: 800px;
+    align-self: flex-start;
+    padding-top: 5vh;
+}
+
+h2{
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.90em + 1vmin);
+    line-height: 48px;
+}
+
+h3{
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.99em + 1vmin);
+    font-size: 18px;
+    line-height: 27px;
+}
+
+h4{
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(0.60em + 1vmin);
+  line-height: 27px;
+}
+
+.first_section{
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.container_funcionario{
+    width: 24vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container_funcionario span{
+    color: #7D2DE2;
+    font-weight: bold;
+    font-size: calc(1.3em + 1vmin);
+}
+
+.modal_botao{
+    width: 24vw;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal_botao div{
+    width: 24vw;
+    height: 20vh;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: #292929;
+    border-color: transparent;
+}
+
+.container_cadastrar{
+    width: 30vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.modal_cadastrar{
+    width: 30vw;
+    height: 45vh;
+    background: #292929;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    border-radius: 16px;
+    border-color: transparent;
+}
+
+.container_btn_add{
+    width: 30vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.container_btn_add div{
+    width: 9vw;
+    height: 19vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn_add{
+    width: 9vw;
+    height: 19vh;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+}
+
+.container_card{
+    width: 24vw;
+    height: 70vh;
+    background-color: #292929;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-color: transparent;
+    padding: 2vh 0;
+    color: #ffffff;
+}
+
+/* Tem um container invisivel na img de perfil */
+.container_dados {
+    display: block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 24vw;
+    padding: 0 4vw;
+    background-color: #161616;
+}
+
+.container_dados input {
+    width: 16vw;
+    height: 6vh;
+    border-radius: 88.5px;
+    text-align: center;
+    background-color: #161616;
+}
+
+
+.container_dados img {
+    width: 8vw
+}
+
+.container_meu_perfil {
+    width: 30vw;
+}
+
+form {
+    margin: 2vw;
+    color: #ffffff;
+}
+
+input, textarea {
+    margin-bottom: 2vh;
+    margin-top: 0.5vh;
+    border-radius: 6px;
+    height: 4vh;
+    border: 1px solid #7D2DE2;
+    outline: none;
+    background-color: #292929;
+    padding: 5px;
+    color: #ffffff;
+}
+
+
+.container_input_head {
+    width: 100%;
+}
+
+.input_type1 {
+    width: 100%;
+}
+
+.container_inputs_sidebyside {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.container_inputs_sidebyside span {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 46%;
+}
+
+.container_card button {
+    padding: 2.5vh 3vw;
+    background: #7D2DE2;
+    color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 0;
+    font-weight: 600;
+    border-radius: 16px;
+}
+
+.body_lembrete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2vw;
+}
+
+textarea {
+    height: 22vh;
+    resize: none;
+    /* margin-bottom: 1.8vh; */
+}
+
+.body_lembrete input, .body_lembrete textarea {
+    width: 20vw;
+}
+
+
+.navbar_notificacao{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.container_rollbar{
+    width: 18vw;
+    height: 45vh;
+    overflow-y: scroll;
+}
+.notificacao{
+    width: 15vw;
+    height: 100px;
+    background-color: #3B3B3B;
+    color: #FFFFFF;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    word-break: break-word;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.btn_cadastrar_estag{
+    width: 16vw;
+    height: 12vh;
+    background-color: #ffffff;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+
+.navbar_notificacao img{
+    width: 1.5vw;
+}
+
+ /* TROCAR POR UMA IMAGEM DO BANCO*/
+.navbar_notificacao div{
+    background-color: white;
+    width: 3vw;
+    height: 6vh;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+ /* ^^TROCAR POR UMA IMAGEM DO BANCO^^*/
+
+
+ /* Nav Bar Bottom Code */
+ .container_navbar {
+  width: 100vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.navbar_bottom {
+  width: 89vw;
+  height: 18vh;
+  border-radius: 16px;
+  background-color: #292929;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  justify-items: center;
+  text-align: center;
+  align-items: center;
+  padding-top: 1.4%;
+}
+
+.navbar_bottom div {
+  width: 6vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar_bottom div:hover {
+  cursor: pointer;
+}
+
+.navbar_bottom div img {
+  padding-bottom: 10px;
+}

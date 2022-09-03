@@ -22,6 +22,7 @@
 }
 /* scrol bar temporaria*/
 
+
 body,
 html {
   width: 100vw;
@@ -43,7 +44,7 @@ b {
   color: #7d2de2;
 }
 
-h1 {
+#bem_vindo {
   color: #ffffff;
   font-style: normal;
   font-weight: 700;
@@ -121,6 +122,13 @@ h4 {
   background: #292929;
   border-color: transparent;
 }
+
+
+.modal_botao div:hover {
+  box-shadow: 0 0 2px 2px #161616 inset;
+  cursor: pointer;
+}
+
 
 .container_cadastrar {
   width: 30vw;
