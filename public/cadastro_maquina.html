@@ -50,9 +50,26 @@
       </div>
     </div>
   </body>
+
+  <div id="modal" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck">
+          <img id="modalImg" src="" alt="check" />
+        </div>
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+      <span id="modalText"></span>
+      <button class="button8" onclick="buttonBack()">Fechar</button>
+    </div>
+  </div>
 </html>
 
 <script>
+  function buttonBack() {
+    modal.style.display = "none";
+  }
+
   function cadastrarCaixa() {
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -68,12 +85,21 @@
       imagemCaixaVar == ""
     ) {
       console.log("Prencha todos os campos!");
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Email inválido!";
       return false;
     } else if (nomeCaixaVar.length < 3) {
       console.log("Nome inválido!");
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Email inválido!";
       return false;
     } else if (enderecoCaixaVar.length < 7) {
       console.log("Endereço inválido!");
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Email inválido!";
       return false;
     } else {
       setInterval(sumirMensagem, 5000);

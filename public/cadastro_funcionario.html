@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
     <link rel="stylesheet" href="./css/cadastro_func.css" />
+    <link rel="stylesheet" href="css/styleModal.css" />
   </head>
 
   <body>
@@ -77,9 +78,26 @@
       </div>
     </div>
   </body>
+
+  <div id="modal" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck">
+          <img id="modalImg" src="" alt="check" />
+        </div>
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+      <span id="modalText"></span>
+      <button class="button8" onclick="buttonBack()">Fechar</button>
+    </div>
+  </div>
 </html>
 
 <script>
+  function buttonBack() {
+    modal.style.display = "none";
+  }
+
   function cadastrarFunc() {
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -109,12 +127,55 @@
       emailFuncVar.length < 15
     ) {
       console.log("E-mail incorreto!");
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Email inválido!";
+      return false;
+    } else if (enderecoFuncVar.length < 8) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um CEP válido! (8 dígitos)";
+      return false;
+    } else if (enderecoFuncVar.length > 8) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um CEP válido! (Apenas os números)";
+      return false;
+    } else if (cpfFuncVar.length < 11) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um CPF válido! (11 dígitos)";
+      return false;
+    } else if (cpfFuncVar.length > 11) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um CPF válido! (Apenas os números)";
+      return false;
+    } else if (celularFunc.length < 11) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um celular válido! (11 dígitos)";
+      return false;
+    } else if (celularFunc.length > 11) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um celular válido! (Apenas os números)";
+      return false;
+    } else if (senhaFuncVar.length < 8) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira uma senha de no mínimo 8 caractéress!";
       return false;
     } else if (senhaFuncVar.length != confirmacaoSenhaFuncVar.length) {
       console.log("Insira senha iguais!");
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "As senhas não conferem!";
       return false;
     } else {
-      setInterval(sumirMensagem, 5000);
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconCheck.svg";
+      modalText.innerHTML = "Cadastro efetuado com sucesso!";
     }
 
     fetch("/usuarios/cadastrarFunc", {

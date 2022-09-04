@@ -123,24 +123,82 @@
       cpfVar == "" ||
       celularGestor == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == ""
-    ) {
+      confirmacaoSenhaVar == ""){
       console.log("Prencha todos os campos!")
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Preencha todos os campos!";
       return false;
-    } else if (
-      emailVar.includes("@") == false ||
-      emailVar.length < 15
-    ) {
+    } 
+
+    else if ( emailVar.includes("@") == false || emailVar.length < 15) {
       console.log("E-mail incorreto!")
-      return false;
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Email inválido!"
+        return false;
+    } 
+    
+    else if(enderecoVar.length < 8){
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Insira um CEP válido! (8 dígitos)"
+        return false;
+    } 
+
+      else if(enderecoVar.length > 8){
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Insira um CEP válido! (Apenas os números)"
+        return false;
+    }
+
+      else if(cpfVar.length < 11){
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Insira um CPF válido! (11 dígitos)"
+        return false;
+    } 
+    
+    else if(cpfVar.length > 11){
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Insira um CPF válido! (Apenas os números)"
+        return false;
+    } 
+    
+    else if(celularGestor.length < 11){
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Insira um celular válido! (11 dígitos)"
+        return false;
+    } 
+    
+    else if(celularGestor.length > 11){
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Insira um celular válido! (Apenas os números)"
+        return false;
+    }
+
+    else if (senhaVar.length < 8) {
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Insira uma senha de no mínimo 8 caractéress!"
+        return false;
     }
 
     else if (senhaVar.length != confirmacaoSenhaVar.length) {
       console.log("Insira senha iguais!")
-      return false;
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "As senhas não conferem!"
+        return false;
     }
     else {
-      setInterval(sumirMensagem, 5000)
+      modal.style.display = 'block'
+        modalImg.src = "assets/img/iconCheck.svg"
+        modalText.innerHTML = "Cadastro efetuado com sucesso!"
     }
 
     fetch("/usuarios/cadastrar", {
