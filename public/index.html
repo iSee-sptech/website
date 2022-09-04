@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css\style.css">
+    <link rel="stylesheet" href="css\styleModal.css">
     <title>I SEE</title>
 </head>
 
@@ -75,71 +76,71 @@
 
         <div class="alignRow2">
             <div class="alignColumn">
-                <img src="assets/img/iconAlert.svg">
-                <h4 style="margin-top: 20%; color: #000;">Alertas</h4>
+                <img src="assets/img/iconAlert.svg" onclick="modalServices1()">
+                <h4 style="margin-top: 20%; color: #000; font-weight: 200;">Alertas</h4>
             </div>
             <div class="alignColumn">
-                <img src="assets/img/Histórico icon.svg">
-                <h4 style="margin-top: 20%; color: #000;">Históricos</h4>
+                <img src="assets/img/Histórico icon.svg" onclick="modalServices2()">
+                <h4 style="margin-top: 20%; color: #000; font-weight: 200;">Históricos</h4>
             </div>
             <div class="alignColumn">
-                <img src="assets/img/Métricas icon.svg">
-                <h4 style="margin-top: 20%; color: #000;">Métricas</h4>
+                <img src="assets/img/Métricas icon.svg" onclick="modalServices3()">
+                <h4 style="margin-top: 20%; color: #000; font-weight: 200;">Métricas</h4>
             </div>
             <div class="alignColumn">
-                <img src="assets/img/iconCamera2.svg">
-                <h4 style="margin-top: 20%; color: #000;">Monitamento</h4>
+                <img src="assets/img/iconCamera2.svg" onclick="modalServices4()">
+                <h4 style="margin-top: 20%; color: #000; font-weight: 200;">Monitamento</h4>
             </div>
             <div class="alignColumn">
-                <img src="assets/img/🦆 iconStatus.svg">
-                <h4 style="margin-top: 20%; color: #000;">Status</h4>
+                <img src="assets/img/🦆 iconStatus.svg" onclick="modalServices5()">
+                <h4 style="margin-top: 20%; color: #000; font-weight: 200;">Status</h4>
             </div>
             <div class="alignColumn">
-                <img src="assets/img/iconDashboard.svg">
-                <h4 style="margin-top: 20%; color: #000;">Dashboard</h4>
+                <img src="assets/img/iconDashboard.svg" onclick="modalServices6()">
+                <h4 style="margin-top: 20%; color: #000; font-weight: 200;">Dashboard</h4>
             </div>
             <div class="alignColumn">
-                <img src="assets/img/iconEtiquetas.svg">
-                <h4 style="margin-top: 20%; color: #000;">Etiquetas</h4>
+                <img src="assets/img/iconEtiquetas.svg" onclick="modalServices7()">
+                <h4 style="margin-top: 20%; color: #000; font-weight: 200;">Etiquetas</h4>
             </div>
         </div>
 
         <div class="alignService" id="service1">
             <div class="alignColumn">
-                <img src="assets/img/iconAlert.svg">
+                <img src="assets/img/iconAlert.svg" onclick="modalServices1()">
                 <h4 style="margin-top: 20%; color: #000;">Alertas</h4>
             </div>
             <div class="alignColumn">
-                <img src="assets/img/Histórico icon.svg">
+                <img src="assets/img/Histórico icon.svg" onclick="modalServices2()">
                 <h4 style="margin-top: 20%; color: #000;">Históricos</h4>
             </div>
         </div>
 
         <div class="alignService" id="service2">
             <div class="alignColumn">
-                <img src="assets/img/Métricas icon.svg">
+                <img src="assets/img/Métricas icon.svg" onclick="modalServices3()">
                 <h4 style="margin-top: 20%; color: #000;">Métricas</h4>
             </div>
             <div class="alignColumn">
-                <img src="assets/img/iconCamera2.svg">
+                <img src="assets/img/iconCamera2.svg" onclick="modalServices4()">
                 <h4 style="margin-top: 20%; color: #000;">Monitamento</h4>
             </div>
         </div>
 
         <div class="alignService" id="service3">
             <div class="alignColumn">
-                <img src="assets/img/🦆 iconStatus.svg">
+                <img src="assets/img/🦆 iconStatus.svg" onclick="modalServices5()">
                 <h4 style="margin-top: 20%; color: #000;">Status</h4>
             </div>
             <div class="alignColumn">
-                <img src="assets/img/iconDashboard.svg">
+                <img src="assets/img/iconDashboard.svg" onclick="modalServices6()">
                 <h4 style="margin-top: 20%; color: #000;">Dashboard</h4>
             </div>
         </div>
 
         <div class="alignService" id="service4">
             <div class="alignColumn">
-                <img src="assets/img/iconEtiquetas.svg">
+                <img src="assets/img/iconEtiquetas.svg" onclick="modalServices7()">
                 <h4 style="margin-top: 20%; color: #000;">Etiquetas</h4>
             </div>
         </div>
@@ -201,31 +202,31 @@
     <div class="contact">
         <div class="leftContact">
             <h2 style="text-align: center;">Contate-nos</h2>
-            <form action="">
+            <form id="form">
 
                 <h4 id="contact2" style="font-size: calc(0.70em + 1vmin);" for="">Primeiro Nome:</h4>
-                <input class="input"  id="contact3" type="text" placeholder="Digite seu nome:">
+                <input class="input" id="contact3" type="text" placeholder="Digite seu nome:">
                 <h4 id="contact4" style="font-size: calc(0.70em + 1vmin);" for="">Sobrenome:</h4>
-                <input class="input"  id="contact5" type="text" placeholder="Digite seu sobrenome:">
+                <input class="input" id="contact5" type="text" placeholder="Digite seu sobrenome:">
 
                 <div class="rowContact" id="contact1">
                     <div>
                         <h4 style="font-size: calc(0.70em + 1vmin);" for="">Primeiro Nome:</h4>
-                        <input type="text" placeholder="Digite seu nome:">
+                        <input type="text" name="Nome:" id="contactNome" placeholder="Digite seu nome:">
                     </div>
                     <div>
                         <h4 style="font-size: calc(0.70em + 1vmin);" for="">Sobrenome:</h4>
-                        <input type="text" placeholder="Digite seu sobrenome:">
+                        <input type="text" name="Sobrenome:" id="contactSobrenome" placeholder="Digite seu sobrenome:">
                     </div>
                 </div>
                 <h4 style="font-size: calc(0.70em + 1vmin);" for="">Email:</h4>
-                <input class="input" type="email" placeholder="Digite seu email:">
+                <input class="input" type="email" name="Email:" id="contactEmail" placeholder="Digite seu email:">
                 <h4 style="font-size: calc(0.70em + 1vmin);" for="">Telefone:</h4>
-                <input class="input" type="number" placeholder="Digite seu Telefone:">
-                <h4 style="font-size: calc(0.70em + 1vmin);" for="">Mensagem:</h4>
-                <textarea rows="8"></textarea>
+                <input class="input" type="number" name="Telefone:" id="contactTelefone" placeholder="Digite seu Telefone:">
+                <h4 style="font-size: calc(0.70em + 1vmin);" for="" >Mensagem:</h4>
+                <textarea name="Assunto:" rows="8" id="contactAssunto"></textarea>
 
-                <button type="submit" class="buttonContact">Enviar</button>
+                <button type="button" class="buttonContact" id="buttonContact" onclick="modalContact()">Enviar</button>
             </form>
         </div>
         <div class="rightContact" id="contactRight">
@@ -288,49 +289,121 @@
         <img style="margin-top: 2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
         <h4 style="font-weight: bold; color: #000;">Ajuda</h4>
         <img style="margin-top:  2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
-        <h4 style="font-weight: bold; color: #000;">Jurídico</h4>     
+        <h4 style="font-weight: bold; color: #000;">Jurídico</h4>
+    </div>
+    </div>
+
+
+    <div id="modal" class="modalBody">
+        <div class="modalReadPlus">
+            <div class="containerReadPlus">
+                <div class="modalCheck">
+                    <img id="modalImg" src="" alt="check">
+                </div>
+                <button onclick="buttonBack()" class="modalBack">&times;</button>
+            </div>
+            <span id="modalText"></span>
+            <button class="button8" onclick="buttonBack()">Fechar</button>
         </div>
     </div>
+
 
 </body>
 
 </html>
 
 <script>
-    
-    if (window.matchMedia("(max-width:769px)").matches) {
-        headerHidden.style.display = 'none'
-        headerMobile.style.display = 'flex'
-        mobileHambMenu.style.position = 'fixed'
-        contactRight.style.display = 'none'
-        contact1.style.display = 'none'
-        footer1.style.display = 'none'
-        console.log('a viewport tem menos de 769 pixels de largura')
-    } else {
-        console.log('a viewport tem mais que 769 pixels de largura')
-        headerMobile.style.display = 'none'
-        mobileHambMenu.style.display = 'none'
-        service1.style.display = 'none'
-        service2.style.display = 'none'
-        service3.style.display = 'none'
-        service4.style.display = 'none'
-        contact2.style.display = 'none'
-        contact3.style.display = 'none'
-        contact4.style.display = 'none'
-        contact5.style.display = 'none'
-        footer2.style.display = 'none'
 
+    function buttonBack() {
+        modal.style.display = 'none'
     }
-    var i = 0
-    function btnMenu() {
-        i++
-        if (i % 2 == 0) {
-            mobileHambMenu.style.display = 'none'
+    function modalServices1() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Disponibilizamos alertas para antes de acontecer problemas você ser notificado!";
+    }
+    function modalServices2() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Disponibilizamos alertas para antes de acontecer problemas você ser notificado!";
+    }
+    function modalServices3() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Disponibilizamos alertas para antes de acontecer problemas você ser notificado!";
+    }
+    function modalServices4() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Disponibilizamos alertas para antes de acontecer problemas você ser notificado!";
+    }
+    function modalServices5() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Disponibilizamos alertas para antes de acontecer problemas você ser notificado!";
+    }
+    function modalServices6() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Disponibilizamos alertas para antes de acontecer problemas você ser notificado!";
+    }
+    function modalServices7() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Disponibilizamos alertas para antes de acontecer problemas você ser notificado!";
+    }
+
+    function modalContact() {
+
+        if (contactNome.value == '' || contactSobrenome.value == '' || contactTelefone.value == '' || contactEmail.value == '' || contactAssunto.value == '') {
+            modal.style.display = 'block'
+            modalImg.src = "assets/img/iconDanger.svg"
+            modalText.innerHTML = "Algum campo está vazio!";
         }
         else {
-            mobileHambMenu.style.display = 'flex'
+            form.action = "mailto:ISEE@gmail.com"
+            form.method = "post"
+            form.enctype = "text/plain"
+            buttonContact.type = "submit" 
         }
-        console.log(i)
     }
+
+
+
+
+        if (window.matchMedia("(max-width:769px)").matches) {
+            headerHidden.style.display = 'none'
+            headerMobile.style.display = 'flex'
+            mobileHambMenu.style.position = 'fixed'
+            contactRight.style.display = 'none'
+            contact1.style.display = 'none'
+            footer1.style.display = 'none'
+            console.log('a viewport tem menos de 769 pixels de largura')
+        } else {
+            console.log('a viewport tem mais que 769 pixels de largura')
+            headerMobile.style.display = 'none'
+            mobileHambMenu.style.display = 'none'
+            service1.style.display = 'none'
+            service2.style.display = 'none'
+            service3.style.display = 'none'
+            service4.style.display = 'none'
+            contact2.style.display = 'none'
+            contact3.style.display = 'none'
+            contact4.style.display = 'none'
+            contact5.style.display = 'none'
+            footer2.style.display = 'none'
+
+        }
+        var i = 0
+        function btnMenu() {
+            i++
+            if (i % 2 == 0) {
+                mobileHambMenu.style.display = 'none'
+            }
+            else {
+                mobileHambMenu.style.display = 'flex'
+            }
+            console.log(i)
+        }
 
 </script>

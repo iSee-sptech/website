@@ -151,6 +151,9 @@ a {
     cursor: pointer;
 
 }
+img {
+    cursor: pointer;
+}
 
 button {
     cursor: pointer;
@@ -340,7 +343,7 @@ nav ul {
 
 .h2About {
     color: #fff;
-    text-align: justify;
+    text-align: center;
 }
 
 .values {
@@ -359,14 +362,16 @@ nav ul {
 .card1Values {
     width: 38vw;
     text-align: justify;
+    align-items: center;
+    text-align: center;
 }
 
 .card2Values {
     width: 38vw;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    text-align: justify;
+    align-items: center;
+    text-align: center;
 }
 
 .containerCard3Values {
@@ -967,7 +972,7 @@ footer {
         }
 
         .services {
-            height: 84vh;
+            height: 94vh;
         }
 
         .about {
