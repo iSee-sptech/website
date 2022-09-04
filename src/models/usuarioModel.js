@@ -26,9 +26,30 @@ function entrar(email, senha) {
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 function cadastrar(nome, email, endereco, dataNasc, cpf, celular, senha) {
-
   var instrucao = `
   insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, cargoUsuario ) values ('${nome}', '${email}', '${endereco}', '${dataNasc}', '${cpf}', '${celular}', '${senha}', 'Gerente');
+  `;
+  return database.executar(instrucao);
+}
+
+function cadastrarFunc(
+  nomeFunc,
+  emailFunc,
+  enderecoFunc,
+  dataNascFunc,
+  cpfFunc,
+  celularFunc,
+  senhaFunc
+) {
+  var instrucao = `
+  insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, cargoUsuario ) values ('${nomeFunc}', '${emailFunc}', '${enderecoFunc}', '${dataNascFunc}', '${cpfFunc}', '${celularFunc}', '${senhaFunc}', 'Suporte');
+  `;
+  return database.executar(instrucao);
+}
+
+function cadastrarCaixa(idCaixa, nomeCaixa, enderecoCaixa, imagemCaixa) {
+  var instrucao = `
+  insert into Maquinas (idMaquina, nomeMaquina, cepMaquina, imgMaquina) values ('${idCaixa}', '${nomeCaixa}', '${enderecoCaixa}', '${imagemCaixa}');
   `;
   return database.executar(instrucao);
 }
@@ -37,5 +58,6 @@ module.exports = {
   entrar,
   cadastrar,
   listar,
-  // cadastrarFunc,
+  cadastrarFunc,
+  cadastrarCaixa,
 };
