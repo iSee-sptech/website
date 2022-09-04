@@ -108,12 +108,12 @@ function cadastrarFunc(req, res) {
   var senhaFunc = req.body.senhaFuncServer;
 
   // Faça as validações dos valores
-  if (nomeCaixa == undefined) {
+  if (nomeFunc == undefined) {
     res.status(400).send("Seu nome está undefined!");
-  } else if (enderecoCaixa == undefined) {
+  } else if (emailFunc == undefined) {
     res.status(400).send("Seu endereço está undefined!");
-  } else if (imagemCaixa == undefined) {
-    res.status(400).send("Sua imagem do caixa está undefined!");
+  } else if (senhaFunc == undefined) {
+    res.status(400).send("Sua senha está undefined!");
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
