@@ -79,7 +79,7 @@
     <div class="navbar_bottom">
       <div class="btn_home">
         <img src="../assets/img/home_icon.svg" />
-        <h2>Home</h2>
+        <h2 class="check">Home</h2>
       </div>
 
       <div class="btn_etiqueta">
@@ -134,10 +134,6 @@
   }
 
   bemVindo.innerHTML = `${frase}, <span style="color:'#7D2DE2'; font-size: calc(0.80em + 1vmin);"> ${nome}</span>`
-
-  function alerteTeste() {
-    alert("teste");
-  }
 
   function sair(){
     sessionStorage.clear()

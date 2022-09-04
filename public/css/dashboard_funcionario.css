@@ -27,10 +27,9 @@
   outline: 0;
 }
 
-
-
-
-
+.check{
+  color: #7d2de2;
+}
 
 body,
 html {
@@ -106,6 +105,7 @@ h4 {
   align-items: center;
 }
 
+
 .first_container span {
   color: #7d2de2;
   font-weight: bold;
@@ -130,6 +130,13 @@ h4 {
   align-items: center;
   background: #292929;
   border-color: transparent;
+}
+
+.modal_botao div:hover {
+  box-shadow: 0 0 2px 2px #161616 inset;
+  background: #222222;
+  cursor: pointer;
+  transition: 0.4s;
 }
 
 .second_container {
@@ -221,6 +228,13 @@ h4 {
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+.notificacao:hover{
+  transition: 0.4s;
+  cursor: pointer;
+  background-color: #5a5a5a;
+}
+
 
 .btn_cadastrar_estag {
   width: 16vw;
