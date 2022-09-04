@@ -6,6 +6,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+.check{
+  color: #7d2de2;
+}
+
 /* scrol bar temporaria*/
 *::-webkit-scrollbar {
   width: 19px;
@@ -126,7 +130,9 @@ h4 {
 
 .modal_botao div:hover {
   box-shadow: 0 0 2px 2px #161616 inset;
+  background: #222222;
   cursor: pointer;
+  transition: 0.4s;
 }
 
 
@@ -175,6 +181,12 @@ h4 {
   align-items: center;
   border-radius: 16px;
 }
+.btn_add:hover{
+  cursor: pointer;
+  box-shadow: 0 0 2px 2px #161616 inset;
+  background-color: #f0f0f0;
+  transition: 0.2s;
+}
 
 .container_notificacao {
   width: 24vw;
@@ -200,6 +212,7 @@ h4 {
   height: 45vh;
   overflow-y: scroll;
 }
+
 .notificacao {
   width: 15vw;
   height: 100px;
@@ -214,6 +227,12 @@ h4 {
   justify-content: space-evenly;
 }
 
+.notificacao:hover{
+  transition: 0.4s;
+  cursor: pointer;
+  background-color: #5a5a5a;
+}
+
 .btn_cadastrar_estag {
   width: 16vw;
   height: 12vh;
@@ -223,6 +242,10 @@ h4 {
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+}
+
+.btn_cadastrar_estag{
+  cursor: pointer;
 }
 
 .navbar_notificacao img {
@@ -275,7 +298,9 @@ h4 {
 
 .navbar_bottom div:hover {
   cursor: pointer;
+  color: #7d2de2;
 }
+
 
 .navbar_bottom div img {
   padding-bottom: 10px;
