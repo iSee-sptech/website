@@ -158,7 +158,11 @@
                     sessionStorage.cargoUsuario = json.cargoUsuario;
 
                     setTimeout(function () {
-                        window.location = "dashboard/dashboard_gestor.html";
+                        if ((sessionStorage.cargoUsuario) === "Gerente"){
+                            window.location = "dashboard/dashboard_gestor.html";
+                        }else{
+                            window.location = "dashboard/dashboard_funcionario.html";
+                        }
                     }, 1000); // apenas para exibir o loading
 
                 });

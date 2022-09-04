@@ -108,7 +108,7 @@
       </div>
 
       <div class="btn_sair">
-        <img src="../assets/img/sair_icon.png" />
+        <img onclick="sair()" src="../assets/img/sair_icon.png" />
         <h2>Sair</h2>
       </div>
     </div>
@@ -121,6 +121,7 @@
   var dataAtual = new Date();
   var hora = dataAtual.getHours();
   var frase
+  var nome = sessionStorage.nomeUsuario
 
   var bemVindo = document.getElementById("bem_vindo")
 
@@ -132,9 +133,15 @@
     frase = `Boa noite`
   }
 
-  bemVindo.innerHTML = `${frase}, nome`
+  bemVindo.innerHTML = `${frase}, <span style="color:'#7D2DE2'; font-size: calc(0.80em + 1vmin);"> ${nome}</span>`
 
   function alerteTeste() {
     alert("teste");
   }
+
+  function sair(){
+    sessionStorage.clear()
+    window.location.href='../login.html'
+  }
+  
 </script>
