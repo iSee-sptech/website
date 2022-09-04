@@ -1,71 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./css/cadastro_maquina.css">
-</head>
+    <link rel="stylesheet" href="./css/cadastro_maquina.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="container">
+      <div class="texto">
+        <h1>Cadastre - se</h1>
+      </div>
 
-        <div class="texto">
+      <form action="" id="form_cadastro_maquina" method="post">
+        <div class="campo_um">
+          <label for="">ID Máquina</label>
+          <input type="text" id="input_id_maquina" />
 
-            <h1>Cadastre - se</h1>
+          <label for="">Nome da Máquina</label>
+          <input type="text" id="input_nome_maquina" />
 
+          <label for="">Endereço (CEP):</label>
+          <input type="text" id="input_endereco_maquina" />
         </div>
 
-        <form action="" id="form_cadastro_maquina" method="post">
+        <div class="campo_dois">
+          <label for="">Imagem da Máquina</label>
+          <input placeholder="URL" type="text" id="input_url_maquina" />
+        </div>
+      </form>
 
-            <div class="campo_um">
-
-                <label for="">ID Máquina</label>
-                <input type="text" id="input_id_maquina">
-
-                <label for="">Nome da Máquina</label>
-                <input type="text" id="input_nome_maquina">
-
-                <label for="">Endereço (CEP):</label>
-                <input type="text" id="input_endereco_maquina">
-
-            </div>
-
-            <div class="campo_dois">
-
-                <label for="">Imagem da Máquina</label>
-                <input placeholder="URL" type="text" id="input_url_maquina">
-
-
-            </div>
-
-        </form>
-
-        <div class="botoes">
-
-            <div class="botao_cadastro">
-
-                <button>
-                    Cadastrar
-                </button>
-
-            </div>
-
-            <div class="botao_sair">
-
-                <button id="botao_sair" onclick="window.location.href='./dashboard/dashboard_gestor.html'">
-                    Sair
-                </button>
-
-            </div>
-
+      <div class="botoes">
+        <div class="botao_cadastro">
+          <button id="botao_cadastrar" type="button" onclick="cadastrarCaixa()">
+            Cadastrar
+          </button>
         </div>
 
+        <div class="botao_sair">
+          <button
+            id="botao_sair"
+            onclick="window.location.href='./dashboard/dashboard_gestor.html'"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
+
+<script>
+  function cadastrarCaixa() {
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var idCaixaVar = input_id_maquina.value;
+    var nomeCaixaVar = input_nome_maquina.value;
+    var enderecoCaixaVar = input_endereco_maquina.value;
+    var imagemCaixaVar = input_url_maquina.value;
+
+    if (
+      idCaixaVar == "" ||
+      nomeCaixaVar == "" ||
+      enderecoCaixaVar == "" ||
+      imagemCaixaVar == ""
+    ) {
+      console.log("Prencha todos os campos!");
+      return false;
+    } else if (nomeCaixaVar.length < 3) {
+      console.log("Nome inválido!");
+      return false;
+    } else if (enderecoCaixaVar.length < 7) {
+      console.log("Endereço inválido!");
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    fetch("/usuarios/cadastrarCaixa", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idCaixaServer: idCaixaVar,
+        nomeCaixaServer: nomeCaixaVar,
+        enderecoCaixaServer: enderecoCaixaVar,
+        imagemCaixaServer: imagemCaixaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          // modal.style.display = 'block'
+          // modalImg.src = "assets/iconCheck.svg"
+          // modalText.innerHTML = "Cadastro efetuado com sucesso!";
+          console.log("Cadastro efetuado com sucesso!");
+
+          setTimeout(() => {
+            window.location = "dashboard/dashboard_gestor.html";
+          }, "1000");
+
+          // limparFormulario();
+          // finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    //cardErro.style.display = "none"
+  }
+</script>
