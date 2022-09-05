@@ -22,16 +22,16 @@
     <div class="menuHambMobile" id="mobileHambMenu">
 
         <div>
-            <h2>Home</h2>
+            <h2 style="cursor: pointer;" onclick="moverindex()">Home</h2>
             <img style="margin-top: 2%; margin-bottom: 2%; width: 100vw;" src="assets/img/LineMobile.svg" alt="">
-            <h2>Sobre</h2>
+            <h2 style="cursor: pointer;" onclick="moversobre()">Sobre</h2>
             <img style="margin-top: 2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
-            <h2>Valores</h2>
+            <h2 style="cursor: pointer;" onclick="movervalores()">Valores</h2>
             <img style="margin-top: 2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
-            <h2>Contato</h2>
+            <h2 style="cursor: pointer;" onclick="movercontato()">Contato</h2>
             <img style="margin-top:  2%; margin-bottom: 2%;  width: 100vw;" src="assets/img/LineMobile.svg" alt="">
             <div style="display: flex; flex-direction: row; gap: 2%;">
-                <h2>Login</h2>
+                <h2 style="cursor: pointer;" onclick="moverlogin()">Login</h2>
                 <img src="assets/img/iconLogin.svg" alt="">
             </div>
         </div>
@@ -220,8 +220,9 @@
                 <h4 style="font-size: calc(0.70em + 1vmin);" for="">Email:</h4>
                 <input class="input" type="email" name="Email:" id="contactEmail" placeholder="Digite seu email:">
                 <h4 style="font-size: calc(0.70em + 1vmin);" for="">Telefone:</h4>
-                <input class="input" type="number" name="Telefone:" id="contactTelefone" placeholder="Digite seu Telefone:">
-                <h4 style="font-size: calc(0.70em + 1vmin);" for="" >Mensagem:</h4>
+                <input class="input" type="number" name="Telefone:" id="contactTelefone"
+                    placeholder="Digite seu Telefone:">
+                <h4 style="font-size: calc(0.70em + 1vmin);" for="">Mensagem:</h4>
                 <textarea name="Assunto:" rows="8" id="contactAssunto"></textarea>
 
                 <button type="button" class="buttonContact" id="buttonContact" onclick="modalContact()">Enviar</button>
@@ -362,46 +363,66 @@
             form.action = "mailto:ISEE@gmail.com"
             form.method = "post"
             form.enctype = "text/plain"
-            buttonContact.type = "submit" 
+            buttonContact.type = "submit"
         }
     }
 
 
 
 
-        if (window.matchMedia("(max-width:769px)").matches) {
-            headerHidden.style.display = 'none'
-            headerMobile.style.display = 'flex'
-            mobileHambMenu.style.position = 'fixed'
-            contactRight.style.display = 'none'
-            contact1.style.display = 'none'
-            footer1.style.display = 'none'
-            console.log('a viewport tem menos de 769 pixels de largura')
-        } else {
-            console.log('a viewport tem mais que 769 pixels de largura')
-            headerMobile.style.display = 'none'
-            mobileHambMenu.style.display = 'none'
-            service1.style.display = 'none'
-            service2.style.display = 'none'
-            service3.style.display = 'none'
-            service4.style.display = 'none'
-            contact2.style.display = 'none'
-            contact3.style.display = 'none'
-            contact4.style.display = 'none'
-            contact5.style.display = 'none'
-            footer2.style.display = 'none'
+    if (window.matchMedia("(max-width:769px)").matches) {
+        headerHidden.style.display = 'none'
+        headerMobile.style.display = 'flex'
+        mobileHambMenu.style.position = 'fixed'
+        contactRight.style.display = 'none'
+        contact1.style.display = 'none'
+        footer1.style.display = 'none'
+        console.log('a viewport tem menos de 769 pixels de largura')
+    } else {
+        console.log('a viewport tem mais que 769 pixels de largura')
+        headerMobile.style.display = 'none'
+        mobileHambMenu.style.display = 'none'
+        service1.style.display = 'none'
+        service2.style.display = 'none'
+        service3.style.display = 'none'
+        service4.style.display = 'none'
+        contact2.style.display = 'none'
+        contact3.style.display = 'none'
+        contact4.style.display = 'none'
+        contact5.style.display = 'none'
+        footer2.style.display = 'none'
 
+    }
+    var i = 0
+    function btnMenu() {
+        i++
+        if (i % 2 == 0) {
+            mobileHambMenu.style.display = 'none'
         }
-        var i = 0
-        function btnMenu() {
-            i++
-            if (i % 2 == 0) {
-                mobileHambMenu.style.display = 'none'
-            }
-            else {
-                mobileHambMenu.style.display = 'flex'
-            }
-            console.log(i)
+        else {
+            mobileHambMenu.style.display = 'flex'
         }
+        console.log(i)
+    }
+
+    function moverindex() {
+        window.location = "index.html"
+    }
+    function moversobre() {
+        window.location = "index.html#about"
+        mobileHambMenu.style.display = 'none'
+    }
+    function movervalores() {
+        window.location = "index.html#valores"
+        mobileHambMenu.style.display = 'none'
+    }
+    function movercontato() {
+        window.location = "index.html#contato"
+        mobileHambMenu.style.display = 'none'
+    }
+    function moverlogin() {
+        window.location = "login.html"
+    }
+
 
 </script>
