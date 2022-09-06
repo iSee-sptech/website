@@ -28,9 +28,6 @@ router.post("/adicionarLembrete", function (req, res) {
   usuarioController.adicionarLembrete(req, res);
 });
 
-router.post("/mostrarLembrete", function (req, res) {
-  usuarioController.adicionarLembrete(req, res);
-});
 
 router.post("/autenticar", function (req, res) {
   usuarioController.entrar(req, res);
@@ -40,5 +37,12 @@ router.post("/updatePerfil", function (req, res) {
   usuarioController.updatePerfil(req, res);
 });
 
+router.get("/listarPerfil/:id", function (req, res) {
+  usuarioController.listarPerfil(req, res);
+});
+
+router.get("/listarLembrete/:id", function (req, res) {
+  usuarioController.listarLembrete(req, res);
+});
 
 module.exports = router;

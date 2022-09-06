@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../css/dashboard_gestor.css" />
   </head>
 
-  <body>
+  <body onload="listarLembrete()">
     <div class="first_section">
       <div class="container_funcionario">
         <h1 id="bem_vindo">Bem vindo</h1>
@@ -96,8 +96,8 @@
         </div>
 
         <div onload="getLembrete()" class="btn_cadastrar_estag">
-          <h3>Cadastrar estagiario novo de suporte</h3>
-          <p>27/08/2022 ás 14:18</p>
+          <h3 id="mensagemLembreteId"></h3>
+          <p id="dataLembreteId"></p>
         </div>
       </div>
     </div>
@@ -173,7 +173,39 @@
     window.location.href = "../login.html";
   }
 
-  function getLembrete(){
-    
+
+
+
+  var usuarioId = `${sessionStorage.idUsuario}`;
+
+  function listarLembrete() {
+    const usuarioId = sessionStorage.idUsuario;
+
+    fetch(`/usuarios/listarLembrete/${usuarioId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
+      // saldoConta
+      resposta.json().then((data) => {
+        console.log(data);
+        dataHoraLembrete = data[0].dataHoraLembrete
+        mensagemLembrete = data[0].mensagemLembrete
+
+        mensagemLembreteId.innerHTML = mensagemLembrete
+        dataLembreteId.innerHTML = dataHoraLembrete
+
+      })
+
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
   }
+
+
+
+
+
 </script>

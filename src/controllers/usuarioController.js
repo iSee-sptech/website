@@ -224,6 +224,46 @@ function updatePerfil(req, res) {
       });
 }
 
+function listarPerfil(req, res) {
+  const idUser = req.params.id;
+
+  usuarioModel.listarPerfil(idUser)
+      .then((resultado) => {
+          if (resultado.length > 0) {
+              res.status(200).json(resultado);
+          } else {
+              res.status(204).send("Nenhum resultado encontrado!")
+          }
+      }).catch(
+          function (erro) {
+              console.log(erro);
+              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+              res.status(500).json(erro.sqlMessage);
+          }
+      );
+}
+
+
+function listarLembrete(req, res) {
+  const idUser = req.params.id;
+
+  usuarioModel.listarLembrete(idUser)
+      .then((resultado) => {
+          if (resultado.length > 0) {
+              res.status(200).json(resultado);
+          } else {
+              res.status(204).send("Nenhum resultado encontrado!")
+          }
+      }).catch(
+          function (erro) {
+              console.log(erro);
+              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+              res.status(500).json(erro.sqlMessage);
+          }
+      );
+}
+
+
 module.exports = {
   entrar,
   cadastrar,
@@ -231,6 +271,9 @@ module.exports = {
   testar,
   cadastrarFunc,
   cadastrarCaixa,
+  updatePerfil,
   adicionarLembrete,
-  mostrarLembrete,
+  listarPerfil,
+  listarLembrete,
+  // mostrarLembrete,
 };

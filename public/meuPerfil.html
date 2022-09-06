@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/styleModal.css" />
 </head>
 
-<body>
+<body onload="listarPerfil()">
   <div class="first_section">
     <div class="container_card container_dados">
       <img src="assets/img/userNavbar.svg" />
@@ -131,6 +131,11 @@
 </html>
 
 <script>
+
+
+
+
+
   function buttonBack() {
     modal.style.display = "none";
   }
@@ -168,47 +173,77 @@
       modal.style.display = "block";
       modalImg.src = "assets/img/iconCheck.svg";
       modalText.innerHTML = "Lembrete adicionado com sucesso!";
-    }
 
-    fetch("/usuarios/adicionarLembrete", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        mensagemLembreteServer: mensagemLembreteVar,
-        dataHoraLembreteServer: dataHoraLembreteVar,
-        idUsuarioServer: idUsuario,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-          console.log("Cadastro efetuado com sucesso!");
-
-          setTimeout(() => {
-            if (sessionStorage.cargoUsuario === "Gerente") {
-              window.location = "dashboard/dashboard_gestor.html";
-            } else {
-              window.location = "dashboard/dashboard_funcionario.html";
-            }
-          }, "1000");
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+      fetch("/usuarios/adicionarLembrete", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          mensagemLembreteServer: mensagemLembreteVar,
+          dataHoraLembreteServer: dataHoraLembreteVar,
+          idUsuarioServer: idUsuario,
+        }),
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        r();
-      });
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
 
-    return false;
+          if (resposta.ok) {
+            console.log("Cadastro efetuado com sucesso!");
+
+            setTimeout(() => {
+              if (sessionStorage.cargoUsuario === "Gerente") {
+                window.location = "dashboard/dashboard_gestor.html";
+              } else {
+                window.location = "dashboard/dashboard_funcionario.html";
+              }
+            }, "1000");
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          r();
+        });
+
+      return false;
+    }
   }
 
-  function sumirMensagem() { }
+  var usuarioId = `${sessionStorage.idUsuario}`;
+
+  function listarPerfil() {
+    const usuarioId = sessionStorage.idUsuario;
+
+    fetch(`/usuarios/listarPerfil/${usuarioId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
+      // saldoConta
+      resposta.json().then((data) => {
+        console.log(data);
+        nomeUsuario = data[0].nomeUsuario
+        telefoneUsuario = data[0].telefoneUsuario
+        emailUsuario = data[0].emailUsuario
+        cepUsuario = data[0].cepUsuario
 
 
+        document.getElementById('inputNome').value = nomeUsuario
+        document.getElementById('inputTelefone').value = telefoneUsuario
+        document.getElementById('inputEmail').value = emailUsuario
+        document.getElementById('inputCep').value = cepUsuario
+
+      })
+
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
+  }
 
 
 
@@ -218,7 +253,7 @@
 
 
 
-  var usuarioId = `${sessionStorage.idUsuario}`;
+
   function updatePerfil() {
     inputNomeVar = inputNome.value
     inputTelefoneVar = inputTelefone.value
@@ -252,6 +287,9 @@
           console.log(msg);
           if (msg == "success") {
             console.log("sucesso ao tentar atualizar os dados do Perfil!");
+            modal.style.display = "block";
+            modalImg.src = "assets/img/iconCheck.svg";
+            modalText.innerHTML = "Alterado com sucesso!";
           } else {
             console.log("Houve um erro ao tentar atualizar os dados do Perfil");
           }

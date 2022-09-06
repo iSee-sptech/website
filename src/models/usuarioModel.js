@@ -76,6 +76,19 @@ function updatePerfil(id, nome, telefone, email, cep) {
   return database.executar(query);
 }
 
+function listarPerfil(idUser) {
+  var instrucao = `
+  SELECT nomeUsuario, telefoneUsuario, emailUsuario, cepUsuario FROM usuarios WHERE idUsuario = ${idUser};
+  `;
+  return database.executar(instrucao);
+}
+
+function listarLembrete(idUser) {
+  var instrucao = `
+  SELECT mensagemLembrete, dataHoraLembrete FROM lembrete WHERE fkUsuario = ${idUser};
+  `;
+  return database.executar(instrucao);
+}
 
 module.exports = {
   entrar,
@@ -85,4 +98,7 @@ module.exports = {
   cadastrarCaixa,
   adicionarLembrete,
   mostrarLembrete,
+  updatePerfil,
+  listarPerfil,
+  listarLembrete,
 };
