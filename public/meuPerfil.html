@@ -1,150 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iSee</title>
-    <link rel="stylesheet" href="css/meuPerfil.css" />
-    <link rel="stylesheet" href="css/styleModal.css" />
-  </head>
 
-  <body>
-    <div class="first_section">
-      <div class="container_card container_dados">
-        <img src="assets/img/userNavbar.svg" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iSee</title>
+  <link rel="stylesheet" href="css/meuPerfil.css" />
+  <link rel="stylesheet" href="css/styleModal.css" />
+</head>
+
+<body>
+  <div class="first_section">
+    <div class="container_card container_dados">
+      <img src="assets/img/userNavbar.svg" />
+      <span>
+        <input type="text" id="" placeholder="URL" />
+      </span>
+      <h2 id="nome_usuario"></h2>
+    </div>
+    <!-- Meu Perfil -->
+    <div class="container_card container_meu_perfil">
+      <h2>Meu Perfil</h2>
+
+      <form action="" id="" method="" onsubmit="">
+        <div class="container_inputs_head">
+          <label>Nome Completo:</label>
+          <input type="text" id="inputNome" class="input_type1" />
+        </div>
+
+        <div class="container_inputs_sidebyside">
+          <span>
+            <label>Telefone:</label>
+            <input type="text" id="inputTelefone" placeholder="(XX) XXXXX-XXXX" />
+          </span>
+
+          <span>
+            <label>CPF:</label>
+            <input type="text" id="" placeholder="XXX.XXX.XXX-XX" disabled />
+          </span>
+
+          <span> <label>E-mail:</label> <input type="text" id="inputEmail" /> </span>
+
+          <span>
+            <label>CEP:</label>
+            <input type="text" id="inputCep" placeholder="XXXXX-XXX" />
+          </span>
+
+        </div>
+      </form>
+
+      <button style="cursor: pointer;" onclick="updatePerfil()">Alterar informações</button>
+    </div>
+    <!-- Lembrete -->
+    <div class="container_card">
+      <h2>Lembrete</h2>
+
+      <div class="body_lembrete">
         <span>
-          <input type="text" id="" placeholder="URL" />
+          <label>Mensagem:</label> <br />
+          <textarea id="mensagemLembrete" placeholder="Texto atual"></textarea>
+          <br />
         </span>
-        <h2 id="nome_usuario"></h2>
+
+        <span>
+          <label>Data e Hora:</label> <br />
+          <input type="datetime-local" id="dataHoraLembrete" placeholder="AAAA-MM-DD HH:MI:SS" />
+        </span>
       </div>
-      <!-- Meu Perfil -->
-      <div class="container_card container_meu_perfil">
-        <h2>Meu Perfil</h2>
 
-        <form action="" id="" method="" onsubmit="">
-          <div class="container_inputs_head">
-            <label>Nome Completo:</label>
-            <input type="text" id="" class="input_type1" disabled />
-          </div>
-
-          <div class="container_inputs_sidebyside">
-            <span>
-              <label>Telefone:</label>
-              <input type="text" id="" placeholder="(XX) XXXXX-XXXX" />
-            </span>
-
-            <span>
-              <label>CPF:</label>
-              <input type="text" id="" placeholder="XXX.XXX.XXX-XX" disabled />
-            </span>
-
-            <span> <label>E-mail:</label> <input type="text" id="" /> </span>
-
-            <span>
-              <label>CEP:</label>
-              <input type="text" id="" placeholder="XXXXX-XXX" />
-            </span>
-
-            <span>
-              <label>Senha atual:</label>
-              <input type="password" id="" placeholder="••••••••••" />
-            </span>
-
-            <span>
-              <label>Nova senha:</label>
-              <input type="password" id="" placeholder="••••••••••" />
-            </span>
-          </div>
-        </form>
-
-        <button>Alterar informações</button>
-      </div>
-      <!-- Lembrete -->
-      <div class="container_card">
-        <h2>Lembrete</h2>
-
-        <div class="body_lembrete">
-          <span>
-            <label>Mensagem:</label> <br />
-            <textarea
-              id="mensagemLembrete"
-              placeholder="Texto atual"
-            ></textarea>
-            <br />
-          </span>
-
-          <span>
-            <label>Data e Hora:</label> <br />
-            <input
-              type="datetime-local"
-              id="dataHoraLembrete"
-              placeholder="AAAA-MM-DD HH:MI:SS"
-            />
-          </span>
-        </div>
-
-        <button id="btnLembrete" onclick="adicionarLembrete()" type="button">
-          Criar
-        </button>
-      </div>
-    </div>
-
-    <div class="container_navbar">
-      <div class="navbar_bottom">
-        <div class="btn_home">
-          <img onclick="tela_home()" src="assets/img/home_icon.svg" />
-          <h2>Home</h2>
-        </div>
-
-        <div class="btn_etiqueta">
-          <img src="assets/img/etiqueta_icon.svg" />
-          <h2>Etiquetas</h2>
-        </div>
-
-        <div class="btn_historico">
-          <img src="assets/img/historico_icon.svg" />
-          <h2>Histórico</h2>
-        </div>
-
-        <div class="btn_dashboard">
-          <img src="assets/img/dashboard_icon.svg" />
-          <h2>Dashboard</h2>
-        </div>
-
-        <div class="btn_alerta">
-          <img src="assets/img/alertas_icon.png" />
-          <h2>Alertas</h2>
-        </div>
-
-        <div class="btn_perfil">
-          <img
-            onclick="window.location.href='./meuPerfil.html'"
-            src="assets/img/userNavbar.svg"
-          />
-          <h2>Perfil</h2>
-        </div>
-
-        <div class="btn_sair">
-          <img onclick="sair()" src="assets/img/sair_icon.png" />
-          <h2>Sair</h2>
-        </div>
-      </div>
-    </div>
-  </body>
-
-  <div id="modal" class="modalBody">
-    <div class="modalReadPlus">
-      <div class="containerReadPlus">
-        <div class="modalCheck">
-          <img id="modalImg" src="" alt="check" />
-        </div>
-        <button onclick="buttonBack()" class="modalBack">&times;</button>
-      </div>
-      <span id="modalText"></span>
-      <button class="button8" onclick="buttonBack()">Fechar</button>
+      <button style="cursor: pointer;" id="btnLembrete" onclick="adicionarLembrete()" type="button">
+        Criar
+      </button>
     </div>
   </div>
+
+  <div class="container_navbar">
+    <div class="navbar_bottom">
+      <div class="btn_home">
+        <img onclick="tela_home()" src="assets/img/home_icon.svg" />
+        <h2>Home</h2>
+      </div>
+
+      <div class="btn_etiqueta">
+        <img src="assets/img/etiqueta_icon.svg" />
+        <h2>Etiquetas</h2>
+      </div>
+
+      <div class="btn_historico">
+        <img src="assets/img/historico_icon.svg" />
+        <h2>Histórico</h2>
+      </div>
+
+      <div class="btn_dashboard">
+        <img src="assets/img/dashboard_icon.svg" />
+        <h2>Dashboard</h2>
+      </div>
+
+      <div class="btn_alerta">
+        <img src="assets/img/alertas_icon.png" />
+        <h2>Alertas</h2>
+      </div>
+
+      <div class="btn_perfil">
+        <img onclick="window.location.href='./meuPerfil.html'" src="assets/img/userNavbar.svg" />
+        <h2>Perfil</h2>
+      </div>
+
+      <div class="btn_sair">
+        <img onclick="sair()" src="assets/img/sair_icon.png" />
+        <h2>Sair</h2>
+      </div>
+    </div>
+  </div>
+</body>
+
+<div id="modal" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck">
+        <img id="modalImg" src="" alt="check" />
+      </div>
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+    <span id="modalText"></span>
+    <button class="button8" onclick="buttonBack()">Fechar</button>
+  </div>
+</div>
+
 </html>
 
 <script>
@@ -153,6 +136,7 @@
   }
 
   var nome = sessionStorage.nomeUsuario;
+  var idUsuario = sessionStorage.idUsuario;
 
   nome_usuario.innerHTML = `${nome}`;
 
@@ -194,6 +178,7 @@
       body: JSON.stringify({
         mensagemLembreteServer: mensagemLembreteVar,
         dataHoraLembreteServer: dataHoraLembreteVar,
+        idUsuarioServer: idUsuario,
       }),
     })
       .then(function (resposta) {
@@ -203,7 +188,11 @@
           console.log("Cadastro efetuado com sucesso!");
 
           setTimeout(() => {
-            window.location = "dashboard/dashboard_gestor.html";
+            if (sessionStorage.cargoUsuario === "Gerente") {
+              window.location = "dashboard/dashboard_gestor.html";
+            } else {
+              window.location = "dashboard/dashboard_funcionario.html";
+            }
           }, "1000");
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
@@ -217,5 +206,70 @@
     return false;
   }
 
-  function sumirMensagem() {}
+  function sumirMensagem() { }
+
+
+
+
+
+
+
+  // Update perfil
+
+
+
+  var usuarioId = `${sessionStorage.idUsuario}`;
+  function updatePerfil() {
+    inputNomeVar = inputNome.value
+    inputTelefoneVar = inputTelefone.value
+    inputEmailVar = inputEmail.value
+    inputCepVar = inputCep.value
+    if (inputNome.value == "" || inputTelefone.value == "" || inputEmail.value == ""
+      || inputCep.value == "") {
+
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Inserir ao menos um campo para alteração!";
+
+    } else {
+
+      fetch("/usuarios/updatePerfil", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          idServer: usuarioId,
+          nomeServer: inputNomeVar,
+          telefoneServer: inputTelefoneVar,
+          emailServer: inputEmailVar,
+          cepServer: inputCepVar,
+        }),
+      }).then((response) => {
+        response.json().then((data) => {
+          const msg = data.mensagem;
+
+          console.log(msg);
+          if (msg == "success") {
+            console.log("sucesso ao tentar atualizar os dados do Perfil!");
+          } else {
+            console.log("Houve um erro ao tentar atualizar os dados do Perfil");
+          }
+        });
+      });
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>

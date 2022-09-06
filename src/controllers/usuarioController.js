@@ -176,6 +176,7 @@ function adicionarLembrete(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var mensagemLembrete = req.body.mensagemLembreteServer;
   var dataHoraLembrete = req.body.dataHoraLembreteServer;
+  var idUsuario = req.body.idUsuarioServer;
   // Faça as validações dos valores
   if (mensagemLembrete == undefined) {
     res.status(400).send("Seu nome está undefined!");
@@ -184,7 +185,7 @@ function adicionarLembrete(req, res) {
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
-      .adicionarLembrete(mensagemLembrete, dataHoraLembrete)
+      .adicionarLembrete(mensagemLembrete, dataHoraLembrete, idUsuario)
       .then(function (resultado) {
         res.json(resultado);
       })
@@ -199,6 +200,30 @@ function adicionarLembrete(req, res) {
   }
 }
 
+
+function updatePerfil(req, res) {
+  var id = req.body.idServer;
+  var nome = req.body.nomeServer;
+  var telefone = req.body.telefoneServer;
+  var email = req.body.emailServer;
+  var cep = req.body.cepServer;
+
+  usuarioModel.updatePerfil(id, nome, telefone, email, cep)
+      .then((response) => {
+          const tamanho = response.affectedRows;
+
+          if (tamanho > 0) {
+              res.json({
+                  mensagem: "success",
+              });
+          } else {
+              res.json({
+                  mensagem: "error",
+              });
+          }
+      });
+}
+
 module.exports = {
   entrar,
   cadastrar,
@@ -207,4 +232,5 @@ module.exports = {
   cadastrarFunc,
   cadastrarCaixa,
   adicionarLembrete,
+  mostrarLembrete,
 };

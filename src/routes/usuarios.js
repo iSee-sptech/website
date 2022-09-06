@@ -28,8 +28,17 @@ router.post("/adicionarLembrete", function (req, res) {
   usuarioController.adicionarLembrete(req, res);
 });
 
+router.post("/mostrarLembrete", function (req, res) {
+  usuarioController.adicionarLembrete(req, res);
+});
+
 router.post("/autenticar", function (req, res) {
   usuarioController.entrar(req, res);
 });
+
+router.post("/updatePerfil", function (req, res) {
+  usuarioController.updatePerfil(req, res);
+});
+
 
 module.exports = router;
