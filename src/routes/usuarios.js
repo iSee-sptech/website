@@ -24,6 +24,10 @@ router.post("/cadastrarCaixa", function (req, res) {
   usuarioController.cadastrarCaixa(req, res);
 });
 
+router.post("/adicionarLembrete", function (req, res) {
+  usuarioController.adicionarLembrete(req, res);
+});
+
 router.post("/autenticar", function (req, res) {
   usuarioController.entrar(req, res);
 });
