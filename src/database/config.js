@@ -22,7 +22,7 @@ var mySqlConfig = {
   host: "localhost",
   user: "root",
   database: "iSee",
-  password: "Andreas2014",
+  password: "KingOfNothing000",
 };
 
 
