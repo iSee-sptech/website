@@ -199,6 +199,30 @@ function adicionarLembrete(req, res) {
   }
 }
 
+
+function updatePerfil(req, res) {
+  var id = req.body.idServer;
+  var nome = req.body.nomeServer;
+  var telefone = req.body.telefoneServer;
+  var email = req.body.emailServer;
+  var cep = req.body.cepServer;
+
+  usuarioModel.updatePerfil(id, nome, telefone, email, cep)
+      .then((response) => {
+          const tamanho = response.affectedRows;
+
+          if (tamanho > 0) {
+              res.json({
+                  mensagem: "success",
+              });
+          } else {
+              res.json({
+                  mensagem: "error",
+              });
+          }
+      });
+}
+
 module.exports = {
   entrar,
   cadastrar,
@@ -207,4 +231,5 @@ module.exports = {
   cadastrarFunc,
   cadastrarCaixa,
   adicionarLembrete,
+  updatePerfil,
 };
