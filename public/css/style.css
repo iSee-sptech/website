@@ -550,6 +550,24 @@ footer {
     padding-left: 4%;
 }
 
+.effect1:hover {
+    background-color: #7D2DE2;
+    font-weight: 300;
+}
+.button1:hover {
+    background-color: #7D2DE2;
+    color: #FFFFFF;
+}
+.buttonPlus:hover {
+    background-color: #7D2DE2;
+    color: #FFFFFF;
+}
+.buttonContact:hover {
+    background-color: #FFFFFF;
+    color: #7D2DE2;
+}
+
+
 
 
 

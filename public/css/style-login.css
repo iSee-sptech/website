@@ -67,6 +67,10 @@ form {
 
 .titulo span {
     color: #7D2DE2;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 800;
+    font-size: calc(0.90em + 1vmin);
 }
 
 .input_login {
@@ -194,4 +198,8 @@ form {
     font-size: calc(1.10em + 1vmin);
     line-height: 36px;
     color: #fff;
+}
+.effectButton:hover {
+    background-color: #FFFFFF;
+    color: #7D2DE2;
 }

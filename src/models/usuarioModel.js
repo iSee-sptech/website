@@ -68,6 +68,15 @@ function mostrarLembrete(idUsuario) {
   return database.executar(instrucao);
 }
 
+function updatePerfil(id, nome, telefone, email, cep) {
+
+
+  const query = `UPDATE usuarios SET nomeUsuario = '${nome}', telefoneUsuario = '${telefone}',
+  emailUsuario = '${email}', cepUsuario = '${cep}' WHERE idUsuario = ${id} `;
+  return database.executar(query);
+}
+
+
 module.exports = {
   entrar,
   cadastrar,
