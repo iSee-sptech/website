@@ -54,10 +54,18 @@ function cadastrarCaixa(idCaixa, nomeCaixa, enderecoCaixa, imagemCaixa) {
   return database.executar(instrucao);
 }
 
+function adicionarLembrete(mensagemLembrete, dataHoraLembrete) {
+  var instrucao = `
+  insert into Lembrete (mensagemLembrete, dataHoraLembrete) values ('${mensagemLembrete}', '${dataHoraLembrete}');
+  `;
+  return database.executar(instrucao);
+}
+
 module.exports = {
   entrar,
   cadastrar,
   listar,
   cadastrarFunc,
   cadastrarCaixa,
+  adicionarLembrete,
 };

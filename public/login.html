@@ -7,7 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style-login.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>iSee - Login</title>
+    <link rel="stylesheet" href="css/styleModal.css">
+    <link
+      rel="shortcut icon"
+      href="../assets/img/iconLogo.ico"
+      type="image/x-icon"
+    />
+    <title>Login - ISee</title>
 </head>
 
 <body>
@@ -49,7 +55,7 @@
                     <label class="h4" for="">E-mail:</label>
                     <input type="text" id="inputEmail">
                     <label class="h4" for="">Senha:</label>
-                    <input type="text" id="inputPassword">
+                    <input type="password" id="inputPassword">
                 </div>
                 <div class="opcoes">
                     <div class="radio">
@@ -77,9 +83,27 @@
 
 </body>
 
+<div id="modal" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck">
+          <img id="modalImg" src="" alt="check" />
+        </div>
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+      <span id="modalText"></span>
+      <button class="button8" onclick="buttonBack()">Fechar</button>
+    </div>
+  </div>
+
 </html>
 
 <script>
+
+function buttonBack() {
+    modal.style.display = "none";
+  }
+
     i = 0;
     function img() {
         i++
@@ -146,6 +170,9 @@
             if (resposta.ok) {
                 console.log(resposta);
                console.log("Login feito com sucesso!");
+               modal.style.display = "block";
+                modalImg.src = "assets/img/iconCheck.svg";
+                modalText.innerHTML = "Login realizado! Redirecionando...";
 
                 resposta.json().then(json => {
                     console.log(json);
@@ -168,7 +195,10 @@
                 });
 
             } else {
-                console.log("Houve um erro ao tentar realizar o login!");
+            modal.style.display = "block";
+            modalImg.src = "assets/img/iconDanger.svg";
+            modalText.innerHTML =
+            "Email e/ou senha incorretos!";
 
                 resposta.text().then(texto => {
                     //console.error(texto);
