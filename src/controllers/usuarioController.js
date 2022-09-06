@@ -176,6 +176,7 @@ function adicionarLembrete(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var mensagemLembrete = req.body.mensagemLembreteServer;
   var dataHoraLembrete = req.body.dataHoraLembreteServer;
+  var idUsuario = req.body.idUsuarioServer;
   // Faça as validações dos valores
   if (mensagemLembrete == undefined) {
     res.status(400).send("Seu nome está undefined!");
@@ -184,7 +185,7 @@ function adicionarLembrete(req, res) {
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
-      .adicionarLembrete(mensagemLembrete, dataHoraLembrete)
+      .adicionarLembrete(mensagemLembrete, dataHoraLembrete, idUsuario)
       .then(function (resultado) {
         res.json(resultado);
       })
@@ -207,4 +208,5 @@ module.exports = {
   cadastrarFunc,
   cadastrarCaixa,
   adicionarLembrete,
+  mostrarLembrete,
 };

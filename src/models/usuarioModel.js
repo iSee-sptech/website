@@ -54,9 +54,16 @@ function cadastrarCaixa(idCaixa, nomeCaixa, enderecoCaixa, imagemCaixa) {
   return database.executar(instrucao);
 }
 
-function adicionarLembrete(mensagemLembrete, dataHoraLembrete) {
+function adicionarLembrete(mensagemLembrete, dataHoraLembrete, idUsuario) {
   var instrucao = `
-  insert into Lembrete (mensagemLembrete, dataHoraLembrete) values ('${mensagemLembrete}', '${dataHoraLembrete}');
+  update Lembrete set mensagemLembrete = '${mensagemLembrete}', dataHoraLembrete = '${dataHoraLembrete}' where fkUsuario = '${idUsuario}';
+  `;
+  return database.executar(instrucao);
+}
+
+function mostrarLembrete(idUsuario) {
+  var instrucao = `
+  select mensagemLembrete from Lembrete where fkUsuario ='${idUsuario}';
   `;
   return database.executar(instrucao);
 }
@@ -68,4 +75,5 @@ module.exports = {
   cadastrarFunc,
   cadastrarCaixa,
   adicionarLembrete,
+  mostrarLembrete,
 };

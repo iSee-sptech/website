@@ -153,6 +153,7 @@
   }
 
   var nome = sessionStorage.nomeUsuario;
+  var idUsuario = sessionStorage.idUsuario;
 
   nome_usuario.innerHTML = `${nome}`;
 
@@ -194,6 +195,7 @@
       body: JSON.stringify({
         mensagemLembreteServer: mensagemLembreteVar,
         dataHoraLembreteServer: dataHoraLembreteVar,
+        idUsuarioServer: idUsuario,
       }),
     })
       .then(function (resposta) {
@@ -203,7 +205,11 @@
           console.log("Cadastro efetuado com sucesso!");
 
           setTimeout(() => {
-            window.location = "dashboard/dashboard_gestor.html";
+            if (sessionStorage.cargoUsuario === "Gerente") {
+              window.location = "dashboard/dashboard_gestor.html";
+            } else {
+              window.location = "dashboard/dashboard_funcionario.html";
+            }
           }, "1000");
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
