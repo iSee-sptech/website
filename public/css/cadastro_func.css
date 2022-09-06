@@ -180,7 +180,7 @@ html {
 }
 
 .campo_um {
-    height: 50vh;
+    height: 57vh;
     width: 30vw;
     display: flex;
     justify-content: center;
@@ -189,13 +189,13 @@ html {
 
 .campo_um input {
     width: 27vw;
-    height: 10vh;
-    margin-bottom: 2vh;
+    height: 27vh;
     border-radius: 6px;
     border: 1px solid #7D2DE2;
     background-color: #161616;
     outline: none;
     color: #fff;
+    margin-bottom: 0.8vh;
 }
 
 label {
@@ -204,7 +204,6 @@ label {
     font-style: normal;
     font-weight: 150px;
     font-size: 20px;
-    margin-bottom: 5px;
 }
 
 .campo_dois {
@@ -213,17 +212,18 @@ label {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 3vh;
 }
 
 .campo_dois input {
     width: 27vw;
-    height: 9vh;
-    margin-bottom: 2vh;
+    height: 8vh;
     border-radius: 6px;
     border: 1px solid #7D2DE2;
     background-color: #161616;
     outline: none;
     color: #fff;
+    margin-bottom: 1vh;
 }
 
 .botoes{
