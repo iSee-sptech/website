@@ -146,35 +146,35 @@
         return false;
     } 
 
-      else if(enderecoVar.length > 8){
+      else if(enderecoVar.length > 9){
       modal.style.display = 'block'
         modalImg.src = "assets/img/iconDanger.svg"
         modalText.innerHTML = "Insira um CEP válido! (Apenas os números)"
         return false;
     }
 
-      else if(cpfVar.length < 11){
+      else if(cpfVar.length < 14){
       modal.style.display = 'block'
         modalImg.src = "assets/img/iconDanger.svg"
         modalText.innerHTML = "Insira um CPF válido! (11 dígitos)"
         return false;
     } 
     
-    else if(cpfVar.length > 11){
+    else if(cpfVar.length > 14){
       modal.style.display = 'block'
         modalImg.src = "assets/img/iconDanger.svg"
         modalText.innerHTML = "Insira um CPF válido! (Apenas os números)"
         return false;
     } 
     
-    else if(celularGestor.length < 11){
+    else if(celularGestor.length < 15){
       modal.style.display = 'block'
         modalImg.src = "assets/img/iconDanger.svg"
         modalText.innerHTML = "Insira um celular válido! (11 dígitos)"
         return false;
     } 
     
-    else if(celularGestor.length > 11){
+    else if(celularGestor.length > 15){
       modal.style.display = 'block'
         modalImg.src = "assets/img/iconDanger.svg"
         modalText.innerHTML = "Insira um celular válido! (Apenas os números)"
@@ -194,11 +194,6 @@
         modalImg.src = "assets/img/iconDanger.svg"
         modalText.innerHTML = "As senhas não conferem!"
         return false;
-    }
-    else {
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconCheck.svg"
-        modalText.innerHTML = "Cadastro efetuado com sucesso!"
     }
 
     fetch("/usuarios/cadastrar", {
@@ -221,9 +216,9 @@
       console.log("resposta: ", resposta);
 
       if (resposta.ok) {
-        // modal.style.display = 'block'
-        // modalImg.src = "assets/iconCheck.svg"
-        // modalText.innerHTML = "Cadastro efetuado com sucesso!";
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconCheck.svg"
+        modalText.innerHTML = "Cadastro efetuado com sucesso!"
         console.log("Cadastro efetuado com sucesso!");
 
         setTimeout(() => {
@@ -234,6 +229,9 @@
         // finalizarAguardar();
       } else {
         throw ("Houve um erro ao tentar realizar o cadastro!");
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconDanger.svg"
+        modalText.innerHTML = "Erro ao realizar cadastro"
       }
     }).catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);

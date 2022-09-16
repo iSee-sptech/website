@@ -1,99 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/iconLogo.ico"
+      type="image/x-icon"
+    />
+    <title>Cadastro Funcionário- ISee</title>
+    <link rel="stylesheet" href="./css/cadastro_func.css" />
+    <link rel="stylesheet" href="css/styleModal.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="assets/img/iconLogo.ico" type="image/x-icon"/>
-  <title>Cadastro Funcionário- ISee</title>
-  <link rel="stylesheet" href="./css/cadastro_func.css" />
-  <link rel="stylesheet" href="css/styleModal.css" />
-</head>
+  <body>
+    <div class="container">
+      <div class="texto">
+        <h1>Cadastre - se</h1>
+      </div>
 
-<body>
-  <div class="container">
-    <div class="texto">
-      <h1>Cadastre - se</h1>
+      <form action="" id="form_cadastro_func" method="post" onsubmit="return">
+        <div class="campo_um">
+          <label for="">Nome Completo</label>
+          <input type="text" id="input_nome_func" />
+          <small></small>
+
+          <label for="">E-mail</label>
+          <input type="text" id="input_email_func" />
+          <small></small>
+
+          <label for="">Endereço (CEP)</label>
+          <input type="text" id="input_endereco_func" maxlength="9" />
+          <small></small>
+
+          <label for="">Data de Nascimento</label>
+          <input type="date" id="input_data_nasc_func" />
+          <small></small>
+        </div>
+
+        <div class="campo_dois">
+          <label for="">CPF</label>
+          <input type="text" id="input_cpf_func" maxlength="14" />
+          <small></small>
+
+          <label for="">Celular/Telefone</label>
+          <input type="text" id="input_cell_func" maxlength="15" />
+          <small></small>
+
+          <label for="">Senha</label>
+          <input type="password" id="input_senha_func" />
+          <small></small>
+
+          <label for="">Confirmar Senha</label>
+          <input type="password" id="input_confirmacao_senha_func" />
+          <small></small>
+        </div>
+      </form>
+
+      <div class="campo_um" style="height: 18vh">
+        <label
+          for=""
+          style="align-items: center; text-align: center; width: 90%"
+          >Cargo</label
+        >
+        <select name="" id="cargo_func">
+          <option value="">Gestor</option>
+          <option value="">Suporte</option>
+        </select>
+        <small></small>
+      </div>
+
+      <div class="botoes">
+        <div class="botao_cadastro">
+          <button
+            id="botao_entrar"
+            class="effect1"
+            type="button"
+            onclick="cadastrarFunc()"
+          >
+            Cadastrar
+          </button>
+        </div>
+
+        <div class="botao_sair">
+          <button
+            class="effect2"
+            id="botao_sair"
+            onclick="window.location.href='./dashboard/dashboard_gestor.html'"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
     </div>
 
-    <form action="" id="form_cadastro_func" method="post" onsubmit="return">
-      <div class="campo_um">
-        <label for="">Nome Completo</label>
-        <input type="text" id="input_nome_func" />
-        <small></small>
+    <img src="assets/img/waves.svg" alt="" />
+  </body>
 
-        <label for="">E-mail</label>
-        <input type="text" id="input_email_func" />
-        <small></small>
-
-        <label for="">Endereço (CEP)</label>
-        <input type="text" id="input_endereco_func" maxlength="9"/>
-        <small></small>
-
-        <label for="">Data de Nascimento</label>
-        <input type="date" id="input_data_nasc_func" />
-        <small></small>
+  <div id="modal" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck">
+          <img id="modalImg" src="" alt="check" />
+        </div>
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
       </div>
-
-      <div class="campo_dois">
-        <label for="">CPF</label>
-        <input type="text" id="input_cpf_func" maxlength="14"/>
-        <small></small>
-
-        <label for="">Celular/Telefone</label>
-        <input type="text" id="input_cell_func" maxlength="15"/>
-        <small></small>
-
-        <label for="">Senha</label>
-        <input type="password" id="input_senha_func" />
-        <small></small>
-
-        <label for="">Confirmar Senha</label>
-        <input type="password" id="input_confirmacao_senha_func" />
-        <small></small>
-      </div>
-    </form>
-
-    <div class="campo_um" style="height: 18vh;">
-      <label for="" style="align-items: center; text-align: center; width: 90%;">Cargo</label>
-      <select name="" id="cargo_func">
-        <option value="">Gestor</option>
-        <option value="">Suporte</option>
-      </select>
-      <small></small>
-    </div>
-
-    <div class="botoes">
-      <div class="botao_cadastro">
-        <button id="botao_entrar" class="effect1" type="button" onclick="cadastrarFunc()">
-          Cadastrar
-        </button>
-      </div>
-
-      <div class="botao_sair">
-        <button class="effect2" id="botao_sair" onclick="window.location.href='./dashboard/dashboard_gestor.html'">
-          Sair
-        </button>
-      </div>
+      <span id="modalText"></span>
+      <button class="button8" onclick="buttonBack()">Fechar</button>
     </div>
   </div>
-
-  <img src="assets/img/waves.svg" alt="">
-</body>
-
-<div id="modal" class="modalBody">
-  <div class="modalReadPlus">
-    <div class="containerReadPlus">
-      <div class="modalCheck">
-        <img id="modalImg" src="" alt="check" />
-      </div>
-      <button onclick="buttonBack()" class="modalBack">&times;</button>
-    </div>
-    <span id="modalText"></span>
-    <button class="button8" onclick="buttonBack()">Fechar</button>
-  </div>
-</div>
 </html>
 
 <script src="./js/mascarasFunc.js"></script>
@@ -229,6 +245,4 @@
   function sumirMensagem() {
     //cardErro.style.display = "none"
   }
-
-
 </script>

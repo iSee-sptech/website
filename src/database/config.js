@@ -22,9 +22,8 @@ var mySqlConfig = {
   host: "localhost",
   user: "root",
   database: "iSee",
-  password: "Gabriel@2002",
+  password: "Andreas2014",
 };
-
 
 function executar(instrucao) {
   // VERIFICA A VARIÁVEL DE AMBIENTE SETADA EM app.js
