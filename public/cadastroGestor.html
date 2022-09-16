@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon"/>
-  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon"/>
   <title>ISee - Primeiro Acesso </title>
 
   <script src="js/funcoes.js"></script>
@@ -17,11 +16,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet" />
-    <link
-      rel="shortcut icon"
-      href="../assets/img/iconLogo.ico"
-      type="image/x-icon"
-    />
 </head>
 
 <body>
@@ -53,17 +47,18 @@
       <input type="text" id="input_email_gestor" />
 
       <label class="h4" for="">Endereço (CEP)</label>
-      <input type="text" id="input_endereco_gestor" />
+      <input type="text" id="input_endereco_gestor" maxlength="9"/>
+
       <label class="h4" for="">Data de Nascimento</label>
       <input type="date" value="2004-06-05" max="2004-06-05" min="1920-06-05" id="input_data_nasc_gestor" />
     </div>
 
     <div class="campo_dois">
       <label class="h4" for="">CPF</label>
-      <input type="number" id="input_cpf_gestor" />
+      <input type="text" id="input_cpf_gestor" autocomplete="off" maxlength="14"/>
 
       <label class="h4" for="">Celular/Telefone</label>
-      <input type="number" id="input_cell_gestor" />
+      <input type="text" id="input_cell_gestor" maxlength="15"/>
 
       <label class="h4" for="">Senha</label>
       <input type="password" id="input_senha_gestor" />
@@ -100,14 +95,13 @@
 </html>
 
 
+<script src="./js/mascarasGestor.js"></script>
 
 <script>
 
   function buttonBack() {
     modal.style.display = 'none'
   }
-  
-
 
   function cadastrar() {
     //Recupere o valor da nova input pelo nome do id
@@ -252,10 +246,5 @@
   function sumirMensagem() {
     //cardErro.style.display = "none"
   }
-
-
-
-
-  
 
 </script>
