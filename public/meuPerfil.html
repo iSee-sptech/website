@@ -10,8 +10,8 @@
       type="image/x-icon"
     />
     <title>Meu Perfil - ISee</title>
-    <link rel="stylesheet" href="css/meuPerfil.css" />
-    <link rel="stylesheet" href="css/styleModal.css" />
+    <link rel="stylesheet" href="css/MeuPerfil.css" />
+    <link rel="stylesheet" href="css/StyleModal.css" />
   </head>
 
   <body onload="listarPerfil()">
@@ -139,7 +139,7 @@
 
         <div class="btn_perfil">
           <img
-            onclick="window.location.href='./meuPerfil.html'"
+            onclick="window.location.href='./MeuPerfil.html'"
             src="assets/img/userNavbar.svg"
           />
           <h2>Perfil</h2>
@@ -181,14 +181,14 @@
 
   function sair() {
     sessionStorage.clear();
-    window.location.href = "./login.html";
+    window.location.href = "./Login.html";
   }
 
   function tela_home() {
     if (sessionStorage.cargoUsuario === "Gerente") {
-      window.location = "dashboard/dashboard_gestor.html";
+      window.location = "dashboard/DashboardGestor.html";
     } else {
-      window.location = "dashboard/dashboard_funcionario.html";
+      window.location = "dashboard/DashboardFuncionario.html";
     }
   }
 
@@ -227,9 +227,9 @@
 
             setTimeout(() => {
               if (sessionStorage.cargoUsuario === "Gerente") {
-                window.location = "dashboard/dashboard_gestor.html";
+                window.location = "dashboard/DashboardGestor.html";
               } else {
-                window.location = "dashboard/dashboard_funcionario.html";
+                window.location = "dashboard/DashboardFuncionario.html";
               }
             }, "1000");
           } else {
