@@ -110,9 +110,10 @@ html {
 
 body {
     line-height: 1;
-    height: 100vh;
     background-color: #161616;
     overflow-x: hidden;
+    align-items: center;
+    display: flex;
 }
 
 body::-webkit-scrollbar {
@@ -154,12 +155,14 @@ a {
 
 body,
 html {
-    width: 100vw;
     background-color: #161616;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: space-around;
 }
 
 .texto {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,52 +174,32 @@ html {
     font-weight: bold;
 }
 
-.container {
-
-    width: 100vw;
+/* .container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-}
-
-.campo_um {
-    height: 57vh;
-    width: 30vw;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.campo_um input {
-    width: 27vw;
-    height: 27vh;
-    border-radius: 6px;
-    border: 1px solid #7D2DE2;
-    background-color: #161616;
-    outline: none;
-    color: #fff;
-    margin-bottom: 0.8vh;
-}
+} */
 
 label {
     color: #fff;
     font-family: 'Poppins';
     font-style: normal;
-    font-weight: 150px;
     font-size: 20px;
+    line-height: 2rem;
+    margin: 0px;
+    padding: 0px;
 }
 
-.campo_dois {
-    height: 50vh;
-    width: 30vw;
+.campo_um, .campo_dois {
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-bottom: 3vh;
+    margin: 3vh
 }
 
-.campo_dois input {
+input, select {
     width: 27vw;
     height: 8vh;
     border-radius: 6px;
@@ -225,6 +208,7 @@ label {
     outline: none;
     color: #fff;
     margin-bottom: 1vh;
+    padding: 10px;
 }
 
 .botoes {
@@ -276,25 +260,39 @@ label {
 
 #form_cadastro_func {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 6.2vw;
 }
 
 .container h1 {
     margin-top: 10vh;
-    height: 18vh;
+    height: 12vh;
     color: #fff;
 }
 
-.campo_um select {
-
-    width: 27vw;
-    height: 8vh;
-    margin-bottom: 2vh;
-    border-radius: 6px;
-    border: 1px solid #7D2DE2;
-    background-color: #161616;
-    outline: none;
-    color: #fff;
+span.span_container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 0;
 }
+
+.envoltorioIconHelp {
+    margin-left: 1vw;
+    width: 3.6vw;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F5F5F5;
+    border-radius: 11px;
+}
+
+a {
+    font-size: 16px;
+    font-weight: 400;
+    top: -1vh;
+}
+

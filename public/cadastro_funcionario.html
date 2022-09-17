@@ -9,7 +9,7 @@
       href="assets/img/iconLogo.ico"
       type="image/x-icon"
     />
-    <title>Cadastro Funcionário- ISee</title>
+    <title>Cadastro Funcionário - ISee</title>
     <link rel="stylesheet" href="./css/cadastro_func.css" />
     <link rel="stylesheet" href="css/styleModal.css" />
   </head>
@@ -24,52 +24,59 @@
         <div class="campo_um">
           <label for="">Nome Completo</label>
           <input type="text" id="input_nome_func" />
-          <small></small>
 
           <label for="">E-mail</label>
           <input type="text" id="input_email_func" />
-          <small></small>
 
-          <label for="">Endereço (CEP)</label>
-          <input type="text" id="input_endereco_func" maxlength="9" />
-          <small></small>
-
-          <label for="">Data de Nascimento</label>
-          <input type="date" id="input_data_nasc_func" />
-          <small></small>
-        </div>
-
-        <div class="campo_dois">
           <label for="">CPF</label>
           <input type="text" id="input_cpf_func" maxlength="14" />
-          <small></small>
 
-          <label for="">Celular/Telefone</label>
+          <label for="">Telefone</label>
           <input type="text" id="input_cell_func" maxlength="15" />
-          <small></small>
 
-          <label for="">Senha</label>
-          <input type="password" id="input_senha_func" />
-          <small></small>
+          <label for="">Data de Nascimento</label>
+          <input type="date" id="input_data_nasc_func" maxlength="8"/>
 
-          <label for="">Confirmar Senha</label>
-          <input type="password" id="input_confirmacao_senha_func" />
-          <small></small>
-        </div>
-      </form>
-
-      <div class="campo_um" style="height: 18vh">
-        <label
-          for=""
-          style="align-items: center; text-align: center; width: 90%"
-          >Cargo</label
-        >
+          <label
+          for="">Cargo</label>
         <select name="" id="cargo_func">
           <option value="">Gestor</option>
           <option value="">Suporte</option>
         </select>
-        <small></small>
-      </div>
+
+        </div>
+
+        <div class="campo_dois">
+
+          <label for="">CEP </label> 
+          <span class="span_container">
+          <input type="text" id="input_endereco_func" maxlength="9" />  
+            <div class= 'envoltorioIconHelp' 
+          onclick="modalServicesCEP()"> 
+          <img src="assets/img/iconHelp.svg"> 
+            </div>
+          </span>
+
+          <label for="">Número</label>
+          <input type="text" id="input_num_endereco_func" maxlength="6" />
+
+          <label for="">Complemento</label>
+          <input type="text" id="input_complemento_endereco_func" maxlength="20" />
+
+          <label for="">Senha</label>
+          <span class="span_container">
+          <input type="password" id="input_senha_func" minlenght="6"/>
+          <div class= 'envoltorioIconHelp' onclick="modalServicesRegrasSenha()"> <img src="assets/img/iconHelp.svg"> </div>
+        </span>
+
+          <label for="">Confirmar Senha</label>
+          <input type="password" id="input_confirmacao_senha_func" minlenght="6"/>
+        </div>
+        
+      </form>
+
+
+
 
       <div class="botoes">
         <div class="botao_cadastro">
@@ -120,74 +127,101 @@
   }
 
   function cadastrarFunc() {
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeFuncVar = input_nome_func.value;
-    var emailFuncVar = input_email_func.value;
-    var enderecoFuncVar = input_endereco_func.value;
-    var dataNascFuncVar = input_data_nasc_func.value;
-    var cpfFuncVar = input_cpf_func.value;
-    var celularFunc = input_cell_func.value;
+
+    var nomeFuncVar = input_nome_func.value.trim();
+    var emailFuncVar = input_email_func.value.trim();
+    var enderecoFuncVar = input_endereco_func.value.trim();
+    var numEnderecoFuncVar = input_num_endereco_func.value.trim();
+    var complementoEnderecoFuncVar = input_complemento_endereco_func.value.trim();
+    var dataNascFuncVar = input_data_nasc_func.value.trim();
+    var cpfFuncVar = input_cpf_func.value.trim();
+    var celularFunc = input_cell_func.value.trim();
     var senhaFuncVar = input_senha_func.value;
     var confirmacaoSenhaFuncVar = input_confirmacao_senha_func.value;
 
+    // Validações Campos Vazios
     if (
       nomeFuncVar == "" ||
       emailFuncVar == "" ||
       enderecoFuncVar == "" ||
       dataNascFuncVar == "" ||
       cpfFuncVar == "" ||
+      complementoEnderecoFuncVar == "" ||
+      numEnderecoFuncVar == "" ||
       celularFunc == "" ||
       senhaFuncVar == "" ||
       confirmacaoSenhaFuncVar == ""
     ) {
       console.log("Prencha todos os campos!");
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Prencha todos os campos!";
       return false;
+      // Validação Email 
     } else if (
       emailFuncVar.includes("@") == false ||
-      emailFuncVar.length < 15
+      emailFuncVar.length < 10
     ) {
       console.log("E-mail incorreto!");
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Email inválido!";
       return false;
-    } else if (enderecoFuncVar.length < 8) {
+      // Validação CEP 
+    } else if (enderecoFuncVar.length < 9) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira um CEP válido! (8 dígitos)";
-      return false;
-    } else if (enderecoFuncVar.length > 8) {
-      modal.style.display = "block";
-      modalImg.src = "assets/img/iconDanger.svg";
-      modalText.innerHTML = "Insira um CEP válido! (Apenas os números)";
-      return false;
-    } else if (cpfFuncVar.length < 11) {
+      return false; 
+      // Validação CPF 
+    } else if (cpfFuncVar.length < 12) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira um CPF válido! (11 dígitos)";
       return false;
-    } else if (cpfFuncVar.length > 11) {
+      // Validação Número telefone
+    } else if (celularFunc.length < 9+6) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
-      modalText.innerHTML = "Insira um CPF válido! (Apenas os números)";
+      modalText.innerHTML = "Insira um número de telefone válido! (11 dígitos)";
       return false;
-    } else if (celularFunc.length < 11) {
+    } else if (celularFunc.length > 9+6) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
-      modalText.innerHTML = "Insira um celular válido! (11 dígitos)";
+      modalText.innerHTML = "Insira um número de telefone válido! (Apenas os números)";
       return false;
-    } else if (celularFunc.length > 11) {
+      // Validação Senha
+    } else if (senhaFuncVar.length < 6) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
-      modalText.innerHTML = "Insira um celular válido! (Apenas os números)";
+      modalText.innerHTML = "Insira uma senha de no mínimo 6 caractéres!";
       return false;
-    } else if (senhaFuncVar.length < 8) {
+
+    } else if ((senhaFuncVar.includes("@") ||
+               (senhaFuncVar.includes("#")) ||
+               (senhaFuncVar.includes("$")) ||
+               (senhaFuncVar.includes("*")) ) == false) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
-      modalText.innerHTML = "Insira uma senha de no mínimo 8 caractéress!";
-      return false;
-    } else if (senhaFuncVar.length != confirmacaoSenhaFuncVar.length) {
+      modalText.innerHTML = "A senha necessita pelo menos 1 caracter especial!";
+      return false;       
+    }
+    else if ((senhaFuncVar.includes("0") ||
+               (senhaFuncVar.includes("1")) ||
+               (senhaFuncVar.includes("2")) ||
+               (senhaFuncVar.includes("3")) ||
+               (senhaFuncVar.includes("4")) ||
+               (senhaFuncVar.includes("5")) ||
+               (senhaFuncVar.includes("6")) ||
+               (senhaFuncVar.includes("7")) ||
+               (senhaFuncVar.includes("8")) ||
+               (senhaFuncVar.includes("9")) ) == false) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = " A senha necessita de pelo menos 1 número!";
+      return false;       
+    }
+      else if (senhaFuncVar !== confirmacaoSenhaFuncVar) {
       console.log("Insira senha iguais!");
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
@@ -198,6 +232,7 @@
       modalImg.src = "assets/img/iconCheck.svg";
       modalText.innerHTML = "Cadastro efetuado com sucesso!";
     }
+    
 
     fetch("/usuarios/cadastrarFunc", {
       method: "POST",
@@ -245,4 +280,20 @@
   function sumirMensagem() {
     //cardErro.style.display = "none"
   }
+
+  function buttonBack() {
+        modal.style.display = 'none'
+    }
+    function modalServicesCEP() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Consulte seu CEP! <br> <a href='https://buscacepinter.correios.com.br/app/endereco/index.php'> Clique aqui! </a>";
+    }
+
+    function modalServicesRegrasSenha() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Sua senha deve conter no mínimo <br> <a>8 caracteres<br>1 letra [a-Z]<br>1 número [0-9]<br>1 caracter especial [@|#|$|*]</a>";
+    }
+
 </script>
