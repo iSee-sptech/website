@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon"href="../assets/img/iconLogo.ico"type="image/x-icon"/>
     <title>Home Administrador - ISee</title>
-    <link rel="stylesheet" href="../css/dashboard_gestor.css" />
+    <link rel="stylesheet" href="../css/DashboardGestor.css" />
   </head>
 
   <body onload="listarLembrete()">
@@ -34,7 +34,7 @@
               <h4>Caixa</h4>
               <div class="btn_add">
                 <img
-                  onclick="window.location.href='../cadastro_maquina.html'"
+                  onclick="window.location.href='../CadastroMaquina.html'"
                   src="../assets/img/icon_atm.svg"
                 />
               </div>
@@ -44,7 +44,7 @@
               <h4>Funcionários</h4>
               <div class="btn_add">
                 <img
-                  onclick="window.location.href='../cadastro_funcionario.html'"
+                  onclick="window.location.href='../CadastroFuncionario.html'"
                   src="../assets/img/user_add.svg"
                 />
               </div>
@@ -102,7 +102,7 @@
       <div class="navbar_bottom">
         <div class="btn_home">
           <img
-            onclick="window.location.href='./dashboard_gestor.html'"
+            onclick="window.location.href='./DashboardGestor.html'"
             src="../assets/img/home_icon.svg"
           />
           <h2>Home</h2>
@@ -130,7 +130,7 @@
 
         <div class="btn_perfil">
           <img
-            onclick="window.location.href='../meuPerfil.html'"
+            onclick="window.location.href='../MeuPerfil.html'"
             src="../assets/img/userNavbar.svg"
           />
           <h2>Perfil</h2>
@@ -166,7 +166,7 @@
 
   function sair() {
     sessionStorage.clear();
-    window.location.href = "../login.html";
+    window.location.href = "../Login.html";
   }
 
 

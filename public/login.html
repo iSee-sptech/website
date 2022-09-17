@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style-login.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/styleModal.css">
+    <link rel="stylesheet" href="css/StyleLogin.css">
+    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="css/StyleModal.css">
     <link
       rel="shortcut icon"
       href="assets/img/iconLogo.ico"
@@ -23,11 +23,11 @@
             <div class="logo"></div>
             <ul>
                 <li><a class="effect1" href="index.html">Home</a></li>
-                <li><a class="effect1" href="#about">Sobre</a></li>
+                <li><a class="effect1" href="index.html#about">Sobre</a></li>
                 <li> <a class="now">ISee</a></li>
-                <li><a class="effect1" href="#valores">Valores</a></li>
-                <li><a class="effect1" href="#contato">Contato</a></li>
-                <li><a class="effect1" href="login.html">Login</a></li>
+                <li><a class="effect1" href="index.html#valores">Valores</a></li>
+                <li><a class="effect1" href="index.html#contato">Contato</a></li>
+                <li><a class="effect1" href="Login.html">Login</a></li>
             </ul>
 
         </nav>
@@ -63,7 +63,7 @@
                         <label for="radio" class="radio-label">Lembrar Senha</label>
                     </div>
                     <div>
-                        <h3 class="forgetPassword" onclick="window.location.href='redefinirSenha.html'">Esqueci a senha
+                        <h3 class="forgetPassword" onclick="window.location.href='RedefinirSenha.html'">Esqueci a senha
                         </h3>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="cadastro">
                     <h3 class="cadastroText">Não possui conta? <span class="forgetPassword"
-                            onclick="window.location.href='cadastroGestor.html'"
+                            onclick="window.location.href='CadastroGestor.html'"
                             style="font-weight: bold;">Cadastre-se</span></h3>
                 </div>
                 <form>
@@ -190,9 +190,9 @@ function buttonBack() {
 
                     setTimeout(function () {
                         if ((sessionStorage.cargoUsuario) === "Gerente"){
-                            window.location = "dashboard/dashboard_gestor.html";
+                            window.location = "dashboard/DashboardGestor.html";
                         }else{
-                            window.location = "dashboard/dashboard_funcionario.html";
+                            window.location = "dashboard/DashboardFuncionario.html";
                         }
                     }, 1000); // apenas para exibir o loading
 
