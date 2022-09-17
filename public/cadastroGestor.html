@@ -5,238 +5,276 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon"/>
-  <title>ISee - Primeiro Acesso </title>
+
+  <title>Primeiro Acesso - ISee </title>
+
+  
+  <link rel="shortcut icon" href="assets/img/iconLogo.ico" type="image/x-icon"/>
+  <!-- <link rel="stylesheet" href="./css/CadastroFunc.css" /> -->
+  <link rel="stylesheet" href="css/CadastroGestor.css" />
+  <link rel="stylesheet" href="css/StyleModal.css" />
+
 
   <script src="js/funcoes.js"></script>
-  <link rel="stylesheet" href="./css/CadastroGestor.css" />
-  <link rel="stylesheet" href="css/Style.css">
-  <link rel="stylesheet" href="css/StyleModal.css">
+
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
-</head>
+  href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet" />
 
-<body>
-  <header id="headerHidden">
-    <nav>
-      <div class="logo"></div>
-      <ul>
-        <li><a class="effect1" href="index.html">Home</a></li>
-        <li><a class="effect1" href="./index.html#about">Sobre</a></li>
-        <li> <a class="now">ISee</a></li>
-        <li><a class="effect1" href="./index.html#valores">Valores</a></li>
-        <li><a class="effect1" href="./index.html#contato">Contato</a></li>
-        <li><a class="effect1" href="Login.html">Login</a></li>
-      </ul>
-
-    </nav>
-  </header>
-
-  <div class="container">
-    <h1>Cadastre - se</h1>
-  </div>
-
-  <form id="form_cadastro_gestor">
-    <div class="campo_um">
-      <label class="h4" for="">Nome Completo</label>
-      <input type="text" id="input_nome_gestor" />
-
-      <label class="h4" for="">E-mail</label>
-      <input type="text" id="input_email_gestor" />
-
-      <label class="h4" for="">Endereço (CEP)</label>
-      <input type="text" id="input_endereco_gestor" maxlength="9"/>
-
-      <label class="h4" for="">Data de Nascimento</label>
-      <input type="date" value="2004-06-05" max="2004-06-05" min="1920-06-05" id="input_data_nasc_gestor" />
-    </div>
-
-    <div class="campo_dois">
-      <label class="h4" for="">CPF</label>
-      <input type="text" id="input_cpf_gestor" autocomplete="off" maxlength="14"/>
-
-      <label class="h4" for="">Celular/Telefone</label>
-      <input type="text" id="input_cell_gestor" maxlength="15"/>
-
-      <label class="h4" for="">Senha</label>
-      <input type="password" id="input_senha_gestor" />
-
-      <label class="h4" for="">Confirmar Senha</label>
-      <input type="password" id="input_confirmacao_senha_gestor" />
-    </div>
-  </form>
-
-  <div class="botao_cadastro">
-    <button id="botaoCadastroGestor" class="buttonContact" type="button" onclick="cadastrar()">
-      Cadastrar
-    </button>
-  </div>
-  </div>
-
-  <img src="assets/img/waves.svg" alt="">
-</body>
-
-<div id="modal" class="modalBody">
-  <div class="modalReadPlus">
-    <div class="containerReadPlus">
-      <div class="modalCheck">
-        <img id="modalImg" src="" alt="check">
+  <body>
+    <header id="headerHidden">
+      <nav>
+        <div class="logo"></div>
+        <ul>
+          <li><a class="effect1" href="index.html">Home</a></li>
+          <li><a class="effect1" href="./index.html#about">Sobre</a></li>
+          <li> <a class="now">ISee</a></li>
+          <li><a class="effect1" href="./index.html#valores">Valores</a></li>
+          <li><a class="effect1" href="./index.html#contato">Contato</a></li>
+          <li><a class="effect1" href="Login.html">Login</a></li>
+        </ul>
+  
+      </nav>
+    </header>
+    
+    <div class="container">
+      <div class="texto">
+        <h1>Cadastre - se</h1>
       </div>
-      <button onclick="buttonBack()" class="modalBack">&times;</button>
+
+      <form action="" id="form_cadastro_func" method="post" onsubmit="return">
+        <div class="campo_um">
+          <label for="">Nome Completo</label>
+          <input type="text" id="input_nome_func" />
+
+          <label for="">E-mail</label>
+          <input type="text" id="input_email_func" />
+
+          <label for="">CPF</label>
+          <input type="text" id="input_cpf_func" maxlength="14" />
+
+          <label for="">Telefone</label>
+          <input type="text" id="input_cell_func" maxlength="15" />
+
+          <label for="">Data de Nascimento</label>
+          <input type="date" id="input_data_nasc_func" maxlength="8"/>
+
+
+        </div>
+
+        <div class="campo_dois">
+
+          <label for="">CEP </label> 
+          <span class="span_container">
+          <input type="text" id="input_endereco_func" maxlength="9" />  
+            <div class= 'envoltorioIconHelp' 
+          onclick="modalServicesCEP()"> 
+          <img src="assets/img/iconHelp.svg"> 
+            </div>
+          </span>
+
+          <label for="">Número</label>
+          <input type="text" id="input_num_endereco_func" maxlength="6" />
+
+          <label for="">Complemento</label>
+          <input type="text" id="input_complemento_endereco_func" maxlength="20" />
+
+          <label for="">Senha</label>
+          <span class="span_container">
+          <input type="password" id="input_senha_func" minlenght="6"/>
+          <div class= 'envoltorioIconHelp' onclick="modalServicesRegrasSenha()"> <img src="assets/img/iconHelp.svg"> </div>
+        </span>
+
+          <label for="">Confirmar Senha</label>
+          <input type="password" id="input_confirmacao_senha_func" minlenght="6"/>
+        </div>
+        
+      </form>
+
+
+
+
+
+        <button id="botaoCadastroGestor" class="buttonContact" type="button" onclick="cadastrar()">
+          Cadastrar
+        </button>
+      </div>
+
+      </div>
     </div>
-    <span id="modalText"></span>
-    <button class="button8" onclick="buttonBack()">Fechar</button>
+
+    <img src="assets/img/waves.svg" alt="" />
+  </body>
+
+  <div id="modal" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck">
+          <img id="modalImg" src="" alt="check" />
+        </div>
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+      <span id="modalText"></span>
+      <button class="button8" onclick="buttonBack()">Fechar</button>
+    </div>
   </div>
-</div>
-
-
 </html>
 
-
-<script src="./js/mascarasGestor.js"></script>
+<script src="./js/mascarasFunc.js"></script>
 
 <script>
-
   function buttonBack() {
-    modal.style.display = 'none'
+    modal.style.display = "none";
   }
 
-  function cadastrar() {
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = input_nome_gestor.value;
-    var emailVar = input_email_gestor.value;
-    var enderecoVar = input_endereco_gestor.value;
-    var dataNascVar = input_data_nasc_gestor.value;
-    var cpfVar = input_cpf_gestor.value;
-    var celularGestor = input_cell_gestor.value;
-    var senhaVar = input_senha_gestor.value;
-    var confirmacaoSenhaVar = input_confirmacao_senha_gestor.value;
+  function cadastrarFunc() {
 
+    var nomeFuncVar = input_nome_func.value.trim();
+    var emailFuncVar = input_email_func.value.trim();
+    var enderecoFuncVar = input_endereco_func.value.trim();
+    var numEnderecoFuncVar = input_num_endereco_func.value.trim();
+    var complementoEnderecoFuncVar = input_complemento_endereco_func.value.trim();
+    var dataNascFuncVar = input_data_nasc_func.value.trim();
+    var cpfFuncVar = input_cpf_func.value.trim();
+    var celularFunc = input_cell_func.value.trim();
+    var senhaFuncVar = input_senha_func.value;
+    var confirmacaoSenhaFuncVar = input_confirmacao_senha_func.value;
+
+    // Validações Campos Vazios
     if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      enderecoVar == "" ||
-      dataNascVar == "" ||
-      cpfVar == "" ||
-      celularGestor == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == ""){
-      console.log("Prencha todos os campos!")
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Preencha todos os campos!";
+      nomeFuncVar == "" ||
+      emailFuncVar == "" ||
+      enderecoFuncVar == "" ||
+      dataNascFuncVar == "" ||
+      cpfFuncVar == "" ||
+      complementoEnderecoFuncVar == "" ||
+      numEnderecoFuncVar == "" ||
+      celularFunc == "" ||
+      senhaFuncVar == "" ||
+      confirmacaoSenhaFuncVar == ""
+    ) {
+      console.log("Prencha todos os campos!");
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Prencha todos os campos!";
       return false;
-    } 
+      // Validação Email 
+    } else if (
+      emailFuncVar.includes("@") == false ||
+      emailFuncVar.length < 10
+    ) {
+      console.log("E-mail incorreto!");
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Email inválido!";
+      return false;
+      // Validação CEP 
+    } else if (enderecoFuncVar.length < 9) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um CEP válido! (8 dígitos)";
+      return false; 
+      // Validação CPF 
+    } else if (cpfFuncVar.length < 12) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um CPF válido! (11 dígitos)";
+      return false;
+      // Validação Número telefone
+    } else if (celularFunc.length < 9+6) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um número de telefone válido! (11 dígitos)";
+      return false;
+    } else if (celularFunc.length > 9+6) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira um número de telefone válido! (Apenas os números)";
+      return false;
+      // Validação Senha
+    } else if (senhaFuncVar.length < 6) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "Insira uma senha de no mínimo 6 caractéres!";
+      return false;
 
-    else if ( emailVar.includes("@") == false || emailVar.length < 15) {
-      console.log("E-mail incorreto!")
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Email inválido!"
-        return false;
-    } 
-    
-    else if(enderecoVar.length < 8){
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Insira um CEP válido! (8 dígitos)"
-        return false;
-    } 
-
-      else if(enderecoVar.length > 9){
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Insira um CEP válido! (Apenas os números)"
-        return false;
+    } else if ((senhaFuncVar.includes("@") ||
+               (senhaFuncVar.includes("#")) ||
+               (senhaFuncVar.includes("$")) ||
+               (senhaFuncVar.includes("*")) ) == false) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "A senha necessita pelo menos 1 caracter especial!";
+      return false;       
     }
-
-      else if(cpfVar.length < 14){
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Insira um CPF válido! (11 dígitos)"
-        return false;
-    } 
-    
-    else if(cpfVar.length > 14){
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Insira um CPF válido! (Apenas os números)"
-        return false;
-    } 
-    
-    else if(celularGestor.length < 15){
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Insira um celular válido! (11 dígitos)"
-        return false;
-    } 
-    
-    else if(celularGestor.length > 15){
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Insira um celular válido! (Apenas os números)"
-        return false;
+    else if ((senhaFuncVar.includes("0") ||
+               (senhaFuncVar.includes("1")) ||
+               (senhaFuncVar.includes("2")) ||
+               (senhaFuncVar.includes("3")) ||
+               (senhaFuncVar.includes("4")) ||
+               (senhaFuncVar.includes("5")) ||
+               (senhaFuncVar.includes("6")) ||
+               (senhaFuncVar.includes("7")) ||
+               (senhaFuncVar.includes("8")) ||
+               (senhaFuncVar.includes("9")) ) == false) {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = " A senha necessita de pelo menos 1 número!";
+      return false;       
     }
-
-    else if (senhaVar.length < 8) {
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Insira uma senha de no mínimo 8 caractéress!"
-        return false;
+      else if (senhaFuncVar !== confirmacaoSenhaFuncVar) {
+      console.log("Insira senha iguais!");
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconDanger.svg";
+      modalText.innerHTML = "As senhas não conferem!";
+      return false;
+    } else {
+      modal.style.display = "block";
+      modalImg.src = "assets/img/iconCheck.svg";
+      modalText.innerHTML = "Cadastro efetuado com sucesso!";
     }
+    
 
-    else if (senhaVar.length != confirmacaoSenhaVar.length) {
-      console.log("Insira senha iguais!")
-      modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "As senhas não conferem!"
-        return false;
-    }
-
-    fetch("/usuarios/cadastrar", {
+    fetch("/usuarios/cadastrarFunc", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        enderecoServer: enderecoVar,
-        dataNascServer: dataNascVar,
-        cpfServer: cpfVar,
-        celularServer: celularGestor,
-        senhaServer: senhaVar,
-        confirmarSenhaServer: confirmacaoSenhaVar,
+        nomeFuncServer: nomeFuncVar,
+        emailFuncServer: emailFuncVar,
+        enderecoFuncServer: enderecoFuncVar,
+        dataNascFuncServer: dataNascFuncVar,
+        cpfFuncServer: cpfFuncVar,
+        celularFuncServer: celularFunc,
+        senhaFuncServer: senhaFuncVar,
+        confirmarSenhaFuncServer: confirmacaoSenhaFuncVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          // modal.style.display = 'block'
+          // modalImg.src = "assets/iconCheck.svg"
+          // modalText.innerHTML = "Cadastro efetuado com sucesso!";
+          console.log("Cadastro efetuado com sucesso!");
+
+          setTimeout(() => {
+            window.location = "dashboard/dashboard_gestor.html";
+          }, "1000");
+
+          // limparFormulario();
+          // finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
       })
-    }).then(function (resposta) {
-
-      console.log("resposta: ", resposta);
-
-      if (resposta.ok) {
-        modal.style.display = 'block'
-        modalImg.src = "assets/img/iconCheck.svg"
-        modalText.innerHTML = "Cadastro efetuado com sucesso!"
-        console.log("Cadastro efetuado com sucesso!");
-
-        setTimeout(() => {
-          window.location = "Login.html";
-        }, "1000")
-
-        // limparFormulario();
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
         // finalizarAguardar();
-      } else {
-        throw ("Houve um erro ao tentar realizar o cadastro!");
-        modal.style.display = 'block'
-        modalImg.src = "assets/img/iconDanger.svg"
-        modalText.innerHTML = "Erro ao realizar cadastro"
-      }
-    }).catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
-      // finalizarAguardar();
-    });
+      });
 
     return false;
   }
@@ -244,5 +282,20 @@
   function sumirMensagem() {
     //cardErro.style.display = "none"
   }
+
+  function buttonBack() {
+        modal.style.display = 'none'
+    }
+    function modalServicesCEP() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Consulte seu CEP! <br> <a href='https://buscacepinter.correios.com.br/app/endereco/index.php'> Clique aqui! </a>";
+    }
+
+    function modalServicesRegrasSenha() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Sua senha deve conter no mínimo <br> <a>8 caracteres<br>1 letra [a-Z]<br>1 número [0-9]<br>1 caracter especial [@|#|$|*]</a>";
+    }
 
 </script>
