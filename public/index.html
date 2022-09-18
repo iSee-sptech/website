@@ -307,12 +307,38 @@
         </div>
     </div>
 
+    <img id="scrollToTopBtn" src="assets/img/scrollToTopIcon.svg" alt="">
 
 </body>
 
 </html>
 
 <script>
+
+    var scrollToTopButton = document.getElementById("scrollToTopBtn")
+    var docElement = document.documentElement
+
+    function scrollToTop() {
+        docElement.scrollTo({
+            top:0,
+            behavior: "smooth"
+        })
+    }
+
+    function handleScroll() {
+        var scrollTotal = docElement.scrollHeight - docElement.clientHeight
+        var count =docElement.scrollTop / scrollTotal
+        console.log(count)
+        if (count > 0.23) {
+            scrollToTopButton.classList.add("showBtn")
+        }else{
+            scrollToTopButton.classList.remove("showBtn")
+        }
+    }
+
+    document.addEventListener("scroll", handleScroll)
+    scrollToTopButton.addEventListener("click", scrollToTop)
+
 
     function buttonBack() {
         modal.style.display = 'none'
