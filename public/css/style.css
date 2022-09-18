@@ -447,38 +447,37 @@ nav ul {
     margin-bottom: 2%;
 }
 
-input {
+input, textarea, .input {
     border: 1px solid #FFFFFF;
     border-radius: 10px;
     box-sizing: border-box;
-    width: 160%;
+    width: 150%;
     height: 10vh;
     color: #fff;
     background-color: transparent;
-    text-align: center;
+    padding: 10px;
 }
 
 .input {
     border: 1px solid #FFFFFF;
     border-radius: 10px;
-    box-sizing: border-box;
-    width: 116.5%;
+    /* box-sizing: border-box; */
+    width: 117%;
     height: 10vh;
     color: #fff;
     background-color: transparent;
     font-size: calc(0.70em + 1vmin);
-    margin-bottom: 2%;
-    text-align: center;
+    /* margin-bottom: 2%; */
+    /* padding: 10px; */
 }
 
-input::placeholder {
+input::placeholder, textarea::placeholder {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 100;
     font-size: calc(0.70em + 1vmin);
     line-height: 36px;
     color: #fff;
-    text-align: center;
 }
 
 textarea {
@@ -487,11 +486,13 @@ textarea {
     box-sizing: border-box;
     width: 116.5%;
     height: 26vh;
-    font-size: calc(0.70em + 1vmin);
+    font-size: calc(0.60em + 1vmin);
     color: #fff;
     background-color: transparent;
     margin-bottom: 2%;
-    text-align: center;
+    font-family: Poppins;
+    font-weight: 300;
+    padding: 10px;
 }
 
 .rightContact {
@@ -656,6 +657,7 @@ footer {
 
     textarea {
         width: 168%;
+        font-family: Poppins;
     }
 
     footer {

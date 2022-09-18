@@ -24,7 +24,7 @@
     border: 2px solid #E5E5E5;
     background-color: #FFFFFF;
     margin: auto;
-    padding: 0;
+    padding: 1vw 1vh;
     outline: 0;
     margin-top: 10%;
 }
@@ -47,17 +47,21 @@
     background: #F5F5F5;
     border-radius: 11px;
     margin-bottom: 20vh;
-    margin-right: 35%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .modalBack {
-    width: 2vw;
+    /* width: 2vw; */
     border-radius: 40px;
-    margin-right: 2%;
-    margin-top: 1%;
     height: 4vh;
     border: transparent;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: none;
 }
 
 span {

@@ -22,16 +22,51 @@
           <input type="text" id="input_id_maquina" />
 
           <label for="">Nome da Máquina</label>
-          <input type="text" id="input_nome_maquina" />
+          <input type="Máquina g" id="input_nome_maquina" />
 
-          <label for="">Endereço (CEP)</label>
+          <label for="">Imagem da Máquina</label>
+          <input placeholder="URL" type="text" id="input_url_maquina" /> 
+
+          
+          <label for="">+1 informação (Numero Serial)</label>
+          <input placeholder="-----------" type="text" id="input_url_maquina" /> 
+
+<!-- 
+          <label for="">Número</label>
           <input type="text" id="input_endereco_maquina" maxlength="9"/>
+
+          <label for="">Complemento</label>
+          <input type="text" id="input_endereco_maquina" maxlength="9"/>
+
+          <label for="">Referência</label>
+          <input type="text" id="input_endereco_maquina" maxlength="9"/> -->
+
+
         </div>
 
         <div class="campo_dois">
-          <label for="">Imagem da Máquina</label>
-          <input placeholder="URL" type="text" id="input_url_maquina" />
-        </div>
+
+
+          <label for="">CEP </label> 
+          <span class="span_container">
+          <input placeholder="_____-___" type="text" id="input_endereco_maquina" maxlength="9" />  
+            <div class= 'envoltorioIconHelp' 
+          onclick="modalServicesCEP()"> 
+          <img src="assets/img/iconHelp.svg"> 
+            </div>
+          </span>
+
+          <label for="">Número</label>
+          <input placeholder="n°" type="text" id="input_num_endereco_func" maxlength="6" />
+
+          <label for="">Complemento</label>
+          <input placeholder="Apto, Bloco, Casa..." type="text" id="input_complemento_endereco_func" maxlength="20" />
+
+          <label for="">Ponto de Referência</label>
+          <input placeholder="Próximo à entrada, localizado no setor 1A..."  type="text" id="" maxlength="100"/>
+
+      </div>
+
       </form>
 
       <div class="botoes">

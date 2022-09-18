@@ -46,16 +46,16 @@
       <form action="" id="form_cadastro_func" method="post" onsubmit="return">
         <div class="campo_um">
           <label for="">Nome Completo</label>
-          <input type="text" id="input_nome_func" />
+          <input placeholder="Nome e Sobrenome" type="text" id="input_nome_func" />
 
           <label for="">E-mail</label>
-          <input type="text" id="input_email_func" />
+          <input placeholder="iSee@example.com" type="text" id="input_email_func" />
 
           <label for="">CPF</label>
-          <input type="text" id="input_cpf_func" maxlength="14" />
+          <input placeholder="___.___.___-__" type="text" id="input_cpf_func" maxlength="14" />
 
           <label for="">Telefone</label>
-          <input type="text" id="input_cell_func" maxlength="15" />
+          <input placeholder="(__) _____-____" type="text" id="input_cell_func" maxlength="15" />
 
           <label for="">Data de Nascimento</label>
           <input type="date" id="input_data_nasc_func" maxlength="8"/>
@@ -67,7 +67,7 @@
 
           <label for="">CEP </label> 
           <span class="span_container">
-          <input type="text" id="input_endereco_func" maxlength="9" />  
+          <input placeholder="_____-___" type="text" id="input_endereco_func" maxlength="9" />  
             <div class= 'envoltorioIconHelp' 
           onclick="modalServicesCEP()"> 
           <img src="assets/img/iconHelp.svg"> 
@@ -75,19 +75,19 @@
           </span>
 
           <label for="">Número</label>
-          <input type="text" id="input_num_endereco_func" maxlength="6" />
+          <input placeholder="n°" type="text" id="input_num_endereco_func" maxlength="6" />
 
           <label for="">Complemento</label>
-          <input type="text" id="input_complemento_endereco_func" maxlength="20" />
+          <input placeholder="Apto, Bloco, Casa..." type="text" id="input_complemento_endereco_func" maxlength="20" />
 
           <label for="">Senha</label>
           <span class="span_container">
-          <input type="password" id="input_senha_func" minlenght="6"/>
+          <input placeholder="••••••••••" type="password" id="input_senha_func" minlenght="6"/>
           <div class= 'envoltorioIconHelp' onclick="modalServicesRegrasSenha()"> <img src="assets/img/iconHelp.svg"> </div>
         </span>
 
           <label for="">Confirmar Senha</label>
-          <input type="password" id="input_confirmacao_senha_func" minlenght="6"/>
+          <input placeholder="••••••••••" type="password" id="input_confirmacao_senha_func" minlenght="6"/>
         </div>
         
       </form>
@@ -96,7 +96,7 @@
 
 
 
-        <button id="botaoCadastroGestor" class="buttonContact" type="button" onclick="cadastrar()">
+        <button id="botaoCadastroGestor" class="buttonContact" type="button" onclick="cadastrarFunc()">
           Cadastrar
         </button>
       </div>
