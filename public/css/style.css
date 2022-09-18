@@ -768,6 +768,10 @@ footer {
         margin-top: 4%;
     }
 
+    .alignService h4{
+        font-weight: 200;
+    }
+
     .about {
         height: 80vh;
         background: url('../assets/img/backgroundAboutSmall.svg') no-repeat;
