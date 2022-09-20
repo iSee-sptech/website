@@ -1,4 +1,4 @@
-const inputTelPerfil = document.getElementById("contactTelefone");
+const inputTelContact = document.getElementById("contactTelefone");
 
 inputTelContact.addEventListener("keypress", () => {
   let inputTelContact = contactTelefone.value.length;
