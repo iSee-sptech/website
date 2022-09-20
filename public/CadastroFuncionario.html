@@ -159,6 +159,7 @@
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Prencha todos os campos!";
       return false;
+
       // Validação Email 
     } else if (
       emailFuncVar.includes("@") == false ||
@@ -169,18 +170,21 @@
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Email inválido!";
       return false;
+
       // Validação CEP 
     } else if (enderecoFuncVar.length < 9) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira um CEP válido! (8 dígitos)";
       return false; 
+
       // Validação CPF 
     } else if (cpfFuncVar.length < 12) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira um CPF válido! (11 dígitos)";
       return false;
+
       // Validação Número telefone
     } else if (celularFunc.length < 9+6) {
       modal.style.display = "block";
@@ -192,6 +196,7 @@
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira um número de telefone válido! (Apenas os números)";
       return false;
+      
       // Validação Senha
     } else if (senhaFuncVar.length < 6) {
       modal.style.display = "block";
