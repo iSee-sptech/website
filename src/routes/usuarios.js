@@ -45,4 +45,8 @@ router.get("/listarLembrete/:id", function (req, res) {
   usuarioController.listarLembrete(req, res);
 });
 
+router.get("/exibirFuncionarios", function (req, res) {
+  usuarioController.exibirFuncionarios(req, res);
+});
+
 module.exports = router;

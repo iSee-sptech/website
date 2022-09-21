@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="../css/DashboardGestor.css" />
   </head>
 
-  <body onload="listarLembrete()">
+  <body onload="listarLembrete()" onload="exibirQtdFuncionarios()">
     <div class="first_section">
       <div class="container_funcionario">
         <h1 id="bem_vindo">Bem vindo</h1>
         <div class="modal_botao">
           <div>
             <h2 class="titulo">Funcionários</h2>
-            <span>20</span>
+            <span id="quantidadeFuncionarios">20</span>
           </div>
 
           <div>
             <h2 class="titulo">Meus Caixas</h2>
-            <span>4</span>
+            <span id="quantidadeCaixas">4</span>
           </div>
         </div>
       </div>
@@ -146,6 +146,7 @@
 </html>
 
 <script>
+  var usuarioId = `${sessionStorage.idUsuario}`;
   var dataAtual = new Date();
   var hora = dataAtual.getHours();
   var frase;
@@ -169,10 +170,27 @@
     window.location.href = "../Login.html";
   }
 
+  function exibirQtdFuncionarios(){
 
+    fetch(`/usuarios/exibirFuncionarios`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
+      // saldoConta
+      resposta.json().then((data) => {
+        console.log(data);
+        quantidadeFuncionario = data[0].quantidadeFuncionario
+        console.log(quantidadeFuncionario)
+        quantidadeFuncionarios.innerHTML = quantidadeFuncionario
+      })
 
-
-  var usuarioId = `${sessionStorage.idUsuario}`;
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
+  }
 
   function listarLembrete() {
     const usuarioId = sessionStorage.idUsuario;
@@ -183,7 +201,6 @@
         "Content-Type": "application/json"
       }
     }).then((resposta) => {
-      // saldoConta
       resposta.json().then((data) => {
         console.log(data);
         dataHoraLembrete = data[0].dataHoraLembrete
@@ -199,9 +216,5 @@
       finalizarAguardar();
     });
   }
-
-
-
-
 
 </script>

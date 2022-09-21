@@ -90,6 +90,13 @@ function listarLembrete(idUser) {
   return database.executar(instrucao);
 }
 
+function exibirFuncionarios (){
+  var instrucao = `
+  SELECT count(idUsuario) from Usuarios;;
+  `;
+  return database.executar(instrucao);
+}
+
 module.exports = {
   entrar,
   cadastrar,
@@ -101,4 +108,5 @@ module.exports = {
   updatePerfil,
   listarPerfil,
   listarLembrete,
+  exibirFuncionarios
 };

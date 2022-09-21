@@ -263,6 +263,23 @@ function listarLembrete(req, res) {
       );
 }
 
+function exibirFuncionarios(req, res) {
+
+  usuarioModel.exibirFuncionarios()
+      .then((resultado) => {
+          if (resultado.length > 0) {
+              res.status(200).json(resultado);
+          } else {
+              res.status(204).send("Nenhum resultado encontrado!")
+          }
+      }).catch(
+          function (erro) {
+              console.log(erro);
+              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+              res.status(500).json(erro.sqlMessage);
+          }
+      );
+}
 
 module.exports = {
   entrar,
@@ -275,5 +292,6 @@ module.exports = {
   adicionarLembrete,
   listarPerfil,
   listarLembrete,
+  exibirFuncionarios,
   // mostrarLembrete,
 };
