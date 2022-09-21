@@ -439,6 +439,12 @@ nav ul {
     padding-top: 4%;
 }
 
+.h4Values {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: lighter;
+}
+
 .rowContact {
     display: flex;
     flex-direction: row;
@@ -1031,6 +1037,10 @@ footer {
         .about {
             height: 100vh;
         }
+
+        .alignService h4{
+            font-weight: 300;
+        }
     }
 
     @media only screen and (max-width: 509px) {
@@ -1041,5 +1051,6 @@ footer {
         .button1 {
             font-size: calc(0.50em + 1vmin);
         }
+
     }
 }
