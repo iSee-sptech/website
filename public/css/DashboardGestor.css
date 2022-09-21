@@ -122,7 +122,7 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items: center;  
   border: 1px solid #d9d9d910;
 /*   background: #292929; */
 }
@@ -162,11 +162,15 @@ h4 {
 }
 
 .container_btn_add div {
-  width: 9vw;
-  height: 19vh;
+  width: 140px;
+  height: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.container_btn_add img {
+  width: 80px;
 }
 
 .btn_add {
@@ -187,22 +191,50 @@ h4 {
 
 .container_notificacao {
   width: 24vw;
-  height: 70vh;
+  height: 75vh;
   background-color: #292929;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   border-color: transparent;
 }
 
 .navbar_notificacao {
   width: 100%;
-  height: 5vh;
+  height: 6vh;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
+
+.navbar_notificacao h2 {
+  font-size: 18px;
+}
+
+.navbar_notificacao div {
+  width: 100px;
+  height: 6vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar_notificacao div img:nth-child(1) {
+  width: 3vh;
+  height: 3vh;
+}
+
+/* TROCAR POR UMA IMAGEM DO BANCO*/
+.navbar_notificacao div img:nth-child(2) {
+  width: 6vh;
+  height: 6vh;
+  border-radius: 100%;
+  background-color: white;
+}
+/* ^^TROCAR POR UMA IMAGEM DO BANCO^^*/
+
 
 .container_rollbar {
   width: 18vw;
@@ -245,21 +277,8 @@ h4 {
   cursor: pointer;
 }
 
-.navbar_notificacao img {
-  width: 1.5vw;
-}
 
-/* TROCAR POR UMA IMAGEM DO BANCO*/
-.navbar_notificacao div {
-  background-color: white;
-  width: 3vw;
-  height: 6vh;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* ^^TROCAR POR UMA IMAGEM DO BANCO^^*/
+
 
 .container_navbar {
   width: 100vw;
