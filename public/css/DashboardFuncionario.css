@@ -71,14 +71,6 @@ h2 {
   line-height: 48px;
 }
 
-h3 {
-  font-style: normal;
-  font-weight: 700;
-  font-size: calc(0.99em + 1vmin);
-  font-size: 18px;
-  line-height: 27px;
-}
-
 h4 {
   color: #ffffff;
   font-style: normal;
@@ -178,7 +170,7 @@ h4 {
   font-weight: 700;
   line-height: 48px;
   text-align: center;
-  font-size: calc(1.5em + 1vmin);
+  font-size: calc(0.9em + 1vmin);
 }
 
 .btn_add {
