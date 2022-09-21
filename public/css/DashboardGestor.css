@@ -70,7 +70,7 @@ h2 {
 h3 {
   font-style: normal;
   font-weight: 700;
-  font-size: calc(0.99em + 1vmin);
+  font-size: calc(0.6em + 1vmin);
   font-size: 18px;
   line-height: 27px;
 }
