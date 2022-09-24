@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html{
+    width: 100vw;
+    background-color: #000000;
+}
+
+.titulo{
+    font-size: calc(2em + 1vmin);
+}
+
+p{
+    font-style: normal;
+    font-weight: 275;
+    font-size: calc(0.35em + 1vmin);
+    line-height: 21px;
+}
+
+b{
+    color: #7D2DE2;
+}
+
+h1{
+    color: #ffffff;
+    display: flex;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(3em + 1vmin);
+    line-height: 78px;
+    margin: 0;
+    /* width: 800px; */
+    align-self: flex-start;
+    /* padding-top: 5vh; */
+}
+
+h2{
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.90em + 1vmin);
+    line-height: 48px;
+}
+
+h3{
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.99em + 1vmin);
+    font-size: 18px;
+    line-height: 27px;
+}
+
+h4{
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(0.60em + 1vmin);
+  line-height: 27px;
+}
+
+h6 {
+    color: #ffffff;
+    font-style: normal;
+    font-size: calc(0.60em + 1vmin);
+    font-weight: 100;
+}
+
+.body_dashboard {
+    display: flex;
+    padding-top: 8vh;
+    width: 89vw;
+    margin: 2vh auto;
+    height: 76vh;
+}
+
+/* .body_dashboard .sessao_grafico_principal h1 {
+    padding-top: 8vh;
+} */
+
+.body_dashboard .sessao_grafico_principal {
+    width: 50vw;
+}
+
+/*AQUI FICA O GRÁFICO DE BARRA */
+.body_dashboard .sessao_grafico_principal .canvas_grafic_bar {
+    margin-top: 5vh;
+    margin: 5vh 2vw 2vh 2vw;
+    border: 1px solid red;
+    background-color: #3B3B3B;
+    width: 45vw;
+    height: 66%;
+}
+
+
+
+
+
+
+
+
+
+/*COMECO SESSAO DOS FILTROS */
+/* .body_dashboard .sessao_filtros{
+    display: flex;
+} */
+
+.body_dashboard .sessao_filtros .head_filtros {
+    margin-left: 10vw;
+    white-space: nowrap;
+} 
+.body_dashboard .sessao_filtros .selecao_filtro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%
+
+}
+
+.body_dashboard .sessao_filtros .selecao_maquina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30vw;
+    overflow-x: scroll;
+} 
+
+.body_dashboard .sessao_filtros button {
+    color: #7d2de2;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.60em + 1vmin);
+    outline: none;
+    padding: 5px 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    width: 7vw;
+}
+
+.body_dashboard .sessao_filtros .selecao_maquina button {
+    margin: 10px 5px 10px 0;
+}
+
+.body_dashboard .sessao_filtros h2 {
+    padding: 5px 10px;
+}
+
+
+.body_dashboard .sessao_filtros .container_cards {
+    display: flex;
+    margin-top: 3vh;
+    justify-content: space-between;
+}
+
+.container_cards .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #292929;
+    color: white;
+    border-radius: 16px;
+    padding: 5px 10px;
+    width: 19vw;
+}
+
+.container_cards .card h2 {
+    color: #7D2DE2;
+}
+
+
+
+
+
+.canvas_grafic_rosca_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #292929;
+    padding: 5px 10px;
+    margin-top: 4vh;
+    width: auto;
+    height: 23vh;
+    border-radius: 16px;
+}
