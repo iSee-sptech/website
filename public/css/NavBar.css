@@ -1,7 +1,15 @@
  /* Nav Bar Bottom Code Css*/
+
+ h2 {
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(0.7em + 1vmin);
+}
+
  .container_navbar {
     width: 100vw;
-    height: 20vh;
+    height: 16vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +27,7 @@
     justify-items: center;
     text-align: center;
     align-items: center;
-    padding-top: 1.4%;
+    padding-top: 0.5%;
   }
   
   .navbar_bottom div {
@@ -38,3 +46,5 @@
   .navbar_bottom div img {
     padding-bottom: 10px;
   }
+
+  

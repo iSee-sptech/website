@@ -59,14 +59,6 @@ b {
   padding-top: 5vh;
 }
 
-h2 {
-  color: #ffffff;
-  font-style: normal;
-  font-weight: 700;
-  font-size: calc(0.9em + 1vmin);
-  line-height: 48px;
-}
-
 h3 {
   font-style: normal;
   font-weight: 700;
@@ -132,7 +124,7 @@ h4 {
   background: #222222;
   border: 1px solid #d9d9d910;
   cursor: pointer;
-  transition: 0.4s;
+  transition: 0.1s;
 }
 
 
@@ -210,11 +202,11 @@ h4 {
 }
 
 .navbar_notificacao h2 {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .navbar_notificacao div {
-  width: 100px;
+  width: 150px;
   height: 6vh;
   display: flex;
   justify-content: space-around;
@@ -275,49 +267,4 @@ h4 {
 
 .btn_cadastrar_estag{
   cursor: pointer;
-}
-
-
-
-
-.container_navbar {
-  width: 100vw;
-  height: 20vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-}
-
-.navbar_bottom {
-  width: 89vw;
-  height: 18vh;
-  border-radius: 16px;
-  background-color: #292929;
-  color: #ffffff;
-  display: flex;
-  justify-content: space-around;
-  justify-items: center;
-  text-align: center;
-  align-items: center;
-  padding-top: 1.4%;
-}
-
-.navbar_bottom div {
-  width: 6vw;
-  height: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.navbar_bottom div:hover {
-  cursor: pointer;
-  color: #7d2de2;
-}
-
-
-.navbar_bottom div img {
-  padding-bottom: 10px;
 }
