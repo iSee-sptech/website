@@ -103,7 +103,10 @@ h6 {
 
 
 
-
+.body_dashboard .sessao_grafico_principal .container_title{
+    display: flex;
+    color: white;
+}
 
 
 /*COMECO SESSAO DOS FILTROS */
