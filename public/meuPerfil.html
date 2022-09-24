@@ -190,9 +190,9 @@
 
   function tela_home() {
     if (sessionStorage.cargoUsuario === "Gerente") {
-      window.location = "dashboard/DashboardGestor.html";
+      window.location = "dashboard/homeGestor.html";
     } else {
-      window.location = "dashboard/DashboardFuncionario.html";
+      window.location = "dashboard/homeFuncionario.html";
     }
   }
 
@@ -231,9 +231,9 @@
 
             setTimeout(() => {
               if (sessionStorage.cargoUsuario === "Gerente") {
-                window.location = "dashboard/DashboardGestor.html";
+                window.location = "dashboard/homeGestor.html";
               } else {
-                window.location = "dashboard/DashboardFuncionario.html";
+                window.location = "dashboard/homeFuncionario.html";
               }
             }, "1000");
           } else {
