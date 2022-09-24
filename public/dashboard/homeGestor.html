@@ -7,7 +7,7 @@
     <link rel="shortcut icon"href="../assets/img/iconLogo.ico"type="image/x-icon"/>
     <title>Home Administrador - ISee</title>
     <link rel="stylesheet" href="../css/homeGestor.css" />
-    <link rel="stylesheet" href="../css/NavBar.css">
+    <link rel="stylesheet" href="../css/navBar.css">
   </head>
 
   <body onload="listarLembrete()" onload="exibirQtdFuncionarios()">
@@ -35,7 +35,7 @@
               <h4>Caixa</h4>
               <div class="btn_add">
                 <img
-                  onclick="window.location.href='../CadastroMaquina.html'"
+                  onclick="window.location.href='../cadastroMaquina.html'"
                   src="../assets/img/icon_atm.svg"
                 />
               </div>
@@ -45,7 +45,7 @@
               <h4>Funcionários</h4>
               <div class="btn_add">
                 <img
-                  onclick="window.location.href='../CadastroFuncionario.html'"
+                  onclick="window.location.href='../cadastroFuncionario.html'"
                   src="../assets/img/user_add.svg"
                 />
               </div>
@@ -133,7 +133,7 @@
 
         <div class="btn_perfil">
           <img
-            onclick="window.location.href='../MeuPerfil.html'"
+            onclick="window.location.href='../meuPerfil.html'"
             src="../assets/img/userNavbar.svg"
           />
           <h2>Perfil</h2>
@@ -170,7 +170,7 @@
 
   function sair() {
     sessionStorage.clear();
-    window.location.href = "../Login.html";
+    window.location.href = "../login.html";
   }
 
   function exibirQtdFuncionarios(){
