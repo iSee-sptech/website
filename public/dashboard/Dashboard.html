@@ -1,101 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon"/>
-    <title>DashBoard - ISee</title>
-    <link rel="stylesheet" href="../css/dashboard.css" />
-    <link rel="stylesheet" href="../css/navBar.css" />
-  </head>
 
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
+  <title>DashBoard - ISee</title>
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <link rel="stylesheet" href="../css/navBar.css" />
+</head>
 
-<div class="body_dashboard">
+<body>
+
+  <div class="body_dashboard">
 
 
-        <div class="sessao_grafico_principal">
-            <div class="container_title">
-                <span>
-                <h1>Dashboard</h1>
-                <h6>Bom dia Yuri, Hoje a eficiência global é de 100%.</h6>
-                </span>
-                <span>
-                    imagem 1
-                    imagem 2
-                </span>
-            </div>
-            
-            <div class="canvas_grafic_bar">
-                <!--AQUI FICA O GRAFICO-->
-            </div>
+    <div class="sessao_grafico_principal">
+      <div class="container_title">
+        <h1>Dashboard</h1>
+        <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, Hoje a eficiência global é de <span
+            style="color: #7d2de2;">100%</span></h6>
+        <div class="notificacoes">
+          <img src="../assets/img/alert.svg">
+          <img src="../assets/img/user.svg">
         </div>
+      </div>
+
+      <div class="canvas_grafic_bar">
+
+      </div>
+    </div>
 
 
 
 
     <div class="sessao_filtros">
 
-            <div class="head_filtros">
+      <div class="head_filtros">
 
-                <div class="selecao_filtro">
-                <h2>Filtro</h2>
-                <button>RAM</button>
-                <button>CPU</button>
-                <button>Memória</button>
-                </div>
-
-                <div class="selecao_maquina">
-                <button>Caixa 1</button>
-                <button>Caixa 2</button>
-                <button>Caixa 3</button>
-                <button>Caixa 4</button>
-                <button>Caixa 5</button>
-                <button>Caixa 6</button>
-                </div>
-            </div>
-
-
-
-            <div class="container_cards">
-
-                    <div class="card">
-                        <h4>Quantidade de RAM Restante </h4>
-                        <h2> 10 GB </h2>
-                    </div>
-
-                    <div class="card">
-                        <h4>Quantidade de RAM TOTAL </h4>
-                        <h2> 10 GB </h2>
-                    </div>
-            </div>
-
-            <div class="canvas_grafic_rosca_container">
-                <div class="grafic_rosca">
-                    AQUI VAI FICA O GRAFICO
-                </div>
-                <div class="grafic_rosca_infos">
-                    AQUI FICA AS INFORMAÇÔES DO GRAFICO
-                </div>
-
-            </div>
-                
+        <div class="selecao_filtro">
+          <h2>Filtro</h2>
+          <button>RAM</button>
+          <button>CPU</button>
+          <button>Memória</button>
         </div>
 
+        <div class="selecao_maquina">
+          <button>Caixa 1</button>
+          <button>Caixa 2</button>
+          <button>Caixa 3</button>
+          <button>Caixa 4</button>
+          <button>Caixa 5</button>
+          <button>Caixa 6</button>
+        </div>
+      </div>
 
-</div>    
-  
 
 
-<!--NavBar-->
-<div class="container_navbar">
+      <div class="container_cards">
+
+        <div class="card">
+          <h4>Quantidade de RAM Restante </h4>
+          <h2> 10 GB </h2>
+        </div>
+
+        <div class="card">
+          <h4>Quantidade de RAM TOTAL </h4>
+          <h2> 10 GB </h2>
+        </div>
+      </div>
+
+      <div class="canvas_grafic_rosca_container">
+        <div class="grafic_rosca">
+          AQUI VAI FICA O GRAFICO
+        </div>
+        <div class="grafic_rosca_infos">
+          AQUI FICA AS INFORMAÇÔES DO GRAFICO
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!--NavBar-->
+  <div class="container_navbar">
     <div class="navbar_bottom">
       <div class="btn_home">
-        <img
-          onclick="window.location.href='./homeFuncionario.html'"
-          src="../assets/img/home_icon.svg"
-        />
+        <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
         <h2>Home</h2>
       </div>
 
@@ -120,10 +117,7 @@
       </div>
 
       <div class="btn_perfil">
-        <img
-          onclick="window.location.href='../meuPerfil.html'"
-          src="../assets/img/userNavbar.svg"
-        />
+        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
         <h2>Perfil</h2>
       </div>
 

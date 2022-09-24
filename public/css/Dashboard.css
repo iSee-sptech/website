@@ -1,32 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-body, html{
+/* scrol bar temporaria*/
+*::-webkit-scrollbar {
+    width: 19px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #3b3b3b;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #7d2de2;
+    border-radius: 2px;
+    border: -1px none #ffffff;
+}
+
+/* scrol bar temporaria*/
+
+body,
+html {
     width: 100vw;
     background-color: #000000;
 }
 
-.titulo{
+.titulo {
     font-size: calc(2em + 1vmin);
 }
 
-p{
+p {
     font-style: normal;
     font-weight: 275;
     font-size: calc(0.35em + 1vmin);
     line-height: 21px;
 }
 
-b{
+b {
     color: #7D2DE2;
 }
 
-h1{
+h1 {
     color: #ffffff;
     display: flex;
     margin-block-start: 0;
@@ -41,15 +60,14 @@ h1{
     /* padding-top: 5vh; */
 }
 
-h2{
+h2 {
     color: #ffffff;
     font-style: normal;
     font-weight: 700;
     font-size: calc(0.90em + 1vmin);
-    line-height: 48px;
 }
 
-h3{
+h3 {
     font-style: normal;
     font-weight: 700;
     font-size: calc(0.99em + 1vmin);
@@ -57,24 +75,24 @@ h3{
     line-height: 27px;
 }
 
-h4{
-  color: #ffffff;
-  font-style: normal;
-  font-weight: 700;
-  font-size: calc(0.60em + 1vmin);
-  line-height: 27px;
+h4 {
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.60em + 1vmin);
+    line-height: 27px;
 }
 
 h6 {
     color: #ffffff;
     font-style: normal;
     font-size: calc(0.60em + 1vmin);
-    font-weight: 100;
+    font-weight: 600;
 }
 
 .body_dashboard {
     display: flex;
-    padding-top: 8vh;
+    padding-top: 5vh;
     width: 89vw;
     margin: 2vh auto;
     height: 76vh;
@@ -89,25 +107,54 @@ h6 {
 }
 
 /*AQUI FICA O GRÁFICO DE BARRA */
-.body_dashboard .sessao_grafico_principal .canvas_grafic_bar {
+.canvas_grafic_bar {
     margin-top: 5vh;
-    margin: 5vh 2vw 2vh 2vw;
-    border: 1px solid red;
     background-color: #3B3B3B;
-    width: 45vw;
-    height: 66%;
+    width: 40vw;
+    height: 50vh;
+
 }
 
-
-
-
-
-
-.body_dashboard .sessao_grafico_principal .container_title{
+.container_title {
+    width: 500px;
+    height: 13vh;
     display: flex;
-    color: white;
+    flex-direction: column;
 }
 
+.cardTitulo {
+    width: 20vw;
+    background-color: red;
+}
+
+.notificacoes {
+    position: fixed;
+    top: 8vh;
+    left: 35vw;
+}
+
+.notificacoes img:nth-child(1) {
+    position: fixed;
+    width: 3vh;
+    height: 3vh;
+    top: 9vh;
+    left: 32vw;
+}
+
+.notificacoes img:nth-child(1):hover {
+    cursor: pointer;
+}
+
+.notificacoes img:nth-child(2) {
+    width: 6vh;
+    height: 6vh;
+    border-radius: 100%;
+    background-color: white;
+}
+
+.notificacoes img:nth-child(2):hover {
+    cursor: pointer;
+}
 
 /*COMECO SESSAO DOS FILTROS */
 /* .body_dashboard .sessao_filtros{
@@ -117,13 +164,24 @@ h6 {
 .body_dashboard .sessao_filtros .head_filtros {
     margin-left: 10vw;
     white-space: nowrap;
-} 
+}
+
+.head_filtros button {
+    background: #ffffff;
+
+}
+
+.head_filtros button:hover {
+    transition: 0.5s;
+    background: rgb(200, 200, 200);
+    cursor: pointer;
+}
+
 .body_dashboard .sessao_filtros .selecao_filtro {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%
-
 }
 
 .body_dashboard .sessao_filtros .selecao_maquina {
@@ -132,7 +190,7 @@ h6 {
     justify-content: space-between;
     width: 30vw;
     overflow-x: scroll;
-} 
+}
 
 .body_dashboard .sessao_filtros button {
     color: #7d2de2;
@@ -188,6 +246,6 @@ h6 {
     padding: 5px 10px;
     margin-top: 4vh;
     width: auto;
-    height: 23vh;
+    height: 32vh;
     border-radius: 16px;
 }
