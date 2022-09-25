@@ -46,7 +46,6 @@ b {
 }
 
 h1 {
-    color: #ffffff;
     display: flex;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -61,7 +60,6 @@ h1 {
 }
 
 h2 {
-    color: #ffffff;
     font-style: normal;
     font-weight: 700;
     font-size: calc(0.90em + 1vmin);
@@ -76,7 +74,6 @@ h3 {
 }
 
 h4 {
-    color: #ffffff;
     font-style: normal;
     font-weight: 700;
     font-size: calc(0.60em + 1vmin);
@@ -84,7 +81,6 @@ h4 {
 }
 
 h6 {
-    color: #ffffff;
     font-style: normal;
     font-size: calc(0.60em + 1vmin);
     font-weight: 600;
@@ -102,17 +98,15 @@ h6 {
     padding-top: 8vh;
 } */
 
-.body_dashboard .sessao_grafico_principal {
+.sessao_grafico_principal {
     width: 50vw;
 }
 
 /*AQUI FICA O GRÁFICO DE BARRA */
 .canvas_grafic_bar {
     margin-top: 5vh;
-    background-color: #3B3B3B;
     width: 40vw;
     height: 50vh;
-
 }
 
 .container_title {
@@ -120,6 +114,7 @@ h6 {
     height: 13vh;
     display: flex;
     flex-direction: column;
+    color: #ffffff;
 }
 
 .cardTitulo {
@@ -161,7 +156,7 @@ h6 {
     display: flex;
 } */
 
-.body_dashboard .sessao_filtros .head_filtros {
+.head_filtros {
     margin-left: 10vw;
     white-space: nowrap;
 }
@@ -173,18 +168,18 @@ h6 {
 
 .head_filtros button:hover {
     transition: 0.5s;
-    background: rgb(200, 200, 200);
+    background: #c8c8c8;
     cursor: pointer;
 }
 
-.body_dashboard .sessao_filtros .selecao_filtro {
+.selecao_filtro {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%
 }
 
-.body_dashboard .sessao_filtros .selecao_maquina {
+.selecao_maquina {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -192,60 +187,110 @@ h6 {
     overflow-x: scroll;
 }
 
-.body_dashboard .sessao_filtros button {
+.sessao_filtros{
+    width: 40vw;
+}
+
+.sessao_filtros button {
     color: #7d2de2;
     font-style: normal;
     font-weight: 700;
     font-size: calc(0.60em + 1vmin);
     outline: none;
     padding: 5px 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px #00000040;
     border-radius: 16px;
     width: 7vw;
 }
 
-.body_dashboard .sessao_filtros .selecao_maquina button {
+.selecao_maquina button {
     margin: 10px 5px 10px 0;
 }
 
-.body_dashboard .sessao_filtros h2 {
+.sessao_filtros h2 {
     padding: 5px 10px;
 }
 
 
-.body_dashboard .sessao_filtros .container_cards {
+.container_cards {
     display: flex;
-    margin-top: 3vh;
+    margin-top: 4vh;
     justify-content: space-between;
 }
 
-.container_cards .card {
+.card {
+    width: 19vw;
+    height: 16vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #292929;
-    color: white;
+    justify-content: center;
+    background-color: #ffffff;
     border-radius: 16px;
-    padding: 5px 10px;
-    width: 19vw;
 }
 
-.container_cards .card h2 {
+ .card h2 {
     color: #7D2DE2;
+    font-size: calc(2em + 1vmin);
 }
 
 
+/* GRAFICOS DA ESQUERDA */
+#myBarChart{
+    width: 9900px;
+    height: 200px;
+}
+/*---------------------------------*/
 
 
+/* GRAFICOS DAS DIREITA */
 
 .canvas_grafic_rosca_container {
+    width: 40vw;
+    height: 32vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #292929;
-    padding: 5px 10px;
     margin-top: 4vh;
-    width: auto;
-    height: 32vh;
     border-radius: 16px;
 }
+
+.grafic_rosca_infos{
+    width: 22vw;
+    height: 32vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloUsoRam{
+    width: 22vw;
+    height: 5vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#cardCaixas{
+    width: 22vw;
+    height: 27vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#cardCaixas div{
+    width: 6vw;
+    height: 4vh;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
+#cardCaixas div div{
+    width: 2vw;
+    height: 4vh;
+    margin-right: 4px;
+    box-shadow: inset 0 0 1px 1px #000000;
+}
+/*---------------------------------*/
