@@ -64,7 +64,7 @@
                         <label for="radio" class="radio-label">Lembrar Senha</label>
                     </div>
                     <div>
-                        <h3 class="forgetPassword" onclick="window.location.href='redefinirSenha.html'">Esqueci a senha
+                        <h3 class="forgetPassword" onclick="modalEsqueciSenha()">Esqueci minha senha
                         </h3>
                     </div>
                 </div>
@@ -101,6 +101,24 @@
 
 <script>
 
+function modalEsqueciSenha() {
+        modal.style.display = 'block';
+        
+        modalImg.src = "assets/img/iconHelp.svg";
+        modalText.innerHTML = 'Redefinir senha! <br>';
+        modalText.innerHTML += '<label>Email</label> <br>';
+        modalText.innerHTML += '<input placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+        modalText.innerHTML += '<label>Senha</label> <br>';
+        modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+        modalText.innerHTML += '<label>Senha</label> <br>';
+        modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+    }
+
+
+    //  <label class="h4" for="inputEmail">E-mail</label>
+    //                 <input  placeholder="iSee@example.com"  type="text" id="inputEmail">
+    //                 <label class="h4"  for="inputPassword">Senha</label>
+    //                 <input placeholder="Senha" type="password" id="inputPassword">
 function buttonBack() {
     modal.style.display = "none";
   }

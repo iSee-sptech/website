@@ -211,3 +211,9 @@ form {
     background-color: #FFFFFF;
     color: #7D2DE2;
 }
+
+#modal input {
+    color: black;
+    width: 20vw;
+    border: 1px solid #7D2DE2;
+}
