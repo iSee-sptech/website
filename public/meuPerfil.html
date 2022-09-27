@@ -17,11 +17,22 @@
   <body onload="listarPerfil()">
     <div class="first_section">
       <div class="container_card container_dados">
-        <img src="assets/img/userNavbar.svg" />
+        <div class="" style="width: 5vw; height: 15vh" id="imagemUsuarioPerfil">
+          <img src="assets/img/userNavbar.svg" alt="" />
+        </div>
         <span>
-          <input type="text" id="" placeholder="URL" />
+          <input
+            type="text"
+            id="urlImagem"
+            placeholder="URL"
+            onkeyup="mostrarImagem()"
+          />
         </span>
         <h2 id="nome_usuario"></h2>
+
+        <button type="button" onclick="adcionnarImagem()">
+          Adicionar imagem
+        </button>
       </div>
       <!-- Meu Perfil -->
       <div class="container_card container_meu_perfil">
@@ -30,17 +41,24 @@
         <form action="" id="" method="" onsubmit="">
           <div class="container_inputs_head">
             <label>Nome Completo</label>
-            <input placeholder="Nome e Sobrenome" type="text" id="inputNome" class="input_type1" />
+            <input
+              placeholder="Nome e Sobrenome"
+              type="text"
+              id="inputNome"
+              class="input_type1"
+            />
           </div>
 
           <div class="container_inputs_sidebyside">
-
             <span>
-
-              <label>E-mail</label> <input placeholder="iSee@example.com" type="text" id="inputEmail" />
+              <label>E-mail</label>
+              <input
+                placeholder="iSee@example.com"
+                type="text"
+                id="inputEmail"
+              />
             </span>
             <span>
-
               <label>CPF</label>
               <input type="text" id="" placeholder="___.___.___-__" disabled />
             </span>
@@ -55,8 +73,6 @@
               />
             </span>
 
-
-
             <span>
               <label>CEP</label>
               <input
@@ -68,11 +84,17 @@
             </span>
 
             <span>
-              <label>Número</label> <input  placeholder="n°" type="text" id="inputNumeroEndereco">
+              <label>Número</label>
+              <input placeholder="n°" type="text" id="inputNumeroEndereco" />
             </span>
 
             <span>
-              <label>Complemento</label> <input type="text" id="inputComplementoEndereco" placeholder="Apto, Bloco, Casa..."/>
+              <label>Complemento</label>
+              <input
+                type="text"
+                id="inputComplementoEndereco"
+                placeholder="Apto, Bloco, Casa..."
+              />
             </span>
           </div>
         </form>
@@ -94,13 +116,12 @@
             ></textarea>
           </span>
 
-
-            <label>Data e Hora</label>
-            <input
-              type="datetime-local"
-              id="dataHoraLembrete"
-              placeholder="AAAA-MM-DD HH:MI:SS"
-            />
+          <label>Data e Hora</label>
+          <input
+            type="datetime-local"
+            id="dataHoraLembrete"
+            placeholder="AAAA-MM-DD HH:MI:SS"
+          />
         </div>
 
         <button
@@ -182,6 +203,109 @@
   var idUsuario = sessionStorage.idUsuario;
 
   nome_usuario.innerHTML = `${nome}`;
+
+  var imagemUser = false;
+  var urlImagem = "";
+
+  imgUsuario();
+
+  const imagem_de_perfil = setInterval(() => {
+    imagemUndefined();
+  }, 1000);
+
+  function imgUsuario() {
+    fetch(`/usuarios/imgUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          const imagemUser = data[0].ImagemUsuarios;
+
+          imagemUser == null || imagemUser == ""
+            ? (imagemUsuario = true)
+            : (imagemUsuario = false);
+          urlImagem = imagemUser;
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function imagemUndefined() {
+    if (imagemUsuario) {
+      imagemUsuarioPerfil.innerHTML = `<img src="assets/img/userNavbar.svg">`;
+    } else {
+      imagemUsuarioPerfil.innerHTML = `<img src="${urlImagem}" alt="FotoPerfil">`;
+    }
+  }
+
+  function adcionnarImagem() {
+    const urlImg = urlImagem.value;
+    const idUsuario = sessionStorage.getItem("idUsuario");
+
+    if (
+      (urlImg != "" &&
+        urlImg != null &&
+        urlImg.length > 0 &&
+        urlImg.endsWith(".png")) ||
+      urlImg.endsWith(".jpg") ||
+      urlImg.endsWith(".jpeg")
+    ) {
+      fetch("/usuarios/adicionarImagem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: idUsuario,
+          img: urlImg,
+        }),
+      }).then((response) => {
+        response.json().then((data) => {
+          const mensagem = data.mensagem;
+
+          if (mensagem == "success") {
+            modal.style.display = "block";
+            modalImg.src = "assets/img/iconCheck.svg";
+            modalText.innerHTML = "Cadastro efetuado com sucesso!";
+            urlImagem.value = "";
+            adcionnarImagem();
+            setTimeout(() => {
+              imagemUsuarioPerfil.innerHTML = `<img src="${urlImagem}" alt="FotoPerfil">`;
+            }, 1000);
+          }
+        });
+      });
+    }
+  }
+
+  function mostrarImagem() {
+    clearInterval(imagem_de_perfil);
+    const urlImg = urlImagem.value;
+
+    if (urlImg == "") {
+      imagemUsuario == true ? (imagemUsuario = true) : (imagemUsuario = false);
+      urlImagem != "" ? (imagemUsuario = false) : (imagemUsuario = true);
+      adcionnarImagem();
+      ImagemUndefine();
+    } else {
+      if (
+        urlImg.endsWith(".png") ||
+        urlImg.endsWith(".jpg") ||
+        urlImg.endsWith(".jpeg")
+      ) {
+        imagemUsuarioPerfil.innerHTML = `<img class="imgUser" src="${urlImg}" alt="Carregando...">`;
+      } else {
+        imagemUsuarioPerfil.innerHTML = `<h1> URL Inválida! </h1>`;
+      }
+    }
+  }
 
   function sair() {
     sessionStorage.clear();

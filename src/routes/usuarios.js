@@ -28,7 +28,6 @@ router.post("/adicionarLembrete", function (req, res) {
   usuarioController.adicionarLembrete(req, res);
 });
 
-
 router.post("/autenticar", function (req, res) {
   usuarioController.entrar(req, res);
 });
@@ -48,5 +47,10 @@ router.get("/listarLembrete/:id", function (req, res) {
 router.get("/exibirFuncionarios", function (req, res) {
   usuarioController.exibirFuncionarios(req, res);
 });
+
+router.get("/imgUsuario/:id", function (req, res) {
+  usuarioController.imgUsuario(req, res);
+});
+router.post("/adicionarImagem", usuarioController.atualizarImg);
 
 module.exports = router;

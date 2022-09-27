@@ -69,8 +69,6 @@ function mostrarLembrete(idUsuario) {
 }
 
 function updatePerfil(id, nome, telefone, email, cep) {
-
-
   const query = `UPDATE usuarios SET nomeUsuario = '${nome}', telefoneUsuario = '${telefone}',
   emailUsuario = '${email}', cepUsuario = '${cep}' WHERE idUsuario = ${id} `;
   return database.executar(query);
@@ -90,11 +88,37 @@ function listarLembrete(idUser) {
   return database.executar(instrucao);
 }
 
-function exibirFuncionarios (){
+function exibirFuncionarios() {
   var instrucao = `
   SELECT count(idUsuario) from Usuarios;;
   `;
   return database.executar(instrucao);
+}
+
+function imgUsuario(idUser) {
+  var instrucao = `
+  SELECT * FROM usuario WHERE idUsuario = ${idUser};
+  `;
+  return database.executar(instrucao);
+}
+
+function atualizarImg(req, res) {
+  const idUser = req.body.id;
+  const img = req.body.img;
+
+  usuarioModel.atualizarImg(idUser, img).then((response) => {
+    const tamanho = response.affectedRows;
+
+    if (tamanho > 0) {
+      res.json({
+        mensagem: "success",
+      });
+    } else {
+      res.json({
+        mensagem: "error",
+      });
+    }
+  });
 }
 
 module.exports = {
@@ -108,5 +132,7 @@ module.exports = {
   updatePerfil,
   listarPerfil,
   listarLembrete,
-  exibirFuncionarios
+  exibirFuncionarios,
+  imgUsuario,
+  atualizarImg,
 };

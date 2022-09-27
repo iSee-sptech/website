@@ -200,7 +200,6 @@ function adicionarLembrete(req, res) {
   }
 }
 
-
 function updatePerfil(req, res) {
   var id = req.body.idServer;
   var nome = req.body.nomeServer;
@@ -208,77 +207,201 @@ function updatePerfil(req, res) {
   var email = req.body.emailServer;
   var cep = req.body.cepServer;
 
-  usuarioModel.updatePerfil(id, nome, telefone, email, cep)
-      .then((response) => {
-          const tamanho = response.affectedRows;
+  usuarioModel.updatePerfil(id, nome, telefone, email, cep).then((response) => {
+    const tamanho = response.affectedRows;
 
-          if (tamanho > 0) {
-              res.json({
-                  mensagem: "success",
-              });
-          } else {
-              res.json({
-                  mensagem: "error",
-              });
-          }
+    if (tamanho > 0) {
+      res.json({
+        mensagem: "success",
       });
+    } else {
+      res.json({
+        mensagem: "error",
+      });
+    }
+  });
 }
 
 function listarPerfil(req, res) {
   const idUser = req.params.id;
 
-  usuarioModel.listarPerfil(idUser)
-      .then((resultado) => {
-          if (resultado.length > 0) {
-              res.status(200).json(resultado);
-          } else {
-              res.status(204).send("Nenhum resultado encontrado!")
-          }
-      }).catch(
-          function (erro) {
-              console.log(erro);
-              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-              res.status(500).json(erro.sqlMessage);
-          }
+  usuarioModel
+    .listarPerfil(idUser)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
       );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
-
 
 function listarLembrete(req, res) {
   const idUser = req.params.id;
 
-  usuarioModel.listarLembrete(idUser)
-      .then((resultado) => {
-          if (resultado.length > 0) {
-              res.status(200).json(resultado);
-          } else {
-              res.status(204).send("Nenhum resultado encontrado!")
-          }
-      }).catch(
-          function (erro) {
-              console.log(erro);
-              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-              res.status(500).json(erro.sqlMessage);
-          }
+  usuarioModel
+    .listarLembrete(idUser)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
       );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function exibirFuncionarios(req, res) {
-
-  usuarioModel.exibirFuncionarios()
-      .then((resultado) => {
-          if (resultado.length > 0) {
-              res.status(200).json(resultado);
-          } else {
-              res.status(204).send("Nenhum resultado encontrado!")
-          }
-      }).catch(
-          function (erro) {
-              console.log(erro);
-              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-              res.status(500).json(erro.sqlMessage);
-          }
+  usuarioModel
+    .exibirFuncionarios()
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
       );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function meuUsuario(req, res) {
+  const idUser = req.params.id;
+
+  usuarioModel
+    .meuUsuario(idUser)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+function atualizarImg(req, res) {
+  const idUser = req.body.id;
+  const img = req.body.img;
+
+  usuarioModel.atualizarImg(idUser, img).then((response) => {
+    const tamanho = response.affectedRows;
+
+    if (tamanho > 0) {
+      res.json({
+        mensagem: "success",
+      });
+    } else {
+      res.json({
+        mensagem: "error",
+      });
+    }
+  });
+}
+function meuUsuario(req, res) {
+  const idUser = req.params.id;
+
+  usuarioModel
+    .meuUsuario(idUser)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+function atualizarImg(req, res) {
+  const idUser = req.body.id;
+  const img = req.body.img;
+
+  usuarioModel.atualizarImg(idUser, img).then((response) => {
+    const tamanho = response.affectedRows;
+
+    if (tamanho > 0) {
+      res.json({
+        mensagem: "success",
+      });
+    } else {
+      res.json({
+        mensagem: "error",
+      });
+    }
+  });
+}
+function imgUsuario(req, res) {
+  const idUser = req.params.id;
+
+  usuarioModel
+    .imgUsuario(idUser)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+function atualizarImg(req, res) {
+  const idUser = req.body.id;
+  const img = req.body.img;
+
+  usuarioModel.atualizarImg(idUser, img).then((response) => {
+    const tamanho = response.affectedRows;
+
+    if (tamanho > 0) {
+      res.json({
+        mensagem: "success",
+      });
+    } else {
+      res.json({
+        mensagem: "error",
+      });
+    }
+  });
 }
 
 module.exports = {
@@ -293,5 +416,6 @@ module.exports = {
   listarPerfil,
   listarLembrete,
   exibirFuncionarios,
-  // mostrarLembrete,
+  imgUsuario,
+  atualizarImg,
 };
