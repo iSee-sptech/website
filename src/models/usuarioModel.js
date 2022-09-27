@@ -97,7 +97,7 @@ function exibirFuncionarios() {
 
 function imgUsuario(idUser) {
   var instrucao = `
-  SELECT * FROM usuario WHERE idUsuario = ${idUser};
+  SELECT * FROM usuarios WHERE idUsuario = ${idUser};
   `;
   return database.executar(instrucao);
 }
