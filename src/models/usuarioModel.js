@@ -25,9 +25,19 @@ function entrar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(nome, email, endereco, dataNasc, cpf, celular, senha) {
+function cadastrar(
+  nome,
+  email,
+  endereco,
+  dataNasc,
+  cpf,
+  celular,
+  senha,
+  numeroEndereco,
+  complementoEndereco
+) {
   var instrucao = `
-  insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, cargoUsuario ) values ('${nome}', '${email}', '${endereco}', '${dataNasc}', '${cpf}', '${celular}', '${senha}', 'Gerente');
+  insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, numeroLocalUsuario, complementoLocalUsuario, cargoUsuario) values ('${nome}', '${email}', '${endereco}', '${dataNasc}', '${cpf}', '${celular}', '${senha}','${numeroEndereco}','${complementoEndereco}','Gerente');
   `;
   return database.executar(instrucao);
 }
@@ -102,23 +112,10 @@ function imgUsuario(idUser) {
   return database.executar(instrucao);
 }
 
-function atualizarImg(req, res) {
-  const idUser = req.body.id;
-  const img = req.body.img;
+function atualizarImg(idUser, img) {
+  const query = `UPDATE usuario SET imagemPerfilUsuario = '${img}' WHERE idUsuario = ${idUser}`;
 
-  usuarioModel.atualizarImg(idUser, img).then((response) => {
-    const tamanho = response.affectedRows;
-
-    if (tamanho > 0) {
-      res.json({
-        mensagem: "success",
-      });
-    } else {
-      res.json({
-        mensagem: "error",
-      });
-    }
-  });
+  return database.executar(query);
 }
 
 module.exports = {

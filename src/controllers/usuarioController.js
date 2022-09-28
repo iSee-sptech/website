@@ -71,6 +71,8 @@ function cadastrar(req, res) {
   var cpf = req.body.cpfServer;
   var celular = req.body.celularServer;
   var senha = req.body.senhaServer;
+  var numeroEndereco = req.body.numeroEnderecoGestorServer;
+  var complementoEndereco = req.body.complementoEnderecoGestorServer;
 
   // Faça as validações dos valores
   if (nome == undefined) {
@@ -82,7 +84,17 @@ function cadastrar(req, res) {
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
-      .cadastrar(nome, email, endereco, dataNasc, cpf, celular, senha)
+      .cadastrar(
+        nome,
+        email,
+        endereco,
+        dataNasc,
+        cpf,
+        celular,
+        senha,
+        numeroEndereco,
+        complementoEndereco
+      )
       .then(function (resultado) {
         res.json(resultado);
       })
@@ -286,84 +298,6 @@ function exibirFuncionarios(req, res) {
     });
 }
 
-function meuUsuario(req, res) {
-  const idUser = req.params.id;
-
-  usuarioModel
-    .meuUsuario(idUser)
-    .then((resultado) => {
-      if (resultado.length > 0) {
-        res.status(200).json(resultado);
-      } else {
-        res.status(204).send("Nenhum resultado encontrado!");
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro);
-      console.log(
-        "Houve um erro ao realizar a consulta! Erro: ",
-        erro.sqlMessage
-      );
-      res.status(500).json(erro.sqlMessage);
-    });
-}
-function atualizarImg(req, res) {
-  const idUser = req.body.id;
-  const img = req.body.img;
-
-  usuarioModel.atualizarImg(idUser, img).then((response) => {
-    const tamanho = response.affectedRows;
-
-    if (tamanho > 0) {
-      res.json({
-        mensagem: "success",
-      });
-    } else {
-      res.json({
-        mensagem: "error",
-      });
-    }
-  });
-}
-function meuUsuario(req, res) {
-  const idUser = req.params.id;
-
-  usuarioModel
-    .meuUsuario(idUser)
-    .then((resultado) => {
-      if (resultado.length > 0) {
-        res.status(200).json(resultado);
-      } else {
-        res.status(204).send("Nenhum resultado encontrado!");
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro);
-      console.log(
-        "Houve um erro ao realizar a consulta! Erro: ",
-        erro.sqlMessage
-      );
-      res.status(500).json(erro.sqlMessage);
-    });
-}
-function atualizarImg(req, res) {
-  const idUser = req.body.id;
-  const img = req.body.img;
-
-  usuarioModel.atualizarImg(idUser, img).then((response) => {
-    const tamanho = response.affectedRows;
-
-    if (tamanho > 0) {
-      res.json({
-        mensagem: "success",
-      });
-    } else {
-      res.json({
-        mensagem: "error",
-      });
-    }
-  });
-}
 function imgUsuario(req, res) {
   const idUser = req.params.id;
 

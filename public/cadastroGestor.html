@@ -96,7 +96,7 @@
 
 
 
-        <button id="botaoCadastroGestor" class="buttonContact" type="button" onclick="cadastrarFunc()">
+        <button id="botaoCadastroGestor" class="buttonContact" type="button" onclick="cadastrar()">
           Cadastrar
         </button>
       </div>
@@ -128,31 +128,31 @@
     modal.style.display = "none";
   }
 
-  function cadastrarFunc() {
+  function cadastrar(){
 
-    var nomeFuncVar = input_nome_func.value.trim();
-    var emailFuncVar = input_email_func.value.trim();
-    var enderecoFuncVar = input_endereco_func.value.trim();
-    var numEnderecoFuncVar = input_num_endereco_func.value.trim();
-    var complementoEnderecoFuncVar = input_complemento_endereco_func.value.trim();
-    var dataNascFuncVar = input_data_nasc_func.value.trim();
-    var cpfFuncVar = input_cpf_func.value.trim();
-    var celularFunc = input_cell_func.value.trim();
-    var senhaFuncVar = input_senha_func.value;
-    var confirmacaoSenhaFuncVar = input_confirmacao_senha_func.value;
+    var nomeGestorVar = input_nome_func.value.trim();
+    var emailGestorVar = input_email_func.value.trim();
+    var enderecoGestorVar = input_endereco_func.value.trim();
+    var dataNascGestorVar = input_data_nasc_func.value.trim();
+    var cpfGestorVar = input_cpf_func.value.trim();
+    var celularGestor = input_cell_func.value.trim();
+    var senhaGestorVar = input_senha_func.value;
+    var confirmacaoSenhaGestorVar = input_confirmacao_senha_func.value;
+    var numeroEnderecoGestorVar = input_num_endereco_func.value.trim();
+    var complementoEnderecoGestorVar = input_complemento_endereco_func.value.trim();
 
     // Validações Campos Vazios
     if (
-      nomeFuncVar == "" ||
-      emailFuncVar == "" ||
-      enderecoFuncVar == "" ||
-      dataNascFuncVar == "" ||
-      cpfFuncVar == "" ||
-      complementoEnderecoFuncVar == "" ||
-      numEnderecoFuncVar == "" ||
-      celularFunc == "" ||
-      senhaFuncVar == "" ||
-      confirmacaoSenhaFuncVar == ""
+      nomeGestorVar == "" ||
+      emailGestorVar == "" ||
+      enderecoGestorVar == "" ||
+      dataNascGestorVar == "" ||
+      cpfGestorVar == "" ||
+      complementoEnderecoGestorVar == "" ||
+      numeroEnderecoGestorVar == "" ||
+      celularGestor == "" ||
+      senhaGestorVar == "" ||
+      confirmacaoSenhaGestorVar == ""
     ) {
       console.log("Prencha todos os campos!");
       modal.style.display = "block";
@@ -161,8 +161,8 @@
       return false;
       // Validação Email 
     } else if (
-      emailFuncVar.includes("@") == false ||
-      emailFuncVar.length < 10
+      emailGestorVar.includes("@") == false ||
+      emailGestorVar.length < 10
     ) {
       console.log("E-mail incorreto!");
       modal.style.display = "block";
@@ -170,60 +170,60 @@
       modalText.innerHTML = "Email inválido!";
       return false;
       // Validação CEP 
-    } else if (enderecoFuncVar.length < 9) {
+    } else if (enderecoGestorVar.length < 9) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira um CEP válido! (8 dígitos)";
       return false; 
       // Validação CPF 
-    } else if (cpfFuncVar.length < 12) {
+    } else if (cpfGestorVar.length < 12) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira um CPF válido! (11 dígitos)";
       return false;
       // Validação Número telefone
-    } else if (celularFunc.length < 9+6) {
+    } else if (celularGestor.length < 9+6) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira um número de telefone válido! (11 dígitos)";
       return false;
-    } else if (celularFunc.length > 9+6) {
+    } else if (celularGestor.length > 9+6) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira um número de telefone válido! (Apenas os números)";
       return false;
       // Validação Senha
-    } else if (senhaFuncVar.length < 6) {
+    } else if (senhaGestorVar.length < 6) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "Insira uma senha de no mínimo 6 caractéres!";
       return false;
 
-    } else if ((senhaFuncVar.includes("@") ||
-               (senhaFuncVar.includes("#")) ||
-               (senhaFuncVar.includes("$")) ||
-               (senhaFuncVar.includes("*")) ) == false) {
+    } else if ((senhaGestorVar.includes("@") ||
+               (senhaGestorVar.includes("#")) ||
+               (senhaGestorVar.includes("$")) ||
+               (senhaGestorVar.includes("*")) ) == false) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = "A senha necessita pelo menos 1 caracter especial!";
       return false;       
     }
-    else if ((senhaFuncVar.includes("0") ||
-               (senhaFuncVar.includes("1")) ||
-               (senhaFuncVar.includes("2")) ||
-               (senhaFuncVar.includes("3")) ||
-               (senhaFuncVar.includes("4")) ||
-               (senhaFuncVar.includes("5")) ||
-               (senhaFuncVar.includes("6")) ||
-               (senhaFuncVar.includes("7")) ||
-               (senhaFuncVar.includes("8")) ||
-               (senhaFuncVar.includes("9")) ) == false) {
+    else if ((senhaGestorVar.includes("0") ||
+               (senhaGestorVar.includes("1")) ||
+               (senhaGestorVar.includes("2")) ||
+               (senhaGestorVar.includes("3")) ||
+               (senhaGestorVar.includes("4")) ||
+               (senhaGestorVar.includes("5")) ||
+               (senhaGestorVar.includes("6")) ||
+               (senhaGestorVar.includes("7")) ||
+               (senhaGestorVar.includes("8")) ||
+               (senhaGestorVar.includes("9")) ) == false) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
       modalText.innerHTML = " A senha necessita de pelo menos 1 número!";
       return false;       
     }
-      else if (senhaFuncVar !== confirmacaoSenhaFuncVar) {
+      else if (senhaGestorVar !== confirmacaoSenhaGestorVar) {
       console.log("Insira senha iguais!");
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
@@ -236,37 +236,34 @@
     }
     
 
-    fetch("/usuarios/cadastrarFunc", {
+    fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        nomeFuncServer: nomeFuncVar,
-        emailFuncServer: emailFuncVar,
-        enderecoFuncServer: enderecoFuncVar,
-        dataNascFuncServer: dataNascFuncVar,
-        cpfFuncServer: cpfFuncVar,
-        celularFuncServer: celularFunc,
-        senhaFuncServer: senhaFuncVar,
-        confirmarSenhaFuncServer: confirmacaoSenhaFuncVar,
+        nomeGestorServer: nomeGestorVar,
+        emailGestorServer: emailGestorVar,
+        enderecoGestorServer: enderecoGestorVar,
+        dataNascGestorServer: dataNascGestorVar,
+        cpfGestorServer: cpfGestorVar,
+        celularGestorServer: celularGestor,
+        senhaGestorServer: senhaGestorVar,
+        confirmarSenhaGestorServer: confirmacaoSenhaGestorVar,
+        numeroEnderecoGestorServer: numeroEnderecoGestorVar,
+        complementoEnderecoGestorServer: complementoEnderecoGestorVar,
       }),
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          // modal.style.display = 'block'
-          // modalImg.src = "assets/iconCheck.svg"
-          // modalText.innerHTML = "Cadastro efetuado com sucesso!";
           console.log("Cadastro efetuado com sucesso!");
 
           setTimeout(() => {
             window.location = "./login.html";
           }, "1000");
 
-          // limparFormulario();
-          // finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }

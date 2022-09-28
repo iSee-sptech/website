@@ -287,20 +287,20 @@
 
   function mostrarImagem() {
     clearInterval(imagem_de_perfil);
-    const urlImg = urlImagem.value;
+    const urlImage = urlImagem.value;
 
-    if (urlImg == "") {
+    if (urlImage == "") {
       imagemUsuario == true ? (imagemUsuario = true) : (imagemUsuario = false);
       urlImagem != "" ? (imagemUsuario = false) : (imagemUsuario = true);
       adcionnarImagem();
       ImagemUndefine();
     } else {
       if (
-        urlImg.endsWith(".png") ||
-        urlImg.endsWith(".jpg") ||
-        urlImg.endsWith(".jpeg")
+        urlImage.endsWith(".png") ||
+        urlImage.endsWith(".jpg") ||
+        urlImage.endsWith(".jpeg")
       ) {
-        imagemUsuarioPerfil.innerHTML = `<img class="imgUser" src="${urlImg}" alt="Carregando...">`;
+        imagemUsuarioPerfil.innerHTML = `<img class="imgUser" src="${urlImage}" alt="Carregando...">`;
       } else {
         imagemUsuarioPerfil.innerHTML = `<h1> URL Inválida! </h1>`;
       }

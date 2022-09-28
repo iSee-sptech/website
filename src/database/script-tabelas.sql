@@ -11,9 +11,15 @@ cpfUsuario char (14) unique,
 telefoneUsuario char (15) unique not null,
 crmUsuario  char (6),
 senhaUsuario varchar (20) not null,
-dataNascUsuario date not null
+dataNascUsuario date not null,
+imagemPerfilUsuario varchar (255),
+numeroLocalUsuario varchar (6),
+complementoLocalUsuario varchar (25)
 );
 select * from Usuarios;
+
+insert into usuarios (idUsuario, nomeUsuario, emailUsuario, cepUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, dataNascUsuario, numeroLocalUsuario, complementoLocalUsuario, cargoUsuario)
+values (null, "Andreas", "andreasrgb@gmail.com", "03347-010", "450.089.988-03", "(11) 99976-9377", "@Andreas2014", "2003-12-17", "111", "casa", "Gerente");
 
 create table Maquinas (
 idMaquina int primary key,
