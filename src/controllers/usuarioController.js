@@ -93,7 +93,7 @@ function cadastrar(req, res) {
         celular,
         senha,
         numeroEndereco,
-        complementoEndereco
+        complementoEndereco,
       )
       .then(function (resultado) {
         res.json(resultado);

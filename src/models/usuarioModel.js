@@ -34,7 +34,7 @@ function cadastrar(
   celular,
   senha,
   numeroEndereco,
-  complementoEndereco
+  complementoEndereco,
 ) {
   var instrucao = `
   insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, numeroLocalUsuario, complementoLocalUsuario, cargoUsuario) values ('${nome}', '${email}', '${endereco}', '${dataNasc}', '${cpf}', '${celular}', '${senha}','${numeroEndereco}','${complementoEndereco}','Gerente');
