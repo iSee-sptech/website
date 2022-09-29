@@ -230,11 +230,10 @@
       modalText.innerHTML = "As senhas não conferem!";
       return false;
     } else {
-      modal.style.display = "block";
-      modalImg.src = "assets/img/iconCheck.svg";
-      modalText.innerHTML = "Cadastro efetuado com sucesso!";
+        modal.style.display = "block";
+        modalImg.src = "assets/img/iconCheck.svg";
+        modalText.innerHTML = "Cadastro efetuado com sucesso!";
     }
-    
 
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -259,7 +258,6 @@
 
         if (resposta.ok) {
           console.log("Cadastro efetuado com sucesso!");
-
           setTimeout(() => {
             window.location = "./login.html";
           }, "1000");
