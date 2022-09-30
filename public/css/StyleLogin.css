@@ -212,8 +212,51 @@ form {
     color: #7D2DE2;
 }
 
-#modal input {
+
+
+#modalRedefinirSenha input {
     color: black;
     width: 20vw;
     border: 1px solid #7D2DE2;
+}
+
+.agrupamento_botoes_modal {
+    display: flex;
+}
+
+.button_modal {
+    width: 10vw;
+    height: 6vh;
+    margin: 4vh 1vw 0vh 1vw;
+    background-color: #7D2DE2;
+    border-radius: 16px;
+    border-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1vw;
+    line-height: 36px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    border: transparent;
+    cursor: pointer;
+}
+
+.button_modal_type2 {
+    width: 9vw;
+    height: 6vh;
+    margin: 4vh 0vw 0vh 1vw;
+    border: 1px solid #7D2DE2;
+    background-color: transparent;
+    border-radius: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1vw;
+    line-height: 36px;
+    align-items: center;
+    text-align: center;
+    color: #54595E;
+    cursor: pointer;
 }

@@ -97,28 +97,62 @@
     </div>
   </div>
 
+  <div id="modalRedefinirSenha" class="modalBody">
+    <div class="modalReadPlus">
+        <div class="containerReadPlus">
+            <div class="modalCheck">
+                <img id="modalImg" src="assets/img/iconHelp.svg" alt="check" />
+            </div>
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+        <span id="modalText">
+
+            Redefinir senha! <br>
+            <label>Email</label> <br>
+            <input placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>
+
+            <label>Senha</label> <br>
+
+            <!-- <span class="agrupamento_modal_help"> -->
+            <input  placeholder="iSee@example.com"  type="text" id="inputSenha">  
+            <!-- <div class= 'envoltorioIconHelp' onclick="modalServicesRegrasSenha()"> <img src="assets/img/iconHelp.svg"> </div>  -->
+            <!-- </span> --> <br>
+           
+            <label>Confirmar Senha</label> <br>
+            <input  placeholder="iSee@example.com"  type="text" id="inputConfirmarSenha"> <br>
+            
+            <span class="agrupamento_botoes_modal">
+            <button class="button_modal_type2" onclick="buttonBack()">Fechar</button>
+            <button class="button_modal" onclick="buttonBack()">Redefinir</button>
+            </span>
+        </span>
+    </div>
+
+  </div>
+
 </html>
 
 <script>
 
-function modalEsqueciSenha() {
-        modal.style.display = 'block';
-        
-        modalImg.src = "assets/img/iconHelp.svg";
-        modalText.innerHTML = 'Redefinir senha! <br>';
-        modalText.innerHTML += '<label>Email</label> <br>';
-        modalText.innerHTML += '<input placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
-        modalText.innerHTML += '<label>Senha</label> <br>';
-        modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
-        modalText.innerHTML += '<label>Senha</label> <br>';
-        modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+function modalServicesRegrasSenha() {
+        modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Sua senha deve conter no mínimo <br> <a>8 caracteres<br>1 letra [a-Z]<br>1 número [0-9]<br>1 caracter especial [@|#|$|*]</a>";
     }
 
+function modalEsqueciSenha() {
+        modalRedefinirSenha.style.display = 'block';
+        
+        modalImg.src = "assets/img/iconHelp.svg";
+        // modalText.innerHTML = 'Redefinir senha! <br>';
+        // modalText.innerHTML += '<label>Email</label> <br>';
+        // modalText.innerHTML += '<input placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+        // modalText.innerHTML += '<label>Senha</label> <br>';
+        // modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+        // modalText.innerHTML += '<label>Senha</label> <br>';
+        // modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+    }
 
-    //  <label class="h4" for="inputEmail">E-mail</label>
-    //                 <input  placeholder="iSee@example.com"  type="text" id="inputEmail">
-    //                 <label class="h4"  for="inputPassword">Senha</label>
-    //                 <input placeholder="Senha" type="password" id="inputPassword">
 function buttonBack() {
     modal.style.display = "none";
   }
