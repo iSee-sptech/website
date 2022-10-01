@@ -82,7 +82,7 @@ h4 {
 
 h6 {
     font-style: normal;
-    font-size: calc(0.60em + 1vmin);
+    font-size: calc(0.50em + 1vmin);
     font-weight: 600;
 }
 
@@ -116,7 +116,9 @@ h6 {
 
 .container_tipos_alertas .card_alerta {
 
-    
+    display: flex;
+    align-items: center;
+
     margin: 0 20px 20px 0;
     background-color: #f8f8f8;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -131,8 +133,26 @@ h6 {
 }
 
 .card_alerta .ilustracao {
-    width: 22vh;
+    width: 12vw;
 }
+
+.card_alerta .corpo_alerta {
+    width: auto;
+    margin: 0 5px;
+}
+.card_alerta .corpo_alerta h2 {
+    color: #000000;
+}
+
+.card_alerta .corpo_quantidade {
+    margin-right: 5px;
+    text-align: center;
+}
+
+.card_alerta .corpo_quantidade h2 {
+    color: #000000;
+}
+
 
 .container_title {
     width: 500px;
