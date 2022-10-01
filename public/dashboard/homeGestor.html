@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="../css/navBar.css">
   </head>
 
-  <body onload="listarLembrete()" onload="exibirQtdFuncionarios()">
+  <body onload="listarLembrete(), exibirQtdFuncionarios()">
     <div class="first_section">
       <div class="container_funcionario">
         <h1 id="bem_vindo">Bem vindo</h1>
         <div class="modal_botao">
           <div>
             <h2 class="titulo">Funcionários</h2>
-            <span id="quantidadeFuncionarios">20</span>
+            <span id="quantidadeFuncionarios"></span>
           </div>
 
           <div>
@@ -185,7 +185,6 @@
       resposta.json().then((data) => {
         console.log(data);
         quantidadeFuncionario = data[0].quantidadeFuncionario
-        console.log(quantidadeFuncionario)
         quantidadeFuncionarios.innerHTML = quantidadeFuncionario
       })
 
