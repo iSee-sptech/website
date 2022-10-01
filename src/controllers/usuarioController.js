@@ -279,8 +279,9 @@ function listarLembrete(req, res) {
 }
 
 function exibirFuncionarios(req, res) {
+  const usuarioIdentificador = req.params.id;
   usuarioModel
-    .exibirFuncionarios()
+    .exibirFuncionarios(usuarioIdentificador)
     .then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);

@@ -174,7 +174,7 @@
   }
 
   function exibirQtdFuncionarios(){
-
+    
     fetch(`/usuarios/exibirFuncionarios`, {
       method: "GET",
       headers: {
@@ -184,8 +184,8 @@
       // saldoConta
       resposta.json().then((data) => {
         console.log(data);
-        quantidadeFuncionario = data[0].quantidadeFuncionario
-        quantidadeFuncionarios.innerHTML = quantidadeFuncionario
+        qtdFuncionario = data[0].qtdFuncionario
+        quantidadeFuncionarios.innerHTML = qtdFuncionario
       })
 
     }).catch(function (resposta) {
