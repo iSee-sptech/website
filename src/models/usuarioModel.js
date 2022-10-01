@@ -100,7 +100,14 @@ function listarLembrete(idUser) {
 
 function exibirFuncionarios() {
   var instrucao = `
-  SELECT count(idUsuario) from Usuarios;;
+  SELECT count(idUsuario) from Usuarios;
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirCaixas() {
+  var instrucao = `
+  SELECT count(idMaquina) from Maquinas;
   `;
   return database.executar(instrucao);
 }
@@ -130,6 +137,7 @@ module.exports = {
   listarPerfil,
   listarLembrete,
   exibirFuncionarios,
+  exibirCaixas,
   imgUsuario,
   atualizarImg,
 };

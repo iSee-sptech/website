@@ -48,6 +48,11 @@ router.get("/exibirFuncionarios", function (req, res) {
   usuarioController.exibirFuncionarios(req, res);
 });
 
+router.get("/exibirCaixas", function (req, res) {
+  usuarioController.exibirCaixas(req, res);
+});
+
+
 router.get("/imgUsuario/:id", function (req, res) {
   usuarioController.imgUsuario(req, res);
 });

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/navBar.css">
   </head>
 
-  <body onload="listarLembrete(), exibirQtdFuncionarios()">
+  <body onload="listarLembrete(), exibirQtdFuncionarios(), exibirQtdCaixas()">
     <div class="first_section">
       <div class="container_funcionario">
         <h1 id="bem_vindo">Bem vindo</h1>
@@ -22,7 +22,7 @@
 
           <div>
             <h2 class="titulo">Meus Caixas</h2>
-            <span id="quantidadeCaixas">4</span>
+            <span id="quantidadeCaixas"></span>
           </div>
         </div>
       </div>
@@ -186,6 +186,27 @@
         console.log(data);
         qtdFuncionario = data[0].qtdFuncionario
         quantidadeFuncionarios.innerHTML = qtdFuncionario
+      })
+
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
+  }
+
+  function exibirQtdCaixas(){
+    
+    fetch(`/usuarios/exibirCaixas`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
+      // saldoConta
+      resposta.json().then((data) => {
+        console.log(data);
+        qtdCaixa = data[0].qtdCaixa
+        quantidadeCaixas.innerHTML = qtdCaixa
       })
 
     }).catch(function (resposta) {
