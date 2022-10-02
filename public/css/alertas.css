@@ -173,6 +173,24 @@ h6 {
     left: 35vw;
 }
 
+.filtro {
+    position: fixed;
+    top: 12vh;
+    left: 59vw;
+    display: flex;
+}
+
+.filtro h2 {
+    margin-right: 1vw;
+}
+
+.filtro input {
+    margin:0 5px;
+    padding: 5px;
+    font-size: 10px;
+    width: 15vw;
+}
+
 .notificacoes img:nth-child(1) {
     position: fixed;
     width: 3vh;
