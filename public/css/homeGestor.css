@@ -18,6 +18,7 @@ html {
 
 .titulo {
   font-size: calc(1.60em + 1vmin);
+  color: #ffffff;
 }
 
 p {
@@ -186,6 +187,7 @@ h4 {
 
 .navbar_notificacao h2 {
   font-size: 22px;
+  color: #ffffff;
 }
 
 .navbar_notificacao div {

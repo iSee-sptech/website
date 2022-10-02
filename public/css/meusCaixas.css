@@ -30,14 +30,14 @@ body, html{
     margin-left: 11vh;
 }
 .containerTitulo h1{
-    font-style: normal;
+    font-weight: normal;
     font-weight: 700;
     font-size: calc(3em + 1vmin);
     line-height: 78px;
 }
 
 .containerTitulo h6 {
-    font-style: normal;
+    font-weight: normal;
     font-size: calc(0.60em + 1vmin);
     font-weight: 600;
 }
@@ -78,8 +78,37 @@ body, html{
     justify-content: flex-end;
 }
 
+.divPesquisa input{
+    width: 250px;
+    height: 40px;
+    color: #ffffff;
+    font-size: calc(0.50em + 1vmin);
+    font-weight: normal;
+    padding-right: 25px;
+    background: url(../assets/img/pesquisarIcon.svg) no-repeat right;
+    background-size: 20px;
+    outline: none;
+    border: 1px solid #7D2DE2;
+}
+
+.divPesquisa button{
+    width: 120px;
+    height: 42px;
+    background-color: #7D2DE2;
+    font-size: calc(0.60em + 1vmin);
+    color: #ffffff;
+}
+
+.divPesquisa button:hover{
+    transition: 1s;
+    cursor: pointer;
+    background-color: #6428c8;
+}
+
 .divPesquisa h3{
     color: #ffffff;
+    font-weight: normal;
+    font-size: calc(0.70em + 1vmin);
 }
 
 /* ESTILIZAÇÃO DA TABELA MEUS CAIXAS */
@@ -115,7 +144,7 @@ body, html{
 }
 
 #caixa div h2{
-    color: #7d2de2;
+    color: #7D2DE2;
 }
 #caixa div h4{
     color: #ffffff;
@@ -124,10 +153,14 @@ body, html{
 #status{
     width: 30px;
     height: 30px;
-    background-color: #7d2de2;
+    background-color: #7D2DE2;
     border-radius: 100%;
 }
 
-#removerCaixa img{
+#ImagemCaixa:hover{
+    cursor: pointer;
+}
 
+#removerCaixa:hover{
+    cursor: pointer;
 }
