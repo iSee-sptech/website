@@ -7,22 +7,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* scrol bar temporaria*/
-*::-webkit-scrollbar {
-    width: 19px;
-}
 
-*::-webkit-scrollbar-track {
-    background: #3b3b3b;
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: #7d2de2;
-    border-radius: 2px;
-    border: -1px none #ffffff;
-}
-
-/* scrol bar temporaria*/
 
 body,
 html {
@@ -57,12 +42,6 @@ h1 {
     /* width: 800px; */
     align-self: flex-start;
     /* padding-top: 5vh; */
-}
-
-h2 {
-    font-style: normal;
-    font-weight: 700;
-    font-size: calc(0.90em + 1vmin);
 }
 
 h3 {
