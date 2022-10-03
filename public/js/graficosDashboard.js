@@ -79,7 +79,6 @@ var ctx = document.getElementById("pieChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Caixa 1', 'Caixa 2', 'Caixa 3', 'Caixa 4'],
         datasets: data02
     },
     options: options02

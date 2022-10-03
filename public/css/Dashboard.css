@@ -233,15 +233,16 @@ color: #ffffff;
 }
 
 .grafic_rosca_infos{
-    width: 22vw;
-    height: 32vh;
+    width: 20vw;
+    height: 29vh;
+    margin-right: 1vw;
     display: flex;
     flex-direction: column;
 }
 
 .tituloUsoRam{
-    width: 22vw;
-    height: 5vh;
+    width: 20vw;
+    height: 4vh;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -251,10 +252,11 @@ color: #ffffff;
 }
 
 #cardCaixas{
-    width: 22vw;
-    height: 27vh;
+    width: 20vw;
+    height: 25vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    overflow-y: scroll;
 }
 
 #cardCaixas div{
