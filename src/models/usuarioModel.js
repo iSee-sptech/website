@@ -100,7 +100,7 @@ function listarLembrete(idUser) {
 
 function exibirFuncionarios() {
   var instrucao = `
-  SELECT count(idUsuario) from Usuarios;
+  SELECT nomeUsuario from Usuarios where idUsuario = 4;
   `;
   return database.executar(instrucao);
 }

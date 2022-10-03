@@ -100,7 +100,7 @@
   <!--NavBar-->
   <div class="container_navbar">
     <div class="navbar_bottom">
-      <div class="btn_home">
+      <div class="btn_home" onclick="tela_home()">
         <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
         <h2>Home</h2>
       </div>
@@ -110,17 +110,17 @@
         <h2 style="color: #7d2de2;">Etiquetas</h2>
       </div>
 
-      <div class="btn_historico">
+      <div class="btn_historico"onclick="window.location.href='../dashboard/historico.html'">
         <img src="../assets/img/historico_icon.svg" />
         <h2>Histórico</h2>
       </div>
 
-      <div class="btn_dashboard">
+      <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
         <img src="../assets/img/dashboard_icon.svg" />
         <h2>Dashboard</h2>
       </div>
 
-      <div class="btn_alerta">
+      <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
         <img src="../assets/img/alertas_icon.png" />
         <h2>Alertas</h2>
       </div>
@@ -148,6 +148,14 @@
         sessionStorage.clear();
         window.location.href = "../login.html";
     }
+
+    function tela_home() {
+    if (sessionStorage.cargoUsuario === "Gerente") {
+      window.location = "homeGestor.html";
+    } else {
+      window.location = "homeFuncionario.html";
+    }
+  }
 
 </script>
 
