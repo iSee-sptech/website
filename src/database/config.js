@@ -22,7 +22,11 @@ var mySqlConfig = {
   host: "localhost",
   user: "root",
   database: "iSee",
+<<<<<<< HEAD
   password: "sptech",
+=======
+  password: "KingOfNothing000",
+>>>>>>> 55ba3e260f6d81cea6622166ae3106b2080361ce
 };
 // Senhas dos Databases
 // Andreas: Andreas2014
@@ -30,7 +34,7 @@ var mySqlConfig = {
 // Matheus:
 // Fabiano:
 // Penalva: sptech
-// Yuri:
+// Yuri: KingOfNothing000
 function executar(instrucao) {
   // VERIFICA A VARIÁVEL DE AMBIENTE SETADA EM app.js
   if (process.env.AMBIENTE_PROCESSO == "producao") {

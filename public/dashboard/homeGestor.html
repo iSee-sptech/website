@@ -1,116 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon"href="../assets/img/iconLogo.ico"type="image/x-icon"/>
-    <title>Home Administrador - ISee</title>
-    <link rel="stylesheet" href="../css/homeGestor.css" />
-    <link rel="stylesheet" href="../css/navBar.css">
-  </head>
 
-  <body onload="listarLembrete(), exibirQtdFuncionarios(), exibirQtdCaixas()">
-    <div class="first_section">
-      <div class="container_funcionario">
-        <h1 id="bem_vindo">Bem vindo</h1>
-        <div class="modal_botao">
-          <div>
-            <h2 class="titulo">Funcionários</h2>
-            <span id="quantidadeFuncionarios"></span>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
+  <title>Home Administrador - ISee</title>
+  <link rel="stylesheet" href="../css/homeGestor.css" />
+  <link rel="stylesheet" href="../css/navBar.css">
+</head>
 
+<<<<<<< HEAD
           <div onclick="window.location.href='../dashboard/meusCaixas.html'">
             <h2 class="titulo">Meus Caixas</h2>
             <span id="quantidadeCaixas"></span>
           </div>
-        </div>
-      </div>
-
-      <div class="container_cadastrar">
-        <div class="modal_cadastrar">
-          <h2 class="titulo">Cadastrar e adicionar</h2>
-          <div class="container_btn_add">
-            <div>
-              <h4>Caixa</h4>
-              <div class="btn_add">
-                <img
-                  onclick="window.location.href='../cadastroMaquina.html'"
-                  src="../assets/img/icon_atm.svg"
-                />
-              </div>
-            </div>
-
-            <div class="container_btn_add">
-              <h4>Funcionários</h4>
-              <div class="btn_add">
-                <img
-                  onclick="window.location.href='../cadastroFuncionario.html'"
-                  src="../assets/img/user_add.svg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container_notificacao">
-        <div class="navbar_notificacao">
-          <h2>Notificações</h2>
-          <div>
-          <img src="../assets/img/alert.svg" />
-          <img src="../assets/img/user.svg" />
-          </div>
+=======
+<body onload="listarLembrete(), exibirQtdFuncionarios(), exibirQtdCaixas(), imgUsuario()">
+  <div class="first_section">
+    <div class="container_funcionario">
+      <h1 id="bem_vindo">Bem vindo</h1>
+      <div class="modal_botao">
+        <div>
+          <h2 class="titulo">Funcionários</h2>
+          <span id="quantidadeFuncionarios"></span>
         </div>
 
-        <div class="container_rollbar">
-          <div class="notificacao">
-            <h4>Cadastro de suporte</h4>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-
-          <div class="notificacao">
-            <h4>Cadastro de suporte</h4>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h4>Cadastro de suporte</h4>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h4>Cadastro de suporte</h4>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h4>Cadastro de suporte</h4>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h4>Cadastro de suporte</h4>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h4>Cadastro de suporte</h4>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-        </div>
-
-        <div onload="getLembrete()" class="btn_cadastrar_estag">
-          <h3 id="mensagemLembreteId"></h3>
-          <p id="dataLembreteId"></p>
+        <div>
+          <h2 class="titulo">Meus Caixas</h2>
+          <span id="quantidadeCaixas"></span>
+>>>>>>> 55ba3e260f6d81cea6622166ae3106b2080361ce
         </div>
       </div>
     </div>
 
-    <div class="container_navbar">
-      <div class="navbar_bottom">
-        <div class="btn_home">
-          <img
-            onclick="window.location.href='./homeGestor.html'"
-            src="../assets/img/home_icon.svg"
-          />
-          <h2 style="color: #7d2de2;">Home</h2>
+    <div class="container_cadastrar">
+      <div class="modal_cadastrar">
+        <h2 class="titulo">Cadastrar e adicionar</h2>
+        <div class="container_btn_add">
+          <div>
+            <h4>Caixa</h4>
+            <div class="btn_add">
+              <img onclick="window.location.href='../cadastroMaquina.html'" src="../assets/img/icon_atm.svg" />
+            </div>
+          </div>
+
+          <div class="container_btn_add">
+            <h4>Funcionários</h4>
+            <div class="btn_add">
+              <img onclick="window.location.href='../cadastroFuncionario.html'" src="../assets/img/user_add.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container_notificacao">
+      <div class="navbar_notificacao">
+        <h2>Notificações</h2>
+        <div id="imagem_user">
+          <img src="../assets/img/alert.svg" />
+        </div>
+      </div>
+
+      <div class="container_rollbar">
+        <div class="notificacao">
+          <h4>Cadastro de suporte</h4>
+          <p>27/08/2022 ás 14:18</p>
         </div>
 
+<<<<<<< HEAD
         <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
           <img src="../assets/img/etiqueta_icon.svg"  />
           <h2>Etiquetas</h2>
@@ -129,23 +88,81 @@
         <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
           <img src="../assets/img/alertas_icon.png" />
           <h2>Alertas</h2>
+=======
+        <div class="notificacao">
+          <h4>Cadastro de suporte</h4>
+          <p>27/08/2022 ás 14:18</p>
         </div>
-
-        <div class="btn_perfil">
-          <img
-            onclick="window.location.href='../meuPerfil.html'"
-            src="../assets/img/userNavbar.svg"
-          />
-          <h2>Perfil</h2>
+        <div class="notificacao">
+          <h4>Cadastro de suporte</h4>
+          <p>27/08/2022 ás 14:18</p>
         </div>
-
-        <div class="btn_sair">
-          <img onclick="sair()" src="../assets/img/sair_icon.png" />
-          <h2>Sair</h2>
+        <div class="notificacao">
+          <h4>Cadastro de suporte</h4>
+          <p>27/08/2022 ás 14:18</p>
+        </div>
+        <div class="notificacao">
+          <h4>Cadastro de suporte</h4>
+          <p>27/08/2022 ás 14:18</p>
+>>>>>>> 55ba3e260f6d81cea6622166ae3106b2080361ce
+        </div>
+        <div class="notificacao">
+          <h4>Cadastro de suporte</h4>
+          <p>27/08/2022 ás 14:18</p>
+        </div>
+        <div class="notificacao">
+          <h4>Cadastro de suporte</h4>
+          <p>27/08/2022 ás 14:18</p>
         </div>
       </div>
+
+      <div onload="getLembrete()" class="btn_cadastrar_estag">
+        <h3 id="mensagemLembreteId"></h3>
+        <p id="dataLembreteId"></p>
+      </div>
     </div>
-  </body>
+  </div>
+
+  <div class="container_navbar">
+    <div class="navbar_bottom">
+      <div class="btn_home">
+        <img onclick="window.location.href='./homeGestor.html'" src="../assets/img/home_icon.svg" />
+        <h2 style="color: #7d2de2;">Home</h2>
+      </div>
+
+      <div class="btn_etiqueta">
+        <img src="../assets/img/etiqueta_icon.svg" />
+        <h2>Etiquetas</h2>
+      </div>
+
+      <div class="btn_historico">
+        <img src="../assets/img/historico_icon.svg" />
+        <h2>Histórico</h2>
+      </div>
+
+      <div class="btn_dashboard">
+        <img src="../assets/img/dashboard_icon.svg" />
+        <h2>Dashboard</h2>
+      </div>
+
+      <div class="btn_alerta">
+        <img src="../assets/img/alertas_icon.png" />
+        <h2>Alertas</h2>
+      </div>
+
+      <div class="btn_perfil">
+        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
+        <h2>Perfil</h2>
+      </div>
+
+      <div class="btn_sair">
+        <img onclick="sair()" src="../assets/img/sair_icon.png" />
+        <h2>Sair</h2>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
 
 <script>
@@ -173,8 +190,8 @@
     window.location.href = "../login.html";
   }
 
-  function exibirQtdFuncionarios(){
-    
+  function exibirQtdFuncionarios() {
+
     fetch(`/usuarios/exibirFuncionarios`, {
       method: "GET",
       headers: {
@@ -184,7 +201,8 @@
       // saldoConta
       resposta.json().then((data) => {
         console.log(data);
-        qtdFuncionario = data[0].qtdFuncionario
+        qtdFuncionario = data[0].idUsuario;
+        console.log(qtdFuncionario);
         quantidadeFuncionarios.innerHTML = qtdFuncionario
       })
 
@@ -194,8 +212,8 @@
     });
   }
 
-  function exibirQtdCaixas(){
-    
+  function exibirQtdCaixas() {
+
     fetch(`/usuarios/exibirCaixas`, {
       method: "GET",
       headers: {
@@ -228,9 +246,15 @@
         console.log(data);
         dataHoraLembrete = data[0].dataHoraLembrete
         mensagemLembrete = data[0].mensagemLembrete
+        console.log(dataHoraLembrete);
+
+        dataHoraLembrete2 = dataHoraLembrete.replaceAll("T", " ").replaceAll("Z", "");
+       
+        // Date dataFormatada = new Date(format.parse(dataJson).getTime());
+        // System.out.println(dataFormatada)
 
         mensagemLembreteId.innerHTML = mensagemLembrete
-        dataLembreteId.innerHTML = dataHoraLembrete
+        dataLembreteId.innerHTML = dataHoraLembrete2  
 
       })
 
@@ -239,5 +263,40 @@
       finalizarAguardar();
     });
   }
+
+  function imgUsuario() {
+    var idUsuario = sessionStorage.idUsuario;
+    fetch(`/usuarios/imgUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          const imagemUser = data[0].imagemPerfilUsuario;
+
+
+          if (imagemUser == undefined) {
+            imagem_user.innerHTML = `
+                <img src="../assets/img/alert.svg" />
+                <img id="imgUser" src="assets/img/userNavbar.svg">
+                `
+          } else {
+            imagem_user.innerHTML = `
+                <img src="../assets/img/alert.svg" />
+                <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
+                `
+          }
+
+        })
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+
 
 </script>
