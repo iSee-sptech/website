@@ -46,15 +46,13 @@ function cadastrarFunc(
   nomeFunc,
   emailFunc,
   enderecoFunc,
-  numFunc,
-  complementoFunc,
   dataNascFunc,
-  cpf,
+  cpfFunc,
   celularFunc,
   senhaFunc
 ) {
   var instrucao = `
-  insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, cargoUsuario, numeroLocalUsuario, complementoLocalUsuario ) values ('${nomeFunc}', '${emailFunc}', '${enderecoFunc}', '${dataNascFunc}', '${cpf}', '${celularFunc}', '${senhaFunc}', 'Suporte', '${numFunc}', '${complementoFunc}');
+  insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, cargoUsuario ) values ('${nomeFunc}', '${emailFunc}', '${enderecoFunc}', '${dataNascFunc}', '${cpfFunc}', '${celularFunc}', '${senhaFunc}', 'Suporte');
   `;
   return database.executar(instrucao);
 }
@@ -102,14 +100,14 @@ function listarLembrete(idUser) {
 
 function exibirFuncionarios() {
   var instrucao = `
-  SELECT count(idUsuario) as 'idUsuario' from Usuarios;
+  SELECT count(idUsuario) from Usuarios;
   `;
   return database.executar(instrucao);
 }
 
 function exibirCaixas() {
   var instrucao = `
-  SELECT count(idMaquina) as 'qtdCaixa' from Maquinas;
+  SELECT count(idMaquina) from Maquinas;
   `;
   return database.executar(instrucao);
 }
@@ -122,20 +120,8 @@ function imgUsuario(idUser) {
 }
 
 function atualizarImg(idUser, img) {
-  const query = `UPDATE usuarios SET imagemPerfilUsuario = '${img}' WHERE idUsuario = ${idUser}`;
+  const query = `UPDATE usuario SET imagemPerfilUsuario = '${img}' WHERE idUsuario = ${idUser}`;
 
-  return database.executar(query);
-}
-
-function listarUser(cpf) {
-  const query = `
-      SELECT * FROM usuarios WHERE cpfUsuario = '${cpf}';
-  `;
-  return database.executar(query);
-}
-
-function lembreteDefault(idUser) {
-  const query = `INSERT INTO lembrete VALUES (null, "Crie um lembrete!", "0000-0-0 00:00:00", null,  ${idUser})`
   return database.executar(query);
 }
 
@@ -154,6 +140,4 @@ module.exports = {
   exibirCaixas,
   imgUsuario,
   atualizarImg,
-  listarUser,
-  lembreteDefault,
 };

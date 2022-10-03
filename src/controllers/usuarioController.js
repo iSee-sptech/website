@@ -96,50 +96,26 @@ function cadastrar(req, res) {
         complementoEndereco,
       )
       .then(function (resultado) {
-        const tamanho = resultado.affectedRows;
-
-        if (tamanho > 0) {
-
-          usuarioModel.listarUser(cpf).then((response) => {
-            const idUser = response[0].idUsuario;
-
-            usuarioModel.lembreteDefault(idUser).then((resEffect) => {
-
-              console.log(resEffect);
-              res.json(resEffect)
-            })
-          })
-        }
-      }
-
-
-
-
-
-        ).catch(
-          function (erro) {
-          console.log(erro);
-          console.log(
-            "\nHouve um erro ao realizar o cadastro! Erro: ",
-            erro.sqlMessage
-          );
-          res.status(500).json(erro.sqlMessage);
-        }
+        res.json(resultado);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar o cadastro! Erro: ",
+          erro.sqlMessage
         );
+        res.status(500).json(erro.sqlMessage);
+      });
   }
 }
-
-
 
 function cadastrarFunc(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var nomeFunc = req.body.nomeFuncServer;
   var emailFunc = req.body.emailFuncServer;
   var enderecoFunc = req.body.enderecoFuncServer;
-  var numFunc = req.body.numEnderecoFuncServer;
-  var complementoFunc = req.body.complementoEnderecoFuncServer;
   var dataNascFunc = req.body.dataNascFuncServer;
-  var cpf = req.body.cpfFuncServer;
+  var cpfFunc = req.body.cpfFuncServer;
   var celularFunc = req.body.celularFuncServer;
   var senhaFunc = req.body.senhaFuncServer;
 
@@ -157,31 +133,15 @@ function cadastrarFunc(req, res) {
         nomeFunc,
         emailFunc,
         enderecoFunc,
-        numFunc,
-        complementoFunc,
         dataNascFunc,
-        cpf,
+        cpfFunc,
         celularFunc,
         senhaFunc
       )
       .then(function (resultado) {
-        const tamanho = resultado.affectedRows;
-
-        if (tamanho > 0) {
-
-          usuarioModel.listarUser(cpf).then((response) => {
-            const idUser = response[0].idUsuario;
-
-            usuarioModel.lembreteDefault(idUser).then((resEffect) => {
-
-              console.log(resEffect);
-              res.json(resEffect)
-            })
-          })
-        }
-      }
-
-      ).catch(function (erro) {
+        res.json(resultado);
+      })
+      .catch(function (erro) {
         console.log(erro);
         console.log(
           "\nHouve um erro ao realizar o cadastro! Erro: ",
