@@ -71,16 +71,72 @@ body, html{
     cursor: pointer;
 }
 
-.divPesquisa{
-    width: 39vw;
+
+/* Filtros de caixas*/
+
+.filtroCaixas {
+    margin-left: 5vw;
+    white-space: nowrap;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
 }
 
-.divPesquisa h3{
+.filtroCaixas h2 {
     color: #ffffff;
+    padding: 4vh 1vw 0 0;
 }
+
+.filtroCaixas button {
+    background: #ffffff;
+    color: #7d2de2;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.60em + 1vmin);
+    outline: none;
+    padding: 5px 10px;
+    box-shadow: 0px 4px 4px #00000040;
+    border-radius: 16px;
+    width: 7vw;
+}
+
+.filtroCaixas button:hover {
+    transition: 0.5s;
+    background: #c8c8c8;
+    cursor: pointer;
+}
+
+
+
+.selecaoCaixas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30vw;
+    overflow-x: scroll;
+}
+
+.sessao_filtros{
+    width: 40vw;
+}
+
+.sessao_filtros button {
+    color: #7d2de2;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.60em + 1vmin);
+    outline: none;
+    padding: 5px 10px;
+    box-shadow: 0px 4px 4px #00000040;
+    border-radius: 16px;
+    width: 7vw;
+}
+
+.selecaoCaixas button {
+    margin: 10px 5px 10px 0;
+}
+
+
+
+
 
 
 main{
@@ -134,12 +190,6 @@ main{
     background-color: #7d2de2;
     border-radius: 100%;
 }
-
-#removerCaixa img{
-
-}
-
-
 
 /* ESTILIZAÇÃO Filtro */
 
