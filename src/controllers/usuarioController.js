@@ -83,22 +83,34 @@ function cadastrar(req, res) {
     res.status(400).send("Sua senha está undefined!");
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    usuarioModel
-      .cadastrar(
-        nome,
-        email,
-        endereco,
-        dataNasc,
-        cpf,
-        celular,
-        senha,
-        numeroEndereco,
-        complementoEndereco,
-      )
+    usuarioModel.cadastrar(
+      nome,
+      email,
+      endereco,
+      dataNasc,
+      cpf,
+      celular,
+      senha,
+      numeroEndereco,
+      complementoEndereco,
+    )
       .then(function (resultado) {
-        res.json(resultado);
-      })
-      .catch(function (erro) {
+        const tamanho = resultado.affectedRows;
+
+        if (tamanho > 0) {
+
+          usuarioModel.listarUser(cpf).then((response) => {
+            const idUser = response[0].idUsuario;
+
+            usuarioModel.lembreteDefault(idUser).then((resEffect) => {
+
+              console.log(resEffect);
+              res.json(resEffect)
+            })
+          })
+        }
+      }
+      ).catch(function (erro) {
         console.log(erro);
         console.log(
           "\nHouve um erro ao realizar o cadastro! Erro: ",
@@ -109,13 +121,18 @@ function cadastrar(req, res) {
   }
 }
 
+
+
+
 function cadastrarFunc(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var nomeFunc = req.body.nomeFuncServer;
   var emailFunc = req.body.emailFuncServer;
   var enderecoFunc = req.body.enderecoFuncServer;
+  var numFunc = req.body.numFuncServer;
+  var complentoFunc = req.body.complementoFuncServer;
   var dataNascFunc = req.body.dataNascFuncServer;
-  var cpfFunc = req.body.cpfFuncServer;
+  var cpf = req.body.cpfFuncServer;
   var celularFunc = req.body.celularFuncServer;
   var senhaFunc = req.body.senhaFuncServer;
 
@@ -133,15 +150,30 @@ function cadastrarFunc(req, res) {
         nomeFunc,
         emailFunc,
         enderecoFunc,
+        numFunc,
+        complentoFunc,
         dataNascFunc,
-        cpfFunc,
+        cpf,
         celularFunc,
         senhaFunc
       )
       .then(function (resultado) {
-        res.json(resultado);
-      })
-      .catch(function (erro) {
+        const tamanho = resultado.affectedRows;
+
+        if (tamanho > 0) {
+
+          usuarioModel.listarUser(cpf).then((response) => {
+            const idUser = response[0].idUsuario;
+
+            usuarioModel.lembreteDefault(idUser).then((resEffect) => {
+
+              console.log(resEffect);
+              res.json(resEffect)
+            })
+          })
+        }
+      }
+      ).catch(function (erro) {
         console.log(erro);
         console.log(
           "\nHouve um erro ao realizar o cadastro! Erro: ",

@@ -89,80 +89,69 @@
           <textarea id="mensagemLembrete" placeholder="Texto atual"></textarea>
         </span>
 
-          <label>Data e Hora</label>
-          <input
-            type="datetime-local"
-            id="dataHoraLembrete"
-            placeholder="AAAA-MM-DD HH:MI:SS"
-          />
-        </div>
-
-        <button
-          style="cursor: pointer"
-          id="btnLembrete"
-          onclick="adicionarLembrete()"
-          type="button"
-        >
-          Criar
-        </button>
+        <label>Data e Hora</label>
+        <input type="datetime-local" id="dataHoraLembrete" placeholder="AAAA-MM-DD HH:MI:SS" />
       </div>
-    </div>
 
-    <div class="container_navbar">
-      <div class="navbar_bottom">
-        <div class="btn_home">
-          <img onclick="tela_home()" src="assets/img/home_icon.svg" />
-          <h2>Home</h2>
-        </div>
-
-        <div class="btn_etiqueta">
-          <img src="assets/img/etiqueta_icon.svg" />
-          <h2>Etiquetas</h2>
-        </div>
-
-        <div class="btn_historico">
-          <img src="assets/img/historico_icon.svg" />
-          <h2>Histórico</h2>
-        </div>
-
-        <div class="btn_dashboard">
-          <img src="assets/img/dashboard_icon.svg" />
-          <h2>Dashboard</h2>
-        </div>
-
-        <div class="btn_alerta">
-          <img src="assets/img/alertas_icon.png" />
-          <h2>Alertas</h2>
-        </div>
-
-        <div class="btn_perfil">
-          <img
-            onclick="window.location.href='./meuPerfil.html'"
-            src="assets/img/userNavbar.svg"
-          />
-          <h2 style="color: #7d2de2;">Perfil</h2>
-        </div>
-
-        <div class="btn_sair">
-          <img onclick="sair()" src="assets/img/sair_icon.png" />
-          <h2>Sair</h2>
-        </div>
-      </div>
-    </div>
-  </body>
-
-  <div id="modal" class="modalBody">
-    <div class="modalReadPlus">
-      <div class="containerReadPlus">
-        <div class="modalCheck">
-          <img id="modalImg" src="" alt="check" />
-        </div>
-        <button onclick="buttonBack()" class="modalBack">&times;</button>
-      </div>
-      <span id="modalText"></span>
-      <button class="button8" onclick="buttonBack()">Fechar</button>
+      <button style="cursor: pointer" id="btnLembrete" onclick="adicionarLembrete()" type="button">
+        Criar
+      </button>
     </div>
   </div>
+
+  <div class="container_navbar">
+    <div class="navbar_bottom">
+      <div class="btn_home">
+        <img onclick="tela_home()" src="assets/img/home_icon.svg" />
+        <h2>Home</h2>
+      </div>
+
+      <div class="btn_etiqueta">
+        <img src="assets/img/etiqueta_icon.svg" />
+        <h2>Etiquetas</h2>
+      </div>
+
+      <div class="btn_historico">
+        <img src="assets/img/historico_icon.svg" />
+        <h2>Histórico</h2>
+      </div>
+
+      <div class="btn_dashboard">
+        <img src="assets/img/dashboard_icon.svg" />
+        <h2>Dashboard</h2>
+      </div>
+
+      <div class="btn_alerta">
+        <img src="assets/img/alertas_icon.png" />
+        <h2>Alertas</h2>
+      </div>
+
+      <div class="btn_perfil">
+        <img onclick="window.location.href='./meuPerfil.html'" src="assets/img/userNavbar.svg" />
+        <h2 style="color: #7d2de2;">Perfil</h2>
+      </div>
+
+      <div class="btn_sair">
+        <img onclick="sair()" src="assets/img/sair_icon.png" />
+        <h2>Sair</h2>
+      </div>
+    </div>
+  </div>
+</body>
+
+<div id="modal" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck">
+        <img id="modalImg" src="" alt="check" />
+      </div>
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+    <span id="modalText"></span>
+    <button class="button8" onclick="buttonBack()">Fechar</button>
+  </div>
+</div>
+
 </html>
 
 <script src="./js/mascarasMeuPerfil.js"></script>
@@ -184,7 +173,7 @@
 
   const imagem_de_perfil = setInterval(() => {
     imagemUndefined();
-  }, 1000);
+  }, 1000); 
 
   function imgUsuario() {
     fetch(`/usuarios/imgUsuario/${idUsuario}`, {
@@ -196,8 +185,8 @@
       .then((resposta) => {
         resposta.json().then((data) => {
           console.log(data);
-          const imagemUser = data[0].ImagemUsuarios;
-
+          const imagemUser = data[0].imagemPerfilUsuario;
+          
           imagemUser == null || imagemUser == ""
             ? (imagemUsuario = true)
             : (imagemUsuario = false);
@@ -219,7 +208,7 @@
   }
 
   function adcionnarImagem() {
-    const urlImg = urlImagem.value;
+    const urlImg = attImagem.value;
     const idUsuario = sessionStorage.getItem("idUsuario");
 
     if (
@@ -246,9 +235,9 @@
           if (mensagem == "success") {
             modal.style.display = "block";
             modalImg.src = "assets/img/iconCheck.svg";
-            modalText.innerHTML = "Cadastro efetuado com sucesso!";
-            urlImagem.value = "";
-            adcionnarImagem();
+            modalText.innerHTML = "Imagem atualizada com sucesso!";
+            attImagem.value = "";
+            imgUsuario();
             setTimeout(() => {
               imagemUsuarioPerfil.innerHTML = `<img src="${urlImagem}" alt="FotoPerfil">`;
             }, 1000);
@@ -260,13 +249,13 @@
 
   function mostrarImagem() {
     clearInterval(imagem_de_perfil);
-    const urlImage = urlImagem.value;
+    const urlImage = attImagem.value;
 
     if (urlImage == "") {
       imagemUsuario == true ? (imagemUsuario = true) : (imagemUsuario = false);
       urlImagem != "" ? (imagemUsuario = false) : (imagemUsuario = true);
-      adcionnarImagem();
-      ImagemUndefine();
+      imgUsuario();
+      imagemUndefined();
     } else {
       if (
         urlImage.endsWith(".png") ||
