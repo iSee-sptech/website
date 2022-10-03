@@ -46,13 +46,15 @@ function cadastrarFunc(
   nomeFunc,
   emailFunc,
   enderecoFunc,
+  numFunc,
+  complementoFunc,
   dataNascFunc,
-  cpfFunc,
+  cpf,
   celularFunc,
   senhaFunc
 ) {
   var instrucao = `
-  insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, cargoUsuario ) values ('${nomeFunc}', '${emailFunc}', '${enderecoFunc}', '${dataNascFunc}', '${cpfFunc}', '${celularFunc}', '${senhaFunc}', 'Suporte');
+  insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, cargoUsuario, numeroLocalUsuario, complementoLocalUsuario ) values ('${nomeFunc}', '${emailFunc}', '${enderecoFunc}', '${dataNascFunc}', '${cpf}', '${celularFunc}', '${senhaFunc}', 'Suporte', '${numFunc}', '${complementoFunc}');
   `;
   return database.executar(instrucao);
 }
@@ -100,14 +102,14 @@ function listarLembrete(idUser) {
 
 function exibirFuncionarios() {
   var instrucao = `
-  SELECT count(idUsuario) from Usuarios;
+  SELECT count(idUsuario) as 'idUsuario' from Usuarios;
   `;
   return database.executar(instrucao);
 }
 
 function exibirCaixas() {
   var instrucao = `
-  SELECT count(idMaquina) from Maquinas;
+  SELECT count(idMaquina) as 'qtdCaixa' from Maquinas;
   `;
   return database.executar(instrucao);
 }
@@ -120,10 +122,24 @@ function imgUsuario(idUser) {
 }
 
 function atualizarImg(idUser, img) {
-  const query = `UPDATE usuario SET imagemPerfilUsuario = '${img}' WHERE idUsuario = ${idUser}`;
+  const query = `UPDATE usuarios SET imagemPerfilUsuario = '${img}' WHERE idUsuario = ${idUser}`;
 
   return database.executar(query);
 }
+
+function listarUser(cpf) {
+  const query = `
+      SELECT * FROM usuarios WHERE cpfUsuario = '${cpf}';
+  `;
+  return database.executar(query);
+}
+
+function lembreteDefault(idUser) {
+  const query = `INSERT INTO lembrete VALUES (null, "Crie um lembrete!", "2022-01-01 10:00:00", null, '${idUser}');`;
+
+  return database.executar(query);
+}
+
 
 module.exports = {
   entrar,
@@ -140,4 +156,6 @@ module.exports = {
   exibirCaixas,
   imgUsuario,
   atualizarImg,
+  listarUser,
+  lembreteDefault,
 };

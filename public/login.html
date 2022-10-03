@@ -187,6 +187,7 @@ function buttonBack() {
 
         if (emailVar == "" || senhaVar == "") {
             
+            setTimeout(buttonBack, 2000)
             console.log("Preencha todos os campos!");
             modal.style.display = "block";
             modalImg.src = "assets/img/iconDanger.svg";
@@ -241,6 +242,7 @@ function buttonBack() {
                 });
 
             } else {
+            setTimeout(buttonBack, 2000)
             modal.style.display = "block";
             modalImg.src = "assets/img/iconDanger.svg";
             modalText.innerHTML =
