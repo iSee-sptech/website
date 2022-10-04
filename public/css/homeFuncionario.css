@@ -120,7 +120,6 @@ h4 {
 .modal_cadastrar {
   width: 30vw;
   height: 45vh;
-  background: #292929;
   align-self: flex-end;
   display: flex;
   flex-direction: column;
