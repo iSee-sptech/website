@@ -89,6 +89,7 @@ h6 {
 }
 
 .container_title {
+    margin-top: 2vh;
     width: 500px;
     height: 13vh;
     display: flex;
@@ -240,15 +241,15 @@ color: #ffffff;
     justify-content: space-between;
 }
 
-.tituloUsoRam{
-    width: 20vw;
-    height: 4vh;
+.titulo_grafico_rosca{
+    /* width: 20vw; */
+    /* height: 4vh; */
+    margin-right: 2vw;
+    margin-top: 1vw;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-}
-.tituloUsoRam h2{
-    color: #ffffff;
+    color: #fff;
 }
 
 #cardCaixas{
@@ -282,4 +283,6 @@ color: #ffffff;
     justify-content: center;
     align-items: center;
 }
+
+
 /*---------------------------------*/
