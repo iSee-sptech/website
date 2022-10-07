@@ -17,7 +17,7 @@ var options01 = {
             ticks: {
                 color: "#fff",
                 font: {
-                    size: 20,
+                    size: 10,
                 }
             }
         },
@@ -25,7 +25,7 @@ var options01 = {
             ticks: {
                 color: "#fff",
                 font: {
-                    size: 20,
+                    size: 10,
                 }
             }
         }
