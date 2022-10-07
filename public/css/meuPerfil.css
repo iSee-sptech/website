@@ -58,7 +58,6 @@ h2{
     font-style: normal;
     font-weight: 700;
     font-size: calc(0.90em + 1vmin);
-    line-height: 48px;
 }
 
 h3{
@@ -343,45 +342,3 @@ textarea {
 
 
  /* ^^TROCAR POR UMA IMAGEM DO BANCO^^*/
-
-
- /* Nav Bar Bottom Code */
- .container_navbar {
-  width: 100vw;
-  height: 20vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-}
-
-.navbar_bottom {
-  width: 89vw;
-  height: 18vh;
-  border-radius: 16px;
-  background-color: #292929;
-  color: #ffffff;
-  display: flex;
-  justify-content: space-around;
-  justify-items: center;
-  text-align: center;
-  align-items: center;
-  padding-top: 1.4%;
-}
-
-.navbar_bottom div {
-  width: 6vw;
-  height: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.navbar_bottom div:hover {
-  cursor: pointer;
-}
-
-.navbar_bottom div img {
-  padding-bottom: 10px;
-}

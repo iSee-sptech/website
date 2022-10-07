@@ -23,6 +23,7 @@
 }
 /* scrol bar temporaria*/
 
+
 .btn:hover, .btn:focus {
   color: #fff;
   outline: 0;
@@ -154,7 +155,6 @@ h6 {
 .modal_cadastrar {
   width: 30vw;
   height: 45vh;
-  background: #292929;
   align-self: flex-end;
   display: flex;
   flex-direction: column;
@@ -175,15 +175,11 @@ h6 {
   justify-content: center;
 }
 
-/* .desc_etiqueta h3 {
-  width: 20vw;
-  color: #ffffff;
+.desc_etiqueta h3 {
   font-style: normal;
   font-weight: 700;
-  line-height: 48px;
-  text-align: center;
-  font-size: calc(0.9em + 1vmin);
-} */
+  font-size: calc(0.50em + 1vmin);
+}
 
 
 .btn_add {
@@ -218,6 +214,7 @@ h6 {
 
 .navbar_notificacao h2 {
   font-size: 22px;
+  color: #ffffff;
 }
 
 .navbar_notificacao div {

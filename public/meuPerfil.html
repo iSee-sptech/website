@@ -1,195 +1,157 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="assets/img/iconLogo.ico"
-      type="image/x-icon"
-    />
-    <title>Meu Perfil - ISee</title>
-    <link rel="stylesheet" href="css/meuPerfil.css" />
-    <link rel="stylesheet" href="css/styleModal.css" />
-  </head>
 
-  <body onload="listarPerfil()">
-    <div class="first_section">
-      <div class="container_card container_dados">
-        <div class="" style="width: 5vw; height: 15vh" id="imagemUsuarioPerfil">
-          <img src="assets/img/userNavbar.svg" alt="" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/img/iconLogo.ico" type="image/x-icon" />
+  <title>Meu Perfil - ISee</title>
+  <link rel="stylesheet" href="css/meuPerfil.css" />
+  <link rel="stylesheet" href="css/styleModal.css" />
+  <link rel="stylesheet" href="css/NavBar.css">
+</head>
+
+<body onload="listarPerfil()">
+  <div class="first_section">
+    <div class="container_card container_dados">
+      <div class="" style="height: 20vh; width: 10vw;
+       display: flex; justify-content: center; align-items: center; margin-top: 15%;" id="imagemUsuarioPerfil">
+
+      </div>
+      <span>
+        <input type="text" id="attImagem" placeholder="URL" onkeyup="mostrarImagem()" />
+      </span>
+      <h2 id="nome_usuario"></h2>
+
+      <button type="button" onclick="adcionnarImagem()">
+        Adicionar imagem
+      </button>
+    </div>
+
+
+
+
+
+    <!-- Meu Perfil -->
+    <div class="container_card container_meu_perfil">
+      <h2>Meu Perfil</h2>
+
+      <form action="" id="" method="" onsubmit="">
+        <div class="container_inputs_head">
+          <label>Nome Completo</label>
+          <input placeholder="Nome e Sobrenome" type="text" id="inputNome" class="input_type1" />
         </div>
-        <span>
-          <input
-            type="text"
-            id="urlImagem"
-            placeholder="URL"
-            onkeyup="mostrarImagem()"
-          />
-        </span>
-        <h2 id="nome_usuario"></h2>
 
-        <button type="button" onclick="adcionnarImagem()">
-          Adicionar imagem
-        </button>
-      </div>
-      <!-- Meu Perfil -->
-      <div class="container_card container_meu_perfil">
-        <h2>Meu Perfil</h2>
-
-        <form action="" id="" method="" onsubmit="">
-          <div class="container_inputs_head">
-            <label>Nome Completo</label>
-            <input
-              placeholder="Nome e Sobrenome"
-              type="text"
-              id="inputNome"
-              class="input_type1"
-            />
-          </div>
-
-          <div class="container_inputs_sidebyside">
-            <span>
-              <label>E-mail</label>
-              <input
-                placeholder="iSee@example.com"
-                type="text"
-                id="inputEmail"
-              />
-            </span>
-            <span>
-              <label>CPF</label>
-              <input type="text" id="" placeholder="___.___.___-__" disabled />
-            </span>
-
-            <span>
-              <label>Telefone</label>
-              <input
-                type="text"
-                id="inputTelefone"
-                placeholder="(__) _____-____"
-                maxlength="15"
-              />
-            </span>
-
-            <span>
-              <label>CEP</label>
-              <input
-                type="text"
-                id="inputCep"
-                placeholder="_____-___"
-                maxlength="9"
-              />
-            </span>
-
-            <span>
-              <label>Número</label>
-              <input placeholder="n°" type="text" id="inputNumeroEndereco" />
-            </span>
-
-            <span>
-              <label>Complemento</label>
-              <input
-                type="text"
-                id="inputComplementoEndereco"
-                placeholder="Apto, Bloco, Casa..."
-              />
-            </span>
-          </div>
-        </form>
-
-        <button style="cursor: pointer" onclick="updatePerfil()">
-          Alterar informações
-        </button>
-      </div>
-      <!-- Lembrete -->
-      <div class="container_card">
-        <h2>Lembrete</h2>
-
-        <div class="body_lembrete">
+        <div class="container_inputs_sidebyside">
           <span>
-            <label>Mensagem</label>
-            <textarea
-              id="mensagemLembrete"
-              placeholder="Texto atual"
-            ></textarea>
+            <label>E-mail</label>
+            <input placeholder="iSee@example.com" type="text" id="inputEmail" />
+          </span>
+          <span>
+            <label>CPF</label>
+            <input type="text" id="" placeholder="___.___.___-__" disabled />
           </span>
 
-          <label>Data e Hora</label>
-          <input
-            type="datetime-local"
-            id="dataHoraLembrete"
-            placeholder="AAAA-MM-DD HH:MI:SS"
-          />
-        </div>
+          <span>
+            <label>Telefone</label>
+            <input type="text" id="inputTelefone" placeholder="(__) _____-____" maxlength="15" />
+          </span>
 
-        <button
-          style="cursor: pointer"
-          id="btnLembrete"
-          onclick="adicionarLembrete()"
-          type="button"
-        >
-          Criar
-        </button>
-      </div>
+          <span>
+            <label>CEP</label>
+            <input type="text" id="inputCep" placeholder="_____-___" maxlength="9" />
+          </span>
+
+          <span>
+            <label>Número</label>
+            <input placeholder="n°" type="text" id="inputNumeroEndereco" />
+          </span>
+
+          <span>
+            <label>Complemento</label>
+            <input type="text" id="inputComplementoEndereco" placeholder="Apto, Bloco, Casa..." />
+          </span>
+        </div>
+      </form>
+
+      <button style="cursor: pointer" onclick="updatePerfil()">
+        Alterar informações
+      </button>
     </div>
+    <!-- Lembrete -->
+    <div class="container_card">
+      <h2>Lembrete</h2>
 
-    <div class="container_navbar">
-      <div class="navbar_bottom">
-        <div class="btn_home">
-          <img onclick="tela_home()" src="assets/img/home_icon.svg" />
-          <h2>Home</h2>
-        </div>
+      <div class="body_lembrete">
+        <span>
+          <label>Mensagem</label>
+          <textarea id="mensagemLembrete" placeholder="Texto atual"></textarea>
+        </span>
 
-        <div class="btn_etiqueta">
-          <img src="assets/img/etiqueta_icon.svg" />
-          <h2>Etiquetas</h2>
-        </div>
-
-        <div class="btn_historico">
-          <img src="assets/img/historico_icon.svg" />
-          <h2>Histórico</h2>
-        </div>
-
-        <div class="btn_dashboard">
-          <img src="assets/img/dashboard_icon.svg" />
-          <h2>Dashboard</h2>
-        </div>
-
-        <div class="btn_alerta">
-          <img src="assets/img/alertas_icon.png" />
-          <h2>Alertas</h2>
-        </div>
-
-        <div class="btn_perfil">
-          <img
-            onclick="window.location.href='./meuPerfil.html'"
-            src="assets/img/userNavbar.svg"
-          />
-          <h2>Perfil</h2>
-        </div>
-
-        <div class="btn_sair">
-          <img onclick="sair()" src="assets/img/sair_icon.png" />
-          <h2>Sair</h2>
-        </div>
+        <label>Data e Hora</label>
+        <input type="datetime-local" id="dataHoraLembrete" placeholder="AAAA-MM-DD HH:MI:SS" />
       </div>
-    </div>
-  </body>
 
-  <div id="modal" class="modalBody">
-    <div class="modalReadPlus">
-      <div class="containerReadPlus">
-        <div class="modalCheck">
-          <img id="modalImg" src="" alt="check" />
-        </div>
-        <button onclick="buttonBack()" class="modalBack">&times;</button>
-      </div>
-      <span id="modalText"></span>
-      <button class="button8" onclick="buttonBack()">Fechar</button>
+      <button style="cursor: pointer" id="btnLembrete" onclick="adicionarLembrete()" type="button">
+        Criar
+      </button>
     </div>
   </div>
+
+  <div class="container_navbar">
+    <div class="navbar_bottom">
+      <div class="btn_home">
+        <img onclick="tela_home()" src="assets/img/home_icon.svg" />
+        <h2>Home</h2>
+      </div>
+
+      <div class="btn_etiqueta" onclick="window.location.href='./dashboard/etiquetas.html'">
+        <img src="assets/img/etiqueta_icon.svg" />
+        <h2>Etiquetas</h2>
+      </div>
+
+      <div class="btn_historico" onclick="window.location.href='./dashboard/historico.html'">
+        <img src="assets/img/historico_icon.svg" />
+        <h2>Histórico</h2>
+      </div>
+
+      <div class="btn_dashboard" onclick="window.location.href='./dashboard/Dashboard.html'">
+        <img src="assets/img/dashboard_icon.svg" />
+        <h2>Dashboard</h2>
+      </div>
+
+      <div class="btn_alerta" onclick="window.location.href='./dashboard/alertas.html'">
+        <img src="assets/img/alertas_icon.png" />
+        <h2>Alertas</h2>
+      </div>
+
+      <div class="btn_perfil">
+        <img onclick="window.location.href='./meuPerfil.html'" src="assets/img/userNavbar.svg" />
+        <h2 style="color: #7d2de2;">Perfil</h2>
+      </div>
+
+      <div class="btn_sair">
+        <img onclick="sair()" src="assets/img/sair_icon.png" />
+        <h2>Sair</h2>
+      </div>
+    </div>
+  </div>
+</body>
+
+<div id="modal" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck">
+        <img id="modalImg" src="" alt="check" />
+      </div>
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+    <span id="modalText"></span>
+    <button class="button8" onclick="buttonBack()">Fechar</button>
+  </div>
+</div>
+
 </html>
 
 <script src="./js/mascarasMeuPerfil.js"></script>
@@ -211,7 +173,7 @@
 
   const imagem_de_perfil = setInterval(() => {
     imagemUndefined();
-  }, 1000);
+  }, 1000); 
 
   function imgUsuario() {
     fetch(`/usuarios/imgUsuario/${idUsuario}`, {
@@ -223,8 +185,8 @@
       .then((resposta) => {
         resposta.json().then((data) => {
           console.log(data);
-          const imagemUser = data[0].ImagemUsuarios;
-
+          const imagemUser = data[0].imagemPerfilUsuario;
+          
           imagemUser == null || imagemUser == ""
             ? (imagemUsuario = true)
             : (imagemUsuario = false);
@@ -246,7 +208,7 @@
   }
 
   function adcionnarImagem() {
-    const urlImg = urlImagem.value;
+    const urlImg = attImagem.value;
     const idUsuario = sessionStorage.getItem("idUsuario");
 
     if (
@@ -273,9 +235,9 @@
           if (mensagem == "success") {
             modal.style.display = "block";
             modalImg.src = "assets/img/iconCheck.svg";
-            modalText.innerHTML = "Cadastro efetuado com sucesso!";
-            urlImagem.value = "";
-            adcionnarImagem();
+            modalText.innerHTML = "Imagem atualizada com sucesso!";
+            attImagem.value = "";
+            imgUsuario();
             setTimeout(() => {
               imagemUsuarioPerfil.innerHTML = `<img src="${urlImagem}" alt="FotoPerfil">`;
             }, 1000);
@@ -287,13 +249,13 @@
 
   function mostrarImagem() {
     clearInterval(imagem_de_perfil);
-    const urlImage = urlImagem.value;
+    const urlImage = attImagem.value;
 
     if (urlImage == "") {
       imagemUsuario == true ? (imagemUsuario = true) : (imagemUsuario = false);
       urlImagem != "" ? (imagemUsuario = false) : (imagemUsuario = true);
-      adcionnarImagem();
-      ImagemUndefine();
+      imgUsuario();
+      imagemUndefined();
     } else {
       if (
         urlImage.endsWith(".png") ||

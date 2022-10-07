@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="assets/img/iconLogo.ico"
-      type="image/x-icon"
-    />
 
-    <title>Cadastro Funcionário - ISee</title>
-    <link rel="stylesheet" href="./css/cadastroFunc.css" />
-    <link rel="stylesheet" href="css/styleModal.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/img/iconLogo.ico" type="image/x-icon" />
 
-  <body>
-    <div class="container">
-      <div class="texto">
-        <h1>Cadastre - se</h1>
-      </div>
+  <title>Cadastro Funcionário - ISee</title>
+  <link rel="stylesheet" href="./css/cadastroFunc.css" />
+  <link rel="stylesheet" href="css/styleModal.css" />
+</head>
 
       <form action="" id="form_cadastro_func" method="post" onsubmit="return">
         <div class="campo_um">
@@ -54,7 +45,7 @@
           />
 
           <label for="">Data de Nascimento</label>
-          <input type="date" id="input_data_nasc_func" maxlength="8" />
+          <input  max="2006-10-01" type="date" id="input_data_nasc_func" maxlength="8" />
 
           <label for="">Cargo</label>
           <select name="" id="cargo_func">
@@ -143,21 +134,22 @@
       </div>
     </div>
 
-    <img src="assets/img/waves.svg" alt="" />
-  </body>
+  <img src="assets/img/waves.svg" alt="" />
+</body>
 
-  <div id="modal" class="modalBody">
-    <div class="modalReadPlus">
-      <div class="containerReadPlus">
-        <div class="modalCheck">
-          <img id="modalImg" src="" alt="check" />
-        </div>
-        <button onclick="buttonBack()" class="modalBack">&times;</button>
+<div id="modal" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck">
+        <img id="modalImg" src="" alt="check" />
       </div>
-      <span id="modalText"></span>
-      <button class="button8" onclick="buttonBack()">Fechar</button>
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
     </div>
+    <span id="modalText"></span>
+    <button class="button8" onclick="buttonBack()">Fechar</button>
   </div>
+</div>
+
 </html>
 
 <script src="./js/mascarasFunc.js"></script>
@@ -172,8 +164,7 @@
     var emailFuncVar = input_email_func.value.trim();
     var enderecoFuncVar = input_endereco_func.value.trim();
     var numEnderecoFuncVar = input_num_endereco_func.value.trim();
-    var complementoEnderecoFuncVar =
-      input_complemento_endereco_func.value.trim();
+    var complementoEnderecoFuncVar = input_complemento_endereco_func.value.trim();
     var dataNascFuncVar = input_data_nasc_func.value.trim();
     var cpfFuncVar = input_cpf_func.value.trim();
     var celularFunc = input_cell_func.value.trim();
@@ -290,6 +281,8 @@
         nomeFuncServer: nomeFuncVar,
         emailFuncServer: emailFuncVar,
         enderecoFuncServer: enderecoFuncVar,
+        numFuncServer: numEnderecoFuncVar,
+        complementoFuncServer: complementoEnderecoFuncVar,
         dataNascFuncServer: dataNascFuncVar,
         cpfFuncServer: cpfFuncVar,
         celularFuncServer: celularFunc,

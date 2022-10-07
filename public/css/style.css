@@ -151,6 +151,7 @@ a {
     cursor: pointer;
 
 }
+
 img {
     cursor: pointer;
 }
@@ -211,7 +212,7 @@ nav {
     padding: 1%;
 }
 
-#scrollToTopBtn{
+#scrollToTopBtn {
     width: 50px;
     height: 50px;
     position: fixed;
@@ -226,14 +227,14 @@ nav {
     transition: all 0.5s ease;
 }
 
-#scrollToTopBtn:hover{
+#scrollToTopBtn:hover {
     cursor: pointer;
     background-color: #640abe;
 }
 
-#scrollToTopBtn.showBtn{
+#scrollToTopBtn.showBtn {
     opacity: 1;
-    transform:translate(0);
+    transform: translate(0);
 }
 
 
@@ -454,7 +455,9 @@ nav ul {
     margin-bottom: 2%;
 }
 
-input, textarea, .input {
+input,
+textarea,
+.input {
     border: 1px solid #FFFFFF;
     border-radius: 10px;
     box-sizing: border-box;
@@ -478,7 +481,8 @@ input, textarea, .input {
     /* padding: 10px; */
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 100;
@@ -590,14 +594,17 @@ footer {
     background-color: #7D2DE2;
     font-weight: 300;
 }
+
 .button1:hover {
     background-color: #7D2DE2;
     color: #FFFFFF;
 }
+
 .buttonPlus:hover {
     background-color: #7D2DE2;
     color: #FFFFFF;
 }
+
 .buttonContact:hover {
     background-color: #FFFFFF;
     color: #7D2DE2;
@@ -777,7 +784,7 @@ footer {
         margin-top: 4%;
     }
 
-    .alignService h4{
+    .alignService h4 {
         font-weight: 200;
     }
 
@@ -1025,6 +1032,7 @@ footer {
             background-position-y: bottom;
             background-position-x: center;
         }
+
         .menuMobile {
             padding: 7px 5px;
             border-radius: 52px;
@@ -1039,7 +1047,7 @@ footer {
             height: 100vh;
         }
 
-        .alignService h4{
+        .alignService h4 {
             font-weight: 300;
         }
     }

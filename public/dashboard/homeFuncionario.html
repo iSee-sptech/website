@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon"/>
-    <title>Home Associado - ISee</title>
-    <link rel="stylesheet" href="../css/homeFuncionario.css" />
-    <link rel="stylesheet" href="../css/navBar.css">
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
+  <title>Home Associado - ISee</title>
+  <link rel="stylesheet" href="../css/homeFuncionario.css" />
+  <link rel="stylesheet" href="../css/navBar.css">
+</head>
 
-  <body>
-    <div class="first_section">
-      <div class="first_container">
-        <h1 id="bem_vindo">Bem vindo</h1>
-        <div class="modal_botao">
-          <div>
-            <h3>Alertas</h3>
-            <span>7</span>
-          </div>
+<body onload="imgUsuario()">
+  <div class="first_section">
+    <div class="first_container">
+      <h1 id="bem_vindo">Bem vindo</h1>
+      <div class="modal_botao">
+        <div>
+          <h3>Alertas</h3>
+          <span>7</span>
+        </div>
 
-          <div>
-            <h3>Meus Caixas</h3>
-            <span>4</span>
-          </div>
+        <div>
+          <h3>Meus Caixas</h3>
+          <span>4</span>
+        </div>
+
         </div>
       </div>
 
-      <div class="second_container">
-        <div class="modal_cadastrar">
-          <h3>Lembretes</h3>
-          <div class="desc_etiqueta">
-            <h3>AQUI É UM LEMBRETE</h3>
-          </div>
+
+
+    <div class="second_container">
+      <div class="modal_cadastrar">
+        <h3>Lembretes</h3>
+        <div class="desc_etiqueta">
+          <h3>AQUI É UM LEMBRETE</h3>
         </div>
       </div>
-      <div class="container_notificacao">
-        <div class="navbar_notificacao">
-          <h4>Notificações</h4>
-          <div>
-          <img src="../assets/img/alert.svg" />
-          <img src="../assets/img/user.svg" />
-          </div>
+    </div>
+    <div class="container_notificacao">
+      <div class="navbar_notificacao">
+        <h4>Notificações</h4>
+        <div id="imagem_user">
+          <img src="../assets/img/alert.svg"/>
+
         </div>
+      </div>
+
+
 
         <div class="container_rollbar">
           <div class="notificacao">
@@ -77,52 +82,48 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container_navbar">
-      <div class="navbar_bottom">
-        <div class="btn_home">
-          <img
-            onclick="window.location.href='./homeFuncionario.html'"
-            src="../assets/img/home_icon.svg"
-          />
-          <h2>Home</h2>
-        </div>
+  <div class="container_navbar">
+    <div class="navbar_bottom">
+      <div class="btn_home">
+        <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
+        <h2 style="color: #7d2de2;">Home</h2>
+      </div>
 
-        <div class="btn_etiqueta">
-          <img src="../assets/img/etiqueta_icon.svg" />
-          <h2>Etiquetas</h2>
-        </div>
+      <div class="btn_etiqueta" onclick="window.location.href='./etiquetas.html'">
+        <img src="../assets/img/etiqueta_icon.svg" />
+        <h2>Etiquetas</h2>
+      </div>
 
-        <div class="btn_historico">
-          <img src="../assets/img/historico_icon.svg" />
-          <h2>Histórico</h2>
-        </div>
+      <div class="btn_historico" onclick="window.location.href='./historico.html'">
+        <img src="../assets/img/historico_icon.svg" />
+        <h2>Histórico</h2>
+      </div>
 
-        <div class="btn_dashboard">
-          <img src="../assets/img/dashboard_icon.svg" />
-          <h2>Dashboard</h2>
-        </div>
+      <div class="btn_dashboard" onclick="window.location.href='./Dashboard.html'">
+        <img src="../assets/img/dashboard_icon.svg" />
+        <h2>Dashboard</h2>
+      </div>
 
-        <div class="btn_alerta">
-          <img src="../assets/img/alertas_icon.png" />
-          <h2>Alertas</h2>
-        </div>
+      <div class="btn_alerta" onclick="window.location.href='./alertas.html'">
+        <img src="../assets/img/alertas_icon.png" />
+        <h2>Alertas</h2>
+      </div>
 
-        <div class="btn_perfil">
-          <img
-            onclick="window.location.href='../meuPerfil.html'"
-            src="../assets/img/userNavbar.svg"
-          />
-          <h2>Perfil</h2>
-        </div>
+      <div class="btn_perfil">
+        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
+        <h2>Perfil</h2>
+      </div>
 
-        <div class="btn_sair">
-          <img onclick="sair()" src="../assets/img/sair_icon.png" />
-          <h2>Sair</h2>
-        </div>
+      <div class="btn_sair">
+        <img onclick="sair()" src="../assets/img/sair_icon.png" />
+        <h2>Sair</h2>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 
 <script>
@@ -147,4 +148,40 @@
     sessionStorage.clear();
     window.location.href = "../login.html";
   }
+
+
+
+  function imgUsuario() {
+    var idUsuario = sessionStorage.idUsuario;
+    fetch(`/usuarios/imgUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          const imagemUser = data[0].imagemPerfilUsuario;
+          
+
+          if (imagemUser == undefined) {
+            imagem_user.innerHTML = `
+                <img src="../assets/img/alert.svg" />
+                <img id="imgUser" src="assets/img/userNavbar.svg">
+                `
+          } else {
+            imagem_user.innerHTML = `
+                <img src="../assets/img/alert.svg" />
+                <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
+                `
+          }
+
+        })
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
 </script>

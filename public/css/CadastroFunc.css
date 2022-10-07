@@ -296,3 +296,7 @@ a {
     top: -1vh;
 }
 
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+

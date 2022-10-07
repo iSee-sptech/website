@@ -1,24 +1,26 @@
  /* Nav Bar Bottom Code Css*/
 
- h2 {
-  color: #ffffff;
-  font-style: normal;
-  font-weight: 700;
-  font-size: calc(0.7em + 1vmin);
-}
 
- .container_navbar {
+ 
+.container_navbar {
     width: 100vw;
-    height: 16vh;
+    height: 14vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
   }
+  .container_navbar h2 {
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.7em + 1vmin);
+  }
+
+  
   
   .navbar_bottom {
     width: 89vw;
-    height: 18vh;
+    height: 14vh;
     border-radius: 16px;
     background-color: #292929;
     color: #ffffff;
@@ -44,7 +46,26 @@
   }
   
   .navbar_bottom div img {
+    width: 2vw;
     padding-bottom: 10px;
   }
 
   
+
+  /* ROW BAR PADRAO */
+  /* scrol bar temporaria*/
+*::-webkit-scrollbar {
+  width: 19px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #3b3b3b;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #7d2de2;
+  border-radius: 80px;
+  border: -1px none #ffffff;
+}
+
+/* scrol bar temporaria*/

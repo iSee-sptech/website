@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css\style.css">
     <link rel="stylesheet" href="css\styleModal.css">
-    <link rel="shortcut icon"href="assets/img/iconLogo.ico"type="image/x-icon"/>
+    <link rel="shortcut icon" href="assets/img/iconLogo.ico" type="image/x-icon" />
     <title>Institucional - ISee </title>
 </head>
 
-<body> 
+<body>
     <div class="mobileHeader" id="headerMobile">
         <div class="logo"></div>
         <button class="menuMobile" onclick="btnMenu()">
@@ -220,9 +220,11 @@
                 <h4 style="font-size: calc(0.70em + 1vmin); font-weight: 600;" for="">Email</h4>
                 <input class="input" type="text" name="Email:" id="contactEmail" placeholder="iSee@example.com">
                 <h4 style="font-size: calc(0.70em + 1vmin); font-weight: 600;" for="">Telefone</h4>
-                <input class="input" type="text" name="Telefone:" id="contactTelefone" placeholder="(__) _____-____" maxlength="15">
+                <input class="input" type="text" name="Telefone:" id="contactTelefone" placeholder="(__) _____-____"
+                    maxlength="15">
                 <h4 style="font-size: calc(0.70em + 1vmin); font-weight: 600;" for="">Mensagem</h4>
-                <textarea name="Assunto:" rows="8" id="contactAssunto" placeholder="Coloque sua mensagem aqui..."></textarea>
+                <textarea name="Assunto:" rows="8" id="contactAssunto"
+                    placeholder="Coloque sua mensagem aqui..."></textarea>
 
                 <button type="button" class="buttonContact" id="buttonContact" onclick="modalContact()">Enviar</button>
             </form>
@@ -245,36 +247,38 @@
         </div>
         <div class="rowFooter2">
 
-            <h2 style="color: #000;">Serviços</h2>
-            <h2 style="color: #000;">Social</h2>
-            <h2 style="color: #000;">Ajuda</h2>
-            <h2 style="color: #000;">Jurídico</h2>
+            <h2 style="margin-left: 2%;">ISee</h2>
+
+            <div class="divServicos">
+                <h2 style="color: #000;">Serviços</h2>
+                <h4 style="color: #000; font-weight: 400; font-size: 2vh; ">Alertas</h4>
+                <h4 style="color: #000; font-weight: 400; margin-left: 1.7%; font-size: 2vh;">Monitoramento</h4>
+                <h4 style="color: #000; font-weight: 400; margin-left: 3%; font-size: 2vh;">Dashboard</h4>
+            </div>
+
+            <div class="divSocial">
+                <h2 style="color: #000;">Social</h2>
+                <h4 style="color: #000;  font-weight: 400; margin-left: 3%; font-size: 2vh;">Facebook</h4>
+                <h4 style="color: #000;  font-weight: 400; margin-left: -5%; font-size: 2vh;">Instagram</h4>
+                <h4 style="color: #000;  font-weight: 400; margin-left: 3%; font-size: 2vh;">Linkedin</h4>
+            </div>
+
+            <div class="divAjuda">
+                <h2 style="color: #000;">Ajuda</h2>
+                <h4 style="color: #000; font-weight: 400; font-size: 2vh;">Suporte</h4>
+                <h4 style="color: #000; font-weight: 400; font-size: 2vh;">Contato</h4>
+                <h4 style="color: #000; font-weight: 400; margin-left: 1%; font-size: 2vh;">Localização</h4>
+            </div>
+
+            <div class="divJuridico">
+                <h2 style="color: #000;">Jurídico</h2>
+                <h4 style="color: #000;  font-weight: 400; width: 9%; font-size: 2vh;">Termos</h4>
+                <h4 style="color: #000;  font-weight: 400; width: 9%; font-size: 2vh;">Política</h4>
+                <h4 style="color: #000;  font-weight: 400; width: 9%; font-size: 2vh;">Ambiente</h4>
+            </div>
+
         </div>
-        <h2 style="margin-left: 2%;">ISee</h2>
 
-        <div class="rowFooter2">
-
-            <h4 style="color: #000; font-weight: 200;">• Alertas</h4>
-            <h4 style="color: #000;  font-weight: 200; margin-left: 3%;">• Facebook</h4>
-            <h4 style="color: #000; font-weight: 200;">• Suporte</h4>
-            <h4 style="color: #000;  font-weight: 200; width: 9%;">• Termos e condições</h4>
-        </div>
-
-        <div class="rowFooter2">
-
-            <h4 style="color: #000; font-weight: 200; margin-left: 1.7%;">• Monitoramento</h4>
-            <h4 style="color: #000;  font-weight: 200; margin-left: -5%;">• Instagram</h4>
-            <h4 style="color: #000; font-weight: 200;">• Contato</h4>
-            <h4 style="color: #000;  font-weight: 200; width: 9%;">• Política de privacidades</h4>
-        </div>
-
-        <div class="rowFooter2">
-
-            <h4 style="color: #000; font-weight: 200; margin-left: 3%;">• Dashboard</h4>
-            <h4 style="color: #000;  font-weight: 200; margin-left: 3%;">• Linkedin</h4>
-            <h4 style="color: #000; font-weight: 200; margin-left: 1%;">• Localização</h4>
-            <h4 style="color: #000;  font-weight: 200; width: 9%;">• Ambiente Confortável</h4>
-        </div>
     </footer>
 
 
@@ -320,18 +324,18 @@
 
     function scrollToTop() {
         docElement.scrollTo({
-            top:0,
+            top: 0,
             behavior: "smooth"
         })
     }
 
     function handleScroll() {
         var scrollTotal = docElement.scrollHeight - docElement.clientHeight
-        var count =docElement.scrollTop / scrollTotal
+        var count = docElement.scrollTop / scrollTotal
         console.log(count)
         if (count > 0.23) {
             scrollToTopButton.classList.add("showBtn")
-        }else{
+        } else {
             scrollToTopButton.classList.remove("showBtn")
         }
     }

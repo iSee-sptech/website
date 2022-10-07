@@ -10,23 +10,6 @@
   color: #7d2de2;
 }
 
-/* scrol bar temporaria*/
-*::-webkit-scrollbar {
-  width: 19px;
-}
-
-*::-webkit-scrollbar-track {
-  background: #3b3b3b;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #7d2de2;
-  border-radius: 2px;
-  border: -1px none #ffffff;
-}
-/* scrol bar temporaria*/
-
-
 body,
 html {
   width: 100vw;
@@ -35,6 +18,7 @@ html {
 
 .titulo {
   font-size: calc(1.60em + 1vmin);
+  color: #ffffff;
 }
 
 p {
@@ -203,6 +187,7 @@ h4 {
 
 .navbar_notificacao h2 {
   font-size: 22px;
+  color: #ffffff;
 }
 
 .navbar_notificacao div {
