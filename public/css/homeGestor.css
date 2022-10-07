@@ -16,9 +16,19 @@ html {
   background-color: #000000;
 }
 
-.titulo {
-  font-size: calc(1.60em + 1vmin);
-  color: #ffffff;
+h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(0.99em + 1vmin);
+  /* font-size: 22px; */
+  line-height: 27px;
+  color: #fff;
+}
+
+h6 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(0.50em + 1vmin);
 }
 
 p {
@@ -42,14 +52,14 @@ b {
   align-self: flex-start;
   padding-top: 5vh;
 }
-
+/* 
 h3 {
   font-style: normal;
   font-weight: 700;
   font-size: calc(0.6em + 1vmin);
   font-size: 18px;
   line-height: 27px;
-}
+} */
 
 h4 {
   color: #ffffff;
@@ -220,6 +230,7 @@ h4 {
 }
 
 .notificacao {
+  padding: 5px 14px;
   width: 15vw;
   height: 100px;
   background-color: #3b3b3b;
@@ -231,6 +242,10 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(0.50em + 1vmin);
 }
 
 .notificacao:hover{
