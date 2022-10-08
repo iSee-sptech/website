@@ -9,12 +9,12 @@
         <link rel="stylesheet" href="../css/meusCaixas.css" />
         <link rel="stylesheet" href="../css/navBar.css">
       </head>
-<body>
+<body onload="exibirQtdCaixas(), exibirInformacoesCaixas()">
     <div class="divTitulo">
         <div class="containerTitulo">
           <h1>Meus Caixas</h1>
-          <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, Total de Caixas<span
-              style="color: #7d2de2;"> 4</span></h6>
+          <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, Total de Caixas <span
+              style="color: #7d2de2;" id="quantidadeCaixas"></span></h6>
           <div class="notificacoes">
             <img src="../assets/img/alert.svg">
             <img src="../assets/img/user.svg">
@@ -42,23 +42,23 @@
             </div>
             <div>
                 <h2>Nome</h2>
-                <h4 id="nomeCaixa">caixa 1</h4>
+                <h4 id="nomeCaixa"></h4>
             </div>
             <div>
                 <h2>CEP</h2>
-                <h4 id="cepCaixa">CEP</h4>
+                <h4 id="cepCaixa"></h4>
             </div>
             <div>
                 <h2>Alertas</h2>
-                <h4 id="alertaCaixa">4</h4>
+                <h4 id="alertaCaixa"></h4>
             </div>
             <div>
                 <h2>Etiquetas</h2>
-                <h4 id="etiquetasCaixa">2</h4>
+                <h4 id="etiquetasCaixa"></h4>
             </div>
             <div>
                 <h2>Arquitetura</h2>
-                <h4 id="arquiteturaCaixa">x32</h4>
+                <h4 id="arquiteturaCaixa"></h4>
             </div>
             <div>
                 <h2>Imagem Caixa</h2>
@@ -131,5 +131,57 @@
       window.location = "homeFuncionario.html";
     }
   }
+
+  function exibirQtdCaixas() {
+
+    fetch(`/usuarios/exibirCaixas`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
+      // saldoConta
+      resposta.json().then((data) => {
+        console.log(data);
+        qtdCaixa = data[0].qtdCaixa
+        quantidadeCaixas.innerHTML = qtdCaixa
+      })
+
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
+    }
+
+    function exibirInformacoesCaixas() {
+
+      fetch(`/usuarios/exibirInfoCaixas`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then((resposta) => {
+        // saldoConta
+        resposta.json().then((data) => {
+          console.log(data);
+          nomeMaquina = data[0].nomeMaquina
+          cepMaquina = data[0].cepMaquina
+          qtdAlertas = data[0].qtdHistorico
+          qtdEtiquetas = data[0].qtdEtiqueta
+          arquiteturaMaquina = data[0].arquiteturaMaquina
+          imgMaquina = data[0].imgMaquina
+          
+          nomeCaixa.innerHTML = nomeMaquina
+          cepCaixa.innerHTML = cepMaquina
+          etiquetasCaixa.innerHTML = qtdEtiquetas
+          alertaCaixa.innerHTML = qtdAlertas
+          arquiteturaCaixa.innerHTML = arquiteturaMaquina
+        })
+
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+      }
 
 </script>
