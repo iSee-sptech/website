@@ -48,6 +48,10 @@ router.get("/exibirFuncionarios", function (req, res) {
   usuarioController.exibirFuncionarios(req, res);
 });
 
+router.get("/exibirQuantidadeTotalRam", function (req, res) {
+  usuarioController.exibirQuantidadeTotalRam(req, res);
+});
+
 router.get("/exibirCaixas", function (req, res) {
   usuarioController.exibirCaixas(req, res);
 });

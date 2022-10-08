@@ -107,6 +107,13 @@ function exibirFuncionarios() {
   return database.executar(instrucao);
 }
 
+function exibirQuantidadeTotalRam() {
+  var instrucao = `
+  SELECT sum(ramMaquina) as 'totalRam' FROM Maquinas;
+  `;
+  return database.executar(instrucao);
+}
+
 function exibirCaixas() {
   var instrucao = `
   SELECT count(idMaquina) as 'qtdCaixa' from Maquinas;
@@ -153,6 +160,7 @@ module.exports = {
   listarPerfil,
   listarLembrete,
   exibirFuncionarios,
+  exibirQuantidadeTotalRam,
   exibirCaixas,
   imgUsuario,
   atualizarImg,
