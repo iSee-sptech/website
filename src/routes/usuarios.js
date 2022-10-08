@@ -28,6 +28,10 @@ router.post("/adicionarLembrete", function (req, res) {
   usuarioController.adicionarLembrete(req, res);
 });
 
+router.post("/deletarCaixa1", function (req, res) {
+  usuarioController.deletarCaixa1(req, res);
+});
+
 router.post("/autenticar", function (req, res) {
   usuarioController.entrar(req, res);
 });
