@@ -12,7 +12,7 @@
   
 </head>
 
-<body>
+<body onload="imgUsuario()">
 
   <div class="body_dashboard">
 
@@ -24,7 +24,7 @@
             style="color: #7d2de2;">x</span> etiquetas adicionadas </h6>
             <!--Sugestão: Seus caixas apresentam (QtdEtiquetas) de etiquetas mapeadas /ou/
             Seus caixas apresentam uma média de (QtdEtiquetas) mapeadas-->
-        <div class="notificacoes">
+        <div id="imagem_user" class="notificacoes">
           <img src="../assets/img/alert.svg">
           <img src="../assets/img/user.svg">
         </div>
@@ -155,6 +155,39 @@
     } else {
       window.location = "homeFuncionario.html";
     }
+  }
+
+  function imgUsuario() {
+    var idUsuario = sessionStorage.idUsuario;
+    fetch(`/usuarios/imgUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          const imagemUser = data[0].imagemPerfilUsuario;
+
+
+          if (imagemUser == undefined) {
+            imagem_user.innerHTML = `
+                <img src="../assets/img/alert.svg" />
+                <img id="imgUser" src="../assets/img/user.svg">
+                `
+          } else {
+            imagem_user.innerHTML = `
+                <img src="../assets/img/alert.svg" />
+                <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
+                `
+          }
+
+        })
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
   }
 
 </script>
