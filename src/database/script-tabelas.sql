@@ -18,20 +18,18 @@ complementoLocalUsuario varchar (25)
 );
 select * from Usuarios;
 
-insert into usuarios (idUsuario, nomeUsuario, emailUsuario, cepUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, dataNascUsuario, numeroLocalUsuario, complementoLocalUsuario, cargoUsuario)
-values (null, "Andreas", "andreasrgb@gmail.com", "03347-010", "450.089.988-03", "(11) 99976-9377", "@Andreas2014", "2003-12-17", "111", "casa", "Gerente"),  
-(null, "Lucas", "lucasrgb@gmail.com", "02347-010", "450.022.988-03", "(11) 99256-1377", "@Andreas2014", "2002-11-17", "111", "casa", "Funcionário");
-
 create table Maquinas (
 idMaquina int primary key,
 serialMaquina varchar (100) unique,
 nomeMaquina varchar (100) not null,
 ramMaquina varchar (10),
 processadorMaquina varchar (25),
+memoriaMaquina varchar (10),
 cepMaquina char (9) unique,
 imgMaquina varchar (255) not null,
 numeroMaquina varchar (100),
 complementoMaquina varchar (50),
+pontoDeReferencia varchar (25),
 fkUsuario int,
 foreign key (fkUsuario)
 references Usuarios (idUsuario)
@@ -62,10 +60,6 @@ references Maquinas (idMaquina)
 );
 select * from Historico;
 
-insert into Maquinas (idMaquina, nomeMaquina, imgMaquina, ramMaquina) values (3, 'Maquina 3', 'dnianjsfifdansif', 8), (4, 'Maquina 4', 'nfedijnfdffinfuj', 4);
-
-select sum(ramMaquina) as 'totalRam' from Maquinas;
-
 create table Lembrete(
 idLembrete int primary key auto_increment,
 mensagemLembrete varchar (50),
@@ -76,17 +70,3 @@ foreign key (fkUsuario)
 references Usuarios (idUsuario)
 );
 select * from Lembrete;
-
-insert into Lembrete values(
-null,
-"Cadastrar novo funcionário de suporte",
-"2022-08-07 10:25:50",
-current_timestamp,
-1
-);
-
-update Lembrete set mensagemLembrete = "Cadastrar", dataHoraLembrete = "2022-07-07 10:25:50" where fkUsuario = 1;
-select mensagemLembrete from Lembrete where fkUsuario = 1;
-
-select count(nomeUsuario) from Usuarios;
-select count(nomeMaquina) from Maquinas;

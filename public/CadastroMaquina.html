@@ -18,36 +18,23 @@
 
       <form action="" id="form_cadastro_maquina" method="post">
         <div class="campo_um">
-          <label for="">ID Máquina</label>
+          <label for="">ID Máquina*</label>
           <input type="text" id="input_id_maquina" />
 
-          <label for="">Nome da Máquina</label>
+          <label for="">Nome da Máquina*</label>
           <input type="Máquina g" id="input_nome_maquina" />
 
           <label for="">Imagem da Máquina</label>
           <input placeholder="URL" type="text" id="input_url_maquina" /> 
 
           
-          <label for="">+1 informação (Numero Serial)</label>
+          <label for="">Número serial*</label>
           <input placeholder="-----------" type="text" id="input_url_maquina" /> 
-
-<!-- 
-          <label for="">Número</label>
-          <input type="text" id="input_endereco_maquina" maxlength="9"/>
-
-          <label for="">Complemento</label>
-          <input type="text" id="input_endereco_maquina" maxlength="9"/>
-
-          <label for="">Referência</label>
-          <input type="text" id="input_endereco_maquina" maxlength="9"/> -->
-
-
         </div>
+      <div class="campo_dois">
 
-        <div class="campo_dois">
 
-
-          <label for="">CEP </label> 
+          <label for="">CEP*</label> 
           <span class="span_container">
           <input placeholder="_____-___" type="text" id="input_endereco_maquina" maxlength="9" />  
             <div class= 'envoltorioIconHelp' 
@@ -56,14 +43,14 @@
             </div>
           </span>
 
-          <label for="">Número</label>
-          <input placeholder="n°" type="text" id="input_num_endereco_func" maxlength="6" />
+          <label for="">Número*</label>
+          <input placeholder="n°" type="text" id="input_num_endereco_maquina" maxlength="6" />
 
-          <label for="">Complemento</label>
-          <input placeholder="Bloco, Setor, Andar..." type="text" id="input_complemento_endereco_func" maxlength="20" />
+          <label for="">Complemento*</label>
+          <input placeholder="Bloco, Setor, Andar..." type="text" id="input_complemento_endereco_maquina" maxlength="20" />
 
-          <label for="">Ponto de Referência</label>
-          <input placeholder="Próximo à entrada, localizado no setor 1A..."  type="text" id="" maxlength="100"/>
+          <label for="">Ponto de Referência*</label>
+          <input placeholder="Próximo à entrada, localizado no setor 1A..."  type="text" id="input_ponto_referencia_endereco_maquina" maxlength="25"/>
 
       </div>
 
@@ -110,35 +97,37 @@
   }
 
   function cadastrarCaixa() {
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
     var idCaixaVar = input_id_maquina.value;
     var nomeCaixaVar = input_nome_maquina.value;
     var enderecoCaixaVar = input_endereco_maquina.value;
     var imagemCaixaVar = input_url_maquina.value;
+    var numeroSerialVar = input_url_maquina.value;
+    var numeroEnderecoVar = input_num_endereco_maquina.value;
+    var complementoEnderecoVar = input_complemento_endereco_maquina.value;
+    var pontoReferenciaEnderecoVar = input_ponto_referencia_endereco_maquina.value;
 
     if (
       idCaixaVar == "" ||
       nomeCaixaVar == "" ||
       enderecoCaixaVar == "" ||
-      imagemCaixaVar == ""
-    ) {
-      console.log("Prencha todos os campos!");
+      numeroSerialVar == "" ||
+      numeroEnderecoVar == "" ||
+      complementoEnderecoVar == "" ||
+      pontoReferenciaEnderecoVar == ""){
+
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
-      modalText.innerHTML = "Email inválido!";
+      modalText.innerHTML = "Preencha todos os campos";
       return false;
     } else if (nomeCaixaVar.length < 3) {
-      console.log("Nome inválido!");
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
-      modalText.innerHTML = "Email inválido!";
+      modalText.innerHTML = "Nome inválido!";
       return false;
     } else if (enderecoCaixaVar.length < 7) {
-      console.log("Endereço inválido!");
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
-      modalText.innerHTML = "Email inválido!";
+      modalText.innerHTML = "CEP inválido!";
       return false;
     } else {
       modal.style.display = "block";
@@ -156,36 +145,35 @@
         nomeCaixaServer: nomeCaixaVar,
         enderecoCaixaServer: enderecoCaixaVar,
         imagemCaixaServer: imagemCaixaVar,
+        numeroSerialServer: numeroSerialVar,
+        numeroEnderecoServer: numeroEnderecoVar,
+        complementoEnderecoServer: complementoEnderecoVar,
+        pontoReferenciaEnderecoServer: pontoReferenciaEnderecoVar
       }),
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          // modal.style.display = 'block'
-          // modalImg.src = "assets/iconCheck.svg"
-          // modalText.innerHTML = "Cadastro efetuado com sucesso!";
           console.log("Cadastro efetuado com sucesso!");
 
           setTimeout(() => {
             window.location = "dashboard/homeGestor.html";
           }, "1000");
-
-          // limparFormulario();
-          // finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
       });
 
     return false;
   }
 
-  function sumirMensagem() {
-    //cardErro.style.display = "none"
+  function modalServicesCEP(){
+    modal.style.display = 'block'
+        modalImg.src = "assets/img/iconHelp.svg"
+        modalText.innerHTML = "Consulte seu CEP! <br> <a href='https://buscacepinter.correios.com.br/app/endereco/index.php'> Clique aqui! </a>";
   }
 </script>
