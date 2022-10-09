@@ -28,6 +28,10 @@ router.post("/adicionarLembrete", function (req, res) {
   usuarioController.adicionarLembrete(req, res);
 });
 
+router.post("/deletarCaixa1", function (req, res) {
+  usuarioController.deletarCaixa1(req, res);
+});
+
 router.post("/autenticar", function (req, res) {
   usuarioController.entrar(req, res);
 });
@@ -56,6 +60,9 @@ router.get("/exibirCaixas", function (req, res) {
   usuarioController.exibirCaixas(req, res);
 });
 
+router.get("/exibirInfoCaixas", function (req, res) {
+  usuarioController.exibirInfoCaixas(req, res);
+});
 
 router.get("/imgUsuario/:id", function (req, res) {
   usuarioController.imgUsuario(req, res);
