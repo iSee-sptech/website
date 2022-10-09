@@ -7,9 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
   <title>Alertas - ISee</title>
+  <link rel="stylesheet" href="../css/styleModal.css">
   <link rel="stylesheet" href="../css/alertas.css" />
   <link rel="stylesheet" href="../css/navBar.css" />
-  
+
 </head>
 
 <body onload="imgUsuario()">
@@ -20,100 +21,102 @@
     <div class="sessao_grafico_principal">
       <div class="container_title">
         <h1>Alertas</h1>
-        <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, hoje tivemos <span
-            style="color: #7d2de2;">x</span> alertas registrados </h6>
-        
+        <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, hoje tivemos <span style="color: #7d2de2;">x</span>
+          alertas registrados </h6>
+
         <div id="imagem_user" class="notificacoes">
           <img src="../assets/img/alert.svg">
           <img src="../assets/img/user.svg">
         </div>
 
         <div class="filtro">
-            <label for="input_filtro_data_inicial"> <h2>Filtro</h2> </label>
-            <input type="datetime-local" placeholder="data inicial" id="input_filtro_data_inicial">
-            <input type="datetime-local" placeholder="data final" id="input_filtro_data_final">
+          <label for="input_filtro_data_inicial">
+            <h2>Filtro</h2>
+          </label>
+          <input type="date" placeholder="data inicial" id="input_filtro_data_inicial">
+          <input type="date" placeholder="data final" id="input_filtro_data_final">
         </div>
-          
+
       </div>
 
       <div class="container_tipos_alertas">
-        
-<!----EXEMPLO DE UM CARD ALERTA--------------------------------------------------------->
-        <div class="card_alerta">
-            <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
-            <div class="corpo_alerta">
-                <h2>titulo</h2>
-                <h6>Aqui fica o subtitulo - subtitulo</h6>
-                descricao teste para ver até onde a descricao vai para pois e um texte de css
-            </div>
-            <div class="corpo_quantidade">
-                <h2 class ="qtd_caixas_tipo_alerta">XX</h2>
-                caixas
-            </div>
-        </div>
-<!----FIM DE UM CARD ALERTA--------------------------------------------------------->
 
-        <div class="card_alerta">
-            <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
-            <div class="corpo_alerta">
-                <h2>titulo</h2>
-                <h6>Aqui fica o subtitulo - subtitulo</h6>
-                descricao teste para ver até onde a descricao vai para pois e um texte de css
-            </div>
-            <div class="corpo_quantidade">
-                <h2 class ="qtd_caixas_tipo_alerta">XX</h2>
-                caixas
-            </div>
+        <!----EXEMPLO DE UM CARD ALERTA--------------------------------------------------------->
+        <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaUm)"> <!--FUNCAO RECEBE ID DO MODAL-->
+          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <div class="corpo_alerta">
+            <h2>titulo</h2>
+            <h6>Aqui fica o subtitulo - subtitulo</h6>
+            descricao teste para ver até onde a descricao vai para pois e um texte de css
+          </div>
+          <div class="corpo_quantidade">
+            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            caixas
+          </div>
         </div>
+        <!----FIM DE UM CARD ALERTA---------------------------------------------------------> 
 
-        <div class="card_alerta">
-            <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
-            <div class="corpo_alerta">
-                <h2>titulo</h2>
-                <h6>Aqui fica o subtitulo - subtitulo</h6>
-                descricao teste para ver até onde a descricao vai para pois e um texte de css
-            </div>
-            <div class="corpo_quantidade">
-                <h2 class ="qtd_caixas_tipo_alerta">XX</h2>
-                caixas
-            </div>
+        <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaDois)"> <!--FUNCAO RECEBE ID DO MODAL-->
+          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <div class="corpo_alerta">
+            <h2>titulo</h2>
+            <h6>Aqui fica o subtitulo - subtitulo</h6>
+            descricao teste para ver até onde a descricao vai para pois e um texte de css
+          </div>
+          <div class="corpo_quantidade">
+            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            caixas
+          </div>
         </div>
 
-        <div class="card_alerta">
-            <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
-            <div class="corpo_alerta">
-                <h2>titulo</h2>
-                <h6>Aqui fica o subtitulo - subtitulo</h6>
-                descricao teste para ver até onde a descricao vai para pois e um texte de css
-            </div>
-            <div class="corpo_quantidade">
-                <h2 class ="qtd_caixas_tipo_alerta">XX</h2>
-                caixas
-            </div>
+        <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaTres)"> <!--FUNCAO RECEBE ID DO MODAL-->>
+          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <div class="corpo_alerta">
+            <h2>titulo</h2>
+            <h6>Aqui fica o subtitulo - subtitulo</h6>
+            descricao teste para ver até onde a descricao vai para pois e um texte de css
+          </div>
+          <div class="corpo_quantidade">
+            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            caixas
+          </div>
         </div>
 
-        <div class="card_alerta">
-            <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
-            <div class="corpo_alerta">
-                <h2>titulo</h2>
-                <h6>Aqui fica o subtitulo - subtitulo</h6>
-                descricao teste para ver até onde a descricao vai para pois e um texte de css
-            </div>
-            <div class="corpo_quantidade">
-                <h2 class ="qtd_caixas_tipo_alerta">XX</h2>
-                caixas
-            </div>
+        <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaQuatro)">
+          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <div class="corpo_alerta">
+            <h2>titulo</h2>
+            <h6>Aqui fica o subtitulo - subtitulo</h6>
+            descricao teste para ver até onde a descricao vai para pois e um texte de css
+          </div>
+          <div class="corpo_quantidade">
+            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            caixas
+          </div>
         </div>
 
-        
-      
+        <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaQuatro)">
+          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <div class="corpo_alerta">
+            <h2>titulo</h2>
+            <h6>Aqui fica o subtitulo - subtitulo</h6>
+            descricao teste para ver até onde a descricao vai para pois e um texte de css
+          </div>
+          <div class="corpo_quantidade">
+            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            caixas
+          </div>
+        </div>
+
+
+
       </div>
     </div>
 
 
 
 
-   
+
 
 
   </div>
@@ -143,7 +146,7 @@
         <h2>Dashboard</h2>
       </div>
 
-      <div class="btn_alerta" >
+      <div class="btn_alerta">
         <img src="../assets/img/alertas_icon.png" />
         <h2 style="color: #7d2de2;">Alertas</h2>
       </div>
@@ -159,20 +162,22 @@
       </div>
     </div>
   </div>
+
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../js/graficosDashboard.js"></script>
 <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
 
 <script>
-      
-    function sair() {
-        sessionStorage.clear();
-        window.location.href = "../login.html";
-    }
 
-    function tela_home() {
+  function sair() {
+    sessionStorage.clear();
+    window.location.href = "../login.html";
+  }
+
+  function tela_home() {
     if (sessionStorage.cargoUsuario === "Gerente") {
       window.location = "homeGestor.html";
     } else {
@@ -214,4 +219,166 @@
   }
 
 </script>
+</html>
 
+
+
+<!--AQUI FICA TUDO SOBRE OS MODAIS---------------------------------------------------------->
+<script>
+    function aparecerModalAlerta(nome) {
+        nome.style.display = 'block';
+    }
+
+  function fecharModalAlerta(nome) {
+        nome.style.display = 'none';
+    }
+</script>
+
+<html>
+  <div id="modalAlertaUm" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck" onclick="fecharModalAlerta(modalAlertaUm)">
+          Close
+        </div>
+       
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+        <h3>modalAlertaUm </h3>
+
+        <span id="corpoModalAlertaUm" class="corpoModalAlerta">  <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
+
+        <!--EXEMPLO DE CONTEUDO-->
+        <div class="container_informacoes_alerta">
+        <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+        <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+        </div>
+        <!--FIM EXEMPLO DE CONTEUDO-->
+
+        <div class="container_informacoes_alerta">
+          <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+          <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+        </div>
+
+        <div class="container_informacoes_alerta">
+          <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+          <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+        </div>
+        
+        </span>
+
+      <button class="button8" onclick="">Visualizar Caixas</button> <!--PASSA O ID DO MODAL-->
+    </div>
+  </div>
+
+  <div id="modalAlertaDois" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck" onclick="fecharModalAlerta(modalAlertaDois)">
+          Close
+        </div>
+       
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+      <h3>modalAlertaDois</h3>
+
+        <span id="corpoModalAlertaDois" class="corpoModalAlerta"> <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
+
+                <!--EXEMPLO DE CONTEUDO-->
+                <div class="container_informacoes_alerta">
+                  <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+                  <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+                  </div>
+                  <!--FIM EXEMPLO DE CONTEUDO-->
+          
+                  <div class="container_informacoes_alerta">
+                    <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+                    <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+                  </div>
+          
+                  <div class="container_informacoes_alerta">
+                    <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+                    <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+                  </div>
+
+        </span>
+
+      <button class="button8" onclick="">Visualizar Caixas</button>
+    </div>
+  </div>
+
+  <div id="modalAlertaTres" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck" onclick="fecharModalAlerta(modalAlertaTres)">
+          Close
+        </div>
+       
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+      <h3>modalAlertaTres</h3>
+
+        <span id="corpoModalAlertaTres" class="corpoModalAlerta"> <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
+
+                          <!--EXEMPLO DE CONTEUDO-->
+                          <div class="container_informacoes_alerta">
+                            <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+                            <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+                            </div>
+                            <!--FIM EXEMPLO DE CONTEUDO-->
+                    
+                            <div class="container_informacoes_alerta">
+                              <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+                              <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+                            </div>
+                    
+                            <div class="container_informacoes_alerta">
+                              <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+                              <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+                            </div>
+
+        </span> 
+      
+
+
+      <button class="button8" onclick="">Visualizar Caixas</button>
+    </div>
+  </div>
+
+  <div id="modalAlertaQuatro" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck" onclick="fecharModalAlerta(modalAlertaQuatro)">
+          Close
+        </div>
+       
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+      <h3>modalAlertaQuatro </h3>
+
+        <span id="corpoModalAlertaQuatro" class="corpoModalAlerta"> <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
+                          <!--EXEMPLO DE CONTEUDO-->
+                            <div class="container_informacoes_alerta">
+                              <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+                              <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+                            </div>
+                          <!--FIM EXEMPLO DE CONTEUDO-->
+                      
+                          <div class="container_informacoes_alerta">
+                            <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+                            <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+                          </div>
+                      
+                          <div class="container_informacoes_alerta">
+                            <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+                            <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+                          </div>
+
+        </span> 
+
+      
+      
+      <button class="button8" onclick="">Visualizar Caixas</button> 
+    </div>
+  </div>
+</html>

@@ -213,3 +213,52 @@ h6 {
 .notificacoes img:nth-child(2):hover {
     cursor: pointer;
 }
+
+
+.modalBody h3 {
+    color: #7D2DE2;
+}
+
+.containerReadPlus {
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 1vw;
+}
+
+.modalCheck {
+    font-size: 10px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.corpoModalAlerta {
+    font-family: poppins;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.modalBody h6 {
+    margin-top: 1vh;
+}
+
+.corpoModalAlerta p {
+    font-family: poppins;
+    font-weight: 300;
+    font-size: 12px;
+    margin-top: -5px;
+}
+
+.corpoModalAlerta {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container_informacoes_alerta {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+}
