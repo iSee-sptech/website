@@ -1,128 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon"href="../assets/img/iconLogo.ico"type="image/x-icon"/>
-        <title>Meus Caixas - ISee</title>
-        <link rel="stylesheet" href="../css/meusCaixas.css" />
-        <link rel="stylesheet" href="../css/navBar.css">
-      </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
+  <title>Meus Caixas - ISee</title>
+  <link rel="stylesheet" href="../css/meusCaixas.css" />
+  <link rel="stylesheet" href="../css/navBar.css">
+</head>
+
 <body onload="exibirQtdCaixas(), exibirInformacoesCaixas()">
-    <div class="divTitulo">
-        <div class="containerTitulo">
-          <h1>Meus Caixas</h1>
-          <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, Total de Caixas <span
-              style="color: #7d2de2;" id="quantidadeCaixas"></span></h6>
-          <div class="notificacoes">
-            <img src="../assets/img/alert.svg">
-            <img src="../assets/img/user.svg">
-          </div>
-        </div>
-
-        <div class="divPesquisa">
-            <div>
-            <h3>Pesquisar Caixa</h3>
-            <input type="text">
-            <button>Pesquisar</button>
-            </div>
-        </div>
+  <div class="divTitulo">
+    <div class="containerTitulo">
+      <h1>Meus Caixas</h1>
+      <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, Total de Caixas <span style="color: #7d2de2;"
+          id="quantidadeCaixas"></span></h6>
+      <div class="notificacoes">
+        <img src="../assets/img/alert.svg">
+        <img src="../assets/img/user.svg">
       </div>
-
-
-      <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
-      
-      <div class="meusCaixas">
-
-        <div id="caixa">
-            <div>
-                <h2>Status</h2>
-                <div id="status"></div>
-            </div>
-            <div>
-                <h2>Nome</h2>
-                <h4 id="nomeCaixa"></h4>
-            </div>
-            <div>
-                <h2>CEP</h2>
-                <h4 id="cepCaixa"></h4>
-            </div>
-            <div>
-                <h2>Alertas</h2>
-                <h4 id="alertaCaixa"></h4>
-            </div>
-            <div>
-                <h2>Etiquetas</h2>
-                <h4 id="etiquetasCaixa"></h4>
-            </div>
-            <div>
-                <h2>Arquitetura</h2>
-                <h4 id="arquiteturaCaixa"></h4>
-            </div>
-            <div>
-                <h2>Imagem Caixa</h2>
-                <div id="ImagemCaixa"><img src="../assets/img/imgCaixa.svg"></div>
-            </div>
-            <div>
-                <h2>Remover</h2>
-                <div id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
-            </div>
-        </div>
     </div>
 
-      <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO ^^^^^^^^^^-->
+    <div class="divPesquisa">
+      <div>
+        <h3>Pesquisar Caixa</h3>
+        <input type="text">
+        <button>Pesquisar</button>
+      </div>
+    </div>
+  </div>
 
 
-    <div class="container_navbar">
-        <div class="navbar_bottom">
-          <div class="btn_home" onclick="tela_home()">
-            <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
-            <h2 style="color: #7d2de2;">Home</h2>
-          </div>
-    
-          <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
-            <img src="../assets/img/etiqueta_icon.svg" />
-            <h2>Etiquetas</h2>
-          </div>
-    
-          <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
-            <img src="../assets/img/historico_icon.svg" />
-            <h2>Histórico</h2>
-          </div>
-    
-          <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
-            <img src="../assets/img/dashboard_icon.svg" />
-            <h2>Dashboard</h2>
-          </div>
-    
-          <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
-            <img src="../assets/img/alertas_icon.png" />
-            <h2>Alertas</h2>
-          </div>
-    
-          <div class="btn_perfil">
-            <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-            <h2>Perfil</h2>
-          </div>
-    
-          <div class="btn_sair">
-            <img onclick="sair()" src="../assets/img/sair_icon.png" />
-            <h2>Sair</h2>
-          </div>
-        </div>
+  <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
+
+  <div class="meusCaixas">
+
+    <div id="caixa">
+      <div>
+        <h2>Status</h2>
+        <div id="status"></div>
       </div>
 
+      <div>
+        <h2>Nome</h2>
+        <h4 id="nomeCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>CEP</h2>
+        <h4 id="cepCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Alertas</h2>
+        <h4 id="alertaCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Etiquetas</h2>
+        <h4 id="etiquetasCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Total RAM</h2>
+        <h4 id="totalRamCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Total de Disco</h2>
+        <h4 id="totalDiscoCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Total Processador</h2>
+        <h4 id="totalProcessadorCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Tempo de Atividade</h2>
+        <h4 id="tempoAtividadeCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Sistema Operacional</h2>
+        <h4 id="sistemaOperacionalCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Fabricante</h2>
+        <h4 id="fabricanteCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Tempo de Atividade</h2>
+        <h4 id="tempoAtividade"></h4>
+      </div>
+
+      <div>
+        <h2>Arquitetura</h2>
+        <h4 id="arquiteturaCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Imagem Caixa</h2>
+        <div id="ImagemCaixa"><img src="../assets/img/imgCaixa.svg"></div>
+      </div>
+
+      <div>
+        <h2>Remover</h2>
+        <div id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
+      </div>
+    </div>
+
+<!-- CAIXA 2 -->
+    <div id="caixa">
+      <div>
+        <h2>Status</h2>
+        <div id="status"></div>
+      </div>
+
+      <div>
+        <h2>Nome</h2>
+        <h4 id="nomeCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>CEP</h2>
+        <h4 id="cepCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Alertas</h2>
+        <h4 id="alertaCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Etiquetas</h2>
+        <h4 id="etiquetasCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Total RAM</h2>
+        <h4 id="totalRamCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Total de Disco</h2>
+        <h4 id="totalDiscoCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Total Processador</h2>
+        <h4 id="totalProcessadorCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Tempo de Atividade</h2>
+        <h4 id="tempoAtividadeCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Sistema Operacional</h2>
+        <h4 id="sistemaOperacionalCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Fabricante</h2>
+        <h4 id="fabricanteCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Tempo de Atividade</h2>
+        <h4 id="tempoAtividade"></h4>
+      </div>
+
+      <div>
+        <h2>Arquitetura</h2>
+        <h4 id="arquiteturaCaixa"></h4>
+      </div>
+
+      <div>
+        <h2>Imagem Caixa</h2>
+        <div id="ImagemCaixa"><img src="../assets/img/imgCaixa.svg"></div>
+      </div>
+
+      <div>
+        <h2>Remover</h2>
+        <div id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO ^^^^^^^^^^-->
+
+
+  <div class="container_navbar">
+    <div class="navbar_bottom">
+      <div class="btn_home" onclick="tela_home()">
+        <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
+        <h2 style="color: #7d2de2;">Home</h2>
+      </div>
+
+      <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
+        <img src="../assets/img/etiqueta_icon.svg" />
+        <h2>Etiquetas</h2>
+      </div>
+
+      <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
+        <img src="../assets/img/historico_icon.svg" />
+        <h2>Histórico</h2>
+      </div>
+
+      <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
+        <img src="../assets/img/dashboard_icon.svg" />
+        <h2>Dashboard</h2>
+      </div>
+
+      <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
+        <img src="../assets/img/alertas_icon.png" />
+        <h2>Alertas</h2>
+      </div>
+
+      <div class="btn_perfil">
+        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
+        <h2>Perfil</h2>
+      </div>
+
+      <div class="btn_sair">
+        <img onclick="sair()" src="../assets/img/sair_icon.png" />
+        <h2>Sair</h2>
+      </div>
+    </div>
+  </div>
+
 </body>
+
 </html>
 
 
 <script>
-
   function sair() {
-          sessionStorage.clear();
-          window.location.href = "../login.html";
-      }
+    sessionStorage.clear();
+    window.location.href = "../login.html";
+  }
 
   function tela_home() {
     if (sessionStorage.cargoUsuario === "Gerente") {
@@ -151,37 +274,36 @@
       console.log(`#ERRO: ${resposta}`);
       finalizarAguardar();
     });
-    }
+  }
 
-    function exibirInformacoesCaixas() {
+  function exibirInformacoesCaixas() {
 
-      fetch(`/usuarios/exibirInfoCaixas`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }).then((resposta) => {
-        // saldoConta
-        resposta.json().then((data) => {
-          console.log(data);
-          nomeMaquina = data[0].nomeMaquina
-          cepMaquina = data[0].cepMaquina
-          qtdAlertas = data[0].qtdHistorico
-          qtdEtiquetas = data[0].qtdEtiqueta
-          arquiteturaMaquina = data[0].arquiteturaMaquina
-          imgMaquina = data[0].imgMaquina
-          
-          nomeCaixa.innerHTML = nomeMaquina
-          cepCaixa.innerHTML = cepMaquina
-          etiquetasCaixa.innerHTML = qtdEtiquetas
-          alertaCaixa.innerHTML = qtdAlertas
-          arquiteturaCaixa.innerHTML = arquiteturaMaquina
-        })
-
-      }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
+    fetch(`/usuarios/exibirInfoCaixas`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
       }
+    }).then((resposta) => {
+      // saldoConta
+      resposta.json().then((data) => {
+        console.log(data);
+        nomeMaquina = data[0].nomeMaquina
+        cepMaquina = data[0].cepMaquina
+        qtdAlertas = data[0].qtdHistorico
+        qtdEtiquetas = data[0].qtdEtiqueta
+        arquiteturaMaquina = data[0].arquiteturaMaquina
+        imgMaquina = data[0].imgMaquina
 
+        nomeCaixa.innerHTML = nomeMaquina
+        cepCaixa.innerHTML = cepMaquina
+        etiquetasCaixa.innerHTML = qtdEtiquetas
+        alertaCaixa.innerHTML = qtdAlertas
+        arquiteturaCaixa.innerHTML = arquiteturaMaquina
+      })
+
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
+  }
 </script>

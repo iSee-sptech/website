@@ -15,11 +15,9 @@ body, html{
 
 .divTitulo{
     width: 100vw;
-    margin-top: 5vh;
+    margin-top: 7vh;
     display: flex;
 }
-
-
 
 .containerTitulo {
     width: 50vw;
@@ -152,7 +150,7 @@ main{
 
 .tabelaHistorico{
     width: 64vw;
-    height: 57vh;
+    height: 55vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -167,7 +165,9 @@ main{
     height: 100px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #historico div{
