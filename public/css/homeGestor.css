@@ -268,3 +268,7 @@ h4 {
 .btn_cadastrar_estag{
   cursor: pointer;
 }
+
+#mensagemLembreteId{
+  color: #000000;
+}

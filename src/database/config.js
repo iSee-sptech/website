@@ -22,7 +22,7 @@ var mySqlConfig = {
   host: "localhost",
   user: "root",
   database: "iSee",
-  password: "sptech",
+  password: "4242",
 };
 // Senhas dos Databases
 // Andreas: Andreas2014

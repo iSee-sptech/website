@@ -45,62 +45,62 @@
 
       <div>
         <h2>Nome</h2>
-        <h4 id="nomeCaixa"></h4>
+        <h4 class="nomeCaixa"></h4>
       </div>
 
       <div>
         <h2>CEP</h2>
-        <h4 id="cepCaixa"></h4>
+        <h4 class="cepCaixa"></h4>
       </div>
 
       <div>
         <h2>Alertas</h2>
-        <h4 id="alertaCaixa"></h4>
+        <h4 class="alertaCaixa"></h4>
       </div>
 
       <div>
         <h2>Etiquetas</h2>
-        <h4 id="etiquetasCaixa"></h4>
+        <h4 class="etiquetasCaixa"></h4>
       </div>
 
       <div>
         <h2>Total RAM</h2>
-        <h4 id="totalRamCaixa"></h4>
+        <h4 class="totalRamCaixa"></h4>
       </div>
 
       <div>
         <h2>Total de Disco</h2>
-        <h4 id="totalDiscoCaixa"></h4>
+        <h4 class="totalDiscoCaixa"></h4>
       </div>
 
       <div>
         <h2>Total Processador</h2>
-        <h4 id="totalProcessadorCaixa"></h4>
+        <h4 class="totalProcessadorCaixa"></h4>
       </div>
 
       <div>
         <h2>Tempo de Atividade</h2>
-        <h4 id="tempoAtividadeCaixa"></h4>
+        <h4 class="tempoAtividadeCaixa"></h4>
       </div>
 
       <div>
         <h2>Sistema Operacional</h2>
-        <h4 id="sistemaOperacionalCaixa"></h4>
+        <h4 class="sistemaOperacionalCaixa"></h4>
       </div>
 
       <div>
         <h2>Fabricante</h2>
-        <h4 id="fabricanteCaixa"></h4>
+        <h4 class="fabricanteCaixa"></h4>
       </div>
 
       <div>
         <h2>Tempo de Atividade</h2>
-        <h4 id="tempoAtividade"></h4>
+        <h4 class="tempoAtividade"></h4>
       </div>
 
       <div>
         <h2>Arquitetura</h2>
-        <h4 id="arquiteturaCaixa"></h4>
+        <h4 class="arquiteturaCaixa"></h4>
       </div>
 
       <div>
@@ -293,12 +293,21 @@
         qtdEtiquetas = data[0].qtdEtiqueta
         arquiteturaMaquina = data[0].arquiteturaMaquina
         imgMaquina = data[0].imgMaquina
+        ramMaquina = data[0].ramMaquina
+        processadorMaquina = data[0].processadorMaquina
+        memoriaMaquina = data[0].memoriaMaquina
+
+        
 
         nomeCaixa.innerHTML = nomeMaquina
         cepCaixa.innerHTML = cepMaquina
         etiquetasCaixa.innerHTML = qtdEtiquetas
         alertaCaixa.innerHTML = qtdAlertas
         arquiteturaCaixa.innerHTML = arquiteturaMaquina
+
+        totalRamCaixa.innerHTML = ramMaquina
+        totalProcessadorCaixa.innerHTML = processadorMaquina
+        totalDiscoCaixa.innerHTML = memoriaMaquina
       })
 
     }).catch(function (resposta) {

@@ -48,7 +48,7 @@ references Maquinas (idMaquina)
 select * from Etiqueta;
 
 create table Historico (
-idHistórico int primary key auto_increment,
+idHistorico int primary key auto_increment,
 usoRamHistorico varchar (50),
 usoProcessadorHistorico varchar (50),
 dataHoraHistorico varchar (22),

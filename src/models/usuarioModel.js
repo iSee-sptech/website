@@ -123,7 +123,7 @@ function exibirCaixas() {
 
 function exibirInfoCaixas() {
   var instrucao = `
-  SELECT nomeMaquina, cepMaquina, count(idHistorico) as "qtdHistorico", count(idEtiqueta) as "qtdEtiqueta", arquiteturaMaquina, imgMaquina FROM Maquinas
+  SELECT nomeMaquina, cepMaquina, count(idHistorico) as "qtdHistorico", count(idEtiqueta) as "qtdEtiqueta", imgMaquina,  ramMaquina, processadorMaquina, memoriaMaquina FROM Maquinas
    LEFT JOIN Historico ON idHistorico = fkMaquinaHistorico LEFT JOIN Etiqueta ON idEtiqueta = fkMaquina;
   `;
   return database.executar(instrucao);
