@@ -96,43 +96,73 @@
     </div>
   </div> 
 
+   <div id="modalRedefinirSenha" class="modalBody">
+    <div class="modalReadPlus">
+        <div class="containerReadPlus">
+            <div class="modalCheck" onclick="modalServicesRegrasSenha()">
+                <img id="modalImg" src="assets/img/iconHelp.svg" alt="check" />
+            </div>
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+        <span id="modalText">
             Redefinir senha! <br>
             <label>Email</label> <br>
             <input placeholder="iSee@example.com"  type="text" id="inputEmailRedefinirSenha"> <br>
 
             <label>Senha</label> <br>
+            <input  placeholder="iSee@example.com"  type="text" id="inputSenhaNova">  <br>
 
-            <!-- <span class="agrupamento_modal_help"> -->
-            <input  placeholder="iSee@example.com"  type="text" id="inputSenha">  
-            <!-- <div class= 'envoltorioIconHelp' onclick="modalServicesRegrasSenha()"> <img src="assets/img/iconHelp.svg"> </div>  -->
-            <!-- </span> --> <br>
            
             <label>Confirmar Senha</label> <br>
-            <input  placeholder="iSee@example.com"  type="text" id="inputConfirmarSenha"> <br>
+            <input  placeholder="iSee@example.com"  type="text" id="inputConfirmarSenhaNova"> <br>
             
             <span class="agrupamento_botoes_modal">
-            <button class="button_modal_type2" onclick="buttonBack()">Fechar</button>
-            <button class="button_modal" onclick="buttonBack()">Redefinir</button>
+            <button class="button_modal_type2" onclick="modalEsqueciSenhaFechar()">Fechar</button>
+            <button class="button_modal" onclick="redefinirSenha()">Redefinir</button>
             </span>
         </span>
     </div>
 
   </div>
 
+  <div id="modalRegrasSenha" class="modalBody">
+    <div class="modalReadPlus">
+      <div class="containerReadPlus" >
+        <div class="modalCheck" style="margin-left: 86%; cursor: pointer;">
+          <span style="cursor: pointer;" onclick="modalServicesRegrasSenhaFechar()">&times;</span>
+        </div>
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+      <span id="modalText">
+        Sua senha deve conter no mínimo <br> <a>8 caracteres<br>1 letra [a-Z]<br>1 número [0-9]<br>1 caracter especial [@|#|$|*]</a>
+      </span>
+    </div>
+  </div> 
+
 </html>
 
 <script>
 
+function redefinirSenha() {
+    // TODO
+
+    // NOME DAS INPUTS: inputConfirmarSenhaNova, inputSenhaNova
+}
+
 function modalServicesRegrasSenha() {
-        modal.style.display = 'block'
+        modalRegrasSenha.style.display = 'block'
         modalImg.src = "assets/img/iconHelp.svg"
         modalText.innerHTML = "Sua senha deve conter no mínimo <br> <a>8 caracteres<br>1 letra [a-Z]<br>1 número [0-9]<br>1 caracter especial [@|#|$|*]</a>";
     }
+function modalServicesRegrasSenhaFechar() {
+    modalRegrasSenha.style.display = 'none'
+    
+}
 
 function modalEsqueciSenha() {
-        modal.style.display = 'block';
-        
-        modalImg.src = "assets/img/iconHelp.svg";
+         modalRedefinirSenha.style.display = 'block';
+         modal.style.zIndex = 10;
+         modalImg.src = "assets/img/iconHelp.svg";
          modalText.innerHTML = 'Redefinir senha! <br>';
          modalText.innerHTML += '<label>Email</label> <br>';
          modalText.innerHTML += '<input placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
@@ -141,6 +171,10 @@ function modalEsqueciSenha() {
          modalText.innerHTML += '<label>Senha</label> <br>';
          modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
     }
+
+function modalEsqueciSenhaFechar() {
+    ModalRedefinirSenha.style.display = 'none';
+}
 
 function buttonBack() {
     modal.style.display = "none";
