@@ -79,6 +79,8 @@ body, html{
 }
 
 .divPesquisa input{
+    margin:0 5px;
+    font-size: 10px;
     width: 300px;
     height: 40px;
     color: #ffffff;
@@ -91,13 +93,14 @@ body, html{
     border: 1px solid #7D2DE2;
     border-radius: 7px;
     padding: 10px;
+    margin-right: 5px;
 }
 
 .divPesquisa button{
     width: 120px;
     height: 42px;
     background-color: #7D2DE2;
-    font-size: calc(0.60em + 1vmin);
+    font-size: calc(0.50em + 1vmin);
     color: #ffffff;
     border-radius: 7px;
 }
