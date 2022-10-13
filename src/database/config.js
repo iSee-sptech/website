@@ -27,7 +27,7 @@ var mySqlConfig = {
 // Senhas dos Databases
 // Andreas: Andreas2014
 // Nogueira: Gabriel@2002
-// Matheus:
+// Mateus: sptech
 // Fabiano:
 // Penalva: sptech
 // Yuri:
