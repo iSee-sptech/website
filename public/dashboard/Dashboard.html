@@ -19,7 +19,7 @@
     <div class="sessao_grafico_principal">
       <div class="container_title">
         <h1>Dashboard</h1>
-        <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, Hoje a eficiência global é de <span
+        <h6>Bom dia <span id="spanBomDia" style="color: #7d2de2;"></span>, Hoje a eficiência global é de <span
             style="color: #7d2de2;">100%</span></h6>
         <div id="imagem_user" class="notificacoes">
           <img src="../assets/img/alert.svg">
@@ -28,7 +28,7 @@
       </div>
 
       <div class="canvas_grafic_bar">
-        <canvas id="myBarChart"  width="466px" height="290px">
+        <canvas id="myBarChart" width="466px" height="290px">
 
         </canvas>
       </div>
@@ -63,12 +63,14 @@
       <div class="container_cards">
 
         <div class="card">
-          <h4 id="titulo_card1">Quantidade de RAM Restante </h4> <!--AQUI FICA O TITULO DO PRIMEIRO CARD -->
+          <h4 id="titulo_card1">Quantidade de RAM Restante </h4>
+          <!--AQUI FICA O TITULO DO PRIMEIRO CARD -->
           <h2> 25 GB </h2>
         </div>
 
         <div class="card">
-          <h4 id="titulo_card2">Quantidade de RAM TOTAL </h4> <!--AQUI FICA O TITULO DO SEGUNDO CARD -->
+          <h4 id="titulo_card2">Quantidade de RAM TOTAL </h4>
+          <!--AQUI FICA O TITULO DO SEGUNDO CARD -->
           <h2> <span id="quantidadeTotalRam">0</span> GB </h2>
         </div>
       </div>
@@ -164,7 +166,7 @@
 
 <script>
 
-function tela_home() {
+  function tela_home() {
     if (sessionStorage.cargoUsuario === "Gerente") {
       window.location = "homeGestor.html";
     } else {
@@ -173,33 +175,33 @@ function tela_home() {
   }
 
   function sair() {
-        sessionStorage.clear();
-        window.location.href = "../login.html";
-    }
+    sessionStorage.clear();
+    window.location.href = "../login.html";
+  }
 
-    function exibirQtdTotalRam() {
+  function exibirQtdTotalRam() {
 
-      fetch(`/usuarios/exibirQuantidadeTotalRam`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }).then((resposta) => {
-        // saldoConta
-        resposta.json().then((data) => {
-          console.log(data);
-          qtdTotalDeRam = data[0].totalRam;
-          console.log(qtdTotalDeRam);
-          quantidadeTotalRam.innerHTML = qtdTotalDeRam
-        })
-
-      }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
+    fetch(`/usuarios/exibirQuantidadeTotalRam`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
       }
+    }).then((resposta) => {
+      // saldoConta
+      resposta.json().then((data) => {
+        console.log(data);
+        qtdTotalDeRam = data[0].totalRam;
+        console.log(qtdTotalDeRam);
+        quantidadeTotalRam.innerHTML = qtdTotalDeRam
+      })
 
-      function imgUsuario() {
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
+  }
+
+  function imgUsuario() {
     var idUsuario = sessionStorage.idUsuario;
     fetch(`/usuarios/imgUsuario/${idUsuario}`, {
       method: "GET",
@@ -232,8 +234,11 @@ function tela_home() {
       });
   }
 
-function dadosCaixa1(){
+  function dadosCaixa1() {
 
-}
-  
+  }
+
+  var nome = sessionStorage.nomeUsuario;
+  spanBomDia.innerHTML = `${nome}`
+
 </script>

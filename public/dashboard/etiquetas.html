@@ -20,7 +20,7 @@
     <div class="sessao_grafico_principal">
       <div class="container_title">
         <h1>Etiquetas</h1>
-        <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, hoje tivemos <span
+        <h6>Bom dia <span id="spanBomDia" style="color: #7d2de2;">Yuri</span>, hoje tivemos <span
             style="color: #7d2de2;">x</span> etiquetas adicionadas </h6>
             <!--Sugestão: Seus caixas apresentam (QtdEtiquetas) de etiquetas mapeadas /ou/
             Seus caixas apresentam uma média de (QtdEtiquetas) mapeadas-->
@@ -189,6 +189,9 @@
         finalizarAguardar();
       });
   }
+
+  var nome = sessionStorage.nomeUsuario;
+  spanBomDia.innerHTML = `${nome}`
 
 </script>
 
