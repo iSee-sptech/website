@@ -221,7 +221,7 @@ nav {
     z-index: 10;
     border-radius: 50%;
     background-color: #7D2DE2;
-    border: 2px #161616 solid;
+    
     opacity: 0;
     transform: translateY(100px);
     transition: all 0.5s ease;
