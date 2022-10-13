@@ -40,6 +40,10 @@ router.post("/updatePerfil", function (req, res) {
   usuarioController.updatePerfil(req, res);
 });
 
+router.post("/atualizarSenha", function (req, res) {
+  usuarioController.atualizarSenha(req, res);
+});
+
 router.get("/listarPerfil/:id", function (req, res) {
   usuarioController.listarPerfil(req, res);
 });

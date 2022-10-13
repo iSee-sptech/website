@@ -118,7 +118,7 @@
             
             <span class="agrupamento_botoes_modal">
             <button class="button_modal_type2" onclick="modalEsqueciSenhaFechar()">Fechar</button>
-            <button class="button_modal" onclick="redefinirSenha()">Redefinir</button>
+            <button class="button_modal" onclick="atualizarSenha()">Redefinir</button>
             </span>
         </span>
     </div>
@@ -139,15 +139,11 @@
     </div>
   </div> 
 
+
+
 </html>
 
 <script>
-
-function redefinirSenha() {
-    // TODO
-
-    // NOME DAS INPUTS: inputConfirmarSenhaNova, inputSenhaNova
-}
 
 function modalServicesRegrasSenha() {
         modalRegrasSenha.style.display = 'block'
@@ -164,12 +160,18 @@ function modalEsqueciSenha() {
          modal.style.zIndex = 10;
          modalImg.src = "assets/img/iconHelp.svg";
          modalText.innerHTML = 'Redefinir senha! <br>';
-         modalText.innerHTML += '<label>Email</label> <br>';
-         modalText.innerHTML += '<input placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
-         modalText.innerHTML += '<label>Senha</label> <br>';
-         modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
-         modalText.innerHTML += '<label>Senha</label> <br>';
-         modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+         
+        modal.style.display = "none";
+        
+        if (inputSenhaNova != inputConfirmarSenhaNova) {
+
+        }
+        //  modalText.innerHTML += '<label>Email</label> <br>';
+        //  modalText.innerHTML += '<input placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+        //  modalText.innerHTML += '<label>Senha</label> <br>';
+        //  modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
+        //  modalText.innerHTML += '<label>Senha</label> <br>';
+        //  modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
     }
 
 function modalEsqueciSenhaFechar() {
@@ -294,5 +296,46 @@ function buttonBack() {
 
         return false;
     }
+
+    function atualizarSenha() {
+    inputEmail = inputEmailRedefinirSenha.value;
+    inputSenha = inputSenhaNova.value;
+    inputConfirmarSenha = inputConfirmarSenhaNova.value
+    if (
+      inputSenha != inputConfirmarSenha
+    ) {
+        setTimeout(buttonBack, 2000)
+        modal.style.display = "block";
+        modalImg.src = "assets/img/iconDanger.svg";
+        modalText.innerHTML =
+            "Preencha todos os campos!";
+            return false;
+    } else {
+      fetch("/usuarios/atualizarSenha", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          emailServer: inputEmail,
+          senhaServer: inputSenha,
+        }),
+      }).then((response) => {
+        response.json().then((data) => {
+          const msg = data.mensagem;
+
+          console.log(msg);
+          if (msg == "success") {
+            console.log("sucesso ao tentar atualizar os dados do Perfil!");
+            modal.style.display = "block";
+            modalImg.src = "assets/img/iconCheck.svg";
+            modalText.innerHTML = "Alterado com sucesso!";
+          } else {
+            console.log("Houve um erro ao tentar atualizar os dados do Perfil");
+          }
+        });
+      });
+    }
+  }
 
 </script>
