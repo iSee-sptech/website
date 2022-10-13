@@ -5,15 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="css/styleLogin.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleModal.css">
-    <link
-      rel="shortcut icon"
-      href="assets/img/iconLogo.ico"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="assets/img/iconLogo.ico" type="image/x-icon" />
     <title>Login - ISee</title>
 </head>
 
@@ -54,8 +50,8 @@
                 </div>
                 <div class="input_login">
                     <label class="h4" for="inputEmail">E-mail</label>
-                    <input  placeholder="iSee@example.com"  type="text" id="inputEmail">
-                    <label class="h4"  for="inputPassword">Senha</label>
+                    <input placeholder="iSee@example.com" type="text" id="inputEmail">
+                    <label class="h4" for="inputPassword">Senha</label>
                     <input placeholder="Senha" type="password" id="inputPassword">
                 </div>
                 <div class="opcoes">
@@ -86,58 +82,59 @@
 
 <div id="modal" class="modalBody">
     <div class="modalReadPlus">
-      <div class="containerReadPlus">
-        <div class="modalCheck">
-          <img id="modalImg" src="" alt="check" />
+        <div class="containerReadPlus">
+            <div class="modalCheck">
+                <img id="modalImg" src="" alt="check" />
+            </div>
+            <button onclick="buttonBack()" class="modalBack">&times;</button>
         </div>
-        <button onclick="buttonBack()" class="modalBack">&times;</button>
-      </div>
-      <span id="modalText"></span>
+        <span id="modalText"></span>
     </div>
-  </div> 
+</div>
 
-   <div id="modalRedefinirSenha" class="modalBody">
+<div id="modalRedefinirSenha" class="modalBody">
     <div class="modalReadPlus">
         <div class="containerReadPlus">
             <div class="modalCheck" onclick="modalServicesRegrasSenha()">
                 <img id="modalImg" src="assets/img/iconHelp.svg" alt="check" />
             </div>
-        <button onclick="buttonBack()" class="modalBack">&times;</button>
-    </div>
+            <button onclick="buttonBack()" class="modalBack">&times;</button>
+        </div>
         <span id="modalText">
             Redefinir senha! <br>
             <label>Email</label> <br>
-            <input placeholder="iSee@example.com"  type="text" id="inputEmailRedefinirSenha"> <br>
+            <input placeholder="iSee@example.com" type="text" id="inputEmailRedefinirSenha"> <br>
 
             <label>Senha</label> <br>
-            <input  placeholder="iSee@example.com"  type="text" id="inputSenhaNova">  <br>
+            <input placeholder="iSee@example.com" type="text" id="inputSenhaNova"> <br>
 
-           
+
             <label>Confirmar Senha</label> <br>
-            <input  placeholder="iSee@example.com"  type="text" id="inputConfirmarSenhaNova"> <br>
-            
+            <input placeholder="iSee@example.com" type="text" id="inputConfirmarSenhaNova"> <br>
+
             <span class="agrupamento_botoes_modal">
-            <button class="button_modal_type2" onclick="modalEsqueciSenhaFechar()">Fechar</button>
-            <button class="button_modal" onclick="atualizarSenha()">Redefinir</button>
+                <button class="button_modal_type2"  onclick="modalEsqueciSenhaFechar()">Fechar</button>
+                <button class="button_modal" type="button" onclick="atualizarSenha()">Redefinir</button>
             </span>
         </span>
     </div>
 
-  </div>
+</div>
 
-  <div id="modalRegrasSenha" class="modalBody">
+<div id="modalRegrasSenha" class="modalBody">
     <div class="modalReadPlus">
-      <div class="containerReadPlus" >
-        <div class="modalCheck" style="margin-left: 86%; cursor: pointer;">
-          <span style="cursor: pointer;" onclick="modalServicesRegrasSenhaFechar()">&times;</span>
+        <div class="containerReadPlus">
+            <div class="modalCheck" style="margin-left: 86%; cursor: pointer;">
+                <span style="cursor: pointer;" onclick="modalServicesRegrasSenhaFechar()">&times;</span>
+            </div>
+            <button onclick="buttonBack()"  class="modalBack">&times;</button>
         </div>
-        <button onclick="buttonBack()" class="modalBack">&times;</button>
-      </div>
-      <span id="modalText">
-        Sua senha deve conter no mínimo <br> <a>8 caracteres<br>1 letra [a-Z]<br>1 número [0-9]<br>1 caracter especial [@|#|$|*]</a>
-      </span>
+        <span id="modalText">
+            Sua senha deve conter no mínimo <br> <a>8 caracteres<br>1 letra [a-Z]<br>1 número [0-9]<br>1 caracter
+                especial [@|#|$|*]</a>
+        </span>
     </div>
-  </div> 
+</div>
 
 
 
@@ -145,27 +142,23 @@
 
 <script>
 
-function modalServicesRegrasSenha() {
+    function modalServicesRegrasSenha() {
         modalRegrasSenha.style.display = 'block'
         modalImg.src = "assets/img/iconHelp.svg"
         modalText.innerHTML = "Sua senha deve conter no mínimo <br> <a>8 caracteres<br>1 letra [a-Z]<br>1 número [0-9]<br>1 caracter especial [@|#|$|*]</a>";
     }
-function modalServicesRegrasSenhaFechar() {
-    modalRegrasSenha.style.display = 'none'
-    
-}
+    function modalServicesRegrasSenhaFechar() {
+        modalRegrasSenha.style.display = 'none'
 
-function modalEsqueciSenha() {
-         modalRedefinirSenha.style.display = 'block';
-         modal.style.zIndex = 10;
-         modalImg.src = "assets/img/iconHelp.svg";
-         modalText.innerHTML = 'Redefinir senha! <br>';
-         
+    }
+
+    function modalEsqueciSenha() {
+        modalRedefinirSenha.style.display = 'block';
+        modal.style.zIndex = 10;
+        modalImg.src = "assets/img/iconHelp.svg";
+        modalText.innerHTML = 'Redefinir senha! <br>';
         modal.style.display = "none";
-        
-        if (inputSenhaNova != inputConfirmarSenhaNova) {
-            
-        }
+
         //  modalText.innerHTML += '<label>Email</label> <br>';
         //  modalText.innerHTML += '<input placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
         //  modalText.innerHTML += '<label>Senha</label> <br>';
@@ -174,13 +167,13 @@ function modalEsqueciSenha() {
         //  modalText.innerHTML += '<input  placeholder="iSee@example.com"  type="text" id="inputEmail"> <br>';
     }
 
-function modalEsqueciSenhaFechar() {
-    ModalRedefinirSenha.style.display = 'none';
-}
+    function modalEsqueciSenhaFechar() {
+        ModalRedefinirSenha.style.display = 'none';
+    }
 
-function buttonBack() {
-    modal.style.display = "none";
-  }
+    function buttonBack() {
+        modal.style.display = "none";
+    }
 
     i = 0;
     function img() {
@@ -205,7 +198,7 @@ function buttonBack() {
             buttonCarrossel2.style.borderColor = "#000"
             buttonCarrossel3.style.borderColor = "#000"
             i = 0
-            console.log(i) 
+            console.log(i)
         }
 
     }
@@ -222,13 +215,13 @@ function buttonBack() {
         var senhaVar = inputPassword.value;
 
         if (emailVar == "" || senhaVar == "") {
-            
+
             setTimeout(buttonBack, 2000)
             console.log("Preencha todos os campos!");
             modal.style.display = "block";
             modalImg.src = "assets/img/iconDanger.svg";
             modalText.innerHTML =
-            "Preencha todos os campos!";
+                "Preencha todos os campos!";
             return false;
         }
         else {
@@ -252,8 +245,8 @@ function buttonBack() {
 
             if (resposta.ok) {
                 console.log(resposta);
-               console.log("Login feito com sucesso!");
-               modal.style.display = "block";
+                console.log("Login feito com sucesso!");
+                modal.style.display = "block";
                 modalImg.src = "assets/img/iconCheck.svg";
                 modalText.innerHTML = "Login realizado! Redirecionando...";
 
@@ -268,9 +261,9 @@ function buttonBack() {
                     sessionStorage.cargoUsuario = json.cargoUsuario;
 
                     setTimeout(function () {
-                        if ((sessionStorage.cargoUsuario) === "Gerente"){
+                        if ((sessionStorage.cargoUsuario) === "Gerente") {
                             window.location = "dashboard/homeGestor.html";
-                        }else{
+                        } else {
                             window.location = "dashboard/homeFuncionario.html";
                         }
                     }, 1000); // apenas para exibir o loading
@@ -278,11 +271,11 @@ function buttonBack() {
                 });
 
             } else {
-            setTimeout(buttonBack, 2000)
-            modal.style.display = "block";
-            modalImg.src = "assets/img/iconDanger.svg";
-            modalText.innerHTML =
-            "Email e/ou senha incorretos!";
+                setTimeout(buttonBack, 2000)
+                modal.style.display = "block";
+                modalImg.src = "assets/img/iconDanger.svg";
+                modalText.innerHTML =
+                    "Email e/ou senha incorretos!";
 
                 resposta.text().then(texto => {
                     //console.error(texto);
@@ -298,44 +291,44 @@ function buttonBack() {
     }
 
     function atualizarSenha() {
-    inputEmail = inputEmailRedefinirSenha.value;
-    inputSenha = inputSenhaNova.value;
-    inputConfirmarSenha = inputConfirmarSenhaNova.value
-    if (
-      inputSenha != inputConfirmarSenha
-    ) {
-        setTimeout(buttonBack, 2000)
-        modal.style.display = "block";
-        modalImg.src = "assets/img/iconDanger.svg";
-        modalText.innerHTML =
-            "Preencha todos os campos!";
-            return false;
-    } else {
-      fetch("/usuarios/atualizarSenha", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          emailServer: inputEmail,
-          senhaServer: inputSenha,
-        }),
-      }).then((response) => {
-        response.json().then((data) => {
-          const msg = data.mensagem;
-
-          console.log(msg);
-          if (msg == "success") {
-            console.log("sucesso ao tentar atualizar os dados do Perfil!");
+        inputEmail = inputEmailRedefinirSenha.value;
+        inputSenha = inputSenhaNova.value;
+        inputConfirmarSenha = inputConfirmarSenhaNova.value
+        if (
+            inputSenha != inputConfirmarSenha
+        ) {
+            setTimeout(buttonBack, 2000)
             modal.style.display = "block";
-            modalImg.src = "assets/img/iconCheck.svg";
-            modalText.innerHTML = "Alterado com sucesso!";
-          } else {
-            console.log("Houve um erro ao tentar atualizar os dados do Perfil");
-          }
-        });
-      });
+            modalImg.src = "assets/img/iconDanger.svg";
+            modalText.innerHTML =
+                "Preencha todos os campos!";
+            return false;
+        } else {
+            fetch("/usuarios/atualizarSenha", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    emailServer: inputEmail,
+                    senhaServer: inputSenha,
+                }),
+            }).then((response) => {
+                response.json().then((data) => {
+                    const msg = data.mensagem;
+
+                    console.log(msg);
+                    if (msg == "success") {
+                        console.log("sucesso ao tentar atualizar os dados do Perfil!");
+                        modal.style.display = "block";
+                        modalImg.src = "assets/img/iconCheck.svg";
+                        modalText.innerHTML = "Alterado com sucesso!";
+                    } else {
+                        console.log("Houve um erro ao tentar atualizar os dados do Perfil");
+                    }
+                });
+            });
+        }
     }
-  }
 
 </script>
