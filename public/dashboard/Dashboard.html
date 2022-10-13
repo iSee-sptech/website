@@ -19,8 +19,7 @@
     <div class="sessao_grafico_principal">
       <div class="container_title">
         <h1>Dashboard</h1>
-        <h6>Bom dia <span id="spanBomDia" style="color: #7d2de2;"></span>, Hoje a eficiência global é de <span
-            style="color: #7d2de2;">100%</span></h6>
+        <h6 id="bem_vindo">Bom dia</h6>
         <div id="imagem_user" class="notificacoes">
           <img src="../assets/img/alert.svg">
           <img src="../assets/img/user.svg">
@@ -166,6 +165,22 @@
 
 <script>
 
+  var dataAtual = new Date();
+  var hora = dataAtual.getHours();
+  var nome = sessionStorage.nomeUsuario;
+  var bemVindo = document.getElementById("bem_vindo");
+  var frase;
+
+  if (hora >= 6 && hora < 13) {
+    frase = `Bom dia`;
+  } else if (hora >= 13 && hora < 18) {
+    frase = `Boa tarde`;
+  } else {
+    frase = `Boa noite`;
+  }
+
+  bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje a eficiência global é de`
+
   function tela_home() {
     if (sessionStorage.cargoUsuario === "Gerente") {
       window.location = "homeGestor.html";
@@ -237,8 +252,5 @@
   function dadosCaixa1() {
 
   }
-
-  var nome = sessionStorage.nomeUsuario;
-  spanBomDia.innerHTML = `${nome}`
 
 </script>

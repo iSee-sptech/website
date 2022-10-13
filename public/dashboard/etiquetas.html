@@ -20,8 +20,7 @@
     <div class="sessao_grafico_principal">
       <div class="container_title">
         <h1>Etiquetas</h1>
-        <h6>Bom dia <span id="spanBomDia" style="color: #7d2de2;">Yuri</span>, hoje tivemos <span
-            style="color: #7d2de2;">x</span> etiquetas adicionadas </h6>
+        <h6 id="bem_vindo">Bom dia</h6>
             <!--Sugestão: Seus caixas apresentam (QtdEtiquetas) de etiquetas mapeadas /ou/
             Seus caixas apresentam uma média de (QtdEtiquetas) mapeadas-->
         <div id="imagem_user" class="notificacoes">
@@ -143,6 +142,22 @@
 <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
 
 <script>
+
+var dataAtual = new Date();
+  var hora = dataAtual.getHours();
+  var nome = sessionStorage.nomeUsuario;
+  var bemVindo = document.getElementById("bem_vindo");
+  var frase;
+
+  if (hora >= 6 && hora < 13) {
+    frase = `Bom dia`;
+  } else if (hora >= 13 && hora < 18) {
+    frase = `Boa tarde`;
+  } else {
+    frase = `Boa noite`;
+  }
+
+  bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje tivemos <span style="color:#7D2DE2;"> x</span> etiquetas adicionadas `
       
     function sair() {
         sessionStorage.clear();
@@ -189,9 +204,6 @@
         finalizarAguardar();
       });
   }
-
-  var nome = sessionStorage.nomeUsuario;
-  spanBomDia.innerHTML = `${nome}`
 
 </script>
 
