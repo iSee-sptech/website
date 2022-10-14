@@ -382,26 +382,26 @@
 
 <script>
 
-function exibirQtdCaixas() {
+    function exibirQtdCaixas() {
 
-fetch(`/usuarios/exibirCaixas`, {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json"
+        fetch(`/usuarios/exibirCaixas`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+            // saldoConta
+            resposta.json().then((data) => {
+                console.log(data);
+                qtdCaixa = data[0].qtdCaixa
+                quantidadeCaixas.innerHTML = qtdCaixa
+            })
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
     }
-}).then((resposta) => {
-    // saldoConta
-    resposta.json().then((data) => {
-        console.log(data);
-        qtdCaixa = data[0].qtdCaixa
-        quantidadeCaixas.innerHTML = qtdCaixa
-    })
-
-}).catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-    finalizarAguardar();
-});
-}
 
     var dataAtual = new Date();
     var hora = dataAtual.getHours();

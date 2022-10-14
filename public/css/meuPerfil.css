@@ -324,6 +324,9 @@ textarea {
     text-align: center;
 }
 
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
 
 .navbar_notificacao img{
     width: 1.5vw;
