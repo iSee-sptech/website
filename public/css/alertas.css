@@ -114,6 +114,7 @@ h6 {
     flex-direction: column;
 }
 
+
 .container_tipos_alertas .card_alerta {
 
     display: flex;
@@ -285,4 +286,13 @@ h6 {
     flex-direction: column;
     width: 100%;
     justify-content: space-between;
+}
+
+
+/*EFEITOS ----------------------------------------- */
+
+.card_alerta:hover {
+    transition: 0.5s;
+    background: #c8c8c8;
+    cursor: pointer;
 }

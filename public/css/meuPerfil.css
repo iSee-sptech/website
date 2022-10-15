@@ -343,5 +343,7 @@ textarea {
     align-items: center;
 }
 
-
+#nome_usuario {
+    margin-bottom: 2vh;
+}
  /* ^^TROCAR POR UMA IMAGEM DO BANCO^^*/

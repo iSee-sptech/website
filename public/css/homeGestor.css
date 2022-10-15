@@ -159,6 +159,8 @@ h4 {
   width: 80px;
 }
 
+
+
 .btn_add {
   width: 9vw;
   height: 19vh;
@@ -255,7 +257,8 @@ h4 {
 }
 
 .btn_cadastrar_estag {
-  width: 16vw;
+  width: 18vw;
+  padding: 5px;
   height: 12vh;
   background-color: #ffffff;
   border-radius: 16px;
@@ -267,6 +270,11 @@ h4 {
 
 .btn_cadastrar_estag{
   cursor: pointer;
+}
+
+.btn_cadastrar_estag h3{
+  font-size: 12px;
+  font-weight: 600;
 }
 
 #mensagemLembreteId{

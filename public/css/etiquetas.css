@@ -205,3 +205,10 @@ h6 {
 .card_etiqueta h2 {
     color: #000000;
 }
+
+
+.card_etiqueta:hover {
+    transition: 0.5s;
+    background: #c8c8c8;
+    cursor: pointer;
+}
