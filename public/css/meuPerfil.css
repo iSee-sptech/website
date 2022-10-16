@@ -347,3 +347,13 @@ textarea {
     margin-bottom: 2vh;
 }
  /* ^^TROCAR POR UMA IMAGEM DO BANCO^^*/
+
+.buttonContact:hover {
+    background-color: #FFFFFF;
+    color: #7D2DE2;
+    cursor: pointer;
+}
+
+.effectlist:hover {
+    color: #7D2DE2;
+}

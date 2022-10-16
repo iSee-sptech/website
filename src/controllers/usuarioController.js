@@ -63,38 +63,22 @@ function entrar(req, res) {
 }
 
 function atualizarSenha(req, res) {
-  var email = req.body.emailServer;
-  var senha = req.body.senhaServer;
+  const emailRedefinir = req.body.emailServer2;
+  const senhaRedefinir = req.body.senhaServer2;
 
-  if (email == undefined) {
-    res.status(400).send("Seu email está undefined!");
-  } else if (senha == undefined) {
-    res.status(400).send("Sua senha está indefinida!");
-  } else {
-    usuarioModel
-      .atualizarSenha(email, senha)
-      .then(function (resultado) {
-        console.log(`\nResultados encontrados: ${resultado.length}`);
-        console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+  usuarioModel.atualizarSenha(emailRedefinir, senhaRedefinir).then((response) => {
+    const tamanho = response.affectedRows;
 
-        if (resultado.length == 1) {
-          console.log(resultado);
-          res.json(resultado[0]);
-        } else if (resultado.length == 0) {
-          res.status(403).send("Email e/ou senha inválido(s)");
-        } else {
-          res.status(403).send("Mais de um usuário com o mesmo login e senha!");
-        }
-      })
-      .catch(function (erro) {
-        console.log(erro);
-        console.log(
-          "\nHouve um erro ao realizar o login! Erro: ",
-          erro.sqlMessage
-        );
-        res.status(500).json(erro.sqlMessage);
+    if (tamanho > 0) {
+      res.json({
+        mensagem: "success",
       });
-  }
+    } else {
+      res.json({
+        mensagem: "error",
+      });
+    }
+  });
 }
 
 function cadastrar(req, res) {
@@ -118,34 +102,33 @@ function cadastrar(req, res) {
     res.status(400).send("Sua senha está undefined!");
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    usuarioModel.cadastrar(
-      nome,
-      email,
-      endereco,
-      dataNasc,
-      cpf,
-      celular,
-      senha,
-      numeroEndereco,
-      complementoEndereco,
-    )
+    usuarioModel
+      .cadastrar(
+        nome,
+        email,
+        endereco,
+        dataNasc,
+        cpf,
+        celular,
+        senha,
+        numeroEndereco,
+        complementoEndereco
+      )
       .then(function (resultado) {
         const tamanho = resultado.affectedRows;
 
         if (tamanho > 0) {
-
           usuarioModel.listarUser(cpf).then((response) => {
             const idUser = response[0].idUsuario;
 
             usuarioModel.lembreteDefault(idUser).then((resEffect) => {
-
               console.log(resEffect);
-              res.json(resEffect)
-            })
-          })
+              res.json(resEffect);
+            });
+          });
         }
-      }
-      ).catch(function (erro) {
+      })
+      .catch(function (erro) {
         console.log(erro);
         console.log(
           "\nHouve um erro ao realizar o cadastro! Erro: ",
@@ -155,9 +138,6 @@ function cadastrar(req, res) {
       });
   }
 }
-
-
-
 
 function cadastrarFunc(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -196,19 +176,17 @@ function cadastrarFunc(req, res) {
         const tamanho = resultado.affectedRows;
 
         if (tamanho > 0) {
-
           usuarioModel.listarUser(cpf).then((response) => {
             const idUser = response[0].idUsuario;
 
             usuarioModel.lembreteDefault(idUser).then((resEffect) => {
-
               console.log(resEffect);
-              res.json(resEffect)
-            })
-          })
+              res.json(resEffect);
+            });
+          });
         }
-      }
-      ).catch(function (erro) {
+      })
+      .catch(function (erro) {
         console.log(erro);
         console.log(
           "\nHouve um erro ao realizar o cadastro! Erro: ",
@@ -225,6 +203,10 @@ function cadastrarCaixa(req, res) {
   var nomeCaixa = req.body.nomeCaixaServer;
   var enderecoCaixa = req.body.enderecoCaixaServer;
   var imagemCaixa = req.body.imagemCaixaServer;
+  var numeroSerial = req.body.numeroSerialServer;
+  var numero = req.body.numeroEnderecoServer;
+  var complemento = req.body.complementoEnderecoServer;
+  var pontoReferencia = req.body.pontoReferenciaEnderecoServer;
 
   // Faça as validações dos valores
   if (nomeCaixa == undefined) {
@@ -236,7 +218,16 @@ function cadastrarCaixa(req, res) {
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
-      .cadastrarCaixa(idCaixa, nomeCaixa, enderecoCaixa, imagemCaixa)
+      .cadastrarCaixa(
+        idCaixa,
+        nomeCaixa,
+        enderecoCaixa,
+        imagemCaixa,
+        numeroSerial,
+        numero,
+        complemento,
+        pontoReferencia
+      )
       .then(function (resultado) {
         res.json(resultado);
       })
@@ -285,20 +276,24 @@ function updatePerfil(req, res) {
   var telefone = req.body.telefoneServer;
   var email = req.body.emailServer;
   var cep = req.body.cepServer;
+  var numero = req.body.numeroEnderecoServer;
+  var complemento = req.body.complementoServer;
 
-  usuarioModel.updatePerfil(id, nome, telefone, email, cep).then((response) => {
-    const tamanho = response.affectedRows;
+  usuarioModel
+    .updatePerfil(id, nome, telefone, email, cep, numero, complemento)
+    .then((response) => {
+      const tamanho = response.affectedRows;
 
-    if (tamanho > 0) {
-      res.json({
-        mensagem: "success",
-      });
-    } else {
-      res.json({
-        mensagem: "error",
-      });
-    }
-  });
+      if (tamanho > 0) {
+        res.json({
+          mensagem: "success",
+        });
+      } else {
+        res.json({
+          mensagem: "error",
+        });
+      }
+    });
 }
 
 function listarPerfil(req, res) {
@@ -388,9 +383,9 @@ function exibirQuantidadeTotalRam(req, res) {
 }
 
 function exibirCaixas(req, res) {
-  const usuarioIdentificador = req.params.id;
+  //const usuarioIdentificador = req.params.id;
   usuarioModel
-    .exibirCaixas(usuarioIdentificador)
+    .exibirCaixas()
     .then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -408,10 +403,9 @@ function exibirCaixas(req, res) {
     });
 }
 
-function exibirInfoCaixas(req, res) {
-  const usuarioIdentificador = req.params.id;
-  usuarioModel
-    .exibirInfoCaixas(usuarioIdentificador)
+function listarCaixas(req, res) {
+ // const usuarioIdentificador = req.params.id;
+  usuarioModel.listarCaixas()
     .then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -469,6 +463,26 @@ function atualizarImg(req, res) {
   });
 }
 
+function pesquisarCaixa(req, res) {
+
+  const caixa = req.params.idCaixa;
+
+  usuarioModel.pesquisarCaixa(caixa)
+      .then((resultado) => {
+          if (resultado.length > 0) {
+              res.status(200).json(resultado);
+          } else {
+              res.status(204).send("Nenhum resultado encontrado!")
+          }
+      }).catch(
+          function (erro) {
+              console.log(erro);
+              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+              res.status(500).json(erro.sqlMessage);
+          }
+      );
+}
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -484,7 +498,8 @@ module.exports = {
   exibirFuncionarios,
   exibirQuantidadeTotalRam,
   exibirCaixas,
-  exibirInfoCaixas,
+  listarCaixas,
   imgUsuario,
   atualizarImg,
+  pesquisarCaixa,
 };

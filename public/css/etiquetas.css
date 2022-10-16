@@ -227,3 +227,26 @@ h6 {
     background: #c8c8c8;
     cursor: pointer;
 }
+
+.effectlist:hover {
+    color: #7D2DE2;
+  }
+
+.modalBody {
+    display: none;
+}
+
+.corpoModalEtiqueta {
+    margin: 1vh 0;
+}
+
+.corpoModalEtiqueta p {
+    font-size: 14px;
+    color: #000000;
+    font-weight: 300;
+}
+
+.modalCheck {
+    display: flex;
+    justify-content: end;
+}

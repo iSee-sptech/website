@@ -97,8 +97,8 @@ body, html{
 }
 
 .filtroCaixas button:hover {
-    transition: 0.5s;
-    background: #c8c8c8;
+    background-color: #7D2DE2;
+    color: #FFFFFF;
     cursor: pointer;
 }
 
@@ -197,3 +197,7 @@ main{
     width: 20vw;
 
 }
+
+.effectlist:hover {
+    color: #7D2DE2;
+  }

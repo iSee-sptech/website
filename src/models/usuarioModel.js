@@ -24,14 +24,10 @@ function entrar(email, senha) {
   return database.executar(instrucao);
 }
 
-function atualizarSenha(email, senha) {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ",
-    email,
-    senha
-  );
+function atualizarSenha(emailRedefinir, senhaRedefinir) {
+
   var instrucao = `
-    UPDATE Usuarios SET senhaUsuario = '${senha}' WHERE emailUsuario = '${email}';
+    UPDATE Usuarios SET senhaUsuario = '${senhaRedefinir}' WHERE emailUsuario = '${emailRedefinir}';
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -47,7 +43,7 @@ function cadastrar(
   celular,
   senha,
   numeroEndereco,
-  complementoEndereco,
+  complementoEndereco
 ) {
   var instrucao = `
   insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, numeroLocalUsuario, complementoLocalUsuario, cargoUsuario) values ('${nome}', '${email}', '${endereco}', '${dataNasc}', '${cpf}', '${celular}', '${senha}','${numeroEndereco}','${complementoEndereco}','Gerente');
@@ -72,9 +68,18 @@ function cadastrarFunc(
   return database.executar(instrucao);
 }
 
-function cadastrarCaixa(idCaixa, nomeCaixa, enderecoCaixa, imagemCaixa) {
+function cadastrarCaixa(
+  idCaixa,
+  nomeCaixa,
+  enderecoCaixa,
+  imagemCaixa,
+  numeroSerial,
+  numero,
+  complemento,
+  pontoReferencia
+) {
   var instrucao = `
-  insert into Maquinas (idMaquina, nomeMaquina, cepMaquina, imgMaquina) values ('${idCaixa}', '${nomeCaixa}', '${enderecoCaixa}', '${imagemCaixa}');
+  update Maquinas set idMaquina = '${idCaixa}', nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}', imgMaquina = '${imagemCaixa}', serialMaquina = '${numeroSerial}', numeroMaquina = '${numero}',complementoMaquina = '${complemento}', pontoReferenciaMaquina = '${pontoReferencia}' where idMaquina = '${idCaixa}';
   `;
   return database.executar(instrucao);
 }
@@ -93,15 +98,15 @@ function mostrarLembrete(idUsuario) {
   return database.executar(instrucao);
 }
 
-function updatePerfil(id, nome, telefone, email, cep) {
+function updatePerfil(id, nome, telefone, email, cep, numero, complemento) {
   const query = `UPDATE usuarios SET nomeUsuario = '${nome}', telefoneUsuario = '${telefone}',
-  emailUsuario = '${email}', cepUsuario = '${cep}' WHERE idUsuario = ${id} `;
+  emailUsuario = '${email}', cepUsuario = '${cep}', numeroLocalUsuario = '${numero}', complementoLocalUsuario = '${complemento}' WHERE idUsuario = ${id} `;
   return database.executar(query);
 }
 
 function listarPerfil(idUser) {
   var instrucao = `
-  SELECT nomeUsuario, telefoneUsuario, emailUsuario, cepUsuario FROM usuarios WHERE idUsuario = ${idUser};
+  SELECT nomeUsuario, cpfUsuario, telefoneUsuario, emailUsuario, cepUsuario, numeroLocalUsuario, complementoLocalUsuario FROM usuarios WHERE idUsuario = ${idUser};
   `;
   return database.executar(instrucao);
 }
@@ -134,10 +139,10 @@ function exibirCaixas() {
   return database.executar(instrucao);
 }
 
-function exibirInfoCaixas() {
+function listarCaixas() {
   var instrucao = `
-  SELECT nomeMaquina, cepMaquina, count(idHistorico) as "qtdHistorico", count(idEtiqueta) as "qtdEtiqueta", imgMaquina,  ramMaquina, processadorMaquina, memoriaMaquina FROM Maquinas
-   LEFT JOIN Historico ON idHistorico = fkMaquinaHistorico LEFT JOIN Etiqueta ON idEtiqueta = fkMaquina;
+  SELECT idMaquina, nomeMaquina, cepMaquina, ramMaquina, discoMaquina, processadorMaquina, tempoDeAtividade, sistemaOperacionalMaquina,
+  fabricanteMaquina, arquiteturaMaquina, imgMaquina  FROM Maquinas;
   `;
   return database.executar(instrucao);
 }
@@ -168,6 +173,12 @@ function lembreteDefault(idUser) {
   return database.executar(query);
 }
 
+function pesquisarCaixa(caixa) {
+  var instrucao = `
+  select * from maquinas where idMaquina = ${caixa};
+  `;
+  return database.executar(instrucao);
+}
 
 module.exports = {
   entrar,
@@ -184,9 +195,10 @@ module.exports = {
   exibirFuncionarios,
   exibirQuantidadeTotalRam,
   exibirCaixas,
-  exibirInfoCaixas,
+  listarCaixas,
   imgUsuario,
   atualizarImg,
   listarUser,
   lembreteDefault,
+  pesquisarCaixa,
 };
