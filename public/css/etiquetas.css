@@ -213,6 +213,10 @@ h6 {
     cursor: pointer;
 }
 
+.effectlist:hover {
+    color: #7D2DE2;
+  }
+
 .modalBody {
     display: none;
 }
