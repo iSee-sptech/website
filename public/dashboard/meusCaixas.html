@@ -15,8 +15,7 @@
   <div class="divTitulo">
     <div class="containerTitulo">
       <h1>Meus Caixas</h1>
-      <h6>Bom dia <span style="color: #7d2de2;">Yuri</span>, Total de Caixas <span style="color: #7d2de2;"
-          id="quantidadeCaixas"></span></h6>
+      <h6 id="bem_vindo"></h6>
       <div class="notificacoes">
         <img src="../assets/img/alert.svg">
         <img src="../assets/img/user.svg">
@@ -27,7 +26,7 @@
       <div>
         <h3>Pesquisar Caixa</h3>
         <input type="text">
-        <button>Pesquisar</button>
+        <button onclick="pesquisarCaixa()" class="button1">Pesquisar</button>
       </div>
     </div>
   </div>
@@ -114,7 +113,7 @@
       </div>
     </div>
 
-<!-- CAIXA 2 -->
+    <!-- CAIXA 2 -->
     <div id="caixa">
       <div>
         <h2>Status</h2>
@@ -206,32 +205,32 @@
 
       <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
         <img src="../assets/img/etiqueta_icon.svg" />
-        <h2>Etiquetas</h2>
+        <h2 class="effectlist">Etiquetas</h2>
       </div>
 
       <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
         <img src="../assets/img/historico_icon.svg" />
-        <h2>Histórico</h2>
+        <h2 class="effectlist">Histórico</h2>
       </div>
 
       <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
         <img src="../assets/img/dashboard_icon.svg" />
-        <h2>Dashboard</h2>
+        <h2 class="effectlist">Dashboard</h2>
       </div>
 
       <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
         <img src="../assets/img/alertas_icon.png" />
-        <h2>Alertas</h2>
+        <h2 class="effectlist">Alertas</h2>
       </div>
 
       <div class="btn_perfil">
         <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-        <h2>Perfil</h2>
+        <h2 class="effectlist">Perfil</h2>
       </div>
 
       <div class="btn_sair">
         <img onclick="sair()" src="../assets/img/sair_icon.png" />
-        <h2>Sair</h2>
+        <h2 class="effectlist">Sair</h2>
       </div>
     </div>
   </div>
@@ -242,6 +241,24 @@
 
 
 <script>
+
+  var dataAtual = new Date();
+  var hora = dataAtual.getHours();
+  var nome = sessionStorage.nomeUsuario;
+  var bemVindo = document.getElementById("bem_vindo");
+  var frase;
+
+  if (hora >= 6 && hora < 13) {
+    frase = `Bom dia`;
+  } else if (hora >= 13 && hora < 18) {
+    frase = `Boa tarde`;
+  } else {
+    frase = `Boa noite`;
+  }
+
+  bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de caixas <span style="color:#7D2DE2;">x</span>`
+  //Bom dia Yuri, Total de Caixas
+
   function sair() {
     sessionStorage.clear();
     window.location.href = "../login.html";
@@ -297,7 +314,7 @@
         processadorMaquina = data[0].processadorMaquina
         memoriaMaquina = data[0].memoriaMaquina
 
-        
+
 
         nomeCaixa.innerHTML = nomeMaquina
         cepCaixa.innerHTML = cepMaquina
@@ -314,5 +331,9 @@
       console.log(`#ERRO: ${resposta}`);
       finalizarAguardar();
     });
+  }
+
+  function pesquisarCaixa() {
+    
   }
 </script>
