@@ -383,9 +383,9 @@ function exibirQuantidadeTotalRam(req, res) {
 }
 
 function exibirCaixas(req, res) {
-  const usuarioIdentificador = req.params.id;
+  //const usuarioIdentificador = req.params.id;
   usuarioModel
-    .exibirCaixas(usuarioIdentificador)
+    .exibirCaixas()
     .then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -403,10 +403,9 @@ function exibirCaixas(req, res) {
     });
 }
 
-function exibirInfoCaixas(req, res) {
-  const usuarioIdentificador = req.params.id;
-  usuarioModel
-    .exibirInfoCaixas(usuarioIdentificador)
+function listarCaixas(req, res) {
+ // const usuarioIdentificador = req.params.id;
+  usuarioModel.listarCaixas()
     .then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -464,6 +463,26 @@ function atualizarImg(req, res) {
   });
 }
 
+function pesquisarCaixa(req, res) {
+
+  const caixa = req.params.idCaixa;
+
+  usuarioModel.pesquisarCaixa(caixa)
+      .then((resultado) => {
+          if (resultado.length > 0) {
+              res.status(200).json(resultado);
+          } else {
+              res.status(204).send("Nenhum resultado encontrado!")
+          }
+      }).catch(
+          function (erro) {
+              console.log(erro);
+              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+              res.status(500).json(erro.sqlMessage);
+          }
+      );
+}
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -479,7 +498,8 @@ module.exports = {
   exibirFuncionarios,
   exibirQuantidadeTotalRam,
   exibirCaixas,
-  exibirInfoCaixas,
+  listarCaixas,
   imgUsuario,
   atualizarImg,
+  pesquisarCaixa,
 };

@@ -139,10 +139,10 @@ function exibirCaixas() {
   return database.executar(instrucao);
 }
 
-function exibirInfoCaixas() {
+function listarCaixas() {
   var instrucao = `
-  SELECT nomeMaquina, cepMaquina, count(idHistorico) as "qtdHistorico", count(idEtiqueta) as "qtdEtiqueta", imgMaquina,  ramMaquina, processadorMaquina, discoMaquina FROM Maquinas
-   LEFT JOIN Historico ON idHistorico = fkMaquinaHistorico LEFT JOIN Etiqueta ON idEtiqueta = fkMaquina;
+  SELECT idMaquina, nomeMaquina, cepMaquina, ramMaquina, discoMaquina, processadorMaquina, tempoDeAtividade, sistemaOperacionalMaquina,
+  fabricanteMaquina, arquiteturaMaquina, imgMaquina  FROM Maquinas;
   `;
   return database.executar(instrucao);
 }
@@ -173,6 +173,13 @@ function lembreteDefault(idUser) {
   return database.executar(query);
 }
 
+function pesquisarCaixa(caixa) {
+  var instrucao = `
+  select * from maquinas where idMaquina = ${caixa};
+  `;
+  return database.executar(instrucao);
+}
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -188,9 +195,10 @@ module.exports = {
   exibirFuncionarios,
   exibirQuantidadeTotalRam,
   exibirCaixas,
-  exibirInfoCaixas,
+  listarCaixas,
   imgUsuario,
   atualizarImg,
   listarUser,
   lembreteDefault,
+  pesquisarCaixa,
 };
