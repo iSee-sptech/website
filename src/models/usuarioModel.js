@@ -47,7 +47,7 @@ function cadastrar(
   celular,
   senha,
   numeroEndereco,
-  complementoEndereco,
+  complementoEndereco
 ) {
   var instrucao = `
   insert into usuarios (nomeUsuario, emailUsuario, cepUsuario, dataNascUsuario, cpfUsuario, telefoneUsuario, senhaUsuario, numeroLocalUsuario, complementoLocalUsuario, cargoUsuario) values ('${nome}', '${email}', '${endereco}', '${dataNasc}', '${cpf}', '${celular}', '${senha}','${numeroEndereco}','${complementoEndereco}','Gerente');
@@ -72,9 +72,18 @@ function cadastrarFunc(
   return database.executar(instrucao);
 }
 
-function cadastrarCaixa(idCaixa, nomeCaixa, enderecoCaixa, imagemCaixa) {
+function cadastrarCaixa(
+  idCaixa,
+  nomeCaixa,
+  enderecoCaixa,
+  imagemCaixa,
+  numeroSerial,
+  numero,
+  complemento,
+  pontoReferencia
+) {
   var instrucao = `
-  insert into Maquinas (idMaquina, nomeMaquina, cepMaquina, imgMaquina) values ('${idCaixa}', '${nomeCaixa}', '${enderecoCaixa}', '${imagemCaixa}');
+  update Maquinas set idMaquina = '${idCaixa}', nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}', imgMaquina = '${imagemCaixa}', serialMaquina = '${numeroSerial}', numeroMaquina = '${numero}',complementoMaquina = '${complemento}', pontoReferenciaMaquina = '${pontoReferencia}' where idMaquina = '${idCaixa}';
   `;
   return database.executar(instrucao);
 }
@@ -93,15 +102,15 @@ function mostrarLembrete(idUsuario) {
   return database.executar(instrucao);
 }
 
-function updatePerfil(id, nome, telefone, email, cep) {
+function updatePerfil(id, nome, telefone, email, cep, numero, complemento) {
   const query = `UPDATE usuarios SET nomeUsuario = '${nome}', telefoneUsuario = '${telefone}',
-  emailUsuario = '${email}', cepUsuario = '${cep}' WHERE idUsuario = ${id} `;
+  emailUsuario = '${email}', cepUsuario = '${cep}', numeroLocalUsuario = '${numero}', complementoLocalUsuario = '${complemento}' WHERE idUsuario = ${id} `;
   return database.executar(query);
 }
 
 function listarPerfil(idUser) {
   var instrucao = `
-  SELECT nomeUsuario, telefoneUsuario, emailUsuario, cepUsuario FROM usuarios WHERE idUsuario = ${idUser};
+  SELECT nomeUsuario, cpfUsuario, telefoneUsuario, emailUsuario, cepUsuario, numeroLocalUsuario, complementoLocalUsuario FROM usuarios WHERE idUsuario = ${idUser};
   `;
   return database.executar(instrucao);
 }
@@ -136,7 +145,7 @@ function exibirCaixas() {
 
 function exibirInfoCaixas() {
   var instrucao = `
-  SELECT nomeMaquina, cepMaquina, count(idHistorico) as "qtdHistorico", count(idEtiqueta) as "qtdEtiqueta", imgMaquina,  ramMaquina, processadorMaquina, memoriaMaquina FROM Maquinas
+  SELECT nomeMaquina, cepMaquina, count(idHistorico) as "qtdHistorico", count(idEtiqueta) as "qtdEtiqueta", imgMaquina,  ramMaquina, processadorMaquina, discoMaquina FROM Maquinas
    LEFT JOIN Historico ON idHistorico = fkMaquinaHistorico LEFT JOIN Etiqueta ON idEtiqueta = fkMaquina;
   `;
   return database.executar(instrucao);
@@ -167,7 +176,6 @@ function lembreteDefault(idUser) {
 
   return database.executar(query);
 }
-
 
 module.exports = {
   entrar,
