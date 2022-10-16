@@ -102,34 +102,33 @@ function cadastrar(req, res) {
     res.status(400).send("Sua senha está undefined!");
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    usuarioModel.cadastrar(
-      nome,
-      email,
-      endereco,
-      dataNasc,
-      cpf,
-      celular,
-      senha,
-      numeroEndereco,
-      complementoEndereco,
-    )
+    usuarioModel
+      .cadastrar(
+        nome,
+        email,
+        endereco,
+        dataNasc,
+        cpf,
+        celular,
+        senha,
+        numeroEndereco,
+        complementoEndereco
+      )
       .then(function (resultado) {
         const tamanho = resultado.affectedRows;
 
         if (tamanho > 0) {
-
           usuarioModel.listarUser(cpf).then((response) => {
             const idUser = response[0].idUsuario;
 
             usuarioModel.lembreteDefault(idUser).then((resEffect) => {
-
               console.log(resEffect);
-              res.json(resEffect)
-            })
-          })
+              res.json(resEffect);
+            });
+          });
         }
-      }
-      ).catch(function (erro) {
+      })
+      .catch(function (erro) {
         console.log(erro);
         console.log(
           "\nHouve um erro ao realizar o cadastro! Erro: ",
@@ -139,9 +138,6 @@ function cadastrar(req, res) {
       });
   }
 }
-
-
-
 
 function cadastrarFunc(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -180,19 +176,17 @@ function cadastrarFunc(req, res) {
         const tamanho = resultado.affectedRows;
 
         if (tamanho > 0) {
-
           usuarioModel.listarUser(cpf).then((response) => {
             const idUser = response[0].idUsuario;
 
             usuarioModel.lembreteDefault(idUser).then((resEffect) => {
-
               console.log(resEffect);
-              res.json(resEffect)
-            })
-          })
+              res.json(resEffect);
+            });
+          });
         }
-      }
-      ).catch(function (erro) {
+      })
+      .catch(function (erro) {
         console.log(erro);
         console.log(
           "\nHouve um erro ao realizar o cadastro! Erro: ",
@@ -209,6 +203,10 @@ function cadastrarCaixa(req, res) {
   var nomeCaixa = req.body.nomeCaixaServer;
   var enderecoCaixa = req.body.enderecoCaixaServer;
   var imagemCaixa = req.body.imagemCaixaServer;
+  var numeroSerial = req.body.numeroSerialServer;
+  var numero = req.body.numeroEnderecoServer;
+  var complemento = req.body.complementoEnderecoServer;
+  var pontoReferencia = req.body.pontoReferenciaEnderecoServer;
 
   // Faça as validações dos valores
   if (nomeCaixa == undefined) {
@@ -220,7 +218,16 @@ function cadastrarCaixa(req, res) {
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
-      .cadastrarCaixa(idCaixa, nomeCaixa, enderecoCaixa, imagemCaixa)
+      .cadastrarCaixa(
+        idCaixa,
+        nomeCaixa,
+        enderecoCaixa,
+        imagemCaixa,
+        numeroSerial,
+        numero,
+        complemento,
+        pontoReferencia
+      )
       .then(function (resultado) {
         res.json(resultado);
       })
@@ -269,20 +276,24 @@ function updatePerfil(req, res) {
   var telefone = req.body.telefoneServer;
   var email = req.body.emailServer;
   var cep = req.body.cepServer;
+  var numero = req.body.numeroEnderecoServer;
+  var complemento = req.body.complementoServer;
 
-  usuarioModel.updatePerfil(id, nome, telefone, email, cep).then((response) => {
-    const tamanho = response.affectedRows;
+  usuarioModel
+    .updatePerfil(id, nome, telefone, email, cep, numero, complemento)
+    .then((response) => {
+      const tamanho = response.affectedRows;
 
-    if (tamanho > 0) {
-      res.json({
-        mensagem: "success",
-      });
-    } else {
-      res.json({
-        mensagem: "error",
-      });
-    }
-  });
+      if (tamanho > 0) {
+        res.json({
+          mensagem: "success",
+        });
+      } else {
+        res.json({
+          mensagem: "error",
+        });
+      }
+    });
 }
 
 function listarPerfil(req, res) {

@@ -280,3 +280,7 @@ h4 {
 #mensagemLembreteId{
   color: #000000;
 }
+
+.effectlist:hover {
+  color: #7D2DE2;
+}

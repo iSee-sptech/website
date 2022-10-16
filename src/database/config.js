@@ -28,7 +28,7 @@ var mySqlConfig = {
 // Andreas: Andreas2014
 // Nogueira: Gabriel@2002
 // Mateus: sptech
-// Fabiano: 4242
+// Fabiano:
 // Penalva: sptech
 // Yuri: KingOfNothing000
 function executar(instrucao) {

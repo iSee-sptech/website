@@ -441,3 +441,14 @@ a {
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+
+.buttonContact:hover {
+    background-color: #FFFFFF;
+    color: #7D2DE2;
+    cursor: pointer;
+}
+
+.effect1:hover {
+    background-color: #7D2DE2;
+    font-weight: 300;
+  }
