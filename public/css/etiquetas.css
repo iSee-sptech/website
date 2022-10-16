@@ -172,7 +172,7 @@ h6 {
     justify-content: end;
 }
 
-.sessao_help .card_help {
+#card_help {
     background-color: #f8f8f8;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 16px;
@@ -188,17 +188,32 @@ h6 {
     margin-bottom: 5px;
 }
 
-.card_help h3 {
+#card_help h3 {
     color:#7D2DE2;
 }
 
-.card_help .img_duvida {
+#card_help .img_duvida {
     height: 40vh;
 }
 
-.card_help .btn_suporte {
+#card_help .btn_suporte {
     background-color: #000000;
     border-radius: 100px;
+    cursor: pointer;
+}
+
+#landbotChat{
+    width: 12vw;
+    height: 11vh;
+    background: #7D2DE2;
+    color: #ffffff;
+    border-radius:24px;
+    border-color: transparent;
+    font-size:calc(0.75em + 1vmin);
+}
+
+#landbotChat:hover{
+    background: #6019b8;
     cursor: pointer;
 }
 

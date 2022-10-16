@@ -1,3 +1,9 @@
+/* COR DA SELEÇÃO DE TEXTO COM MOUSE */
+::selection {
+  background-color: #7d2de2;
+  color: white;
+}
+
  /* Nav Bar Bottom Code Css*/
 
 
