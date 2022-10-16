@@ -24,14 +24,10 @@ function entrar(email, senha) {
   return database.executar(instrucao);
 }
 
-function atualizarSenha(email, senha) {
-  console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ",
-    email,
-    senha
-  );
+function atualizarSenha(emailRedefinir, senhaRedefinir) {
+
   var instrucao = `
-    UPDATE Usuarios SET senhaUsuario = '${senha}' WHERE emailUsuario = '${email}';
+    UPDATE Usuarios SET senhaUsuario = '${senhaRedefinir}' WHERE emailUsuario = '${emailRedefinir}';
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

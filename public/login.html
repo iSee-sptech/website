@@ -84,11 +84,12 @@
     <div class="modalReadPlus">
         <div class="containerReadPlus">
             <div class="modalCheck">
-                <img id="modalImg" src="" alt="check" />
+                <img id="modalImg" src="" alt="iconModal">
             </div>
             <button onclick="buttonBack()" class="modalBack">&times;</button>
         </div>
         <span id="modalText"></span>
+        <button class="button8" type="button" onclick="buttonBack()">Fechar</button>
     </div>
 </div>
 
@@ -96,24 +97,26 @@
     <div class="modalReadPlus">
         <div class="containerReadPlus">
             <div class="modalCheck" onclick="modalServicesRegrasSenha()">
-                <img id="modalImg" src="assets/img/iconHelp.svg" alt="check" />
+                <img id="modalImg2" src="assets/img/iconHelp.svg" alt="check" />
             </div>
             <button onclick="buttonBack()" class="modalBack">&times;</button>
         </div>
-        <span id="modalText">
+        <span id="modalText2">
             Redefinir senha! <br>
             <label>Email</label> <br>
-            <input placeholder="iSee@example.com" type="text" id="inputEmailRedefinirSenha"> <br>
+            <input style="text-align: center;" placeholder="iSee@example.com" type="text" id="inputEmailRedefinirSenha">
+            <br>
 
             <label>Senha</label> <br>
-            <input placeholder="iSee@example.com" type="text" id="inputSenhaNova"> <br>
+            <input style="text-align: center;" placeholder="iSee@example.com" type="password" id="inputSenhaNova"> <br>
 
 
             <label>Confirmar Senha</label> <br>
-            <input placeholder="iSee@example.com" type="text" id="inputConfirmarSenhaNova"> <br>
+            <input style="text-align: center;" placeholder="iSee@example.com" type="password"
+                id="inputConfirmarSenhaNova"> <br>
 
             <span class="agrupamento_botoes_modal">
-                <button class="button_modal_type2"  onclick="modalEsqueciSenhaFechar()">Fechar</button>
+                <button class="button_modal_type2" type="button" onclick="modalEsqueciSenhaFechar()">Fechar</button>
                 <button class="button_modal" type="button" onclick="atualizarSenha()">Redefinir</button>
             </span>
         </span>
@@ -127,9 +130,9 @@
             <div class="modalCheck" style="margin-left: 86%; cursor: pointer;">
                 <span style="cursor: pointer;" onclick="modalServicesRegrasSenhaFechar()">&times;</span>
             </div>
-            <button onclick="buttonBack()"  class="modalBack">&times;</button>
+            <button onclick="buttonBack()" class="modalBack">&times;</button>
         </div>
-        <span id="modalText">
+        <span id="modalText3">
             Sua senha deve conter no mínimo <br> <a>8 caracteres<br>1 letra [a-Z]<br>1 número [0-9]<br>1 caracter
                 especial [@|#|$|*]</a>
         </span>
@@ -168,7 +171,7 @@
     }
 
     function modalEsqueciSenhaFechar() {
-        ModalRedefinirSenha.style.display = 'none';
+        modalRedefinirSenha.style.display = 'none';
     }
 
     function buttonBack() {
@@ -223,6 +226,10 @@
             modalText.innerHTML =
                 "Preencha todos os campos!";
             return false;
+
+            modal.style.display = 'block'
+            modalImg.src = "assets/img/iconHelp.svg"
+            modalText.innerHTML = "Acompanhamento em tempo real dos componentes de seu caixa.";
         }
         else {
             //setInterval(sumirMensagem, 5000)
@@ -291,18 +298,25 @@
     }
 
     function atualizarSenha() {
-        inputEmail = inputEmailRedefinirSenha.value;
-        inputSenha = inputSenhaNova.value;
+        inputEmailRedefinir = inputEmailRedefinirSenha.value;
+        inputSenhaRedefinir = inputSenhaNova.value;
         inputConfirmarSenha = inputConfirmarSenhaNova.value
-        if (
-            inputSenha != inputConfirmarSenha
-        ) {
+
+        if (inputEmailRedefinir == "" || inputSenhaRedefinir == "" || inputConfirmarSenha == "") {
             setTimeout(buttonBack, 2000)
             modal.style.display = "block";
             modalImg.src = "assets/img/iconDanger.svg";
             modalText.innerHTML =
                 "Preencha todos os campos!";
             return false;
+        } else if (inputSenhaRedefinir != inputConfirmarSenha) {
+            setTimeout(buttonBack, 2000)
+            modal.style.display = "block";
+            modalImg.src = "assets/img/iconDanger.svg";
+            modalText.innerHTML =
+                "Senhas diferentes!";
+            return false;
+
         } else {
             fetch("/usuarios/atualizarSenha", {
                 method: "POST",
@@ -310,19 +324,21 @@
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    emailServer: inputEmail,
-                    senhaServer: inputSenha,
+                    emailServer2: inputEmailRedefinir,
+                    senhaServer2: inputSenhaRedefinir,
+
                 }),
             }).then((response) => {
                 response.json().then((data) => {
                     const msg = data.mensagem;
-
                     console.log(msg);
                     if (msg == "success") {
-                        console.log("sucesso ao tentar atualizar os dados do Perfil!");
+                        setTimeout(buttonBack, 2000)
                         modal.style.display = "block";
                         modalImg.src = "assets/img/iconCheck.svg";
-                        modalText.innerHTML = "Alterado com sucesso!";
+                        modalText.innerHTML =
+                            "Senha atualizada com sucesso!";
+                        
                     } else {
                         console.log("Houve um erro ao tentar atualizar os dados do Perfil");
                     }
