@@ -89,6 +89,8 @@ video {
     vertical-align: baseline;
 }
 
+
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -120,7 +122,6 @@ body::-webkit-scrollbar {
     width: 12px;
     /* width of the entire scrollbar */
 }
-
 
 
 body::-webkit-scrollbar-thumb {
@@ -263,7 +264,7 @@ nav ul {
 .home {
     padding-top: 10%;
     width: 100%;
-    height: 50vh;
+    height: 52vh;
     background: url('../assets/img/backgroundHome.svg') no-repeat;
     background-position-y: 100%;
     background-position-x: 90%;
@@ -272,6 +273,10 @@ nav ul {
 .containerHome {
     padding-left: 8%;
     width: 46%;
+}
+
+.alignRow {
+    margin: 4vh 0;
 }
 
 
@@ -300,6 +305,10 @@ nav ul {
     font-size: calc(0.75em + 1vmin);
     background: #FFFFFF;
 
+}
+
+.alignRow {
+    margin-bottom: 10vh;
 }
 
 .moreKnow {
@@ -337,7 +346,6 @@ nav ul {
 
 .services {
     width: 100%;
-    height: 33vh;
     background-color: #fff;
     padding-top: 2%;
 }
@@ -366,7 +374,7 @@ nav ul {
 
 .containerAbout {
     padding-left: 8%;
-    padding-top: 6%;
+    padding-top: 8vh;
     width: 45%;
 }
 
@@ -382,7 +390,7 @@ nav ul {
 }
 
 .cardsValues {
-    margin-top: 8%;
+    margin-top: 8vh;
     width: 100vw;
     height: 50vh;
     display: flex;
@@ -422,6 +430,7 @@ nav ul {
 .card3Values {
     width: 38vw;
 }
+
 
 .contact {
     width: 100%;
