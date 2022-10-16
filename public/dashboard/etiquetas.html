@@ -9,6 +9,7 @@
   <title>Etiquetas - ISee</title>
   <link rel="stylesheet" href="../css/etiquetas.css" />
   <link rel="stylesheet" href="../css/navBar.css" />
+  <link rel="stylesheet" href="../css/styleModal.css">
   
 </head>
 
@@ -32,27 +33,27 @@
       <div class="container_etiquetas">
 
 <!----EXEMPLO DE UM CARD ETIQUETA--------------------------------------------------------------------->
-        <div class="card_etiqueta">
+        <div class="card_etiqueta" onclick="abrirModalEtiqueta(modalEtiquetaEnciclopedia)">
             <iconify-icon icon="fluent:brain-circuit-20-filled" style="color: #7d2de2;" width="40"></iconify-icon>
             <h2>Enciclopédia</h2>
             Memória de disco superior a 70%
         </div>
 <!----FIM EXEMPLO DE UM CARD ETIQUETA--------------------------------------------------------->    
 
-        <div class="card_etiqueta">
+        <div class="card_etiqueta" onclick="abrirModalEtiqueta(modalEtiquetaAtarefado)">
           <iconify-icon icon="game-icons:processor" style="color: #7d2de2;" width="40"></iconify-icon>
             <h2>Atarefado</h2>
             Obteve 10 alertas de uso de CPU nos últimos 30 dias
 
         </div>
         
-        <div class="card_etiqueta">
+        <div class="card_etiqueta" onclick="abrirModalEtiqueta(modalEtiquetaDorminhoco)">
           <iconify-icon icon="icon-park-outline:sleep-one" style="color: #7d2de2;" width="40"></iconify-icon>
             <h2>Dorminhoco</h2>
             Passou 24 horas inativo nos últimos 30 dias
         </div>
         
-        <div class="card_etiqueta">
+        <div class="card_etiqueta" onclick="abrirModalEtiqueta(modalEtiquetaCaminhador)">
             <iconify-icon icon="ri:walk-fill" style="color: #7d2de2;" width="46"></iconify-icon>
             <h2>Caminhador</h2>
             Obteve 10 alertas sobre RAM nos últimos 30 dias
@@ -207,4 +208,116 @@ var dataAtual = new Date();
   }
 
 </script>
+
+<!--AQUI FICA TUDO SOBRE MODAL--------------------------------------------->
+
+<script>
+  function abrirModalEtiqueta(nome) {
+    nome.style.display = 'block';
+  }
+
+  function fecharModalEtiqueta(nome) {
+    nome.style.display = 'none';
+  }
+</script>
+
+<html>
+
+<!-- EXEMPLO DO CARD MODAL DE ETIQUETA--------------->
+<div id="modalEtiquetaEnciclopedia" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck" onclick="fecharModalEtiqueta(modalEtiquetaEnciclopedia)">
+        &times;
+      </div>
+
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+    <h3>Enciclopédia</h3>
+
+    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+
+
+      <p>Caixa 1</p>
+      <p>Caixa 3</p>
+      <p>Caixa 6</p>
+
+    </span>
+
+    <button class="button8" onclick="">Visualizar Caixas</button>
+  </div>
+</div>
+<!-- FIM EXEMPLO DO CARD MODAL DE ETIQUETA--------------->
+
+
+<div id="modalEtiquetaAtarefado" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck" onclick="fecharModalEtiqueta(modalEtiquetaAtarefado)">
+        &times;
+      </div>
+
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+    <h3>Atarefado</h3>
+
+    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+
+      <p>Caixa 3</p>
+      <p>Caixa 4</p>
+
+    </span>
+
+    <button class="button8" onclick="">Visualizar Caixas</button>
+  </div>
+</div>
+
+
+
+<div id="modalEtiquetaDorminhoco" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck" onclick="fecharModalEtiqueta(modalEtiquetaDorminhoco)">
+        &times;
+      </div>
+
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+    <h3>Dorminhoco</h3>
+
+    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+
+      <p>Caixa 1</p>
+
+    </span>
+
+    <button class="button8" onclick="">Visualizar Caixas</button>
+  </div>
+</div>
+
+
+
+<div id="modalEtiquetaCaminhador" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck" onclick="fecharModalEtiqueta(modalEtiquetaCaminhador)">
+        &times;
+      </div>
+
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+    <h3>Caminhador</h3>
+
+    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+
+
+      <p>Caixa 1</p>
+      <p>Caixa 3</p>
+      <p>Caixa 6</p>
+
+    </span>
+
+    <button class="button8" onclick="">Visualizar Caixas</button>
+  </div>
+</div>
 
