@@ -73,9 +73,34 @@ body, html{
 /* Filtros de caixas*/
 
 .filtroCaixas {
-    margin-left: 5vw;
+    margin-left: 9vw;
     white-space: nowrap;
     display: flex;
+    flex-direction: column;
+}
+
+#filtroData{
+    margin-top: 2vh;
+    display: flex;
+    align-items: center;
+}
+
+#filtroData button{
+    width: 120px;
+    height: 44px;
+    background-color: #7D2DE2;
+    font-size: calc(0.50em + 1vmin);
+    color: #ffffff;
+    border-radius: 7px; 
+}
+
+#filtroData button:hover{
+    width: 120px;
+    height: 44px;
+    background-color: #7D2DE2;
+    font-size: calc(0.50em + 1vmin);
+    color: #ffffff;
+    border-radius: 7px; 
 }
 
 .filtroCaixas h2 {
@@ -132,7 +157,24 @@ body, html{
     margin: 10px 5px 10px 0;
 }
 
-
+#input_data_nasc_func{
+    margin:0 5px;
+    font-size: 10px;
+    width: 21vw;
+    height: 40px;
+    color: #ffffff;
+    font-size: calc(0.50em + 1vmin);
+    font-weight: normal;
+    padding-right: 25px;
+    background: url(../assets/img/pesquisarIcon.svg) no-repeat right;
+    background-color: #000000;
+    background-size: 20px;
+    outline: none;
+    border: 1px solid #7D2DE2;
+    border-radius: 7px;
+    padding: 10px;
+    margin-right: 5px;
+}
 
 
 
@@ -149,11 +191,12 @@ main{
 /* ESTILIZAÇÃO DA TABELA */
 
 .tabelaHistorico{
-    width: 64vw;
-    height: 55vh;
+    width: 89vw;
+    height: 45.2vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    overflow-x: scroll;
     padding-right: 20px;
 }
 
@@ -161,7 +204,7 @@ main{
 
 
 #historico{
-    width: 100%;
+    width: 100vw;
     height: 100px;
     display: flex;
     justify-content: space-between;
