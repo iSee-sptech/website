@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../css/navBar.css">
 </head>
 
-<body onload="exibirQtdCaixas(), exibirInformacoesCaixas()">
+<body onload="exibirCaixas(), listarCaixas()">
   <div class="divTitulo">
     <div class="containerTitulo">
       <h1>Meus Caixas</h1>
@@ -25,7 +25,7 @@
     <div class="divPesquisa">
       <div>
         <h3>Pesquisar Caixa</h3>
-        <input type="text">
+        <input type="text" id="pesquisarCaixaID">
         <button class="button1">Pesquisar</button>
       </div>
     </div>
@@ -34,162 +34,84 @@
 
   <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
 
-  <div class="meusCaixas">
+  <div class="meusCaixas" id="divDaddy">
 
-    <div id="caixa">
+    <!-- <div id="caixa">
       <div>
         <h2>Status</h2>
         <div id="status"></div>
       </div>
 
       <div>
-        <h2>Nome</h2>
-        <h4 class="nomeCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>CEP</h2>
-        <h4 class="cepCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Alertas</h2>
-        <h4 class="alertaCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Etiquetas</h2>
-        <h4 class="etiquetasCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Total RAM</h2>
-        <h4 class="totalRamCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Total de Disco</h2>
-        <h4 class="totalDiscoCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Total Processador</h2>
-        <h4 class="totalProcessadorCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Tempo de Atividade</h2>
-        <h4 class="tempoAtividadeCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Sistema Operacional</h2>
-        <h4 class="sistemaOperacionalCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Fabricante</h2>
-        <h4 class="fabricanteCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Tempo de Atividade</h2>
-        <h4 class="tempoAtividade"></h4>
-      </div>
-
-      <div>
-        <h2>Arquitetura</h2>
-        <h4 class="arquiteturaCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Imagem Caixa</h2>
-        <div id="ImagemCaixa"><img src="../assets/img/imgCaixa.svg"></div>
-      </div>
-
-      <div>
-        <h2>Remover</h2>
-        <div id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
-      </div>
-    </div>
-
-    <!-- CAIXA 2 -->
-    <div id="caixa">
-      <div>
-        <h2>Status</h2>
-        <div id="status"></div>
+        <h2>ID</h2>
+        <h4 class="alignCaixa"></h4>
       </div>
 
       <div>
         <h2>Nome</h2>
-        <h4 id="nomeCaixa"></h4>
+        <h4 class="alignCaixa"></h4>
       </div>
 
       <div>
         <h2>CEP</h2>
-        <h4 id="cepCaixa"></h4>
+        <h4 class="alignCaixa"></h4>
       </div>
 
-      <div>
+       <div> Precisamos criar tabela alerta e func count alertas
         <h2>Alertas</h2>
-        <h4 id="alertaCaixa"></h4>
-      </div>
+        <h4 class="alignCaixa"></h4>
+      </div> 
 
-      <div>
+       <div> Criar func count Etiquetas
         <h2>Etiquetas</h2>
-        <h4 id="etiquetasCaixa"></h4>
+        <h4 class="alignCaixa"></h4>
+      </div> 
+
+      <div>
+        <h2>RAM</h2>
+        <h4 class="alignCaixa"></h4>
       </div>
 
       <div>
-        <h2>Total RAM</h2>
-        <h4 id="totalRamCaixa"></h4>
+        <h2>Disco</h2>
+        <h4 class="alignCaixa"></h4>
       </div>
 
       <div>
-        <h2>Total de Disco</h2>
-        <h4 id="totalDiscoCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Total Processador</h2>
-        <h4 id="totalProcessadorCaixa"></h4>
+        <h2>Processador</h2>
+        <h4 class="alignCaixa"></h4>
       </div>
 
       <div>
         <h2>Tempo de Atividade</h2>
-        <h4 id="tempoAtividadeCaixa"></h4>
+        <h4 class="alignCaixa"></h4>
       </div>
 
       <div>
         <h2>Sistema Operacional</h2>
-        <h4 id="sistemaOperacionalCaixa"></h4>
+        <h4 class="alignCaixa"></h4>
       </div>
 
       <div>
         <h2>Fabricante</h2>
-        <h4 id="fabricanteCaixa"></h4>
-      </div>
-
-      <div>
-        <h2>Tempo de Atividade</h2>
-        <h4 id="tempoAtividade"></h4>
+        <h4 class="alignCaixa"></h4>
       </div>
 
       <div>
         <h2>Arquitetura</h2>
-        <h4 id="arquiteturaCaixa"></h4>
+        <h4 class="alignCaixa"></h4>
       </div>
 
       <div>
-        <h2>Imagem Caixa</h2>
-        <div id="ImagemCaixa"><img src="../assets/img/imgCaixa.svg"></div>
+        <h2>Imagem</h2>
+        <div class="alignCaixa" id="ImagemCaixa"><img src="../assets/img/imgCaixa.svg"></div>
       </div>
 
       <div>
         <h2>Remover</h2>
-        <div id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
+        <div class="alignCaixa" id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 
@@ -247,6 +169,8 @@
   var nome = sessionStorage.nomeUsuario;
   var bemVindo = document.getElementById("bem_vindo");
   var frase;
+ 
+
 
   if (hora >= 6 && hora < 13) {
     frase = `Bom dia`;
@@ -256,7 +180,7 @@
     frase = `Boa noite`;
   }
 
-  bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de caixas <span style="color:#7D2DE2;">x</span>`
+
   //Bom dia Yuri, Total de Caixas
 
   function sair() {
@@ -272,7 +196,7 @@
     }
   }
 
-  function exibirQtdCaixas() {
+  function exibirCaixas() {
 
     fetch(`/usuarios/exibirCaixas`, {
       method: "GET",
@@ -284,53 +208,280 @@
       resposta.json().then((data) => {
         console.log(data);
         qtdCaixa = data[0].qtdCaixa
-        quantidadeCaixas.innerHTML = qtdCaixa
+        quantidadeCaixas = qtdCaixa
+        bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de caixas <span style="color:#7D2DE2;">${quantidadeCaixas}</span>`
       })
 
     }).catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
-      finalizarAguardar();
     });
   }
 
-  function exibirInformacoesCaixas() {
+  function listarCaixas() {
 
-    fetch(`/usuarios/exibirInfoCaixas`, {
+    fetch(`/usuarios/listarCaixas`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
       }
     }).then((resposta) => {
-      // saldoConta
+
+      listaID = []
+      listaNome = []
+      listaCep = []
+      listaRam = []
+      listaDisco = []
+      listaProcessador = []
+      listaTempo = []
+      listaSO = []
+      listaFabricante = []
+      listaArquitetura = []
+      listaImg = []
+
       resposta.json().then((data) => {
         console.log(data);
-        nomeMaquina = data[0].nomeMaquina
-        cepMaquina = data[0].cepMaquina
-        qtdAlertas = data[0].qtdHistorico
-        qtdEtiquetas = data[0].qtdEtiqueta
-        arquiteturaMaquina = data[0].arquiteturaMaquina
-        imgMaquina = data[0].imgMaquina
-        ramMaquina = data[0].ramMaquina
-        processadorMaquina = data[0].processadorMaquina
-        memoriaMaquina = data[0].memoriaMaquina
+
+        for (var i = 0; i < data.length; i++) {
+          var id = data[i].idMaquina;
+          var nome = data[i].nomeMaquina;
+          var cep = data[i].cepMaquina;
+          var ram = data[i].ramMaquina;
+          ram = ram.substr(0, 2);
+          ram = parseInt(ram);
+          ram = ram - 1;
+          var disco = data[i].discoMaquina;
+          disco = disco.substr(0, 3);
+          var processador = data[i].processadorMaquina;
+          processador = processador.substr(0, 3);
+          processador = parseInt(processador);
+          processador = processador + 1;
+          processador = processador / 100;
+          var tempo = data[i].tempoDeAtividade;
+          tempo = parseInt(tempo)
+          tempo = tempo / 3600
+          tempo = Math.round(tempo)
+          var so = data[i].sistemaOperacionalMaquina;
+          var fabricante = data[i].fabricanteMaquina;
+          var arquitetura = data[i].arquiteturaMaquina;
+          var img = data[i].imgMaquina;
+          listaID.push(id)
+          listaNome.push(nome)
+          listaCep.push(cep)
+          listaRam.push(ram)
+          listaDisco.push(disco)
+          listaProcessador.push(processador)
+          listaTempo.push(tempo)
+          listaSO.push(so)
+          listaFabricante.push(fabricante)
+          listaArquitetura.push(arquitetura)
+          listaImg.push(img)
+
+          divDaddy.innerHTML += ` <div id="caixa" style="padding-bottom: 4%;">
+      <div>
+        <h2>Status</h2>
+        <div id="status"></div>
+      </div>
+
+      <div>
+        <h2>ID</h2>
+        <h4 class="alignCaixa">${listaID[i]}</h4>
+      </div>
+
+      <div>
+        <h2>Nome</h2>
+        <h4 class="alignCaixa">${listaNome[i]}</h4>
+      </div>
+
+      <div>
+        <h2>CEP</h2>
+        <h4 class="alignCaixa">${listaCep[i]}</h4>
+      </div>
+
+      <!-- <div> Precisamos criar tabela alerta e func count alertas
+        <h2>Alertas</h2>
+        <h4 class="alignCaixa"></h4>
+      </div> -->
+
+      <!-- <div> Criar func count Etiquetas
+        <h2>Etiquetas</h2>
+        <h4 class="alignCaixa"></h4>
+      </div> -->
+
+      <div>
+        <h2>RAM</h2>
+        <h4 class="alignCaixa">${listaRam[i]} GB</h4>
+      </div>
+
+      <div>
+        <h2>Disco</h2>
+        <h4 class="alignCaixa">${listaDisco[i]} GB</h4>
+      </div>
+
+      <div>
+        <h2>Processador</h2>
+        <h4 class="alignCaixa">${listaProcessador[i]} GHz</h4>
+      </div>
+
+      <div>
+        <h2>Tempo de Atividade</h2>
+        <h4 class="alignCaixa">${listaTempo[i]} Horas</h4>
+      </div>
+
+      <div>
+        <h2>Sistema Operacional</h2>
+        <h4 class="alignCaixa">${listaSO[i]}</h4>
+      </div>
+
+      <div>
+        <h2>Fabricante</h2>
+        <h4 class="alignCaixa">${listaFabricante[i]}</h4>
+      </div>
+
+      <div>
+        <h2>Arquitetura</h2>
+        <h4 class="alignCaixa">${listaArquitetura[i]}</h4>
+      </div>
+
+      <div>
+        <h2>Imagem</h2>
+        <div class="alignCaixa" id="ImagemCaixa"><img src="../assets/img/imgCaixa.svg"></div>
+      </div>
+
+      <div>
+        <h2>Remover</h2>
+        <div class="alignCaixa" id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
+      </div>
+    </div>`
+        }
+      })
 
 
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+  }
 
-        nomeCaixa.innerHTML = nomeMaquina
-        cepCaixa.innerHTML = cepMaquina
-        etiquetasCaixa.innerHTML = qtdEtiquetas
-        alertaCaixa.innerHTML = qtdAlertas
-        arquiteturaCaixa.innerHTML = arquiteturaMaquina
+  function pesquisarCaixa() {
+    var idPesquisarCaixa = pesquisarCaixaID.value
+    idPesquisar = parseInt(idPesquisarCaixa)
+    const idCaixa = idPesquisar;
 
-        totalRamCaixa.innerHTML = ramMaquina
-        totalProcessadorCaixa.innerHTML = processadorMaquina
-        totalDiscoCaixa.innerHTML = memoriaMaquina
+    fetch(`/usuarios/pesquisarCaixa${idCaixa}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
+   
+      resposta.json().then((data) => {
+        console.log(data);
+
+          var id = data[0].idMaquina;
+          var nome = data[0].nomeMaquina;
+          var cep = data[0].cepMaquina;
+          var ram = data[0].ramMaquina;
+          ram = ram && ram.substr(0, 2);
+          ram = parseInt(ram);
+          ram = ram - 1;
+          var disco = data[0].discoMaquina;
+          disco = disco && disco.substr(0, 3);
+          var processador = data[0].processadorMaquina;
+          processador = processador && processador.substr(0, 3);
+          processador = parseInt(processador);
+          processador = processador + 1;
+          processador = processador / 100;
+          var tempo = data[0].tempoDeAtividade;
+          tempo = parseInt(tempo)
+          tempo = tempo / 3600
+          tempo = Math.round(tempo)
+          var so = data[0].sistemaOperacionalMaquina;
+          var fabricante = data[0].fabricanteMaquina;
+          var arquitetura = data[0].arquiteturaMaquina;
+          var img = data[0].imgMaquina;
+
+          divDaddy.innerHTML = ` <div id="caixa" style="padding-bottom: 4%;">
+      <div>
+        <h2>Status</h2>
+        <div id="status"></div>
+      </div>
+
+      <div>
+        <h2>ID</h2>
+        <h4 class="alignCaixa">${id}</h4>
+      </div>
+
+      <div>
+        <h2>Nome</h2>
+        <h4 class="alignCaixa">${nome}</h4>
+      </div>
+
+      <div>
+        <h2>CEP</h2>
+        <h4 class="alignCaixa">${cep}</h4>
+      </div>
+
+      <!-- <div> Precisamos criar tabela alerta e func count alertas
+        <h2>Alertas</h2>
+        <h4 class="alignCaixa"></h4>
+      </div> -->
+
+      <!-- <div> Criar func count Etiquetas
+        <h2>Etiquetas</h2>
+        <h4 class="alignCaixa"></h4>
+      </div> -->
+
+      <div>
+        <h2>RAM</h2>
+        <h4 class="alignCaixa">${ram} GB</h4>
+      </div>
+
+      <div>
+        <h2>Disco</h2>
+        <h4 class="alignCaixa">${disco} GB</h4>
+      </div>
+
+      <div>
+        <h2>Processador</h2>
+        <h4 class="alignCaixa">${processador} GHz</h4>
+      </div>
+
+      <div>
+        <h2>Tempo de Atividade</h2>
+        <h4 class="alignCaixa">${tempo} Horas</h4>
+      </div>
+
+      <div>
+        <h2>Sistema Operacional</h2>
+        <h4 class="alignCaixa">${so}</h4>
+      </div>
+
+      <div>
+        <h2>Fabricante</h2>
+        <h4 class="alignCaixa">${fabricante}</h4>
+      </div>
+
+      <div>
+        <h2>Arquitetura</h2>
+        <h4 class="alignCaixa">${arquitetura}</h4>
+      </div>
+
+      <div>
+        <h2>Imagem</h2>
+        <div class="alignCaixa" id="ImagemCaixa"><img src="../assets/img/imgCaixa.svg"></div>
+      </div>
+
+      <div>
+        <h2>Remover</h2>
+        <div class="alignCaixa" id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
+      </div>
+    </div>`
+        
       })
 
     }).catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
-      finalizarAguardar();
     });
   }
+
 
 </script>

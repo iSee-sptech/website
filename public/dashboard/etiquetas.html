@@ -84,11 +84,10 @@
 
     <div class="sessao_help">
 
-     <div class="card_help">
+     <div id="card_help">
         <h3>Tire suas dúvidas!</h3>
          <img src="../assets/img/ilustracao_duvida2.svg" class="img_duvida">
-         Clique no botão abaixo <br> <br> 
-         <img src="../assets/img/botao_help.svg" class="btn_suporte">
+         <button id="landbotChat" onclick="abrirLandbot()">Tirar Dúvidas</button>
      </div>
 
     </div>
@@ -142,6 +141,23 @@
 <script src="../js/graficosDashboard.js"></script>
 <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+
+<!-- LANDBOT CHAT PARA TIRAR AS DUVIDAS -->
+<script SameSite="None; Secure" src="https://cdn.landbot.io/landbot-3/landbot-3.0.0.js"></script>
+<script>
+var divCardHelp = document.getElementById('card_help')
+function abrirLandbot() {
+
+  var myLandbot = new Landbot.Container({
+    container: '#card_help',
+    configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-1394018-AZ649FBK88YMKJQX/index.json',
+  });
+  divCardHelp.style.backgroundColor = "#7D2DE2"
+}
+
+</script>
+<!-- LANDBOT CHAT PARA TIRAR AS DUVIDAS -->
+
 
 <script>
 

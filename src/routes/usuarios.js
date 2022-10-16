@@ -64,8 +64,12 @@ router.get("/exibirCaixas", function (req, res) {
   usuarioController.exibirCaixas(req, res);
 });
 
-router.get("/exibirInfoCaixas", function (req, res) {
-  usuarioController.exibirInfoCaixas(req, res);
+router.get("/pesquisarCaixa:idCaixa", function (req, res) {
+  usuarioController.pesquisarCaixa(req, res);
+});
+
+router.get("/listarCaixas", function (req, res) {
+  usuarioController.listarCaixas(req, res);
 });
 
 router.get("/imgUsuario/:id", function (req, res) {
