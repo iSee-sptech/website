@@ -212,3 +212,7 @@ h6 {
     background: #c8c8c8;
     cursor: pointer;
 }
+
+.effectlist:hover {
+    color: #7D2DE2;
+  }

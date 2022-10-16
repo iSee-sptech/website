@@ -300,3 +300,14 @@ a {
     filter: invert(1);
 }
 
+.buttonContact:hover {
+    background-color: #FFFFFF;
+    color: #7D2DE2;
+    cursor: pointer;
+}
+
+.button1:hover {
+    background-color: #7D2DE2;
+    color: #FFFFFF;
+    cursor: pointer;
+}

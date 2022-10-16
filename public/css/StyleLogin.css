@@ -260,3 +260,7 @@ form {
     color: #54595E;
     cursor: pointer;
 }
+
+.forgetPassword:hover{
+    color: #7D2DE2;
+}

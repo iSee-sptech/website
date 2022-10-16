@@ -21,7 +21,7 @@
     <div class="sessao_grafico_principal">
       <div class="container_title">
         <h1>Alertas</h1>
-        <h6 id="bem_vindo">Bom dia</h6>
+        <h6 id="bem_vindo">Bom dia</h6> 
 
         <div id="imagem_user" class="notificacoes">
           <img src="../assets/img/alert.svg">
@@ -33,7 +33,7 @@
             <h2>Filtro</h2>
           </label>
           <input type="date" placeholder="data inicial" id="input_filtro_data">
-          <button>Filtrar</button>
+          <button class="buttonContact">Filtrar</button>
         </div>
 
       </div>
@@ -119,22 +119,22 @@
     <div class="navbar_bottom">
       <div class="btn_home" onclick="tela_home()">
         <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
-        <h2>Home</h2>
+        <h2 class="effectlist">Home</h2>
       </div>
 
       <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
         <img src="../assets/img/etiqueta_icon.svg" />
-        <h2>Etiquetas</h2>
+        <h2 class="effectlist">Etiquetas</h2>
       </div>
 
       <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
         <img src="../assets/img/historico_icon.svg" />
-        <h2>Histórico</h2>
+        <h2 class="effectlist">Histórico</h2>
       </div>
 
       <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
         <img src="../assets/img/dashboard_icon.svg" />
-        <h2>Dashboard</h2>
+        <h2 class="effectlist">Dashboard</h2>
       </div>
 
       <div class="btn_alerta">
@@ -142,14 +142,14 @@
         <h2 style="color: #7d2de2;">Alertas</h2>
       </div>
 
-      <div class="btn_perfil">
+      <div class="btn_perfil" onclick="window.location.href='../meuPerfil.html'">
         <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-        <h2>Perfil</h2>
+        <h2 class="effectlist">Perfil</h2>
       </div>
 
       <div class="btn_sair">
         <img onclick="sair()" src="../assets/img/sair_icon.png" />
-        <h2>Sair</h2>
+        <h2 class="effectlist">Sair</h2>
       </div>
     </div>
   </div>

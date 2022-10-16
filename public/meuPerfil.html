@@ -24,7 +24,7 @@
       </span>
       <h2 id="nome_usuario"></h2>
 
-      <button type="button" onclick="adcionnarImagem()">
+      <button type="button" class="buttonContact" onclick="adcionnarImagem()">
         Adicionar imagem
       </button>
     </div>
@@ -75,7 +75,7 @@
         </div>
       </form>
 
-      <button style="cursor: pointer" onclick="updatePerfil()">
+      <button style="cursor: pointer" class="buttonContact" onclick="updatePerfil()">
         Alterar informações
       </button>
     </div>
@@ -93,7 +93,7 @@
         <input type="datetime-local" id="dataHoraLembrete" placeholder="AAAA-MM-DD HH:MI:SS" />
       </div>
 
-      <button style="cursor: pointer" id="btnLembrete" onclick="adicionarLembrete()" type="button">
+      <button style="cursor: pointer" class="buttonContact" id="btnLembrete" onclick="adicionarLembrete()" type="button">
         Criar
       </button>
     </div>
@@ -103,27 +103,27 @@
     <div class="navbar_bottom">
       <div class="btn_home">
         <img onclick="tela_home()" src="assets/img/home_icon.svg" />
-        <h2>Home</h2>
+        <h2 class="effectlist">Home</h2>
       </div>
 
       <div class="btn_etiqueta" onclick="window.location.href='./dashboard/etiquetas.html'">
         <img src="assets/img/etiqueta_icon.svg" />
-        <h2>Etiquetas</h2>
+        <h2 class="effectlist">Etiquetas</h2>
       </div>
 
       <div class="btn_historico" onclick="window.location.href='./dashboard/historico.html'">
         <img src="assets/img/historico_icon.svg" />
-        <h2>Histórico</h2>
+        <h2 class="effectlist">Histórico</h2>
       </div>
 
       <div class="btn_dashboard" onclick="window.location.href='./dashboard/Dashboard.html'">
         <img src="assets/img/dashboard_icon.svg" />
-        <h2>Dashboard</h2>
+        <h2 class="effectlist">Dashboard</h2>
       </div>
 
       <div class="btn_alerta" onclick="window.location.href='./dashboard/alertas.html'">
         <img src="assets/img/alertas_icon.png" />
-        <h2>Alertas</h2>
+        <h2 class="effectlist">Alertas</h2>
       </div>
 
       <div class="btn_perfil">
@@ -133,7 +133,7 @@
 
       <div class="btn_sair">
         <img onclick="sair()" src="assets/img/sair_icon.png" />
-        <h2>Sair</h2>
+        <h2 class="effectlist">Sair</h2>
       </div>
     </div>
   </div>

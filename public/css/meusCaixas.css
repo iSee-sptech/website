@@ -106,9 +106,9 @@ body, html{
 }
 
 .divPesquisa button:hover{
-    transition: 1s;
+    background-color: #FFFFFF;
+    color: #7D2DE2;
     cursor: pointer;
-    background-color: #6428c8;
 }
 
 .divPesquisa h3{
@@ -188,4 +188,8 @@ body, html{
     background-image: url(/public/assets/img/trashIconRed.svg);
     background-size: 42px;
     background-repeat: no-repeat;
+}
+
+.effectlist:hover {
+    color: #7D2DE2;
 }
