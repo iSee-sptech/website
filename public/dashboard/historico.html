@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="../assets/img/iconLogo.ico"
+      type="image/x-icon"
+    />
     <title>Histórico - ISee</title>
     <link rel="stylesheet" href="../css/historico.css" />
     <link rel="stylesheet" href="../css/meusCaixas.css" />
@@ -14,14 +17,14 @@
 
 <body onload="imgUsuario(), exibirQtdCaixas(), listarHistorico()">
     <div class="divTitulo">
-        <div class="containerTitulo">
-            <h1>Histórico</h1>
-            <h6 id="bem_vindo">Bom dia <span id="quantidadeCaixas"></span> </h6>
-            <div id="imagem_user" class="notificacoes">
-                <img src="../assets/img/alert.svg">
-                <img src="../assets/img/user.svg">
-            </div>
+      <div class="containerTitulo">
+        <h1>Histórico</h1>
+        <h6 id="bem_vindo">Bom dia <span id="quantidadeCaixas"></span></h6>
+        <div id="imagem_user" class="notificacoes">
+          <img src="../assets/img/alert.svg" />
+          <img src="../assets/img/user.svg" />
         </div>
+      </div>
 
 
         <div class="filtroCaixas">
@@ -44,7 +47,6 @@
 
         </div>
     </div>
-
 
     <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
 
@@ -91,54 +93,63 @@
     </div>
 
 
-
-
     <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO ^^^^^^^^^^-->
 
-
     <div class="container_navbar">
-        <div class="navbar_bottom">
-            <div class="btn_home" onclick="tela_home()">
-                <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
-                <h2 class="effectlist">Home</h2>
-            </div>
-
-            <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
-                <img src="../assets/img/etiqueta_icon.svg" />
-                <h2 class="effectlist">Etiquetas</h2>
-            </div>
-
-            <div class="btn_historico">
-                <img src="../assets/img/historico_icon.svg" />
-                <h2 style="color: #7d2de2;">Histórico</h2>
-            </div>
-
-            <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
-                <img src="../assets/img/dashboard_icon.svg" />
-                <h2 class="effectlist">Dashboard</h2>
-            </div>
-
-            <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
-                <img src="../assets/img/alertas_icon.png" />
-                <h2 class="effectlist">Alertas</h2>
-            </div>
-
-            <div class="btn_perfil">
-                <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-                <h2 class="effectlist">Perfil</h2>
-            </div>
-
-            <div class="btn_sair">
-                <img onclick="sair()" src="../assets/img/sair_icon.png" />
-                <h2 class="effectlist">Sair</h2>
-            </div>
+      <div class="navbar_bottom">
+        <div class="btn_home" onclick="tela_home()">
+          <img
+            onclick="window.location.href='./homeFuncionario.html'"
+            src="../assets/img/home_icon.svg"
+          />
+          <h2 class="effectlist">Home</h2>
         </div>
+
+        <div
+          class="btn_etiqueta"
+          onclick="window.location.href='../dashboard/etiquetas.html'"
+        >
+          <img src="../assets/img/etiqueta_icon.svg" />
+          <h2 class="effectlist">Etiquetas</h2>
+        </div>
+
+        <div class="btn_historico">
+          <img src="../assets/img/historico_icon.svg" />
+          <h2 style="color: #7d2de2">Histórico</h2>
+        </div>
+
+        <div
+          class="btn_dashboard"
+          onclick="window.location.href='../dashboard/Dashboard.html'"
+        >
+          <img src="../assets/img/dashboard_icon.svg" />
+          <h2 class="effectlist">Dashboard</h2>
+        </div>
+
+        <div
+          class="btn_alerta"
+          onclick="window.location.href='../dashboard/alertas.html'"
+        >
+          <img src="../assets/img/alertas_icon.png" />
+          <h2 class="effectlist">Alertas</h2>
+        </div>
+
+        <div class="btn_perfil">
+          <img
+            onclick="window.location.href='../meuPerfil.html'"
+            src="../assets/img/userNavbar.svg"
+          />
+          <h2 class="effectlist">Perfil</h2>
+        </div>
+
+        <div class="btn_sair">
+          <img onclick="sair()" src="../assets/img/sair_icon.png" />
+          <h2 class="effectlist">Sair</h2>
+        </div>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
-
 
 <script>
 
@@ -163,57 +174,62 @@
         });
     }
 
-    var dataAtual = new Date();
-    var hora = dataAtual.getHours();
-    var nome = sessionStorage.nomeUsuario;
-    var bemVindo = document.getElementById("bem_vindo");
-    var frase;
+          var dataAtual = new Date();
+          var hora = dataAtual.getHours();
+          var nome = sessionStorage.nomeUsuario;
+          var bemVindo = document.getElementById("bem_vindo");
+          var frase;
 
-    if (hora >= 6 && hora < 13) {
-        frase = `Bom dia`;
-    } else if (hora >= 13 && hora < 18) {
-        frase = `Boa tarde`;
+          if (hora >= 6 && hora < 13) {
+            frase = `Bom dia`;
+          } else if (hora >= 13 && hora < 18) {
+            frase = `Boa tarde`;
+          } else {
+            frase = `Boa noite`;
+          }
+
+          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de caixas <span style="color:#7D2DE2;"> ${qtdCaixa}</span>`;
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function sair() {
+    sessionStorage.clear();
+    window.location.href = "../login.html";
+  }
+
+  function tela_home() {
+    if (sessionStorage.cargoUsuario === "Gerente") {
+      window.location = "homeGestor.html";
     } else {
-        frase = `Boa noite`;
+      window.location = "homeFuncionario.html";
     }
+  }
 
-    bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de Caixas`
+  function imgUsuario() {
+    var idUsuario = sessionStorage.idUsuario;
+    fetch(`/usuarios/imgUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          const imagemUser = data[0].imagemPerfilUsuario;
 
-
-    function sair() {
-        sessionStorage.clear();
-        window.location.href = "../login.html";
-    }
-
-    function tela_home() {
-        if (sessionStorage.cargoUsuario === "Gerente") {
-            window.location = "homeGestor.html";
-        } else {
-            window.location = "homeFuncionario.html";
-        }
-    }
-
-    function imgUsuario() {
-        var idUsuario = sessionStorage.idUsuario;
-        fetch(`/usuarios/imgUsuario/${idUsuario}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((resposta) => {
-                resposta.json().then((data) => {
-                    console.log(data);
-                    const imagemUser = data[0].imagemPerfilUsuario;
-
-
-                    if (imagemUser == undefined) {
-                        imagem_user.innerHTML = `
+          if (imagemUser == undefined) {
+            imagem_user.innerHTML = `
                 <img src="../assets/img/alert.svg" />
                 <img id="imgUser" src="../assets/img/user.svg">
-                `
-                    } else {
-                        imagem_user.innerHTML = `
+                `;
+          } else {
+            imagem_user.innerHTML = `
                 <img src="../assets/img/alert.svg" />
                 <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
                 `
