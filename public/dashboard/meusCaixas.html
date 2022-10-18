@@ -26,7 +26,7 @@
       <div>
         <h3>Pesquisar Caixa</h3>
         <input type="text" id="pesquisarCaixaID">
-        <button class="button1">Pesquisar</button>
+        <button class="button1" onblur="listarCaixas()" onclick="pesquisarCaixa()">Pesquisar</button>
       </div>
     </div>
   </div>
@@ -240,7 +240,7 @@
 
       resposta.json().then((data) => {
         console.log(data);
-
+        divDaddy.innerHTML = ``
         for (var i = 0; i < data.length; i++) {
           var id = data[i].idMaquina;
           var nome = data[i].nomeMaquina;
@@ -276,6 +276,7 @@
           listaArquitetura.push(arquitetura)
           listaImg.push(img)
 
+          
           divDaddy.innerHTML += ` <div id="caixa" style="padding-bottom: 4%;">
       <div>
         <h2>Status</h2>
@@ -365,6 +366,7 @@
     var idPesquisarCaixa = pesquisarCaixaID.value
     idPesquisar = parseInt(idPesquisarCaixa)
     const idCaixa = idPesquisar;
+    console.log(idCaixa)
 
     fetch(`/usuarios/pesquisarCaixa${idCaixa}`, {
       method: "GET",

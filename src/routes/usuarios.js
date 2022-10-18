@@ -64,12 +64,20 @@ router.get("/exibirCaixas", function (req, res) {
   usuarioController.exibirCaixas(req, res);
 });
 
+router.get("/pesquisarHistorico:dataHistorico", function (req, res) {
+  usuarioController.pesquisarHistorico(req, res);
+});
+
 router.get("/pesquisarCaixa:idCaixa", function (req, res) {
   usuarioController.pesquisarCaixa(req, res);
 });
 
 router.get("/listarCaixas", function (req, res) {
   usuarioController.listarCaixas(req, res);
+});
+
+router.get("/listarHistorico", function (req, res) {
+  usuarioController.listarHistorico(req, res);
 });
 
 router.get("/imgUsuario/:id", function (req, res) {

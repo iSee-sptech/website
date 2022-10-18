@@ -8,10 +8,11 @@
     <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
     <title>Histórico - ISee</title>
     <link rel="stylesheet" href="../css/historico.css" />
+    <link rel="stylesheet" href="../css/meusCaixas.css" />
     <link rel="stylesheet" href="../css/navBar.css">
 </head>
 
-<body onload="imgUsuario(), exibirQtdCaixas()">
+<body onload="imgUsuario(), exibirQtdCaixas(), listarHistorico()">
     <div class="divTitulo">
         <div class="containerTitulo">
             <h1>Histórico</h1>
@@ -33,12 +34,12 @@
                 <button>Caixa 5</button>
                 <button>Caixa 6</button>
             </div>
-            
+
             <div id="filtroData">
                 <div id="data">
-                    <input type="date" id="input_data_nasc_func" maxlength="8">
+                    <input onblur="listarHistorico()" type="date" id="input_data_nasc_func" maxlength="8">
                 </div>
-                <button>Filtrar</button>
+                <button onclick="pesquisarHistorico()">Filtrar</button>
             </div>
 
         </div>
@@ -47,61 +48,48 @@
 
     <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
 
-    <main>
-        <div class="tabelaHistorico">
+    <div class="meusCaixas" id="divDaddy" style="height: 40.4vh;">
 
-            <div id="historico">
-                <div>
-                    <h2>Hora</h2>
-                    <h4 id="horaCaixa">11:00</h4>
-                </div>
-                <div>
-                    <h2>Status</h2>
-                    <div id="status"></div>
-                </div>
-                <div>
-                    <h2>Nome</h2>
-                    <h4 id="nomeCaixa">caixa 1</h4>
-                </div>
-                <div>
-                    <h2>Log</h2>
-                    <h4 id="logCaixa">4</h4>
-                </div>
-                <div>
-                    <h2>RAM</h2>
-                    <h4 id="ramCaixa">4GB</h4>
-                </div>
-                <div>
-                    <h2>CPU</h2>
-                    <h4 id="cpuCaixa">2</h4>
-                </div>
-                <div>
-                    <h2>Memória</h2>
-                    <h4 id="memoriaCaixa">2</h4>
-                </div>
-                <div>
-                    <h2>Uso de processador</h2>
-                    <h4 id="memoriaCaixa">2</h4>
-                </div>
-                <div>
-                    <h2>Uso de disco</h2>
-                    <h4 id="memoriaCaixa">2</h4>
-                </div>
-                <div>
-                    <h2>Memória</h2>
-                    <h4 id="memoriaCaixa">2</h4>
-                </div>
-                <div>
-                    <h2 style="color: #ffff;">Mensagem</h2>
-                    <div id="mensagem"><img src="../assets/img/messageIcon.svg"></div>
-                </div>
-            </div>
+        <!-- <div id="caixa" style="width: 100vw;">
+          <div>
+            <h2>Status</h2>
+            <div id="status"></div>
+          </div>
+    
+          <div>
+            <h2>ID</h2>
+            <h4 class="alignCaixa"></h4>
+          </div>
+    
+          <div>
+            <h2>Data</h2>
+            <h4 class="alignCaixa"></h4>
+          </div>
+    
+          <div>
+            <h2>Uso RAM</h2>
+            <h4 class="alignCaixa"></h4>
+          </div>
+    
+           <div> 
+            <h2>Uso Processador</h2>
+            <h4 class="alignCaixa"></h4>
+          </div> 
+    
+           <div> 
+            <h2>Uso Disco</h2>
+            <h4 class="alignCaixa"></h4>
+          </div> 
+    
+          <div>
+            <h2>LOG</h2>
+            <div class="alignCaixa" onclick="">
+                <img src="../assets/img/messageIcon.svg" alt=""></div>
+          </div>
+        </div>  -->
 
-        </div>
+    </div>
 
-        
-
-    </main>
 
 
 
@@ -166,7 +154,7 @@
             resposta.json().then((data) => {
                 console.log(data);
                 qtdCaixa = data[0].qtdCaixa
-                quantidadeCaixas.innerHTML = qtdCaixa
+                // quantidadeCaixas.innerHTML = qtdCaixa
             })
 
         }).catch(function (resposta) {
@@ -238,4 +226,203 @@
             });
     }
 
+
+    function listarHistorico() {
+
+        fetch(`/usuarios/listarHistorico`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+
+            listaNomeHistorico = []
+            listaID = []
+            listaRam = []
+            listaProcessador = []
+            listaDisco = []
+            listaData = []
+
+            resposta.json().then((data) => {
+                console.log(data);
+                divDaddy.innerHTML = ``
+                for (var i = 0; i < data.length; i++) {
+                    var nomeHistorico = data[i].fkMaquinaHistorico;
+                    var id = data[i].idHistorico;
+                    var ram = data[i].usoRamHistorico;
+                    var processador = data[i].usoProcessadorHistorico;
+                    var disco = data[i].usoDiscoHistorico;
+                    var dataHora = data[i].dataHoraHistorico;
+
+                    ram = ram && ram.substr(0, 2);
+                    ram = parseInt(ram);
+                    ram = ram - 1;
+                    processador = processador && processador.substr(0, 3);
+                    processador = parseInt(processador);
+                    processador = processador + 1;
+                    processador = processador / 100;
+                    disco = disco && disco.substr(0, 3);
+                    dataHora = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
+
+                    listaNomeHistorico.push(nomeHistorico)
+                    listaID.push(id)
+                    listaRam.push(ram)
+                    listaProcessador.push(processador)
+                    listaDisco.push(disco)
+                    listaData.push(dataHora)
+
+
+                    divDaddy.innerHTML += ` 
+            <div id="caixa" style="width: 100vw; padding-bottom: 4%;">
+          <div>
+            <h2>Status</h2>
+            <div id="status"></div>
+          </div>
+    
+          <div>
+            <h2>ID</h2>
+            <h4 class="alignCaixa">${listaID[i]}</h4>
+          </div>
+    
+          <div>
+            <h2>Data</h2>
+            <h4 class="alignCaixa">${listaData[i]}</h4>
+          </div>
+    
+          <div>
+            <h2>ID Maquina</h2>
+            <h4 class="alignCaixa">${listaNomeHistorico[i]}</h4>
+          </div>
+
+          <div>
+            <h2>Uso RAM</h2>
+            <h4 class="alignCaixa">${listaRam[i]}</h4>
+          </div>
+    
+           <div> 
+            <h2>Uso Processador</h2>
+            <h4 class="alignCaixa">${listaProcessador[i]}</h4>
+          </div> 
+    
+           <div> 
+            <h2>Uso Disco</h2>
+            <h4 class="alignCaixa">${listaDisco[i]}</h4>
+          </div> 
+    
+          <div>
+            <h2>LOG</h2>
+            <div class="alignCaixa" onclick="">
+                <img src="../assets/img/messageIcon.svg" alt=""></div>
+          </div>
+        </div> `
+                }
+            })
+
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+
+    function pesquisarHistorico() {
+        var dataHistorico2 = input_data_nasc_func.value
+        console.log(dataHistorico2)
+        const dataHistorico = dataHistorico2;
+
+        fetch(`/usuarios/pesquisarHistorico${dataHistorico}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+
+
+            listaNomeHistorico = []
+            listaID = []
+            listaRam = []
+            listaProcessador = []
+            listaDisco = []
+            listaData = []
+
+            resposta.json().then((data) => {
+                console.log(data);
+
+                divDaddy.innerHTML = ``
+                for (var i = 0; i < data.length; i++) {
+                    var nomeHistorico = data[i].fkMaquinaHistorico;
+                    var id = data[i].idHistorico;
+                    var ram = data[i].usoRamHistorico;
+                    var processador = data[i].usoProcessadorHistorico;
+                    var disco = data[i].usoDiscoHistorico;
+                    var dataHora = data[i].dataHoraHistorico;
+
+                    ram = ram && ram.substr(0, 2);
+                    ram = parseInt(ram);
+                    ram = ram - 1;
+                    processador = processador && processador.substr(0, 3);
+                    processador = parseInt(processador);
+                    processador = processador + 1;
+                    processador = processador / 100;
+                    disco = disco && disco.substr(0, 3);
+                    dataHora = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
+
+                    listaNomeHistorico.push(nomeHistorico)
+                    listaID.push(id)
+                    listaRam.push(ram)
+                    listaProcessador.push(processador)
+                    listaDisco.push(disco)
+                    listaData.push(dataHora)
+
+
+                    divDaddy.innerHTML += ` 
+            <div id="caixa" style="width: 100vw; padding-bottom: 4%;">
+          <div>
+            <h2>Status</h2>
+            <div id="status"></div>
+          </div>
+    
+          <div>
+            <h2>ID</h2>
+            <h4 class="alignCaixa">${listaID[i]}</h4>
+          </div>
+    
+          <div>
+            <h2>Data</h2>
+            <h4 class="alignCaixa">${listaData[i]}</h4>
+          </div>
+    
+          <div>
+            <h2>ID Maquina</h2>
+            <h4 class="alignCaixa">${listaNomeHistorico[i]}</h4>
+          </div>
+
+          <div>
+            <h2>Uso RAM</h2>
+            <h4 class="alignCaixa">${listaRam[i]}</h4>
+          </div>
+    
+           <div> 
+            <h2>Uso Processador</h2>
+            <h4 class="alignCaixa">${listaProcessador[i]}</h4>
+          </div> 
+    
+           <div> 
+            <h2>Uso Disco</h2>
+            <h4 class="alignCaixa">${listaDisco[i]}</h4>
+          </div> 
+    
+          <div>
+            <h2>LOG</h2>
+            <div class="alignCaixa" onclick="">
+                <img src="../assets/img/messageIcon.svg" alt=""></div>
+          </div>
+        </div> `
+                }
+            })
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
 </script>

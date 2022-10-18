@@ -147,6 +147,14 @@ function listarCaixas() {
   return database.executar(instrucao);
 }
 
+function listarHistorico() {
+  var instrucao = `
+  SELECT fkMaquinaHistorico, idHistorico, usoRamHistorico, usoProcessadorHistorico, usoDiscoHistorico,
+  dataHoraHistorico from historico;
+  `;
+  return database.executar(instrucao);
+}
+
 function imgUsuario(idUser) {
   var instrucao = `
   SELECT * FROM usuarios WHERE idUsuario = ${idUser};
@@ -180,6 +188,13 @@ function pesquisarCaixa(caixa) {
   return database.executar(instrucao);
 }
 
+function pesquisarHistorico(dataHora) {
+  var instrucao = `
+  select * from historico where dataHoraHistorico like "${dataHora}%";
+  `;
+  return database.executar(instrucao);
+}
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -196,9 +211,11 @@ module.exports = {
   exibirQuantidadeTotalRam,
   exibirCaixas,
   listarCaixas,
+  listarHistorico,
   imgUsuario,
   atualizarImg,
   listarUser,
   lembreteDefault,
   pesquisarCaixa,
+  pesquisarHistorico,
 };
