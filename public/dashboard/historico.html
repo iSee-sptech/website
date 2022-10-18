@@ -1,241 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="../assets/img/iconLogo.ico"
+      type="image/x-icon"
+    />
     <title>Histórico - ISee</title>
     <link rel="stylesheet" href="../css/historico.css" />
-    <link rel="stylesheet" href="../css/navBar.css">
-</head>
+    <link rel="stylesheet" href="../css/navBar.css" />
+  </head>
 
-<body onload="imgUsuario(), exibirQtdCaixas()">
+  <body onload="imgUsuario(), exibirQtdCaixas()">
     <div class="divTitulo">
-        <div class="containerTitulo">
-            <h1>Histórico</h1>
-            <h6 id="bem_vindo">Bom dia <span id="quantidadeCaixas"></span> </h6>
-            <div id="imagem_user" class="notificacoes">
-                <img src="../assets/img/alert.svg">
-                <img src="../assets/img/user.svg">
-            </div>
+      <div class="containerTitulo">
+        <h1>Histórico</h1>
+        <h6 id="bem_vindo">Bom dia <span id="quantidadeCaixas"></span></h6>
+        <div id="imagem_user" class="notificacoes">
+          <img src="../assets/img/alert.svg" />
+          <img src="../assets/img/user.svg" />
+        </div>
+      </div>
+
+      <div class="filtroCaixas">
+        <h2>Filtros</h2>
+        <div class="selecaoCaixas">
+          <button>Caixa 1</button>
+          <button>Caixa 2</button>
+          <button>Caixa 3</button>
+          <button>Caixa 4</button>
+          <button>Caixa 5</button>
+          <button>Caixa 6</button>
         </div>
 
-
-        <div class="filtroCaixas">
-            <h2>Filtros</h2>
-            <div class="selecaoCaixas">
-                <button>Caixa 1</button>
-                <button>Caixa 2</button>
-                <button>Caixa 3</button>
-                <button>Caixa 4</button>
-                <button>Caixa 5</button>
-                <button>Caixa 6</button>
-            </div>
-            
-            <div id="filtroData">
-                <div id="data">
-                    <input type="date" id="input_data_nasc_func" maxlength="8">
-                </div>
-                <button>Filtrar</button>
-            </div>
-
+        <div id="filtroData">
+          <div id="data">
+            <input type="date" id="input_data_nasc_func" maxlength="8" />
+          </div>
+          <button>Filtrar</button>
         </div>
+      </div>
     </div>
-
 
     <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
 
     <main>
-        <div class="tabelaHistorico">
-
-            <div id="historico">
-                <div>
-                    <h2>Hora</h2>
-                    <h4 id="horaCaixa">11:00</h4>
-                </div>
-                <div>
-                    <h2>Status</h2>
-                    <div id="status"></div>
-                </div>
-                <div>
-                    <h2>Nome</h2>
-                    <h4 id="nomeCaixa">caixa 1</h4>
-                </div>
-                <div>
-                    <h2>Log</h2>
-                    <h4 id="logCaixa">4</h4>
-                </div>
-                <div>
-                    <h2>RAM</h2>
-                    <h4 id="ramCaixa">4GB</h4>
-                </div>
-                <div>
-                    <h2>CPU</h2>
-                    <h4 id="cpuCaixa">2</h4>
-                </div>
-                <div>
-                    <h2>Memória</h2>
-                    <h4 id="memoriaCaixa">2</h4>
-                </div>
-                <div>
-                    <h2>Uso de processador</h2>
-                    <h4 id="memoriaCaixa">2</h4>
-                </div>
-                <div>
-                    <h2>Uso de disco</h2>
-                    <h4 id="memoriaCaixa">2</h4>
-                </div>
-                <div>
-                    <h2>Memória</h2>
-                    <h4 id="memoriaCaixa">2</h4>
-                </div>
-                <div>
-                    <h2 style="color: #ffff;">Mensagem</h2>
-                    <div id="mensagem"><img src="../assets/img/messageIcon.svg"></div>
-                </div>
-            </div>
-
+      <div class="tabelaHistorico">
+        <div id="historico">
+          <div>
+            <h2>Hora</h2>
+            <h4 id="horaCaixa">11:00</h4>
+          </div>
+          <div>
+            <h2>Status</h2>
+            <div id="status"></div>
+          </div>
+          <div>
+            <h2>Nome</h2>
+            <h4 id="nomeCaixa">caixa 1</h4>
+          </div>
+          <div>
+            <h2>Log</h2>
+            <h4 id="logCaixa">4</h4>
+          </div>
+          <div>
+            <h2>RAM</h2>
+            <h4 id="ramCaixa">4GB</h4>
+          </div>
+          <div>
+            <h2>CPU</h2>
+            <h4 id="cpuCaixa">2</h4>
+          </div>
+          <div>
+            <h2>Memória</h2>
+            <h4 id="memoriaCaixa">2</h4>
+          </div>
+          <div>
+            <h2>Uso de processador</h2>
+            <h4 id="memoriaCaixa">2</h4>
+          </div>
+          <div>
+            <h2>Uso de disco</h2>
+            <h4 id="memoriaCaixa">2</h4>
+          </div>
+          <div>
+            <h2>Memória</h2>
+            <h4 id="memoriaCaixa">2</h4>
+          </div>
+          <div>
+            <h2 style="color: #ffff">Mensagem</h2>
+            <div id="mensagem"><img src="../assets/img/messageIcon.svg" /></div>
+          </div>
         </div>
-
-        
-
+      </div>
     </main>
-
-
 
     <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO ^^^^^^^^^^-->
 
-
     <div class="container_navbar">
-        <div class="navbar_bottom">
-            <div class="btn_home" onclick="tela_home()">
-                <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
-                <h2 class="effectlist">Home</h2>
-            </div>
-
-            <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
-                <img src="../assets/img/etiqueta_icon.svg" />
-                <h2 class="effectlist">Etiquetas</h2>
-            </div>
-
-            <div class="btn_historico">
-                <img src="../assets/img/historico_icon.svg" />
-                <h2 style="color: #7d2de2;">Histórico</h2>
-            </div>
-
-            <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
-                <img src="../assets/img/dashboard_icon.svg" />
-                <h2 class="effectlist">Dashboard</h2>
-            </div>
-
-            <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
-                <img src="../assets/img/alertas_icon.png" />
-                <h2 class="effectlist">Alertas</h2>
-            </div>
-
-            <div class="btn_perfil">
-                <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-                <h2 class="effectlist">Perfil</h2>
-            </div>
-
-            <div class="btn_sair">
-                <img onclick="sair()" src="../assets/img/sair_icon.png" />
-                <h2 class="effectlist">Sair</h2>
-            </div>
+      <div class="navbar_bottom">
+        <div class="btn_home" onclick="tela_home()">
+          <img
+            onclick="window.location.href='./homeFuncionario.html'"
+            src="../assets/img/home_icon.svg"
+          />
+          <h2 class="effectlist">Home</h2>
         </div>
+
+        <div
+          class="btn_etiqueta"
+          onclick="window.location.href='../dashboard/etiquetas.html'"
+        >
+          <img src="../assets/img/etiqueta_icon.svg" />
+          <h2 class="effectlist">Etiquetas</h2>
+        </div>
+
+        <div class="btn_historico">
+          <img src="../assets/img/historico_icon.svg" />
+          <h2 style="color: #7d2de2">Histórico</h2>
+        </div>
+
+        <div
+          class="btn_dashboard"
+          onclick="window.location.href='../dashboard/Dashboard.html'"
+        >
+          <img src="../assets/img/dashboard_icon.svg" />
+          <h2 class="effectlist">Dashboard</h2>
+        </div>
+
+        <div
+          class="btn_alerta"
+          onclick="window.location.href='../dashboard/alertas.html'"
+        >
+          <img src="../assets/img/alertas_icon.png" />
+          <h2 class="effectlist">Alertas</h2>
+        </div>
+
+        <div class="btn_perfil">
+          <img
+            onclick="window.location.href='../meuPerfil.html'"
+            src="../assets/img/userNavbar.svg"
+          />
+          <h2 class="effectlist">Perfil</h2>
+        </div>
+
+        <div class="btn_sair">
+          <img onclick="sair()" src="../assets/img/sair_icon.png" />
+          <h2 class="effectlist">Sair</h2>
+        </div>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
 
-
 <script>
+  function exibirQtdCaixas() {
+    fetch(`/usuarios/exibirCaixas`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        // saldoConta
+        resposta.json().then((data) => {
+          console.log(data);
+          qtdCaixa = data[0].qtdCaixa;
+          quantidadeCaixas.innerHTML = qtdCaixa;
 
-    function exibirQtdCaixas() {
+          var dataAtual = new Date();
+          var hora = dataAtual.getHours();
+          var nome = sessionStorage.nomeUsuario;
+          var bemVindo = document.getElementById("bem_vindo");
+          var frase;
 
-        fetch(`/usuarios/exibirCaixas`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then((resposta) => {
-            // saldoConta
-            resposta.json().then((data) => {
-                console.log(data);
-                qtdCaixa = data[0].qtdCaixa
-                quantidadeCaixas.innerHTML = qtdCaixa
-            })
+          if (hora >= 6 && hora < 13) {
+            frase = `Bom dia`;
+          } else if (hora >= 13 && hora < 18) {
+            frase = `Boa tarde`;
+          } else {
+            frase = `Boa noite`;
+          }
 
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de caixas <span style="color:#7D2DE2;"> ${qtdCaixa}</span>`;
         });
-    }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
 
-    var dataAtual = new Date();
-    var hora = dataAtual.getHours();
-    var nome = sessionStorage.nomeUsuario;
-    var bemVindo = document.getElementById("bem_vindo");
-    var frase;
+  function sair() {
+    sessionStorage.clear();
+    window.location.href = "../login.html";
+  }
 
-    if (hora >= 6 && hora < 13) {
-        frase = `Bom dia`;
-    } else if (hora >= 13 && hora < 18) {
-        frase = `Boa tarde`;
+  function tela_home() {
+    if (sessionStorage.cargoUsuario === "Gerente") {
+      window.location = "homeGestor.html";
     } else {
-        frase = `Boa noite`;
+      window.location = "homeFuncionario.html";
     }
+  }
 
-    bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de Caixas`
+  function imgUsuario() {
+    var idUsuario = sessionStorage.idUsuario;
+    fetch(`/usuarios/imgUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          const imagemUser = data[0].imagemPerfilUsuario;
 
-
-    function sair() {
-        sessionStorage.clear();
-        window.location.href = "../login.html";
-    }
-
-    function tela_home() {
-        if (sessionStorage.cargoUsuario === "Gerente") {
-            window.location = "homeGestor.html";
-        } else {
-            window.location = "homeFuncionario.html";
-        }
-    }
-
-    function imgUsuario() {
-        var idUsuario = sessionStorage.idUsuario;
-        fetch(`/usuarios/imgUsuario/${idUsuario}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((resposta) => {
-                resposta.json().then((data) => {
-                    console.log(data);
-                    const imagemUser = data[0].imagemPerfilUsuario;
-
-
-                    if (imagemUser == undefined) {
-                        imagem_user.innerHTML = `
+          if (imagemUser == undefined) {
+            imagem_user.innerHTML = `
                 <img src="../assets/img/alert.svg" />
                 <img id="imgUser" src="../assets/img/user.svg">
-                `
-                    } else {
-                        imagem_user.innerHTML = `
+                `;
+          } else {
+            imagem_user.innerHTML = `
                 <img src="../assets/img/alert.svg" />
                 <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
-                `
-                    }
-
-                })
-            }).catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-                finalizarAguardar();
-            });
-    }
-
+                `;
+          }
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
 </script>
