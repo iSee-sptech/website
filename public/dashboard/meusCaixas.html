@@ -219,7 +219,7 @@
           console.log(data);
           qtdCaixa = data[0].qtdCaixa;
           quantidadeCaixas = qtdCaixa;
-          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de caixas <span style="color:#7D2DE2;">${quantidadeCaixas}</span>`;
+          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de <span style="color:#7D2DE2;">${quantidadeCaixas}</span> caixas`;
         });
       })
       .catch(function (resposta) {
@@ -255,13 +255,13 @@
           var nome = data[i].nomeMaquina;
           var cep = data[i].cepMaquina;
           var ram = data[i].ramMaquina;
-          ram = ram.substr(0, 2);
+          ram = ram && ram.substr(0, 2);
           ram = parseInt(ram);
           ram = ram - 1;
           var disco = data[i].discoMaquina;
-          disco = disco.substr(0, 3);
+          disco = disco && disco.substr(0, 3);
           var processador = data[i].processadorMaquina;
-          processador = processador.substr(0, 3);
+          processador = processador && processador.substr(0, 3);
           processador = parseInt(processador);
           processador = processador + 1;
           processador = processador / 100;

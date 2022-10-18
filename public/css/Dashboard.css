@@ -59,6 +59,11 @@ h4 {
     line-height: 27px;
 }
 
+
+#quantidadeTotalRam{
+    
+}
+
 h6 {
     font-style: normal;
     font-size: calc(0.60em + 1vmin);

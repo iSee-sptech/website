@@ -139,6 +139,13 @@ function exibirCaixas() {
   return database.executar(instrucao);
 }
 
+function  exibirQtdHistorico() {
+  var instrucao = `
+  SELECT count(idHistorico) as 'idHistorico' from Historico;
+  `;
+  return database.executar(instrucao);
+}
+
 function listarCaixas() {
   var instrucao = `
   SELECT idMaquina, nomeMaquina, cepMaquina, ramMaquina, discoMaquina, processadorMaquina, tempoDeAtividade, sistemaOperacionalMaquina,
@@ -218,4 +225,5 @@ module.exports = {
   lembreteDefault,
   pesquisarCaixa,
   pesquisarHistorico,
+  exibirQtdHistorico,
 };

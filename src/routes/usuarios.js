@@ -64,6 +64,10 @@ router.get("/exibirCaixas", function (req, res) {
   usuarioController.exibirCaixas(req, res);
 });
 
+router.get("/exibirQtdHistorico", function (req, res) {
+  usuarioController.exibirQtdHistorico(req, res);
+});
+
 router.get("/pesquisarHistorico:dataHistorico", function (req, res) {
   usuarioController.pesquisarHistorico(req, res);
 });

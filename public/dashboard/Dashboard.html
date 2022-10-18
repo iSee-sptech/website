@@ -179,7 +179,7 @@
     frase = `Boa noite`;
   }
 
-  bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje a eficiência global é de`
+  bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje a eficiência global é de <span style="color:#7D2DE2;"> 100%</span>`
 
   function tela_home() {
     if (sessionStorage.cargoUsuario === "Gerente") {
@@ -205,9 +205,11 @@
       // saldoConta
       resposta.json().then((data) => {
         console.log(data);
-        qtdTotalDeRam = data[0].totalRam;
-        console.log(qtdTotalDeRam);
-        quantidadeTotalRam.innerHTML = qtdTotalDeRam
+        var ram = data[0].totalRam;
+        const resultRam = ram.toString().substr(0, 2);
+        //ram = ram && ram.substr(0, 2);
+        console.log(resultRam);
+        quantidadeTotalRam.innerHTML = resultRam
       })
 
     }).catch(function (resposta) {

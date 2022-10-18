@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="../css/navBar.css">
 </head>
 
-<body onload="imgUsuario(), exibirQtdCaixas(), listarHistorico()">
+<body onload="imgUsuario(), exibirQtdHistorico(), listarHistorico()">
     <div class="divTitulo">
       <div class="containerTitulo">
         <h1>Histórico</h1>
-        <h6 id="bem_vindo">Bom dia <span id="quantidadeCaixas"></span></h6>
+        <h6 id="bem_vindo">Bom dia</h6>
         <div id="imagem_user" class="notificacoes">
           <img src="../assets/img/alert.svg" />
           <img src="../assets/img/user.svg" />
@@ -153,8 +153,22 @@
 
 <script>
 
-function exibirCaixas() {
-    fetch(`/usuarios/exibirCaixas`, {
+var dataAtual = new Date();
+  var hora = dataAtual.getHours();
+  var nome = sessionStorage.nomeUsuario;
+  var bemVindo = document.getElementById("bem_vindo");
+  var frase;
+
+  if (hora >= 6 && hora < 13) {
+    frase = `Bom dia`;
+  } else if (hora >= 13 && hora < 18) {
+    frase = `Boa tarde`;
+  } else {
+    frase = `Boa noite`;
+  }
+
+function exibirQtdHistorico() {
+    fetch(`/usuarios/exibirQtdHistorico`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -164,9 +178,8 @@ function exibirCaixas() {
         // saldoConta
         resposta.json().then((data) => {
           console.log(data);
-          qtdCaixa = data[0].qtdCaixa;
-          quantidadeCaixas = qtdCaixa;
-          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de caixas <span style="color:#7D2DE2;">${quantidadeCaixas}</span>`;
+          qtdHistorico = data[0].idHistorico;
+          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de <span style="color:#7D2DE2;">${qtdHistorico}</span> históricos`;
         });
       })
       .catch(function (resposta) {
