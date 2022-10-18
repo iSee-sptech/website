@@ -9,13 +9,14 @@ emailUsuario varchar (70) unique not null,
 cepUsuario char (9),
 cpfUsuario char (14) unique,
 telefoneUsuario char (15) unique not null,
+crmUsuario  char (6),
 senhaUsuario varchar (20) not null,
 dataNascUsuario date not null,
 imagemPerfilUsuario varchar (255),
 numeroLocalUsuario varchar (6),
 complementoLocalUsuario varchar (25)
 );
-select * from Usuarios;
+select * from usuarios;
 
 create table Maquinas (
 idMaquina int primary key auto_increment,
@@ -31,11 +32,13 @@ processadorMaquina varchar(100),
 cepMaquina char (9) unique,
 imgMaquina varchar (255),
 complementoMaquina varchar (50),
+pontoReferenciaMaquina varchar (25),
+numeroMaquina int,
 fkUsuario int,
 foreign key (fkUsuario)
 references Usuarios (idUsuario)
 );
-select * from Maquinas;
+select * from maquinas;
 
 create table Etiqueta (
 idEtiqueta int primary key auto_increment,
@@ -46,7 +49,7 @@ fkMaquina int,
 foreign key (fkMaquina)
 references Maquinas (idMaquina)
 );
-select * from Etiqueta;
+select * from etiqueta;
 
 create table Historico (
 idHistorico int primary key auto_increment,

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../css/navBar.css">
 </head>
 
-<body onload="imgUsuario()">
+<body onload="imgUsuario(), listarLembrete(), exibirQtdCaixas()">
   <div class="first_section">
     <div class="first_container">
       <h1 id="bem_vindo">Bem vindo</h1>
@@ -22,7 +22,7 @@
 
         <div onclick="window.location.href='./meusCaixas.html'">
           <h3>Meus Caixas</h3>
-          <span>0</span>
+          <span id="quantidadeCaixas">0</span>
         </div>
 
         </div>
@@ -34,7 +34,8 @@
       <div class="modal_cadastrar">
         <h3>Lembretes</h3>
         <div class="desc_etiqueta">
-          <h3>AQUI É UM LEMBRETE</h3>
+          <h3 id="mensagemLembreteId">AQUI É UM LEMBRETE</h3>
+          <p id="dataLembreteId">AquiFicaAData</p>
         </div>
       </div>
     </div>
@@ -179,6 +180,53 @@
 
         })
       }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function listarLembrete() {
+    const usuarioId = sessionStorage.idUsuario;
+
+    fetch(`/usuarios/listarLembrete/${usuarioId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
+      resposta.json().then((data) => {
+        console.log(data);
+        dataHoraLembrete = data[0].dataHoraLembrete
+        mensagemLembrete = data[0].mensagemLembrete
+        console.log(dataHoraLembrete);
+
+        dataHoraLembrete2 = dataHoraLembrete.replaceAll("T", " ").replaceAll("Z", "");
+        mensagemLembreteId.innerHTML = mensagemLembrete
+        dataLembreteId.innerHTML = dataHoraLembrete2  
+      })
+      }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+  });
+
+}
+
+function exibirQtdCaixas() {
+    fetch(`/usuarios/exibirCaixas`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        // saldoConta
+        resposta.json().then((data) => {
+          console.log(data);
+          qtdCaixa = data[0].qtdCaixa;
+          quantidadeCaixas.innerHTML = qtdCaixa;
+        });
+      })
+      .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
