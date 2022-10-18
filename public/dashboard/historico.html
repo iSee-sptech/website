@@ -153,47 +153,24 @@
 
 <script>
 
-    function exibirQtdCaixas() {
-
-        fetch(`/usuarios/exibirCaixas`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then((resposta) => {
-            // saldoConta
-            resposta.json().then((data) => {
-                console.log(data);
-                qtdCaixa = data[0].qtdCaixa
-                // quantidadeCaixas.innerHTML = qtdCaixa
-            })
-
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
-    }
-
-          var dataAtual = new Date();
-          var hora = dataAtual.getHours();
-          var nome = sessionStorage.nomeUsuario;
-          var bemVindo = document.getElementById("bem_vindo");
-          var frase;
-
-          if (hora >= 6 && hora < 13) {
-            frase = `Bom dia`;
-          } else if (hora >= 13 && hora < 18) {
-            frase = `Boa tarde`;
-          } else {
-            frase = `Boa noite`;
-          }
-
-          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de caixas <span style="color:#7D2DE2;"> ${qtdCaixa}</span>`;
+function exibirCaixas() {
+    fetch(`/usuarios/exibirCaixas`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        // saldoConta
+        resposta.json().then((data) => {
+          console.log(data);
+          qtdCaixa = data[0].qtdCaixa;
+          quantidadeCaixas = qtdCaixa;
+          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, total de caixas <span style="color:#7D2DE2;">${quantidadeCaixas}</span>`;
         });
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
       });
   }
 
