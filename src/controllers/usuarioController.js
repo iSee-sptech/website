@@ -403,6 +403,27 @@ function exibirCaixas(req, res) {
     });
 }
 
+function exibirQtdTotalEtiquetas(req, res) {
+  
+  usuarioModel
+    .exibirQtdTotalEtiquetas()
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function  exibirQtdHistorico(req, res) {
   //const usuarioIdentificador = req.params.id;
   usuarioModel
@@ -559,6 +580,7 @@ module.exports = {
   exibirFuncionarios,
   exibirQuantidadeTotalRam,
   exibirCaixas,
+  exibirQtdTotalEtiquetas,
   listarCaixas,
   listarHistorico,
   imgUsuario,

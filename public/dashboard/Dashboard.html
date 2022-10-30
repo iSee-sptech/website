@@ -42,9 +42,9 @@
 
         <div class="selecao_filtro">
           <h2>Filtro</h2>
-          <button>RAM</button>
-          <button>CPU</button>
-          <button>Memória</button>
+          <button id="filtro_ram" onclick="filtrarApenasRam()">RAM</button>
+          <button id="filtro_cpu" onclick="filtrarApenasCpu()">CPU</button>
+          <button id="filtro_memoria" onclick="filtrarApenasMemoria()">Memória</button>
         </div>
 
         <div class="selecao_maquina">
@@ -62,7 +62,7 @@
       <div class="container_cards">
 
         <div class="card">
-          <h4 id="titulo_card1">Quantidade de RAM Restante </h4>
+          <h4 id="titulo_card1">Quantidade de RAM restante </h4>
           <!--AQUI FICA O TITULO DO PRIMEIRO CARD -->
           <h2> 25 GB </h2>
         </div>
@@ -216,6 +216,21 @@
       console.log(`#ERRO: ${resposta}`);
       finalizarAguardar();
     });
+  }
+
+  function filtrarApenasRam() {
+    titulo_card1.innerHTML = "Quantidade de RAM restante"
+    titulo_card2.innerHTML = "Quantidade de RAM TOTAL"
+  }
+
+  function filtrarApenasCpu() {
+    titulo_card1.innerHTML = "Quantidade de CPU restante"
+    titulo_card2.innerHTML = "Quantidade de CPU TOTAL"
+  }
+
+  function filtrarApenasMemoria() {
+    titulo_card1.innerHTML = 'Quantidade de Memória restante'
+    titulo_card2.innerHTML = 'Quantidade de Memória TOTAL'
   }
 
   function imgUsuario() {

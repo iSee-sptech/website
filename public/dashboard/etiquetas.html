@@ -13,7 +13,7 @@
   
 </head>
 
-<body onload="imgUsuario()">
+<body onload="imgUsuario(), exibirQtdTotalEtiquetas()">
 
   <div class="body_dashboard">
 
@@ -188,6 +188,27 @@ var dataAtual = new Date();
     } else {
       window.location = "homeFuncionario.html";
     }
+  }
+
+  function exibirQtdTotalEtiquetas() {
+    fetch(`/usuarios/exibirQtdTotalEtiquetas`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        // saldoConta
+        resposta.json().then((data) => {
+          console.log(data);
+          qtdEtiqueta = data[0].qtdTotalEtiquetas;
+          qtdTotalEtiqueta = qtdEtiqueta;
+          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, foram mapeadas <span style="color:#7D2DE2;">${qtdTotalEtiqueta}</span> etiquetas`;
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
   }
 
   function imgUsuario() {

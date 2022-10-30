@@ -139,6 +139,13 @@ function exibirCaixas() {
   return database.executar(instrucao);
 }
 
+function exibirQtdTotalEtiquetas() {
+  var instrucao = `
+  SELECT count(idEtiqueta) as 'qtdTotalEtiquetas' FROM Etiqueta;
+  `;
+  return database.executar(instrucao);
+}
+
 function  exibirQtdHistorico() {
   var instrucao = `
   SELECT count(idHistorico) as 'idHistorico' from Historico;
@@ -217,6 +224,7 @@ module.exports = {
   exibirFuncionarios,
   exibirQuantidadeTotalRam,
   exibirCaixas,
+  exibirQtdTotalEtiquetas,
   listarCaixas,
   listarHistorico,
   imgUsuario,
