@@ -3,20 +3,19 @@ use iSee;
 
 create table Usuarios (
 idUsuario int primary key auto_increment,
-nomeUsuario varchar (100) not null,
-cargoUsuario varchar (30) not null,
-emailUsuario varchar (70) unique not null,
+nomeUsuario varchar (100),
+cargoUsuario varchar (30),
+emailUsuario varchar (70) unique,
 cepUsuario char (9),
-cpfUsuario char (14) unique,
-telefoneUsuario char (15) unique not null,
+cpfUsuario char (14) unique not null,
+telefoneUsuario char (15) unique,
 crmUsuario  char (6),
 senhaUsuario varchar (20) not null,
-dataNascUsuario date not null,
+dataNascUsuario date,
 imagemPerfilUsuario varchar (255),
 numeroLocalUsuario varchar (6),
 complementoLocalUsuario varchar (25)
 );
-select * from usuarios;
 
 create table Maquinas (
 idMaquina int primary key auto_increment,
@@ -29,7 +28,7 @@ nomeMaquina varchar (100),
 discoMaquina varchar(100),
 ramMaquina varchar(100),
 processadorMaquina varchar(100),
-cepMaquina char (9) unique,
+cepMaquina char (9),
 imgMaquina varchar (255),
 complementoMaquina varchar (50),
 pontoReferenciaMaquina varchar (25),
@@ -38,18 +37,15 @@ fkUsuario int,
 foreign key (fkUsuario)
 references Usuarios (idUsuario)
 );
-select * from maquinas;
 
 create table Etiqueta (
 idEtiqueta int primary key auto_increment,
-qualidadeEtiqueta varchar (25),
-tempoSemProblema varchar (15),
-etiquetacol varchar (30),
 fkMaquina int,
+nomeEtiqueta varchar(50),
+datahoraEtiqueta datetime,
 foreign key (fkMaquina)
 references Maquinas (idMaquina)
 );
-select * from etiqueta;
 
 create table Historico (
 idHistorico int primary key auto_increment,
@@ -63,7 +59,6 @@ fkMaquinaHistorico int,
 foreign key (fkMaquinaHistorico)
 references Maquinas (idMaquina)
 );
-select * from Historico;
 
 create table Lembrete(
 idLembrete int primary key auto_increment,
@@ -74,4 +69,13 @@ fkUsuario int,
 foreign key (fkUsuario)
 references Usuarios (idUsuario)
 );
-select * from Lembrete;
+
+create table Alerta (
+idAlerta int primary key auto_increment,
+fkMaquina int,
+componente varchar(10),
+nivelAlerta varchar(10),
+datahoraAlerta datetime,
+foreign key (fkMaquina)
+references Maquinas (idMaquina)
+);
