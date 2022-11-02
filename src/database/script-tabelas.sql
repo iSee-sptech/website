@@ -16,7 +16,6 @@ imagemPerfilUsuario varchar (255),
 numeroLocalUsuario varchar (6),
 complementoLocalUsuario varchar (25)
 );
-select * from usuarios;
 
 create table Maquinas (
 idMaquina int primary key auto_increment,
@@ -38,7 +37,6 @@ fkUsuario int,
 foreign key (fkUsuario)
 references Usuarios (idUsuario)
 );
-select * from maquinas;
 
 create table Etiqueta (
 idEtiqueta int primary key auto_increment,
@@ -48,7 +46,6 @@ datahoraEtiqueta datetime,
 foreign key (fkMaquina)
 references Maquinas (idMaquina)
 );
-select * from etiqueta;
 
 create table Historico (
 idHistorico int primary key auto_increment,
@@ -62,7 +59,6 @@ fkMaquinaHistorico int,
 foreign key (fkMaquinaHistorico)
 references Maquinas (idMaquina)
 );
-select * from Historico;
 
 create table Lembrete(
 idLembrete int primary key auto_increment,
@@ -73,7 +69,6 @@ fkUsuario int,
 foreign key (fkUsuario)
 references Usuarios (idUsuario)
 );
-select * from Lembrete;
 
 create table Alerta (
 idAlerta int primary key auto_increment,
