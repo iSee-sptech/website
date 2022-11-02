@@ -417,10 +417,10 @@
   }
 
   function carregarAlertas() {
-      if (input_filtro_data.value == '') {
-        input_filtro_data.value = exibirDataAtual()
+      if (input_filtro_data.value ='') {
+        input_filtro_data.value = "'" + exibirDataAtual() + "'";
       }
-        var dataAlerta = input_filtro_data.value.value
+        var dataAlerta = input_filtro_data.value.value;
         console.log(dataAlerta)
 
         fetch(`/usuarios/obterAlertasPorData/${dataAlerta}`, {
@@ -431,86 +431,59 @@
         }).then((resposta) => {
 
 
-            listaNomeHistorico = []
-            listaID = []
-            listaRam = []
-            listaProcessador = []
-            listaDisco = []
+            listaNomeCaixa = []
+            listaComponente = []
+            listaNivelAlerta = []
+            listaValor = []
             listaData = []
 
             resposta.json().then((data) => {
                 console.log(data);
 
-                divDaddy.innerHTML = ``
-                for (var i = 0; i < data.length; i++) {
-                    var nomeHistorico = data[i].fkMaquinaHistorico;
-                    var id = data[i].idHistorico;
-                    var ram = data[i].usoRamHistorico;
-                    var processador = data[i].usoProcessadorHistorico;
-                    var disco = data[i].usoDiscoHistorico;
-                    var dataHora = data[i].dataHoraHistorico;
+                corpoModalAlertaUm.innerHTML = ``
+                corpoModalAlertaDois.innerHTML = ``
+                corpoModalAlertaTres.innerHTML = ``
+                corpoModalAlertaQuatro.innerHTML = ``
 
-                    ram = ram && ram.substr(0, 2);
-                    ram = parseInt(ram);
-                    ram = ram - 1;
-                    processador = processador && processador.substr(0, 3);
-                    processador = parseInt(processador);
-                    processador = processador + 1;
-                    processador = processador / 100;
-                    disco = disco && disco.substr(0, 3);
+                for (var i = 0; i < data.length; i++) {
+                    var nomeCaixa = data[i].Nome;
+                    var componente = data[i].Componente;
+                    var nivelAlerta = data[i].Nivel;
+                    // var valorAlerta = data[i].Valor;
+                    var dataHora = data[i].DataHora;
+
                     dataHora = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
 
-                    listaNomeHistorico.push(nomeHistorico)
-                    listaID.push(id)
-                    listaRam.push(ram)
-                    listaProcessador.push(processador)
-                    listaDisco.push(disco)
+                    listaNomeCaixa.push(nomeCaixa)
+                    listaComponente.push(componente)
+                    listaRam.push(nivelAlerta)
+                    // listaValor.push(valorAlerta)
                     listaData.push(dataHora)
 
-
-                    divDaddy.innerHTML += ` 
-            <div id="caixa" style="width: 100vw; padding-bottom: 4%;">
-          <div>
-            <h2>Status</h2>
-            <div id="status"></div>
-          </div>
-    
-          <div>
-            <h2>ID</h2>
-            <h4 class="alignCaixa">${listaID[i]}</h4>
-          </div>
-    
-          <div>
-            <h2>Data</h2>
-            <h4 class="alignCaixa">${listaData[i]}</h4>
-          </div>
-    
-          <div>
-            <h2>ID Maquina</h2>
-            <h4 class="alignCaixa">${listaNomeHistorico[i]}</h4>
-          </div>
-
-          <div>
-            <h2>Uso RAM</h2>
-            <h4 class="alignCaixa">${listaRam[i]}</h4>
-          </div>
-    
-           <div> 
-            <h2>Uso Processador</h2>
-            <h4 class="alignCaixa">${listaProcessador[i]}</h4>
-          </div> 
-    
-           <div> 
-            <h2>Uso Disco</h2>
-            <h4 class="alignCaixa">${listaDisco[i]}</h4>
-          </div> 
-    
-          <div>
-            <h2>LOG</h2>
-            <div class="alignCaixa" onclick="">
-                <img src="../assets/img/messageIcon.svg" alt=""></div>
-          </div>
-        </div> `
+                    if (listaComponente[i] == "ram") {
+                      corpoModalAlertaUm.innerHTML += `
+                      <div class="container_informacoes_alerta">
+                      <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
+                      <p>USO_DE_X% <a>${dataHora}</a></p>
+                      </div>
+                      `
+                    }
+                    else if (listaComponente[i] == "cpu") {
+                      corpoModalAlertaDois.innerHTML += `
+                      <div class="container_informacoes_alerta">
+                      <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
+                      <p>USO_DE_X% <a>${dataHora}</a></p>
+                      </div>
+                      `
+                    }
+                    else if (listaComponente[i] == "disco") {
+                      corpoModalAlertaTres.innerHTML += `
+                      <div class="container_informacoes_alerta">
+                      <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
+                      <p>USO_DE_X% <a>${dataHora}</a></p>
+                      </div>
+                      `
+                    }
                 }
             })
 

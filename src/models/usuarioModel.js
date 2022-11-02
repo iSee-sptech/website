@@ -210,9 +210,16 @@ function pesquisarHistorico(dataHora) {
 }
 
 function obterAlertasPorData(data) {
+  // var instrucao = `
+  // select * from alerta where datahoraAlerta LIKE '%${data}%'
+  // `;
   var instrucao = `
-  select * from alerta where datahoraAlerta LIKE '%${data}%'
-  `;
+  SELECT 
+  [dbo].[Maquinas].nomeMaquina AS 'Nome', 
+  [dbo].[Alerta].componente AS 'Componente', [dbo].[Alerta].nivelAlerta AS 'Nivel', [dbo].[Alerta].datahoraAlerta AS 'DataHora'
+  FROM [dbo].[Alerta] JOIN [dbo].[Maquinas] ON [dbo].[Maquinas].idMaquina = [dbo].[Alerta].fkMaquina
+  ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
+`;
   return database.executar(instrucao);
 }
 
