@@ -93,4 +93,9 @@ router.get("/imgUsuario/:id", function (req, res) {
 });
 router.post("/adicionarImagem", usuarioController.atualizarImg);
 
+
+router.get("/obterAlertasPorData/:dataAlerta", function (req, res) {
+  usuarioController.obterAlertasPorData(req, res);
+});
+
 module.exports = router;

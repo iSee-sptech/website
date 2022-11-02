@@ -209,6 +209,13 @@ function pesquisarHistorico(dataHora) {
   return database.executar(instrucao);
 }
 
+function obterAlertasPorData(data) {
+  var instrucao = `
+  select * from alerta where datahoraAlerta LIKE '%${data}%'
+  `;
+  return database.executar(instrucao);
+}
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -234,4 +241,5 @@ module.exports = {
   pesquisarCaixa,
   pesquisarHistorico,
   exibirQtdHistorico,
+  obterAlertasPorData,
 };
