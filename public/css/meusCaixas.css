@@ -126,7 +126,6 @@ html {
     width: 89vw;
     height: 54vh;
     margin-top: 5vh;
-    margin-bottom: 1vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
