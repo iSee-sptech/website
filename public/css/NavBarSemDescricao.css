@@ -1,0 +1,78 @@
+/* COR DA SELEÇÃO DE TEXTO COM MOUSE */
+::selection {
+  background-color: #7d2de2;
+  color: white;
+}
+
+ /* Nav Bar Bottom Code Css*/
+
+
+ 
+.container_navbar {
+    margin-top: 6vh;
+    width: 100vw;
+    height: 12vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container_navbar h2 {
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(0.7em + 1vmin);
+  }
+
+  
+  
+  .navbar_bottom {
+    width: 89vw;
+    height: 14vh;
+    border-radius: 16px;
+    background-color: #292929;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    justify-items: center;
+    text-align: center;
+    align-items: center;
+    padding-top: 0.5%;
+  }
+  
+  .navbar_bottom div {
+    width: 6vw;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .navbar_bottom div:hover {
+    cursor: pointer;
+  }
+  
+  .navbar_bottom div img {
+    width: 2vw;
+    padding-bottom: 10px;
+  }
+
+  
+
+  /* ROW BAR PADRAO */
+  /* scrol bar temporaria*/
+*::-webkit-scrollbar {
+  width: 19px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #3b3b3b;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #7d2de2;
+  border-radius: 80px;
+  border: -1px none #ffffff;
+}
+
+/* scrol bar temporaria*/
