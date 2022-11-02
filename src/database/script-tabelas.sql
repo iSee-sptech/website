@@ -42,10 +42,9 @@ select * from maquinas;
 
 create table Etiqueta (
 idEtiqueta int primary key auto_increment,
-qualidadeEtiqueta varchar (25),
-tempoSemProblema varchar (15),
-etiquetacol varchar (30),
 fkMaquina int,
+nomeEtiqueta varchar(50),
+datahoraEtiqueta datetime,
 foreign key (fkMaquina)
 references Maquinas (idMaquina)
 );
@@ -75,3 +74,13 @@ foreign key (fkUsuario)
 references Usuarios (idUsuario)
 );
 select * from Lembrete;
+
+create table Alerta (
+idAlerta int primary key auto_increment,
+fkMaquina int,
+componente varchar(10),
+nivelAlerta varchar(10),
+datahoraAlerta datetime,
+foreign key (fkMaquina)
+references Maquinas (idMaquina)
+);
