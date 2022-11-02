@@ -135,12 +135,14 @@ h6 {
 }
 
 .card_alerta .ilustracao {
-    width: 12vw;
+    width: 8vw;
+    margin-right:1vh ;
 }
 
 .card_alerta .corpo_alerta {
     width: auto;
     margin: 0 5px;
+    margin-right: auto;
 }
 .card_alerta .corpo_alerta h2 {
     color: #000000;

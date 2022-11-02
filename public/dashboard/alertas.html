@@ -43,11 +43,12 @@
         <!----EXEMPLO DE UM CARD ALERTA--------------------------------------------------------->
         <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaUm)">
           <!--FUNCAO RECEBE ID DO MODAL-->
-          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <img src="../assets/img/ilustracao_alerta_ram.svg" class="ilustracao">
           <div class="corpo_alerta">
-            <h2>titulo</h2>
-            <h6>Aqui fica o subtitulo - subtitulo</h6>
-            descricao teste para ver até onde a descricao vai para pois e um texte de css
+            <h2>RAM</h2>
+            <h6>uso maior que 20% - nivel Amarelo <br>
+                uso maior que 30% - nivel Vermelho</h6>
+                Verifique os processos que estão ativos em sua máquina.
           </div>
           <div class="corpo_quantidade">
             <h2 class="qtd_caixas_tipo_alerta">XX</h2>
@@ -58,11 +59,12 @@
 
         <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaDois)">
           <!--FUNCAO RECEBE ID DO MODAL-->
-          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <img src="../assets/img/ilustracao_alerta_cpu.svg" class="ilustracao">
           <div class="corpo_alerta">
-            <h2>titulo</h2>
-            <h6>Aqui fica o subtitulo - subtitulo</h6>
-            descricao teste para ver até onde a descricao vai para pois e um texte de css
+            <h2>CPU</h2>
+            <h6>uso maior que 20% - nivel Amarelo <br>
+              uso maior que 30% - nivel Vermelho</h6>
+            texto de descricao
           </div>
           <div class="corpo_quantidade">
             <h2 class="qtd_caixas_tipo_alerta">XX</h2>
@@ -72,11 +74,12 @@
 
         <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaTres)">
           <!--FUNCAO RECEBE ID DO MODAL-->
-          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <img src="../assets/img/ilustracao_alerta_reserva2.svg" class="ilustracao">
           <div class="corpo_alerta">
-            <h2>titulo</h2>
-            <h6>Aqui fica o subtitulo - subtitulo</h6>
-            descricao teste para ver até onde a descricao vai para pois e um texte de css
+            <h2>Disco</h2>
+            <h6>uso maior que 20% - nivel Amarelo <br>
+                uso maior que 30% - nivel Vermelho</h6>
+              Verifique aplicativos e arquivos presentes em sua máquina.
           </div>
           <div class="corpo_quantidade">
             <h2 class="qtd_caixas_tipo_alerta">XX</h2>
@@ -85,7 +88,7 @@
         </div>
 
         <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaQuatro)">
-          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <img src="../assets/img/ilustracao_alerta_reserva.svg" class="ilustracao">
           <div class="corpo_alerta">
             <h2>titulo</h2>
             <h6>Aqui fica o subtitulo - subtitulo</h6>
@@ -237,7 +240,7 @@
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
     </div>
-    <h3>modalAlertaUm </h3>
+    <h3>RAM </h3>
 
     <span id="corpoModalAlertaUm" class="corpoModalAlerta">
       <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
@@ -276,7 +279,7 @@
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
     </div>
-    <h3>modalAlertaDois</h3>
+    <h3>CPU</h3>
 
     <span id="corpoModalAlertaDois" class="corpoModalAlerta">
       <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
@@ -313,7 +316,7 @@
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
     </div>
-    <h3>modalAlertaTres</h3>
+    <h3>Disco</h3>
 
     <span id="corpoModalAlertaTres" class="corpoModalAlerta">
       <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
