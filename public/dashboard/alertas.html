@@ -403,3 +403,89 @@
 
   bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje tivemos <span style="color:#7D2DE2;"> x</span> alertas registrados `
 </script>
+
+
+
+<script>
+
+  function exibirDataAtual() {
+    var date = new Date();
+
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed).toISOString();
+    return today;
+  }
+
+  function carregarAlertas() {
+      if (input_filtro_data.value ='') {
+        input_filtro_data.value = "'" + exibirDataAtual() + "'";
+      }
+        var dataAlerta = input_filtro_data.value.value;
+        console.log(dataAlerta)
+
+        fetch(`/usuarios/obterAlertasPorData/${dataAlerta}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+
+
+            listaNomeCaixa = []
+            listaComponente = []
+            listaNivelAlerta = []
+            listaValor = []
+            listaData = []
+
+            resposta.json().then((data) => {
+                console.log(data);
+
+                corpoModalAlertaUm.innerHTML = ``
+                corpoModalAlertaDois.innerHTML = ``
+                corpoModalAlertaTres.innerHTML = ``
+                corpoModalAlertaQuatro.innerHTML = ``
+
+                for (var i = 0; i < data.length; i++) {
+                    var nomeCaixa = data[i].Nome;
+                    var componente = data[i].Componente;
+                    var nivelAlerta = data[i].Nivel;
+                    // var valorAlerta = data[i].Valor;
+                    var dataHora = data[i].DataHora;
+
+                    if (dataHora != null)
+                    var dataHoraFormatada = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
+
+                    listaNomeCaixa.push(nomeCaixa)
+                    listaComponente.push(componente)
+                    listaNivelAlerta.push(nivelAlerta)
+                    // listaValor.push(valorAlerta)
+                    listaData.push(dataHora)
+
+                    if (listaComponente[i] == "ram") {
+                      corpoModalAlertaUm.innerHTML += ` <div class="container_informacoes_alerta"> <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6> <p>USO_DE_X% <a>${dataHoraFormatada}</a></p> </div> `
+                      console.log("Inserir um alerta ram")
+                    }
+                    else if (listaComponente[i] == "cpu") {
+                      corpoModalAlertaDois.innerHTML += `
+                      <div class="container_informacoes_alerta">
+                      <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
+                      <p>USO_DE_X% <a>${dataHoraFormatada}</a></p>
+                      </div>
+                      `
+                    }
+                    else if (listaComponente[i] == "disco") {
+                      corpoModalAlertaTres.innerHTML += `
+                      <div class="container_informacoes_alerta">
+                      <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
+                      <p>USO_DE_X% <a>${dataHoraFormatada}</a></p>
+                      </div>
+                      `
+                    }
+                }
+            })
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+</script>
