@@ -1,0 +1,240 @@
+/* HOME */
+.btn_home #effectlist{
+    position: absolute;
+    cursor: pointer;
+    bottom: 12.5vh;
+    left: 12.5vw;
+    background-color: #ffffff;
+    border-radius: 0.5vw;
+    padding: 1vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.btn_home #effectlist::before{
+    content: "";
+    position: absolute;
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background: #f1f1f1;
+    position: absolute;
+    left: 0vh;
+    bottom: -11px;
+}
+
+.btn_home:hover #effectlist{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* etiquetas */
+.btn_etiqueta #effectlist{
+    position: absolute;
+    cursor: pointer;
+    bottom: 12.5vh;
+    left: 25.5vw;
+    background-color: #ffffff;
+    border-radius: 0.5vw;
+    padding: 1vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.btn_etiqueta #effectlist::before{
+    content: "";
+    position: absolute;
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background: #f1f1f1;
+    position: absolute;
+    left: 0vh;
+    bottom: -11px;
+}
+
+.btn_etiqueta:hover #effectlist{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+/* Histórico */
+.btn_historico #effectlist{
+    position: absolute;
+    cursor: pointer;
+    bottom: 12.5vh;
+    left: 38vw;
+    background-color: #ffffff;
+    border-radius: 0.5vw;
+    padding: 1vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.btn_historico #effectlist::before{
+    content: "";
+    position: absolute;
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background: #f1f1f1;
+    position: absolute;
+    left: 0vh;
+    bottom: -11px;
+}
+
+.btn_historico:hover #effectlist{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Dashboard */
+.btn_dashboard #effectlist{
+    position: absolute;
+    cursor: pointer;
+    bottom: 12.5vh;
+    left: 51vw;
+    background-color: #ffffff;
+    border-radius: 0.5vw;
+    padding: 1vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.btn_dashboard #effectlist::before{
+    content: "";
+    position: absolute;
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background: #f1f1f1;
+    position: absolute;
+    left: 0vh;
+    bottom: -11px;
+}
+
+.btn_dashboard:hover #effectlist{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+/* Alertas */
+.btn_alerta #effectlist{
+    position: absolute;
+    cursor: pointer;
+    bottom: 12.5vh;
+    left: 63.5vw;
+    background-color: #ffffff;
+    border-radius: 0.5vw;
+    padding: 1vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.btn_alerta #effectlist::before{
+    content: "";
+    position: absolute;
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background: #f1f1f1;
+    position: absolute;
+    left: 0vh;
+    bottom: -11px;
+}
+
+.btn_alerta:hover #effectlist{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+/* Perfil */
+.btn_perfil #effectlist{
+    position: absolute;
+    cursor: pointer;
+    bottom: 12.5vh;
+    left: 76vw;
+    background-color: #ffffff;
+    border-radius: 0.5vw;
+    padding: 1vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.btn_perfil #effectlist::before{
+    content: "";
+    position: absolute;
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background: #f1f1f1;
+    position: absolute;
+    left: 0vh;
+    bottom: -11px;
+}
+
+.btn_perfil:hover #effectlist{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+/* Sair */
+.btn_sair #effectlist{
+    position: absolute;
+    cursor: pointer;
+    bottom: 12.5vh;
+    left: 89.5vw;
+    background-color: #ffffff;
+    border-radius: 0.5vw;
+    padding: 1vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.btn_sair #effectlist::before{
+    content: "";
+    position: absolute;
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background: #f1f1f1;
+    position: absolute;
+    left: 0vh;
+    bottom: -11px;
+}
+
+.btn_sair:hover #effectlist{
+    opacity: 1;
+    visibility: visible;
+}
