@@ -450,7 +450,7 @@
                     var nomeCaixa = data[i].Nome;
                     var componente = data[i].Componente;
                     var nivelAlerta = data[i].Nivel;
-                    // var valorAlerta = data[i].Valor;
+                    var valorDado = data[i].Dado;
                     var dataHora = data[i].DataHora;
 
                     if (dataHora != null)
@@ -459,18 +459,18 @@
                     listaNomeCaixa.push(nomeCaixa)
                     listaComponente.push(componente)
                     listaNivelAlerta.push(nivelAlerta)
-                    // listaValor.push(valorAlerta)
+                    listaValor.push(valorDado)
                     listaData.push(dataHora)
 
                     if (listaComponente[i] == "ram") {
-                      corpoModalAlertaUm.innerHTML += ` <div class="container_informacoes_alerta"> <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6> <p>USO_DE_X% <a>${dataHoraFormatada}</a></p> </div> `
+                      corpoModalAlertaUm.innerHTML += ` <div class="container_informacoes_alerta"> <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6> <p>USO_DE_${valorDado}% <a>${dataHoraFormatada}</a></p> </div> `
                       console.log("Inserir um alerta ram")
                     }
                     else if (listaComponente[i] == "cpu") {
                       corpoModalAlertaDois.innerHTML += `
                       <div class="container_informacoes_alerta">
                       <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
-                      <p>USO_DE_X% <a>${dataHoraFormatada}</a></p>
+                      <p>USO_DE_${valorDado}% <a>${dataHoraFormatada}</a></p>
                       </div>
                       `
                     }
@@ -478,7 +478,7 @@
                       corpoModalAlertaTres.innerHTML += `
                       <div class="container_informacoes_alerta">
                       <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
-                      <p>USO_DE_X% <a>${dataHoraFormatada}</a></p>
+                      <p>USO_DE_X${valorDado} <a>${dataHoraFormatada}</a></p>
                       </div>
                       `
                     }

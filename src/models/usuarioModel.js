@@ -216,7 +216,7 @@ function obterAlertasPorData(data) {
   var instrucao = `
   SELECT 
   [dbo].[Maquinas].nomeMaquina AS 'Nome', 
-  [dbo].[Alerta].componente AS 'Componente', [dbo].[Alerta].nivelAlerta AS 'Nivel', [dbo].[Alerta].datahoraAlerta AS 'DataHora'
+  [dbo].[Alerta].componente AS 'Componente', [dbo].[Alerta].nivelAlerta AS 'Nivel', [dbo].[Alerta].dado AS 'Dado', [dbo].[Alerta].datahoraAlerta AS 'DataHora'
   FROM [dbo].[Alerta] JOIN [dbo].[Maquinas] ON [dbo].[Maquinas].idMaquina = [dbo].[Alerta].fkMaquina
   ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
 `;
