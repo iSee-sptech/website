@@ -75,6 +75,7 @@ idAlerta int primary key auto_increment,
 fkMaquina int,
 componente varchar(10),
 nivelAlerta varchar(10),
+dado varchar(10),
 datahoraAlerta datetime,
 foreign key (fkMaquina)
 references Maquinas (idMaquina)
