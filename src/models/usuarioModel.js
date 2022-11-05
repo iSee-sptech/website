@@ -1,5 +1,13 @@
 var database = require("../database/config");
 
+function obterDataHojeAmericano() {
+  var date = new Date();
+  const timeElapsed = Date.now();
+  const diaAtual = new Date(timeElapsed).toLocaleDateString();
+  const diaAtualFormatadoAmericano = diaAtual.split('/').reverse().join('-');
+  return diaAtualFormatadoAmericano;
+}
+
 function listar() {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()"
@@ -254,6 +262,31 @@ function exibirQtdTotalCaixasDisco(data) {
   return database.executar(instrucao);
 }
 
+
+
+/*------------------------ETIQUETAS-------------------------------------- */
+function obterQtdAlertaRamLast30dias(idDoCaixa) {
+  // var instrucao = `
+  // SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta 
+  // WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY) AND CURRENT_DATE()
+  // `;
+
+  var instrucao = `
+  SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta 
+  WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATEADD(DAY, -30, '${obterDataHojeAmericano()}') AND '${obterDataHojeAmericano()}';
+  `;
+  return database.executar(instrucao);
+}
+
+function obterQtdAlertaCpuLast30dias(idDoCaixa) {
+  var instrucao = `
+  SELECT count(idAlerta) AS 'qtdAlertaCpuLast30dias' FROM Alerta 
+  WHERE componente = 'cpu' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATEADD(DAY, -30, '${obterDataHojeAmericano()}') AND '${obterDataHojeAmericano()}';
+  `;
+  return database.executar(instrucao);
+}
+
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -284,4 +317,8 @@ module.exports = {
   exibirQtdTotalCaixasRam,
   exibirQtdTotalCaixasCpu,
   exibirQtdTotalCaixasDisco,
+
+  /*------------------------ETIQUETAS-------------------------------------- */
+  obterQtdAlertaRamLast30dias,
+  obterQtdAlertaCpuLast30dias,
 };

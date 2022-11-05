@@ -1,5 +1,6 @@
 var usuarioModel = require("../models/usuarioModel");
 
+
 var sessoes = [];
 
 function testar(req, res) {
@@ -660,6 +661,45 @@ function exibirQtdTotalCaixasDisco(req, res) {
   );
 }
 
+/*------------------------ETIQUETAS-------------------------------------- */
+function obterQtdAlertaRamLast30dias(req, res) {
+  const idDoCaixa = req.params.idDoCaixa;
+
+  usuarioModel.obterQtdAlertaRamLast30dias(idDoCaixa)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(
+      function (erro) {
+          console.log(erro);
+          console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+          res.status(500).json(erro.sqlMessage);
+      }
+  );
+}
+
+function obterQtdAlertaCpuLast30dias(req, res) {
+  const idDoCaixa = req.params.idDoCaixa;
+
+  usuarioModel.obterQtdAlertaCpuLast30dias(idDoCaixa)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(
+      function (erro) {
+          console.log(erro);
+          console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+          res.status(500).json(erro.sqlMessage);
+      }
+  );
+}
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -688,4 +728,8 @@ module.exports = {
   exibirQtdTotalCaixasRam,
   exibirQtdTotalCaixasCpu,
   exibirQtdTotalCaixasDisco,
+
+  /*------------------------ETIQUETAS-------------------------------------- */
+  obterQtdAlertaRamLast30dias,
+  obterQtdAlertaCpuLast30dias,
 };

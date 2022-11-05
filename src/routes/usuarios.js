@@ -114,4 +114,13 @@ router.get("/exibirQtdTotalCaixasDisco/:dataAtual", function (req, res) {
   usuarioController.exibirQtdTotalCaixasDisco(req, res);
 });
 
+/*------------------------ETIQUETAS-------------------------------------- */
+router.get("/obterQtdAlertaRamLast30dias/:idDoCaixa", function (req, res) {
+  usuarioController.obterQtdAlertaRamLast30dias(req, res);
+});
+
+router.get("/obterQtdAlertaCpuLast30dias/:idDoCaixa", function (req, res) {
+  usuarioController.obterQtdAlertaCpuLast30dias(req, res);
+});
+
 module.exports = router;
