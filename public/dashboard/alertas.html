@@ -14,7 +14,7 @@
 
 </head>
 
-<body onload="imgUsuario()">
+<body onload="imgUsuario(), carregarDiaAtual(), carregarAlertas(), exibirQtdTotalAlertasDoDia(), exibirQtdTotalCaixasRam(), exibirQtdTotalCaixasCpu(), exibirQtdTotalCaixasDisco()">
 
   <div class="body_dashboard">
 
@@ -34,7 +34,7 @@
             <h2>Filtro</h2>
           </label>
           <input type="date" placeholder="data inicial" id="input_filtro_data">
-          <button class="buttonContact">Filtrar</button>
+          <button onclick="filtrarData()" class="buttonContact">Filtrar</button>
         </div>
 
       </div>
@@ -52,7 +52,7 @@
                 Verifique os processos que estão ativos em sua máquina.
           </div>
           <div class="corpo_quantidade">
-            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            <h2 class="qtd_caixas_tipo_alerta" id="qtd_caixas_ram">XX</h2>
             caixas
           </div>
         </div>
@@ -68,7 +68,7 @@
             texto de descricao
           </div>
           <div class="corpo_quantidade">
-            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            <h2 class="qtd_caixas_tipo_alerta" id="qtd_caixas_cpu">XX</h2>
             caixas
           </div>
         </div>
@@ -83,7 +83,7 @@
               Verifique aplicativos e arquivos presentes em sua máquina.
           </div>
           <div class="corpo_quantidade">
-            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            <h2 class="qtd_caixas_tipo_alerta" id="qtd_caixas_disco">XX</h2>
             caixas
           </div>
         </div>
@@ -409,6 +409,107 @@
 
 <script>
 
+  function carregarDiaAtual() {
+    var date = new Date();
+    const timeElapsed = Date.now();
+    const diaAtual = new Date(timeElapsed).toLocaleDateString();
+    const diaAtualFormatado = diaAtual.split('/').reverse().join('-');
+    input_filtro_data.value = diaAtualFormatado;
+  }
+
+  function filtrarData() {
+    input_filtro_data.value = input_filtro_data.value;
+    carregarAlertas();
+    exibirQtdTotalCaixasRam();
+    exibirQtdTotalCaixasCpu();
+    exibirQtdTotalCaixasDisco();
+  }
+
+  function exibirQtdTotalAlertasDoDia() {
+    const dataAtual = input_filtro_data.value
+    fetch(`/usuarios/exibirQtdTotalAlertasDoDia/${dataAtual}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+    }).then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          var totalAlertas = data[0].quantidadeTotalAlertas;
+
+          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje tivemos <span style="color:#7D2DE2;">${totalAlertas}</span> alertas registrados `
+          
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function exibirQtdTotalCaixasRam() {
+    const dataAtual = input_filtro_data.value
+    fetch(`/usuarios/exibirQtdTotalCaixasRam/${dataAtual}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+    }).then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          var totalQtdCaixasRam = data[0].quantidadeTotalMaquinas;
+          qtd_caixas_ram.innerHTML = totalQtdCaixasRam
+          
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function exibirQtdTotalCaixasCpu() {
+    const dataAtual = input_filtro_data.value
+    fetch(`/usuarios/exibirQtdTotalCaixasCpu/${dataAtual}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+    }).then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          var totalQtdCaixasCpu = data[0].quantidadeTotalMaquinas;
+          qtd_caixas_cpu.innerHTML = totalQtdCaixasCpu
+          
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function exibirQtdTotalCaixasDisco() {
+    const dataAtual = input_filtro_data.value
+    fetch(`/usuarios/exibirQtdTotalCaixasDisco/${dataAtual}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+    }).then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          var totalQtdCaixasDisco = data[0].quantidadeTotalMaquinas;
+          qtd_caixas_disco.innerHTML = totalQtdCaixasDisco
+          
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
   function exibirDataAtual() {
     var date = new Date();
 
@@ -418,10 +519,10 @@
   }
 
   function carregarAlertas() {
-      if (input_filtro_data.value ='') {
-        input_filtro_data.value = "'" + exibirDataAtual() + "'";
+      if (input_filtro_data.value =='') {
+        input_filtro_data.value == "'" + exibirDataAtual() + "'";
       }
-        var dataAlerta = input_filtro_data.value.value;
+        var dataAlerta = input_filtro_data.value;
         console.log(dataAlerta)
 
         fetch(`/usuarios/obterAlertasPorData/${dataAlerta}`, {

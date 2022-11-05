@@ -98,4 +98,20 @@ router.get("/obterAlertasPorData/:dataAlerta", function (req, res) {
   usuarioController.obterAlertasPorData(req, res);
 });
 
+router.get("/exibirQtdTotalAlertasDoDia/:dataAtual", function (req, res) {
+  usuarioController.exibirQtdTotalAlertasDoDia(req, res);
+});
+
+router.get("/exibirQtdTotalCaixasRam/:dataAtual", function (req, res) {
+  usuarioController.exibirQtdTotalCaixasRam(req, res);
+});
+
+router.get("/exibirQtdTotalCaixasCpu/:dataAtual", function (req, res) {
+  usuarioController.exibirQtdTotalCaixasCpu(req, res);
+});
+
+router.get("/exibirQtdTotalCaixasDisco/:dataAtual", function (req, res) {
+  usuarioController.exibirQtdTotalCaixasDisco(req, res);
+});
+
 module.exports = router;

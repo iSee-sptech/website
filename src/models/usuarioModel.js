@@ -213,13 +213,44 @@ function obterAlertasPorData(data) {
   // var instrucao = `
   // select * from alerta where datahoraAlerta LIKE '%${data}%'
   // `;
+  //var instrucao = `
+  //SELECT 
+  //[dbo].[Maquinas].nomeMaquina AS 'Nome', 
+  //[dbo].[Alerta].componente AS 'Componente', [dbo].[Alerta].nivelAlerta AS 'Nivel', [dbo].[Alerta].dado AS 'Dado', [dbo].[Alerta].datahoraAlerta AS 'DataHora'
+  //FROM [dbo].[Alerta] JOIN [dbo].[Maquinas] ON [dbo].[Maquinas].idMaquina = [dbo].[Alerta].fkMaquina
+  //ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
+//`;
+  var instrucao = `select Maquinas.nomeMaquina as 'Nome', Alerta.componente as 'Componente', Alerta.nivelAlerta as 'Nivel', Alerta.dado as 'Dado', Alerta.datahoraAlerta as 'DataHora'
+  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where datahoraAlerta LIKE '%${data}%'
+  order by Alerta.nivelAlerta desc, Alerta.datahoraAlerta desc`
+  return database.executar(instrucao);
+}
+
+function exibirQtdTotalAlertasDoDia(data) {
   var instrucao = `
-  SELECT 
-  [dbo].[Maquinas].nomeMaquina AS 'Nome', 
-  [dbo].[Alerta].componente AS 'Componente', [dbo].[Alerta].nivelAlerta AS 'Nivel', [dbo].[Alerta].dado AS 'Dado', [dbo].[Alerta].datahoraAlerta AS 'DataHora'
-  FROM [dbo].[Alerta] JOIN [dbo].[Maquinas] ON [dbo].[Maquinas].idMaquina = [dbo].[Alerta].fkMaquina
-  ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
-`;
+  select count(idAlerta) as 'quantidadeTotalAlertas' from Alerta where datahoraAlerta like '%${data}%';
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirQtdTotalCaixasRam(data) {
+  var instrucao = `
+  select count(Maquinas.idMaquina) as 'quantidadeTotalMaquinas' from Maquinas join Alerta on Maquinas.idMaquina = Alerta.fkMaquina where componente = 'ram' and datahoraAlerta like '%${data}%';
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirQtdTotalCaixasCpu(data) {
+  var instrucao = `
+  select count(Maquinas.idMaquina) as 'quantidadeTotalMaquinas' from Maquinas join Alerta on Maquinas.idMaquina = Alerta.fkMaquina where componente = 'cpu' and datahoraAlerta like '%${data}%';
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirQtdTotalCaixasDisco(data) {
+  var instrucao = `
+  select count(Maquinas.idMaquina) as 'quantidadeTotalMaquinas' from Maquinas join Alerta on Maquinas.idMaquina = Alerta.fkMaquina where componente = 'disco' and datahoraAlerta like '%${data}%';
+  `;
   return database.executar(instrucao);
 }
 
@@ -249,4 +280,8 @@ module.exports = {
   pesquisarHistorico,
   exibirQtdHistorico,
   obterAlertasPorData,
+  exibirQtdTotalAlertasDoDia,
+  exibirQtdTotalCaixasRam,
+  exibirQtdTotalCaixasCpu,
+  exibirQtdTotalCaixasDisco,
 };
