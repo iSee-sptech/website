@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'isee-producao'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BAB12529CAC343A2940544A4D1E7EE85 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C837C27178BD41CDA11C5821BB46338C }}
           package: .
