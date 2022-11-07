@@ -9,7 +9,11 @@
   <title>DashBoard - ISee</title>
   <link rel="stylesheet" href="../css/dashboard.css" />
   <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
-  <link rel="stylesheet" href="../css/efeitoToltipDescricao.css"
+  <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
+  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+  <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
 </head>
 
 <body onload="exibirQtdTotalRam(), imgUsuario()">
@@ -105,15 +109,10 @@
               <div style="background-color:#E22D63;"></div>
               <p>Caixa 4</p>
             </div>
-
           </div>
         </div>
-
       </div>
-
     </div>
-
-
   </div>
 
 
@@ -122,37 +121,52 @@
   <div class="container_navbar">
     <div class="navbar_bottom">
       <div class="btn_home" onclick="tela_home()">
-        <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
+        <img
+          onclick="window.location.href='./homeFuncionario.html'"
+          src="../assets/img/home_icon.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Home</h2>
       </div>
 
-      <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
+      <div
+        class="btn_etiqueta"
+        onclick="window.location.href='../dashboard/etiquetas.html'">
         <img src="../assets/img/etiqueta_icon.svg" />
-
+        <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
       </div>
 
-      <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
+      <div class="btn_historico">
         <img src="../assets/img/historico_icon.svg" />
-
+        <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
       </div>
 
-      <div class="btn_dashboard">
+      <div
+        class="btn_dashboard"
+        onclick="window.location.href='../dashboard/Dashboard.html'"
+      >
         <img src="../assets/img/dashboard_icon.svg" />
-
+        <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
       </div>
 
-      <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
+      <div
+        class="btn_alerta"
+        onclick="window.location.href='../dashboard/alertas.html'"
+      >
         <img src="../assets/img/alertas_icon.png" />
-
+        <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
       </div>
 
       <div class="btn_perfil">
-        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-
+        <img
+          onclick="window.location.href='../meuPerfil.html'"
+          src="../assets/img/userNavbar.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
       </div>
 
       <div class="btn_sair">
         <img onclick="sair()" src="../assets/img/sair_icon.png" />
-
+        <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
       </div>
     </div>
   </div>
@@ -269,5 +283,229 @@
   function dadosCaixa1() {
 
   }
+
+  function obterDadosGrafico(idMaquina) {
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta, idMaquina);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta, idMaquina) {
+        console.log('iniciando plotagem do gráfico...');
+
+        var dados = {
+            labels: [],
+            datasets: [
+                {
+                    yAxisID: 'y-',
+                    label: '',
+                    borderColor: '#70b0da',
+                    backgroundColor: '#70b0da',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-temperatura',
+                    label: 'Temperatura',
+                    borderColor: '#FFF',
+                    backgroundColor: '#32b9cd8f',
+                    fill: true,
+                    data: []
+                }
+            ]
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.labels.push(registro.momento_grafico);
+            dados.datasets[0].data.push(registro.umidade);
+            dados.datasets[1].data.push(registro.lm35);
+        }
+
+        console.log(JSON.stringify(dados));
+
+        var ctx = myChart.getContext('2d');
+        window.grafico_linha = Chart.Line(ctx, {
+            data: dados,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: false,
+                    text: 'Dados capturados'
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-temperatura',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 0
+                        }
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 0
+                        },
+
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                    }],
+                }
+            }
+        });
+
+        setTimeout(() => atualizarGrafico(idMaquina, dados), 2000);
+    }
+
+    function atualizarGrafico(idAquario, dados) {
+
+fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (novoRegistro) {
+
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico: ${dados}`);
+
+            // tirando e colocando valores no gráfico
+            dados.labels.shift(); // apagar o primeiro
+            dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+            
+            dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+            dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+            
+            dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+            dados.datasets[1].data.push(novoRegistro[0].lm35); // incluir uma nova medida de temperatura
+
+            window.grafico_linha.update();
+
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+            
+            var tituloAquario = document.getElementById("sensor1")
+            var registro1 = novoRegistro[0].lm35
+            console.log(registro1) 
+            tituloAquario.innerHTML = `<h2>Sensor 1</h2> <h1>${registro1} °C</h1>`
+
+            if (registro1 >= 4.49 && registro1 <= 6.07) {
+                sensor1.style.backgroundColor = 'green'
+            } else if (registro1 >= 6.08 && registro1 <= 7.47) {
+
+                sensor1.style.backgroundColor = 'yellow'
+            } else if (registro1 >= 7.48) {
+                sensor1.style.backgroundColor = 'red'
+            } else if (registro1 >= 2.54 && registro1 <= 4.48) {
+                sensor1.style.backgroundColor = 'blue'
+            } else {
+                sensor1.style.backgroundColor = 'purple'
+            }
+
+            var tituloAquario2 = document.getElementById("sensor2")
+            var registro2 = novoRegistro[0].lm35 * 0.35
+            tituloAquario2.innerHTML = `<h2>Sensor 2</h2> <h1>${registro2.toFixed(2)} °C</h1>`
+
+            if (registro2 >= 4.49 && registro2 <= 6.07) {
+                sensor2.style.backgroundColor = 'green'
+            } else if (registro2 >= 6.08 && registro2 <= 7.47) {
+                sensor2.style.backgroundColor = 'yellow'
+                // notificacaoYellow.innerHTML = `Cuidado Sensor 2 <br> Temperatura esta Esquentando`
+                // notificacaoYellow.style.display = 'block'
+            } else if (registro2 >= 7.48) {
+                sensor2.style.backgroundColor = 'red'
+            } else if (registro2 >= 2.54 && registro2 <= 4.48) {
+                sensor2.style.backgroundColor = 'blue'
+            } else {
+                sensor2.style.backgroundColor = 'purple'
+            }
+
+            var tituloAquario3 = document.getElementById("sensor3")
+            var registro3 = novoRegistro[0].lm35 * 0.3 
+            tituloAquario3.innerHTML = `<h2>Sensor 3</h2> <h1>${registro3.toFixed(2)} °C</h1>`
+
+            if (registro3 >= 4.49 && registro3 <= 6.07) {
+                sensor3.style.backgroundColor = 'green'
+            } else if (registro3 >= 6.08 && registro3 <= 7.47) {
+                sensor3.style.backgroundColor = 'yellow'
+                // notificacaoYellow.innerHTML = `Cuidado Sensor 3 <br> Temperatura esta Esquentando`
+                // notificacaoYellow.style.display = 'block'
+            } else if (registro3 >= 7.48) {
+                sensor3.style.backgroundColor = 'red'
+            } else if (registro3 >= 2.54 && registro3 <= 4.48) {
+                sensor3.style.backgroundColor = 'blue'
+            } else {
+                sensor3.style.backgroundColor = 'purple'
+            }
+
+            var tituloAquario4 = document.getElementById("sensor4")
+            var registro4 = novoRegistro[0].lm35 * 0.1
+            tituloAquario4.innerHTML = `<h2>Sensor 4</h2> <h1>${registro4.toFixed(2)} °C</h1>`
+
+            if (registro4 >= 4.49 && registro4 <= 6.07) {
+
+                sensor4.style.backgroundColor = 'green'
+
+            } else if (registro4 >= 6.08 && registro4 <= 7.47) {
+
+                sensor4.style.backgroundColor = 'yellow'
+                // notificacaoYellow.innerHTML = `Cuidado Sensor 4 <br> Temperatura esta Esquentando`
+                // notificacaoYellow.style.display = 'block'
+
+            } else if (registro4 >= 7.48) {
+
+                sensor4.style.backgroundColor = 'red'
+
+                // notificacaoRed.innerHTML = `Cuidado Temperatura Quente`
+                // notificacaoRed.style.display = 'block'
+
+            } else if (registro4 >= 2.54 && registro4 <= 4.48) {
+
+                sensor4.style.backgroundColor = 'blue'
+
+            } else {
+
+                sensor4.style.backgroundColor = 'purple'
+
+            }
+
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+    }
+})
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+}
 
 </script>
