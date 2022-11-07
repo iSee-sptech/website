@@ -87,7 +87,7 @@ function cadastrarCaixa(
   pontoReferencia
 ) {
   var instrucao = `
-  update Maquinas set idMaquina = '${idCaixa}', nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}', imgMaquina = '${imagemCaixa}', serialMaquina = '${numeroSerial}', numeroMaquina = '${numero}',complementoMaquina = '${complemento}', pontoReferenciaMaquina = '${pontoReferencia}' where idMaquina = '${idCaixa}';
+  update Maquinas set idMaquina = '${idCaixa}', nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}', imgMaquina = '${imagemCaixa}', serialMaquina = '${numeroSerial}', numeroMaquina = '${numero}',complementoMaquina = '${complemento}', pontoDeReferencia = '${pontoReferencia}' where idMaquina = '${idCaixa}';
   `;
   return database.executar(instrucao);
 }
