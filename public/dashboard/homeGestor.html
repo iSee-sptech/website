@@ -145,7 +145,7 @@
           <h2 class="effectlist">Alertas</h2>
         </div>
 
-        <div class="btn_perfil">
+        <div class="btn_perfil" onclick="window.location.href='../meuPerfil.html'">
           <img
             onclick="window.location.href='../meuPerfil.html'"
             src="../assets/img/userNavbar.svg"
@@ -246,9 +246,7 @@
           mensagemLembrete = data[0].mensagemLembrete;
           console.log(dataHoraLembrete);
 
-          dataHoraLembrete2 = dataHoraLembrete
-            .replaceAll("T", " ")
-            .replaceAll("Z", "");
+          dataHoraLembrete2 = dataHoraLembrete.replaceAll("T", " ").replaceAll("Z", "").replaceAll(":00.000","");
           mensagemLembreteId.innerHTML = mensagemLembrete;
           dataLembreteId.innerHTML = dataHoraLembrete2;
         });

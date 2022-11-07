@@ -200,7 +200,7 @@
         mensagemLembrete = data[0].mensagemLembrete
         console.log(dataHoraLembrete);
 
-        dataHoraLembrete2 = dataHoraLembrete.replaceAll("T", " ").replaceAll("Z", "");
+        dataHoraLembrete2 = dataHoraLembrete.replaceAll("T", " ").replaceAll("Z", "").replaceAll(":00.000","");
         mensagemLembreteId.innerHTML = mensagemLembrete
         dataLembreteId.innerHTML = dataHoraLembrete2  
       })
