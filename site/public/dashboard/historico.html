@@ -10,9 +10,10 @@
       type="image/x-icon"
     />
     <title>Histórico - ISee</title>
-    <link rel="stylesheet" href="../css/historico.css" />
     <link rel="stylesheet" href="../css/meusCaixas.css" />
-    <link rel="stylesheet" href="../css/navBar.css">
+    <link rel="stylesheet" href="../css/historico.css" />
+    <link rel="stylesheet" href="../css/NavBarSemDescricao.css">
+    <link rel="stylesheet" href="../css/efeitoToltipDescricao.css"/>
 </head>
 
 <body onload="imgUsuario(), exibirQtdHistorico(), listarHistorico()">
@@ -28,7 +29,7 @@
 
 
         <div class="filtroCaixas">
-            <h2>Filtros</h2>
+          <h2>Filtros</h2>
             <div class="selecaoCaixas">
                 <button>Caixa 1</button>
                 <button>Caixa 2</button>
@@ -50,7 +51,7 @@
 
     <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
 
-    <div class="meusCaixas" id="divDaddy" style="height: 40.4vh;">
+    <div class="tabelaHistorico" id="divDaddy">
 
         <!-- <div id="caixa" style="width: 100vw;">
           <div>
@@ -102,20 +103,19 @@
             onclick="window.location.href='./homeFuncionario.html'"
             src="../assets/img/home_icon.svg"
           />
-          <h2 class="effectlist">Home</h2>
+          <h2 style="color: #7d2de2" id="effectlist">Home</h2>
         </div>
 
         <div
           class="btn_etiqueta"
-          onclick="window.location.href='../dashboard/etiquetas.html'"
-        >
+          onclick="window.location.href='../dashboard/etiquetas.html'">
           <img src="../assets/img/etiqueta_icon.svg" />
-          <h2 class="effectlist">Etiquetas</h2>
+          <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
         </div>
 
         <div class="btn_historico">
           <img src="../assets/img/historico_icon.svg" />
-          <h2 style="color: #7d2de2">Histórico</h2>
+          <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
         </div>
 
         <div
@@ -123,7 +123,7 @@
           onclick="window.location.href='../dashboard/Dashboard.html'"
         >
           <img src="../assets/img/dashboard_icon.svg" />
-          <h2 class="effectlist">Dashboard</h2>
+          <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
         </div>
 
         <div
@@ -131,7 +131,7 @@
           onclick="window.location.href='../dashboard/alertas.html'"
         >
           <img src="../assets/img/alertas_icon.png" />
-          <h2 class="effectlist">Alertas</h2>
+          <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
         </div>
 
         <div class="btn_perfil">
@@ -139,12 +139,12 @@
             onclick="window.location.href='../meuPerfil.html'"
             src="../assets/img/userNavbar.svg"
           />
-          <h2 class="effectlist">Perfil</h2>
+          <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
         </div>
 
         <div class="btn_sair">
           <img onclick="sair()" src="../assets/img/sair_icon.png" />
-          <h2 class="effectlist">Sair</h2>
+          <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
         </div>
       </div>
     </div>
@@ -417,12 +417,7 @@ function exibirQtdHistorico() {
             <h2>Uso Disco</h2>
             <h4 class="alignCaixa">${listaDisco[i]}</h4>
           </div> 
-    
-          <div>
-            <h2>LOG</h2>
-            <div class="alignCaixa" onclick="">
-                <img src="../assets/img/messageIcon.svg" alt=""></div>
-          </div>
+          
         </div> `
                 }
             })

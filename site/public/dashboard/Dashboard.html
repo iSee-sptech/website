@@ -8,7 +8,12 @@
   <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
   <title>DashBoard - ISee</title>
   <link rel="stylesheet" href="../css/dashboard.css" />
-  <link rel="stylesheet" href="../css/navBar.css" />
+  <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
+  <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
+  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+  <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
 </head>
 
 <body onload="exibirQtdTotalRam(), imgUsuario()">
@@ -42,9 +47,9 @@
 
         <div class="selecao_filtro">
           <h2>Filtro</h2>
-          <button>RAM</button>
-          <button>CPU</button>
-          <button>Memória</button>
+          <button id="filtro_ram" onclick="filtrarApenasRam()">RAM</button>
+          <button id="filtro_cpu" onclick="filtrarApenasCpu()">CPU</button>
+          <button id="filtro_memoria" onclick="filtrarApenasDisco()">Disco</button>
         </div>
 
         <div class="selecao_maquina">
@@ -62,7 +67,7 @@
       <div class="container_cards">
 
         <div class="card">
-          <h4 id="titulo_card1">Quantidade de RAM Restante </h4>
+          <h4 id="titulo_card1">Quantidade de RAM restante </h4>
           <!--AQUI FICA O TITULO DO PRIMEIRO CARD -->
           <h2> 25 GB </h2>
         </div>
@@ -104,15 +109,10 @@
               <div style="background-color:#E22D63;"></div>
               <p>Caixa 4</p>
             </div>
-
           </div>
         </div>
-
       </div>
-
     </div>
-
-
   </div>
 
 
@@ -121,38 +121,52 @@
   <div class="container_navbar">
     <div class="navbar_bottom">
       <div class="btn_home" onclick="tela_home()">
-        <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
-        <h2 class="effectlist">Home</h2>
+        <img
+          onclick="window.location.href='./homeFuncionario.html'"
+          src="../assets/img/home_icon.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Home</h2>
       </div>
 
-      <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
+      <div
+        class="btn_etiqueta"
+        onclick="window.location.href='../dashboard/etiquetas.html'">
         <img src="../assets/img/etiqueta_icon.svg" />
-        <h2 class="effectlist">Etiquetas</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
       </div>
 
       <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
         <img src="../assets/img/historico_icon.svg" />
-        <h2 class="effectlist">Histórico</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
       </div>
 
-      <div class="btn_dashboard">
+      <div
+        class="btn_dashboard"
+        onclick="window.location.href='../dashboard/Dashboard.html'"
+      >
         <img src="../assets/img/dashboard_icon.svg" />
-        <h2 style="color: #7d2de2;">Dashboard</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
       </div>
 
-      <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
+      <div
+        class="btn_alerta"
+        onclick="window.location.href='../dashboard/alertas.html'"
+      >
         <img src="../assets/img/alertas_icon.png" />
-        <h2 class="effectlist">Alertas</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
       </div>
 
       <div class="btn_perfil">
-        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-        <h2 class="effectlist">Perfil</h2>
+        <img
+          onclick="window.location.href='../meuPerfil.html'"
+          src="../assets/img/userNavbar.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
       </div>
 
       <div class="btn_sair">
         <img onclick="sair()" src="../assets/img/sair_icon.png" />
-        <h2 class="effectlist">Sair</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
       </div>
     </div>
   </div>
@@ -218,6 +232,21 @@
     });
   }
 
+  function filtrarApenasRam() {
+    titulo_card1.innerHTML = "Quantidade de RAM restante"
+    titulo_card2.innerHTML = "Quantidade de RAM TOTAL"
+  }
+
+  function filtrarApenasCpu() {
+    titulo_card1.innerHTML = "Quantidade de CPU restante"
+    titulo_card2.innerHTML = "Quantidade de CPU TOTAL"
+  }
+
+  function filtrarApenasDisco() {
+    titulo_card1.innerHTML = 'Quantidade de disco restante'
+    titulo_card2.innerHTML = 'Quantidade de disco TOTAL'
+  }
+
   function imgUsuario() {
     var idUsuario = sessionStorage.idUsuario;
     fetch(`/usuarios/imgUsuario/${idUsuario}`, {
@@ -253,6 +282,12 @@
 
   function dadosCaixa1() {
 
+  }
+
+  var lista_uso_ram = [];
+
+  function graficoRam(){
+    
   }
 
 </script>

@@ -8,12 +8,14 @@
   <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
   <title>Etiquetas - ISee</title>
   <link rel="stylesheet" href="../css/etiquetas.css" />
-  <link rel="stylesheet" href="../css/navBar.css" />
+  <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
+  <link rel="stylesheet" href="../css/efeitoToltipDescricao.css">
   <link rel="stylesheet" href="../css/styleModal.css">
+  <script src="../js/atribuirEtiqueta.js"></script>
   
 </head>
 
-<body onload="imgUsuario()">
+<body onload="imgUsuario(), exibirQtdTotalEtiquetas()">
 
   <div class="body_dashboard">
 
@@ -101,38 +103,51 @@
   <div class="container_navbar">
     <div class="navbar_bottom">
       <div class="btn_home" onclick="tela_home()">
-        <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
-        <h2 class="effectlist">Home</h2>
+        <img
+          onclick="window.location.href='./homeFuncionario.html'"
+          src="../assets/img/home_icon.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Home</h2>
       </div>
 
-      <div class="btn_etiqueta">
+      <div
+        class="btn_etiqueta"
+        onclick="window.location.href='../dashboard/etiquetas.html'">
         <img src="../assets/img/etiqueta_icon.svg" />
-        <h2 style="color: #7d2de2;">Etiquetas</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
       </div>
 
-      <div class="btn_historico"onclick="window.location.href='../dashboard/historico.html'">
+      <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
         <img src="../assets/img/historico_icon.svg" />
-        <h2 class="effectlist">Histórico</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
       </div>
 
-      <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
+      <div
+        class="btn_dashboard"
+        onclick="window.location.href='../dashboard/Dashboard.html'">
         <img src="../assets/img/dashboard_icon.svg" />
-        <h2 class="effectlist">Dashboard</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
       </div>
 
-      <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
+      <div
+        class="btn_alerta"
+        onclick="window.location.href='../dashboard/alertas.html'"
+      >
         <img src="../assets/img/alertas_icon.png" />
-        <h2 class="effectlist">Alertas</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
       </div>
 
       <div class="btn_perfil">
-        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-        <h2 class="effectlist">Perfil</h2>
+        <img
+          onclick="window.location.href='../meuPerfil.html'"
+          src="../assets/img/userNavbar.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
       </div>
 
       <div class="btn_sair">
         <img onclick="sair()" src="../assets/img/sair_icon.png" />
-        <h2 class="effectlist">Sair</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
       </div>
     </div>
   </div>
@@ -188,6 +203,27 @@ var dataAtual = new Date();
     } else {
       window.location = "homeFuncionario.html";
     }
+  }
+
+  function exibirQtdTotalEtiquetas() {
+    fetch(`/usuarios/exibirQtdTotalEtiquetas`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resposta) => {
+        // saldoConta
+        resposta.json().then((data) => {
+          console.log(data);
+          qtdEtiqueta = data[0].qtdTotalEtiquetas;
+          qtdTotalEtiqueta = qtdEtiqueta;
+          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, foram mapeadas <span style="color:#7D2DE2;">${qtdTotalEtiqueta}</span> etiquetas`;
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
   }
 
   function imgUsuario() {

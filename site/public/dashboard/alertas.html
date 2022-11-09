@@ -9,11 +9,12 @@
   <title>Alertas - ISee</title>
   <link rel="stylesheet" href="../css/styleModal.css">
   <link rel="stylesheet" href="../css/alertas.css" />
-  <link rel="stylesheet" href="../css/navBar.css" />
+  <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
+  <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
 
 </head>
 
-<body onload="imgUsuario()">
+<body onload="imgUsuario(), carregarDiaAtual(), carregarAlertas(), exibirQtdTotalAlertasDoDia(), exibirQtdTotalCaixasRam(), exibirQtdTotalCaixasCpu(), exibirQtdTotalCaixasDisco()">
 
   <div class="body_dashboard">
 
@@ -33,7 +34,7 @@
             <h2>Filtro</h2>
           </label>
           <input type="date" placeholder="data inicial" id="input_filtro_data">
-          <button class="buttonContact">Filtrar</button>
+          <button onclick="filtrarData()" class="buttonContact">Filtrar</button>
         </div>
 
       </div>
@@ -43,14 +44,15 @@
         <!----EXEMPLO DE UM CARD ALERTA--------------------------------------------------------->
         <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaUm)">
           <!--FUNCAO RECEBE ID DO MODAL-->
-          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <img src="../assets/img/ilustracao_alerta_ram.svg" class="ilustracao">
           <div class="corpo_alerta">
-            <h2>titulo</h2>
-            <h6>Aqui fica o subtitulo - subtitulo</h6>
-            descricao teste para ver até onde a descricao vai para pois e um texte de css
+            <h2>RAM</h2>
+            <h6>uso maior que 20% - nivel Amarelo <br>
+                uso maior que 30% - nivel Vermelho</h6>
+                Verifique os processos que estão ativos em sua máquina.
           </div>
           <div class="corpo_quantidade">
-            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            <h2 class="qtd_caixas_tipo_alerta" id="qtd_caixas_ram">XX</h2>
             caixas
           </div>
         </div>
@@ -58,34 +60,36 @@
 
         <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaDois)">
           <!--FUNCAO RECEBE ID DO MODAL-->
-          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <img src="../assets/img/ilustracao_alerta_cpu.svg" class="ilustracao">
           <div class="corpo_alerta">
-            <h2>titulo</h2>
-            <h6>Aqui fica o subtitulo - subtitulo</h6>
-            descricao teste para ver até onde a descricao vai para pois e um texte de css
+            <h2>CPU</h2>
+            <h6>uso maior que 20% - nivel Amarelo <br>
+              uso maior que 30% - nivel Vermelho</h6>
+            texto de descricao
           </div>
           <div class="corpo_quantidade">
-            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            <h2 class="qtd_caixas_tipo_alerta" id="qtd_caixas_cpu">XX</h2>
             caixas
           </div>
         </div>
 
         <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaTres)">
           <!--FUNCAO RECEBE ID DO MODAL-->
-          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <img src="../assets/img/ilustracao_alerta_reserva2.svg" class="ilustracao">
           <div class="corpo_alerta">
-            <h2>titulo</h2>
-            <h6>Aqui fica o subtitulo - subtitulo</h6>
-            descricao teste para ver até onde a descricao vai para pois e um texte de css
+            <h2>Disco</h2>
+            <h6>uso maior que 20% - nivel Amarelo <br>
+                uso maior que 30% - nivel Vermelho</h6>
+              Verifique aplicativos e arquivos presentes em sua máquina.
           </div>
           <div class="corpo_quantidade">
-            <h2 class="qtd_caixas_tipo_alerta">XX</h2>
+            <h2 class="qtd_caixas_tipo_alerta" id="qtd_caixas_disco">XX</h2>
             caixas
           </div>
         </div>
 
         <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaQuatro)">
-          <img src="../assets/img/ilustracao_exemplo.svg" class="ilustracao">
+          <img src="../assets/img/ilustracao_alerta_reserva.svg" class="ilustracao">
           <div class="corpo_alerta">
             <h2>titulo</h2>
             <h6>Aqui fica o subtitulo - subtitulo</h6>
@@ -103,53 +107,58 @@
 
       </div>
     </div>
-
-
-
-
-
-
-
   </div>
-
-
 
   <!--NavBar-->
   <div class="container_navbar">
     <div class="navbar_bottom">
       <div class="btn_home" onclick="tela_home()">
-        <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
-        <h2 class="effectlist">Home</h2>
+        <img
+          onclick="window.location.href='./homeFuncionario.html'"
+          src="../assets/img/home_icon.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Home</h2>
       </div>
 
-      <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
+      <div
+        class="btn_etiqueta"
+        onclick="window.location.href='../dashboard/etiquetas.html'">
         <img src="../assets/img/etiqueta_icon.svg" />
-        <h2 class="effectlist">Etiquetas</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
       </div>
 
-      <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
+      <div class="btn_historico">
         <img src="../assets/img/historico_icon.svg" />
-        <h2 class="effectlist">Histórico</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
       </div>
 
-      <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
+      <div
+        class="btn_dashboard"
+        onclick="window.location.href='../dashboard/Dashboard.html'"
+      >
         <img src="../assets/img/dashboard_icon.svg" />
-        <h2 class="effectlist">Dashboard</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
       </div>
 
-      <div class="btn_alerta">
+      <div
+        class="btn_alerta"
+        onclick="window.location.href='../dashboard/alertas.html'"
+      >
         <img src="../assets/img/alertas_icon.png" />
-        <h2 style="color: #7d2de2;">Alertas</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
       </div>
 
-      <div class="btn_perfil" onclick="window.location.href='../meuPerfil.html'">
-        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-        <h2 class="effectlist">Perfil</h2>
+      <div class="btn_perfil">
+        <img
+          onclick="window.location.href='../meuPerfil.html'"
+          src="../assets/img/userNavbar.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
       </div>
 
       <div class="btn_sair">
         <img onclick="sair()" src="../assets/img/sair_icon.png" />
-        <h2 class="effectlist">Sair</h2>
+        <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
       </div>
     </div>
   </div>
@@ -237,7 +246,7 @@
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
     </div>
-    <h3>modalAlertaUm </h3>
+    <h3>RAM </h3>
 
     <span id="corpoModalAlertaUm" class="corpoModalAlerta">
       <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
@@ -276,7 +285,7 @@
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
     </div>
-    <h3>modalAlertaDois</h3>
+    <h3>CPU</h3>
 
     <span id="corpoModalAlertaDois" class="corpoModalAlerta">
       <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
@@ -313,7 +322,7 @@
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
     </div>
-    <h3>modalAlertaTres</h3>
+    <h3>Disco</h3>
 
     <span id="corpoModalAlertaTres" class="corpoModalAlerta">
       <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
@@ -399,4 +408,191 @@
   }
 
   bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje tivemos <span style="color:#7D2DE2;"> x</span> alertas registrados `
+</script>
+
+
+
+<script>
+
+  function carregarDiaAtual() {
+    var date = new Date();
+    const timeElapsed = Date.now();
+    const diaAtual = new Date(timeElapsed).toLocaleDateString();
+    const diaAtualFormatado = diaAtual.split('/').reverse().join('-');
+    input_filtro_data.value = diaAtualFormatado;
+  }
+
+  function filtrarData() {
+    input_filtro_data.value = input_filtro_data.value;
+    carregarAlertas();
+    exibirQtdTotalCaixasRam();
+    exibirQtdTotalCaixasCpu();
+    exibirQtdTotalCaixasDisco();
+  }
+
+  function exibirQtdTotalAlertasDoDia() {
+    const dataAtual = input_filtro_data.value
+    fetch(`/usuarios/exibirQtdTotalAlertasDoDia/${dataAtual}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+    }).then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          var totalAlertas = data[0].quantidadeTotalAlertas;
+
+          bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje tivemos <span style="color:#7D2DE2;">${totalAlertas}</span> alertas registrados `
+          
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function exibirQtdTotalCaixasRam() {
+    const dataAtual = input_filtro_data.value
+    fetch(`/usuarios/exibirQtdTotalCaixasRam/${dataAtual}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+    }).then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          var totalQtdCaixasRam = data[0].quantidadeTotalMaquinas;
+          qtd_caixas_ram.innerHTML = totalQtdCaixasRam
+          
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function exibirQtdTotalCaixasCpu() {
+    const dataAtual = input_filtro_data.value
+    fetch(`/usuarios/exibirQtdTotalCaixasCpu/${dataAtual}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+    }).then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          var totalQtdCaixasCpu = data[0].quantidadeTotalMaquinas;
+          qtd_caixas_cpu.innerHTML = totalQtdCaixasCpu
+          
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function exibirQtdTotalCaixasDisco() {
+    const dataAtual = input_filtro_data.value
+    fetch(`/usuarios/exibirQtdTotalCaixasDisco/${dataAtual}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+    }).then((resposta) => {
+        resposta.json().then((data) => {
+          console.log(data);
+          var totalQtdCaixasDisco = data[0].quantidadeTotalMaquinas;
+          qtd_caixas_disco.innerHTML = totalQtdCaixasDisco
+          
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
+
+  function exibirDataAtual() {
+    var date = new Date();
+
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed).toISOString();
+    return today;
+  }
+
+  function carregarAlertas() {
+      if (input_filtro_data.value =='') {
+        input_filtro_data.value == "'" + exibirDataAtual() + "'";
+      }
+        var dataAlerta = input_filtro_data.value;
+        console.log(dataAlerta)
+
+        fetch(`/usuarios/obterAlertasPorData/${dataAlerta}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+
+
+            listaNomeCaixa = []
+            listaComponente = []
+            listaNivelAlerta = []
+            listaValor = []
+            listaData = []
+
+            resposta.json().then((data) => {
+                console.log(data);
+
+                corpoModalAlertaUm.innerHTML = ``
+                corpoModalAlertaDois.innerHTML = ``
+                corpoModalAlertaTres.innerHTML = ``
+                corpoModalAlertaQuatro.innerHTML = ``
+
+                for (var i = 0; i < data.length; i++) {
+                    var nomeCaixa = data[i].Nome;
+                    var componente = data[i].Componente;
+                    var nivelAlerta = data[i].Nivel;
+                    var valorDado = data[i].Dado;
+                    var dataHora = data[i].DataHora;
+
+                    if (dataHora != null)
+                    var dataHoraFormatada = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
+
+                    listaNomeCaixa.push(nomeCaixa)
+                    listaComponente.push(componente)
+                    listaNivelAlerta.push(nivelAlerta)
+                    listaValor.push(valorDado)
+                    listaData.push(dataHora)
+
+                    if (listaComponente[i] == "ram") {
+                      corpoModalAlertaUm.innerHTML += ` <div class="container_informacoes_alerta"> <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6> <p>USO_DE_${valorDado}% <a>${dataHoraFormatada}</a></p> </div> `
+                      console.log("Inserir um alerta ram")
+                    }
+                    else if (listaComponente[i] == "cpu") {
+                      corpoModalAlertaDois.innerHTML += `
+                      <div class="container_informacoes_alerta">
+                      <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
+                      <p>USO_DE_${valorDado}% <a>${dataHoraFormatada}</a></p>
+                      </div>
+                      `
+                    }
+                    else if (listaComponente[i] == "disco") {
+                      corpoModalAlertaTres.innerHTML += `
+                      <div class="container_informacoes_alerta">
+                      <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
+                      <p>USO_DE_X${valorDado} <a>${dataHoraFormatada}</a></p>
+                      </div>
+                      `
+                    }
+                }
+            })
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
 </script>
