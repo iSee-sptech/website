@@ -1,6 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
 
-
 var sessoes = [];
 
 function testar(req, res) {
@@ -67,19 +66,21 @@ function atualizarSenha(req, res) {
   const emailRedefinir = req.body.emailServer2;
   const senhaRedefinir = req.body.senhaServer2;
 
-  usuarioModel.atualizarSenha(emailRedefinir, senhaRedefinir).then((response) => {
-    const tamanho = response.affectedRows;
+  usuarioModel
+    .atualizarSenha(emailRedefinir, senhaRedefinir)
+    .then((response) => {
+      const tamanho = response.affectedRows;
 
-    if (tamanho > 0) {
-      res.json({
-        mensagem: "success",
-      });
-    } else {
-      res.json({
-        mensagem: "error",
-      });
-    }
-  });
+      if (tamanho > 0) {
+        res.json({
+          mensagem: "success",
+        });
+      } else {
+        res.json({
+          mensagem: "error",
+        });
+      }
+    });
 }
 
 function cadastrar(req, res) {
@@ -405,7 +406,6 @@ function exibirCaixas(req, res) {
 }
 
 function exibirQtdTotalEtiquetas(req, res) {
-  
   usuarioModel
     .exibirQtdTotalEtiquetas()
     .then((resultado) => {
@@ -425,10 +425,10 @@ function exibirQtdTotalEtiquetas(req, res) {
     });
 }
 
-function  exibirQtdHistorico(req, res) {
+function exibirQtdHistorico(req, res) {
   //const usuarioIdentificador = req.params.id;
   usuarioModel
-    . exibirQtdHistorico()
+    .exibirQtdHistorico()
     .then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -447,8 +447,9 @@ function  exibirQtdHistorico(req, res) {
 }
 
 function listarCaixas(req, res) {
- // const usuarioIdentificador = req.params.id;
-  usuarioModel.listarCaixas()
+  // const usuarioIdentificador = req.params.id;
+  usuarioModel
+    .listarCaixas()
     .then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -468,23 +469,24 @@ function listarCaixas(req, res) {
 
 function listarHistorico(req, res) {
   // const usuarioIdentificador = req.params.id;
-   usuarioModel.listarHistorico()
-     .then((resultado) => {
-       if (resultado.length > 0) {
-         res.status(200).json(resultado);
-       } else {
-         res.status(204).send("Nenhum resultado encontrado!");
-       }
-     })
-     .catch(function (erro) {
-       console.log(erro);
-       console.log(
-         "Houve um erro ao realizar a consulta! Erro: ",
-         erro.sqlMessage
-       );
-       res.status(500).json(erro.sqlMessage);
-     });
- }
+  usuarioModel
+    .listarHistorico()
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
 
 function imgUsuario(req, res) {
   const idUser = req.params.id;
@@ -527,177 +529,222 @@ function atualizarImg(req, res) {
 }
 
 function pesquisarCaixa(req, res) {
-
   const caixa = req.params.idCaixa;
 
-  usuarioModel.pesquisarCaixa(caixa)
-      .then((resultado) => {
-          if (resultado.length > 0) {
-              res.status(200).json(resultado);
-          } else {
-              res.status(204).send("Nenhum resultado encontrado!")
-          }
-      }).catch(
-          function (erro) {
-              console.log(erro);
-              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-              res.status(500).json(erro.sqlMessage);
-          }
+  usuarioModel
+    .pesquisarCaixa(caixa)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
       );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function pesquisarHistorico(req, res) {
-
   const dataHora = req.params.dataHistorico;
 
-  usuarioModel.pesquisarHistorico(dataHora)
-      .then((resultado) => {
-          if (resultado.length > 0) {
-              res.status(200).json(resultado);
-          } else {
-              res.status(204).send("Nenhum resultado encontrado!")
-          }
-      }).catch(
-          function (erro) {
-              console.log(erro);
-              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-              res.status(500).json(erro.sqlMessage);
-          }
+  usuarioModel
+    .pesquisarHistorico(dataHora)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
       );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function obterAlertasPorData(req, res) {
   const data = req.params.dataAlerta;
 
-  usuarioModel.obterAlertasPorData(data)
+  usuarioModel
+    .obterAlertasPorData(data)
     .then((resultado) => {
       if (resultado.length > 0) {
-          res.status(200).json(resultado);
+        res.status(200).json(resultado);
       } else {
-          res.status(204).send("Nenhum resultado encontrado!")
+        res.status(204).send("Nenhum resultado encontrado!");
       }
-  }).catch(
-      function (erro) {
-          console.log(erro);
-          console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-          res.status(500).json(erro.sqlMessage);
-      }
-  );
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function exibirQtdTotalAlertasDoDia(req, res) {
   const data = req.params.dataAtual;
 
-  usuarioModel.exibirQtdTotalAlertasDoDia(data)
+  usuarioModel
+    .exibirQtdTotalAlertasDoDia(data)
     .then((resultado) => {
       if (resultado.length > 0) {
-          res.status(200).json(resultado);
+        res.status(200).json(resultado);
       } else {
-          res.status(204).send("Nenhum resultado encontrado!")
+        res.status(204).send("Nenhum resultado encontrado!");
       }
-  }).catch(
-      function (erro) {
-          console.log(erro);
-          console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-          res.status(500).json(erro.sqlMessage);
-      }
-  );
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function exibirQtdTotalCaixasRam(req, res) {
   const data = req.params.dataAtual;
 
-  usuarioModel.exibirQtdTotalCaixasRam(data)
+  usuarioModel
+    .exibirQtdTotalCaixasRam(data)
     .then((resultado) => {
       if (resultado.length > 0) {
-          res.status(200).json(resultado);
+        res.status(200).json(resultado);
       } else {
-          res.status(204).send("Nenhum resultado encontrado!")
+        res.status(204).send("Nenhum resultado encontrado!");
       }
-  }).catch(
-      function (erro) {
-          console.log(erro);
-          console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-          res.status(500).json(erro.sqlMessage);
-      }
-  );
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function exibirQtdTotalCaixasCpu(req, res) {
   const data = req.params.dataAtual;
 
-  usuarioModel.exibirQtdTotalCaixasCpu(data)
+  usuarioModel
+    .exibirQtdTotalCaixasCpu(data)
     .then((resultado) => {
       if (resultado.length > 0) {
-          res.status(200).json(resultado);
+        res.status(200).json(resultado);
       } else {
-          res.status(204).send("Nenhum resultado encontrado!")
+        res.status(204).send("Nenhum resultado encontrado!");
       }
-  }).catch(
-      function (erro) {
-          console.log(erro);
-          console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-          res.status(500).json(erro.sqlMessage);
-      }
-  );
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function exibirQtdTotalCaixasDisco(req, res) {
   const data = req.params.dataAtual;
 
-  usuarioModel.exibirQtdTotalCaixasDisco(data)
+  usuarioModel
+    .exibirQtdTotalCaixasDisco(data)
     .then((resultado) => {
       if (resultado.length > 0) {
-          res.status(200).json(resultado);
+        res.status(200).json(resultado);
       } else {
-          res.status(204).send("Nenhum resultado encontrado!")
+        res.status(204).send("Nenhum resultado encontrado!");
       }
-  }).catch(
-      function (erro) {
-          console.log(erro);
-          console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-          res.status(500).json(erro.sqlMessage);
-      }
-  );
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 /*------------------------ETIQUETAS-------------------------------------- */
 function obterQtdAlertaRamLast30dias(req, res) {
   const idDoCaixa = req.params.idDoCaixa;
 
-  usuarioModel.obterQtdAlertaRamLast30dias(idDoCaixa)
+  usuarioModel
+    .obterQtdAlertaRamLast30dias(idDoCaixa)
     .then((resultado) => {
       if (resultado.length > 0) {
-          res.status(200).json(resultado);
+        res.status(200).json(resultado);
       } else {
-          res.status(204).send("Nenhum resultado encontrado!")
+        res.status(204).send("Nenhum resultado encontrado!");
       }
-  }).catch(
-      function (erro) {
-          console.log(erro);
-          console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-          res.status(500).json(erro.sqlMessage);
-      }
-  );
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function obterQtdAlertaCpuLast30dias(req, res) {
   const idDoCaixa = req.params.idDoCaixa;
 
-  usuarioModel.obterQtdAlertaCpuLast30dias(idDoCaixa)
+  usuarioModel
+    .obterQtdAlertaCpuLast30dias(idDoCaixa)
     .then((resultado) => {
       if (resultado.length > 0) {
-          res.status(200).json(resultado);
+        res.status(200).json(resultado);
       } else {
-          res.status(204).send("Nenhum resultado encontrado!")
+        res.status(204).send("Nenhum resultado encontrado!");
       }
-  }).catch(
-      function (erro) {
-          console.log(erro);
-          console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-          res.status(500).json(erro.sqlMessage);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function graficoUsoRam(req, res) {
+  usuarioModel
+    .graficoUsoRam()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
       }
-  );
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 module.exports = {
@@ -728,6 +775,7 @@ module.exports = {
   exibirQtdTotalCaixasRam,
   exibirQtdTotalCaixasCpu,
   exibirQtdTotalCaixasDisco,
+  graficoUsoRam,
 
   /*------------------------ETIQUETAS-------------------------------------- */
   obterQtdAlertaRamLast30dias,

@@ -4,7 +4,7 @@ function obterDataHojeAmericano() {
   var date = new Date();
   const timeElapsed = Date.now();
   const diaAtual = new Date(timeElapsed).toLocaleDateString();
-  const diaAtualFormatadoAmericano = diaAtual.split('/').reverse().join('-');
+  const diaAtualFormatadoAmericano = diaAtual.split("/").reverse().join("-");
   return diaAtualFormatadoAmericano;
 }
 
@@ -33,7 +33,6 @@ function entrar(email, senha) {
 }
 
 function atualizarSenha(emailRedefinir, senhaRedefinir) {
-
   var instrucao = `
     UPDATE Usuarios SET senhaUsuario = '${senhaRedefinir}' WHERE emailUsuario = '${emailRedefinir}';
     `;
@@ -154,7 +153,7 @@ function exibirQtdTotalEtiquetas() {
   return database.executar(instrucao);
 }
 
-function  exibirQtdHistorico() {
+function exibirQtdHistorico() {
   var instrucao = `
   SELECT count(idHistorico) as 'idHistorico' from Historico;
   `;
@@ -222,15 +221,15 @@ function obterAlertasPorData(data) {
   // select * from alerta where datahoraAlerta LIKE '%${data}%'
   // `;
   //var instrucao = `
-  //SELECT 
-  //[dbo].[Maquinas].nomeMaquina AS 'Nome', 
+  //SELECT
+  //[dbo].[Maquinas].nomeMaquina AS 'Nome',
   //[dbo].[Alerta].componente AS 'Componente', [dbo].[Alerta].nivelAlerta AS 'Nivel', [dbo].[Alerta].dado AS 'Dado', [dbo].[Alerta].datahoraAlerta AS 'DataHora'
   //FROM [dbo].[Alerta] JOIN [dbo].[Maquinas] ON [dbo].[Maquinas].idMaquina = [dbo].[Alerta].fkMaquina
   //ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
-//`;
+  //`;
   var instrucao = `select Maquinas.nomeMaquina as 'Nome', Alerta.componente as 'Componente', Alerta.nivelAlerta as 'Nivel', Alerta.dado as 'Dado', Alerta.datahoraAlerta as 'DataHora'
   from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where datahoraAlerta LIKE '%${data}%'
-  order by Alerta.nivelAlerta desc, Alerta.datahoraAlerta desc`
+  order by Alerta.nivelAlerta desc, Alerta.datahoraAlerta desc`;
   return database.executar(instrucao);
 }
 
@@ -262,12 +261,10 @@ function exibirQtdTotalCaixasDisco(data) {
   return database.executar(instrucao);
 }
 
-
-
 /*------------------------ETIQUETAS-------------------------------------- */
 function obterQtdAlertaRamLast30dias(idDoCaixa) {
   // var instrucao = `
-  // SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta 
+  // SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta
   // WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY) AND CURRENT_DATE()
   // `;
 
@@ -286,6 +283,19 @@ function obterQtdAlertaCpuLast30dias(idDoCaixa) {
   return database.executar(instrucao);
 }
 
+function graficoUsoRam() {
+  console.log(
+    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function grafico_jogador()"
+  );
+  var instrucao = `
+  select round(((usoRamHistorico * 100) / ramMaquina)) as porcRam,
+  nomeMaquina as nomeCaixa from historico
+  join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
+  order by usoRamHistorico desc limit 4;
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
 
 module.exports = {
   entrar,
@@ -317,6 +327,7 @@ module.exports = {
   exibirQtdTotalCaixasRam,
   exibirQtdTotalCaixasCpu,
   exibirQtdTotalCaixasDisco,
+  graficoUsoRam,
 
   /*------------------------ETIQUETAS-------------------------------------- */
   obterQtdAlertaRamLast30dias,

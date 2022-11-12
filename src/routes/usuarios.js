@@ -93,7 +93,6 @@ router.get("/imgUsuario/:id", function (req, res) {
 });
 router.post("/adicionarImagem", usuarioController.atualizarImg);
 
-
 router.get("/obterAlertasPorData/:dataAlerta", function (req, res) {
   usuarioController.obterAlertasPorData(req, res);
 });
@@ -121,6 +120,10 @@ router.get("/obterQtdAlertaRamLast30dias/:idDoCaixa", function (req, res) {
 
 router.get("/obterQtdAlertaCpuLast30dias/:idDoCaixa", function (req, res) {
   usuarioController.obterQtdAlertaCpuLast30dias(req, res);
+});
+
+router.get("/graficoUsoRam", function (req, res) {
+  usuarioController.graficoUsoRam(req, res);
 });
 
 module.exports = router;
