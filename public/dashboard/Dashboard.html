@@ -208,7 +208,7 @@
     var valorEficienciaGlobal = exibirEficienciaGlobalDoDia();
 
     function exibirEficienciaGlobalDoDia() {
-      const dataAtual = "carregarDiaAtual()"
+      const dataAtual = carregarDiaAtual()
       fetch(`/usuarios/exibirEficienciaGlobalDoDia/${dataAtual}`, {
               method: "GET",
               headers: {
