@@ -122,6 +122,14 @@ router.get("/obterQtdAlertaCpuLast30dias/:idDoCaixa", function (req, res) {
   usuarioController.obterQtdAlertaCpuLast30dias(req, res);
 });
 
+router.get("/obterInformacaoDiscoTotal/:idDoCaixa", function (req, res) {
+  usuarioController.obterInformacaoDiscoTotal(req, res);
+});
+
+router.get("/obterUltimoUsoDiscoHistorico/:idDoCaixa", function (req, res) {
+  usuarioController.obterUltimoUsoDiscoHistorico(req, res);
+});
+
 router.get("/graficoUsoRam", function (req, res) {
   usuarioController.graficoUsoRam(req, res);
 });

@@ -727,6 +727,50 @@ function obterQtdAlertaCpuLast30dias(req, res) {
     });
 }
 
+function obterInformacaoDiscoTotal(req, res) {
+  const idDoCaixa = req.params.idDoCaixa;
+
+  usuarioModel
+    .obterInformacaoDiscoTotal(idDoCaixa)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function obterUltimoUsoDiscoHistorico(req, res) {
+  const idDoCaixa = req.params.idDoCaixa;
+
+  usuarioModel
+    .obterUltimoUsoDiscoHistorico(idDoCaixa)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function graficoUsoRam(req, res) {
   usuarioModel
     .graficoUsoRam()
@@ -824,6 +868,8 @@ module.exports = {
   /*------------------------ETIQUETAS-------------------------------------- */
   obterQtdAlertaRamLast30dias,
   obterQtdAlertaCpuLast30dias,
+  obterInformacaoDiscoTotal,
+  obterUltimoUsoDiscoHistorico,
 
   /*------------------------DASHBOARD-------------------------------------- */
   graficoUsoRam,

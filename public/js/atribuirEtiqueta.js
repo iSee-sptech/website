@@ -83,7 +83,28 @@ function atribuirEtiquetas() {
               console.log(`#ERRO: ${resposta}`);
             });
             
+      //ETIQUETA DE DISCO - Enciclopedia---------------------------------// 
+      fetch(`/usuarios/obterInformacaoDiscoTotal/${idDoCaixa}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
+          resposta.json().then((data) => {
+            console.log("Total de disco do id " + idDoCaixa);
+            qtdAlertaCpu = data[0].qtdAlertaCpuLast30dias; 
             
-            
+            if (qtdAlertaCpu <= 9) {
+                console.log('delete');
+            }
+            else {
+                console.log('insert');
+            }
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });z
     }
 }

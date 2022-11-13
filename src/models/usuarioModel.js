@@ -283,6 +283,22 @@ function obterQtdAlertaCpuLast30dias(idDoCaixa) {
   return database.executar(instrucao);
 }
 
+function obterInformacaoDiscoTotal(idDoCaixa) {
+  var instrucao = `
+  SELECT TOP 1 usoDiscoHistorico as 'usoDisco' FROM Maquinas
+  WHERE idMaquina = ${idDoCaixa}
+  order by dataHoraHistorico desc
+  `;
+  return database.executar(instrucao);
+}
+
+function obterUltimoUsoDiscoHistorico(idDoCaixa) {
+  var instrucao = `
+  SELECT discoMaquina as 'qtdTotalDisco' FROM Maquinas
+  WHERE idMaquina = ${idDoCaixa};`;
+  return database.executar(instrucao);
+}
+
 function graficoUsoRam() {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function grafico_jogador()"
@@ -347,6 +363,8 @@ module.exports = {
   /*------------------------ETIQUETAS-------------------------------------- */
   obterQtdAlertaRamLast30dias,
   obterQtdAlertaCpuLast30dias,
+  obterInformacaoDiscoTotal,
+  obterUltimoUsoDiscoHistorico,
 
   /*------------------------DASHBOARD-------------------------------------- */
   graficoUsoRam,
