@@ -285,7 +285,7 @@ function obterQtdAlertaCpuLast30dias(idDoCaixa) {
 
 function obterInformacaoDiscoTotal(idDoCaixa) {
   var instrucao = `
-  SELECT usoDiscoHistorico as 'usoDisco' FROM Maquinas
+  SELECT discoMaquina as 'qtdTotalDisco' FROM Maquinas
   WHERE idMaquina = ${idDoCaixa}
   `;
   return database.executar(instrucao);
@@ -293,12 +293,28 @@ function obterInformacaoDiscoTotal(idDoCaixa) {
 
 function obterUltimoUsoDiscoHistorico(idDoCaixa) {
   var instrucao = `
-  SELECT TOP 1 discoMaquina as 'qtdTotalDisco' FROM Maquinas
+  SELECT TOP 1 usoDiscoHistorico as 'usoDisco' FROM Maquinas
   WHERE idMaquina = ${idDoCaixa}
   order by dataHoraHistorico desc
   `;
   return database.executar(instrucao);
 }
+
+function inserirEtiqueta(nomeEtiqueta, idDaMaquina) {
+  var instrucao = `
+  INSERT INTO Etiqueta VALUES (${idDaMaquina},"${nomeEtiqueta}",${obterDataHojeAmericano()})
+  `;
+  return database.executar(instrucao);
+}
+
+function deletarEtiqueta(nomeEtiqueta, idDaMaquina) {
+  var instrucao = `
+  DELETE FROM Etiqueta where fkMaquina = ${idDaMaquina} AND nomeEtiqueta = ${nomeEtiqueta}
+  `;
+  return database.executar(instrucao);
+}
+
+/*------------------------fim de ETIQUETAS-------------------------------------- */
 
 function graficoUsoRam() {
   console.log(
@@ -366,6 +382,8 @@ module.exports = {
   obterQtdAlertaCpuLast30dias,
   obterInformacaoDiscoTotal,
   obterUltimoUsoDiscoHistorico,
+  inserirEtiqueta,
+  deletarEtiqueta,
 
   /*------------------------DASHBOARD-------------------------------------- */
   graficoUsoRam,

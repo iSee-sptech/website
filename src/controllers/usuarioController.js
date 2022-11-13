@@ -771,6 +771,55 @@ function obterUltimoUsoDiscoHistorico(req, res) {
     });
 }
 
+function inserirEtiqueta(req, res) {
+  var nomeEtiqueta = req.body.nomeEtiquetaServer;
+  var idDaMaquina = req.body.idDaMaquinaServer;
+  
+  if (nomeEtiqueta == undefined && idDaMaquina == undefined) {
+    res.status(400).send("idDaMaquina ou nomeEtiqueta undefined");
+  } 
+  else {
+    usuarioModel
+      .inserirEtiqueta(nomeEtiqueta, idDaMaquina)
+        .then(function (resultado) {
+          res.json(resultado);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar o cadastro da etiqueta! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
+function deletarEtiqueta(req, res) {
+  var nomeEtiqueta = req.body.nomeEtiquetaServer;
+  var idDaMaquina = req.body.idDaMaquinaServer;
+  
+  if (nomeEtiqueta == undefined && idDaMaquina == undefined) {
+    res.status(400).send("idDaMaquina ou nomeEtiqueta undefined");
+  } 
+  else {
+    usuarioModel
+      .deletarEtiqueta(nomeEtiqueta, idDaMaquina)
+        .then(function (resultado) {
+          res.json(resultado);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao deletar a etiqueta! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
+/*------------------------FIM DE ETIQUETAS-------------------------------------- */
 function graficoUsoRam(req, res) {
   usuarioModel
     .graficoUsoRam()
@@ -870,6 +919,7 @@ module.exports = {
   obterQtdAlertaCpuLast30dias,
   obterInformacaoDiscoTotal,
   obterUltimoUsoDiscoHistorico,
+  inserirEtiqueta,
 
   /*------------------------DASHBOARD-------------------------------------- */
   graficoUsoRam,

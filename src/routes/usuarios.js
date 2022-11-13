@@ -130,6 +130,16 @@ router.get("/obterUltimoUsoDiscoHistorico/:idDoCaixa", function (req, res) {
   usuarioController.obterUltimoUsoDiscoHistorico(req, res);
 });
 
+router.post("/inserirEtiqueta", function (req, res) {
+  usuarioController.inserirEtiqueta(req, res);
+});
+
+router.delete("/deletarEtiqueta", function (req, res) {
+  usuarioController.deletarEtiqueta(req, res);
+});
+
+/*------------------------fim de ETIQUETAS-------------------------------------- */
+
 router.get("/graficoUsoRam", function (req, res) {
   usuarioController.graficoUsoRam(req, res);
 });

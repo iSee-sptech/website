@@ -26,6 +26,76 @@ function obterDataHojeAmericano() {
     return diaAtualFormatadoAmericano;
   }
 
+function inserirEtiqueta(nomeEtiqueta, idDaMaquina) {
+  var nomeEtiqueta = nomeEtiqueta;
+  var idDaMaquina = idDaMaquina;
+
+
+  fetch("/usuarios/inserirEtiqueta", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nomeEtiquetaServer: nomeEtiqueta,
+      idDaMaquinaServer: idDaMaquina,
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log("Cadastro efetuado com sucesso!");
+
+        setTimeout(() => {
+          window.location = "dashboard/homeGestor.html";
+        }, "1000");
+      } else {
+        throw "Houve um erro ao tentar realizar o cadastro!";
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+
+  return false;
+}
+
+function deletarEtiqueta(nomeEtiqueta, idDaMaquina) {
+  var nomeEtiqueta = nomeEtiqueta;
+  var idDaMaquina = idDaMaquina;
+
+
+  fetch("/usuarios/deletarEtiqueta", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nomeEtiquetaServer: nomeEtiqueta,
+      idDaMaquinaServer: idDaMaquina,
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log("Cadastro efetuado com sucesso!");
+
+        setTimeout(() => {
+          window.location = "dashboard/homeGestor.html";
+        }, "1000");
+      } else {
+        throw "Houve um erro ao tentar realizar o cadastro!";
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+
+  return false;
+}
+
 function atribuirEtiquetas() {
     // var qtdCaixa = obterQtdCaixas();
     
@@ -48,10 +118,12 @@ function atribuirEtiquetas() {
                 qtdAlertaRam = data[0].qtdAlertaRamLast30dias; 
                 
                 if (qtdAlertaRam <= 9) {
-                    console.log('delete');
+                    console.log('Deletar Caminhador');
+                    inserirEtiqueta("caminhador",idDoCaixa);
                 }
                 else {
-                    console.log('insert');
+                    console.log('Inserir Caminhador');
+                    deletarEtiqueta("caminhador",idDoCaixa);
                 }
               });
             })
@@ -72,10 +144,12 @@ function atribuirEtiquetas() {
                 qtdAlertaCpu = data[0].qtdAlertaCpuLast30dias; 
                 
                 if (qtdAlertaCpu <= 9) {
-                    console.log('delete');
+                    console.log('Deletar atarefado');
+                    deletarEtiqueta("atarefado",idDoCaixa);
                 }
                 else {
-                    console.log('insert');
+                    console.log('Inserir atarefado');
+                    inserirEtiqueta("atarefado",idDoCaixa);
                 }
               });
             })
@@ -93,13 +167,34 @@ function atribuirEtiquetas() {
         .then((resposta) => {
           resposta.json().then((data) => {
             console.log("Total de disco do id " + idDoCaixa);
-            qtdAlertaCpu = data[0].qtdAlertaCpuLast30dias; 
+            qtdTotalDisco = data[0].qtdTotalDisco; 
             
-            if (qtdAlertaCpu <= 9) {
-                console.log('delete');
+
+            fetch(`/usuarios/obterUltimoUsoDiscoHistorico/${idDoCaixa}`, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((resposta) => {
+                resposta.json().then((data) => {
+                  console.log("Total de disco do id " + idDoCaixa);
+                  usoDisco = data[0].usoDisco; 
+
+                });
+              })
+              .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+              });
+      
+            
+            if (qtdTotalDisco * 0.7 < usoDisco) {
+              console.log('Deletar atarefado');
+              deletarEtiqueta("enciclopedia",idDoCaixa);
             }
             else {
-                console.log('insert');
+              console.log('Inserir enciclopedia');
+              inserirEtiqueta("enciclopedia",idDoCaixa);
             }
           });
         })
