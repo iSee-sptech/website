@@ -48,8 +48,8 @@ insert into Maquinas values (1, '11111', 'Windows', 'Microsoft', '64', '100000',
 
 create table Etiqueta (
 idEtiqueta int primary key auto_increment,
-fkMaquina int,
-nomeEtiqueta varchar(50),
+fkMaquina int unique,
+nomeEtiqueta varchar(50) unique,
 datahoraEtiqueta datetime,
 foreign key (fkMaquina)
 references Maquinas (idMaquina)
