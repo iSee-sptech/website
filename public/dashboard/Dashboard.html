@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
-  <body onload="exibirQuantidadeTotalRam(), imgUsuario(), graficoUsoRam(), exibirEficienciaGlobalDoDia()">
+  <body onload="exibirQuantidadeTotalRam(), imgUsuario(), graficoUsoRam(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal()">
     <div class="body_dashboard">
       <div class="sessao_grafico_principal">
         <div class="container_title">
@@ -60,9 +60,9 @@
 
         <div class="container_cards">
           <div class="card">
-            <h4 id="titulo_card1">Quantidade de RAM restante</h4>
+            <h4 id="titulo_card1">Porcentagem global restante</h4>
             <!--AQUI FICA O TITULO DO PRIMEIRO CARD -->
-            <h2>25 GB</h2>
+            <h2><span id="porcentagem_restante"></span>%</h2>
           </div>
 
           <div class="card">
@@ -79,7 +79,7 @@
 
           <div class="grafic_rosca_infos">
             <div class="titulo_grafico_rosca">
-              <h4>Uso diário de RAM</h4>
+              <h4>Eficiência global restante das máquinas com maior criticidade</h4>
             </div>
             <div id="cardCaixas">
               <div>
@@ -227,6 +227,28 @@
           finalizarAguardar();
       });
    }
+
+   
+    function exibirPorcentagemRestanteGlobal(){
+      const dataAtual = carregarDiaAtual()
+      fetch(`/usuarios/exibirPorcentagemRestanteGlobal/${dataAtual}`, {
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json"
+              }
+      }).then((resposta) => {
+          resposta.json().then((data) => {
+            console.log(data);
+            var valorEficiencia = data[0].eficienciaGlobalRestante;
+            porcentagem_restante.innerHTML = valorEficiencia
+            
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+      });
+    }
 
     function exibirQuantidadeTotalRam() {
       fetch(`/usuarios/exibirQuantidadeTotalRam`, {

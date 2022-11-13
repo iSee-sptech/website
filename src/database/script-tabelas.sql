@@ -76,8 +76,8 @@ insert into Historico (usoRamHistorico, usoProcessadorHistorico, usoDiscoHistori
 
 
 -- Eficiencia global --
-select round(sum(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina)) + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico)) as "Eficiencia_global"
-from Historico join Maquinas on Historico.fkMaquinaHistorico = Maquinas.idMaquina where dataHoraHistorico like '%2022-11-12%' order by idHistorico desc;
+select round(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina)) + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) as "eficienciaGlobal", nomeMaquina as "nomeMaquina"
+from Historico join Maquinas on Historico.fkMaquinaHistorico = Maquinas.idMaquina where dataHoraHistorico like '%2022-11-12%' order by idHistorico desc limit 4;
 
 
 

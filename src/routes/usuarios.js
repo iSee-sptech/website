@@ -130,4 +130,8 @@ router.get("/exibirEficienciaGlobalDoDia/:dataAtual", function (req, res) {
   usuarioController.exibirEficienciaGlobalDoDia(req, res);
 });
 
+router.get("/exibirPorcentagemRestanteGlobal/:dataAtual", function (req, res) {
+  usuarioController.exibirPorcentagemRestanteGlobal(req, res);
+});
+
 module.exports = router;

@@ -305,6 +305,14 @@ function exibirEficienciaGlobalDoDia(data) {
   return database.executar(instrucao);
 }
 
+function exibirPorcentagemRestanteGlobal(data) {
+  var instrucao = `
+  select round(100 - (sum(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina)) + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico))) 
+  as "eficienciaGlobalRestante" from Historico join Maquinas on Historico.fkMaquinaHistorico = Maquinas.idMaquina where dataHoraHistorico like '%${data}%' order by idHistorico desc;
+  `;
+  return database.executar(instrucao);
+}
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -343,5 +351,6 @@ module.exports = {
   /*------------------------DASHBOARD-------------------------------------- */
   graficoUsoRam,
   exibirEficienciaGlobalDoDia,
+  exibirPorcentagemRestanteGlobal,
 
 };
