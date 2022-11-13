@@ -285,17 +285,18 @@ function obterQtdAlertaCpuLast30dias(idDoCaixa) {
 
 function obterInformacaoDiscoTotal(idDoCaixa) {
   var instrucao = `
-  SELECT TOP 1 usoDiscoHistorico as 'usoDisco' FROM Maquinas
+  SELECT usoDiscoHistorico as 'usoDisco' FROM Maquinas
   WHERE idMaquina = ${idDoCaixa}
-  order by dataHoraHistorico desc
   `;
   return database.executar(instrucao);
 }
 
 function obterUltimoUsoDiscoHistorico(idDoCaixa) {
   var instrucao = `
-  SELECT discoMaquina as 'qtdTotalDisco' FROM Maquinas
-  WHERE idMaquina = ${idDoCaixa};`;
+  SELECT TOP 1 discoMaquina as 'qtdTotalDisco' FROM Maquinas
+  WHERE idMaquina = ${idDoCaixa}
+  order by dataHoraHistorico desc
+  `;
   return database.executar(instrucao);
 }
 
