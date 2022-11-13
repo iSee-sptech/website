@@ -17,6 +17,8 @@ numeroLocalUsuario varchar (6),
 complementoLocalUsuario varchar (25)
 );
 
+select * from Usuarios;
+
 create table Maquinas (
 idMaquina int primary key auto_increment,
 serialMaquina varchar(25),
@@ -37,6 +39,12 @@ fkUsuario int,
 foreign key (fkUsuario)
 references Usuarios (idUsuario)
 );
+
+insert into Maquinas values (1, '11111', 'Windows', 'Microsoft', '64', '100000', 'Caixa 1', '100', '16', '4', '08164050', '777', 'casinha do zé', 'fegfwege', null, 1),
+(2, '113111', 'Windows', 'Microsoft', '64', '100000', 'Caixa 2', '100', '16', '4', '08164052', '777', 'casinha do zé', 'fegfwege', null, 1), 
+(3, '121111', 'Windows', 'Microsoft', '64', '100000', 'Caixa 3', '100', '16', '4', '08164051', '777', 'casinha do zé', 'fegfwege', null, 1),
+(4, '1411', 'Windows', 'Microsoft', '64', '100000', 'Caixa 4', '200', '8', '4', '08164053', '777', 'casinha do zé', 'fegfwege', null, 1),
+(5, '15111', 'Windows', 'Microsoft', '64', '100000', 'Caixa 5', '200', '8', '4', '08164054', '777', 'casinha do zé', 'fegfwege', null, 1);
 
 create table Etiqueta (
 idEtiqueta int primary key auto_increment,
@@ -59,6 +67,19 @@ fkMaquinaHistorico int,
 foreign key (fkMaquinaHistorico)
 references Maquinas (idMaquina)
 );
+
+select * from Historico;
+
+update Historico set dataHoraHistorico = '2022-11-12 00:00:00' where idHistorico = 12;
+
+insert into Historico (usoRamHistorico, usoProcessadorHistorico, usoDiscoHistorico, fkMaquinaHistorico) values ('10', '3', '100', 1);
+
+
+-- Eficiencia global --
+select round(sum(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina)) + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico)) as "Eficiencia_global"
+from Historico join Maquinas on Historico.fkMaquinaHistorico = Maquinas.idMaquina where dataHoraHistorico like '%2022-11-12%' order by idHistorico desc;
+
+
 
 create table Lembrete(
 idLembrete int primary key auto_increment,

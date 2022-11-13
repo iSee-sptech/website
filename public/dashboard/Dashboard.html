@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
-  <body onload="exibirQuantidadeTotalRam(), imgUsuario(), graficoUsoRam()">
+  <body onload="exibirQuantidadeTotalRam(), imgUsuario(), graficoUsoRam(), exibirEficienciaGlobalDoDia()">
     <div class="body_dashboard">
       <div class="sessao_grafico_principal">
         <div class="container_title">
@@ -182,7 +182,7 @@
       frase = `Boa noite`;
     }
 
-    bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje a eficiência global é de <span style="color:#7D2DE2;"> 100%</span>`;
+    bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje a eficiência global é de <span id="eficiencia" style="color:#7D2DE2;"> ${valorEficienciaGlobal}</span>`;
 
     function tela_home() {
       if (sessionStorage.cargoUsuario === "Gerente") {
@@ -196,6 +196,37 @@
       sessionStorage.clear();
       window.location.href = "../login.html";
     }
+
+    function carregarDiaAtual() {
+      var date = new Date();
+      const timeElapsed = Date.now();
+      const diaAtual = new Date(timeElapsed).toLocaleDateString();
+      const diaAtualFormatado = diaAtual.split('/').reverse().join('-');
+      return diaAtualFormatado;
+    }
+
+    var valorEficienciaGlobal = exibirEficienciaGlobalDoDia();
+
+    function exibirEficienciaGlobalDoDia() {
+      const dataAtual = "carregarDiaAtual()"
+      fetch(`/usuarios/exibirEficienciaGlobalDoDia/${dataAtual}`, {
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json"
+              }
+      }).then((resposta) => {
+          resposta.json().then((data) => {
+            console.log(data);
+            var valorEficiencia = data[0].eficienciaGlobal;
+            eficiencia.innerHTML = valorEficiencia + "%"
+            
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+      });
+   }
 
     function exibirQuantidadeTotalRam() {
       fetch(`/usuarios/exibirQuantidadeTotalRam`, {

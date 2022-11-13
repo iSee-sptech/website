@@ -126,4 +126,8 @@ router.get("/graficoUsoRam", function (req, res) {
   usuarioController.graficoUsoRam(req, res);
 });
 
+router.get("/exibirEficienciaGlobalDoDia/:dataAtual", function (req, res) {
+  usuarioController.exibirEficienciaGlobalDoDia(req, res);
+});
+
 module.exports = router;
