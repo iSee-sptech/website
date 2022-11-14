@@ -156,6 +156,33 @@ function atribuirEtiquetas() {
             .catch(function (resposta) {
               console.log(`#ERRO: ${resposta}`);
             });
+
+            //ETIQUETA DE CPU - ---------------------------------//
+        fetch(`/usuarios/obterQtdRegistroHistoricoLast30dias/${idDoCaixa}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((resposta) => {
+            resposta.json().then((data) => {
+              console.log("Caixa do id " + idDoCaixa + ": qtdRegistrosLast30dias " +  data[0].qtdRegistrosLast30dias);
+              qtdRegistros = data[1].qtdRegistrosLast30dias; 
+              
+              if (qtdRegistros > 10800) {
+                  console.log('Deletar dorminhoco');
+                  deletarEtiqueta("dorminhoco",idDoCaixa);
+              }
+              else {
+                  console.log('Inserir dorminhoco');
+                  inserirEtiqueta("dorminhoco",idDoCaixa);
+              }
+            });
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+            
             
       //ETIQUETA DE DISCO - Enciclopedia---------------------------------// 
       fetch(`/usuarios/obterInformacaoDiscoTotal/${idDoCaixa}`, {

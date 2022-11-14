@@ -283,6 +283,14 @@ function obterQtdAlertaCpuLast30dias(idDoCaixa) {
   return database.executar(instrucao);
 }
 
+function obterQtdRegistroHistoricoLast30dias(idDoCaixa) {
+  var instrucao = `
+  SELECT fkMaquinaHistorico, COUNT(fkMaquinaHistorico) AS 'qtdRegistrosLast30dias' FROM Historico 
+  WHERE fkMaquinaHistorico = ${idDoCaixa} AND datahoraHistorico BETWEEN DATEADD(DAY, -30, '${obterDataHojeAmericano()}') AND '${obterDataHojeAmericano()}';
+  `;
+  return database.executar(instrucao);
+}
+
 function obterInformacaoDiscoTotal(idDoCaixa) {
   var instrucao = `
   SELECT discoMaquina as 'qtdTotalDisco' FROM Maquinas
@@ -382,6 +390,7 @@ module.exports = {
   obterQtdAlertaCpuLast30dias,
   obterInformacaoDiscoTotal,
   obterUltimoUsoDiscoHistorico,
+  obterQtdRegistroHistoricoLast30dias,
   inserirEtiqueta,
   deletarEtiqueta,
 

@@ -130,6 +130,10 @@ router.get("/obterUltimoUsoDiscoHistorico/:idDoCaixa", function (req, res) {
   usuarioController.obterUltimoUsoDiscoHistorico(req, res);
 });
 
+router.get("/obterQtdRegistroHistoricoLast30dias/:idDoCaixa", function (req, res) {
+  usuarioController.obterQtdRegistroHistoricoLast30dias(req, res);
+});
+
 router.post("/inserirEtiqueta", function (req, res) {
   usuarioController.inserirEtiqueta(req, res);
 });

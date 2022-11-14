@@ -727,6 +727,28 @@ function obterQtdAlertaCpuLast30dias(req, res) {
     });
 }
 
+function obterQtdRegistroHistoricoLast30dias(req, res) {
+  const idDoCaixa = req.params.idDoCaixa;
+
+  usuarioModel
+    .obterQtdRegistroHistoricoLast30dias(idDoCaixa)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function obterInformacaoDiscoTotal(req, res) {
   const idDoCaixa = req.params.idDoCaixa;
 
@@ -920,6 +942,8 @@ module.exports = {
   obterInformacaoDiscoTotal,
   obterUltimoUsoDiscoHistorico,
   inserirEtiqueta,
+  deletarEtiqueta,
+  obterQtdRegistroHistoricoLast30dias,
 
   /*------------------------DASHBOARD-------------------------------------- */
   graficoUsoRam,
