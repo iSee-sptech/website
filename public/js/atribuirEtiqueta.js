@@ -101,7 +101,7 @@ function atribuirEtiquetas() {
     
     var idDoCaixa = 0;
     
-    for (var i = 1; i <= qtdCaixa; i++) {
+    for (var i = 31; i <= 33; i++) {
         idDoCaixa = i;
         console.log("Fazendo a chamada do caixa " + idDoCaixa)
         
@@ -227,6 +227,6 @@ function atribuirEtiquetas() {
         })
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
-        });z
+        });
     }
 }
