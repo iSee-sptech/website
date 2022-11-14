@@ -261,6 +261,13 @@ function exibirQtdTotalCaixasDisco(data) {
   return database.executar(instrucao);
 }
 
+function listarIDs() {
+  var instrucao = `
+  select idMaquina as 'identificador' from Maquinas';
+  `;
+  return database.executar(instrucao);
+}
+
 /*------------------------ETIQUETAS-------------------------------------- */
 function obterQtdAlertaRamLast30dias(idDoCaixa) {
   // var instrucao = `
@@ -384,6 +391,7 @@ module.exports = {
   exibirQtdTotalCaixasRam,
   exibirQtdTotalCaixasCpu,
   exibirQtdTotalCaixasDisco,
+  listarIDs,
 
   /*------------------------ETIQUETAS-------------------------------------- */
   obterQtdAlertaRamLast30dias,
