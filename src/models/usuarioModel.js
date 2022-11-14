@@ -329,6 +329,13 @@ function deletarEtiqueta(nomeEtiqueta, idDaMaquina) {
   return database.executar(instrucao);
 }
 
+function listarEtiquetasComNomeCaixa() {
+  var instrucao = `
+  SELECT *,nomeMaquina FROM Etiqueta join Maquinas on fkMaquina = idMaquina;
+  `;
+  return database.executar(instrucao);
+}
+
 /*------------------------fim de ETIQUETAS-------------------------------------- */
 
 function graficoUsoRam() {
@@ -401,7 +408,7 @@ module.exports = {
   obterQtdRegistroHistoricoLast30dias,
   inserirEtiqueta,
   deletarEtiqueta,
-
+  listarEtiquetasComNomeCaixa,
   /*------------------------DASHBOARD-------------------------------------- */
   graficoUsoRam,
   exibirEficienciaGlobalDoDia,

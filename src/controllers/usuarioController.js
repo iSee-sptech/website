@@ -862,6 +862,27 @@ function deletarEtiqueta(req, res) {
   }
 }
 
+function listarEtiquetasComNomeCaixa(req, res) {
+
+  usuarioModel
+    .listarEtiquetasComNomeCaixa()
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 /*------------------------FIM DE ETIQUETAS-------------------------------------- */
 function graficoUsoRam(req, res) {
   usuarioModel
@@ -966,7 +987,7 @@ module.exports = {
   inserirEtiqueta,
   deletarEtiqueta,
   obterQtdRegistroHistoricoLast30dias,
-
+  listarEtiquetasComNomeCaixa,
   /*------------------------DASHBOARD-------------------------------------- */
   graficoUsoRam,
   exibirEficienciaGlobalDoDia,

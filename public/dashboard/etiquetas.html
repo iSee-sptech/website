@@ -374,3 +374,58 @@ var dataAtual = new Date();
   </div>
 </div>
 
+<script>
+function exibirEtiquetas() {
+
+        fetch(`/usuarios/listarEtiquetasComNomeCaixa`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+            resposta.json().then((data) => {
+                console.log(data);
+
+                modalEtiquetaCaminhador.innerHTML = ``
+                modalEtiquetaAtarefado.innerHTML = ``
+                modalEtiquetaEnciclopedia.innerHTML = ``
+                modalEtiquetaDorminhoco.innerHTML = ``
+
+            listaNomeEtiqueta = []
+            listaIDMaquina = []
+            listaNomeMaquina = []
+
+                for (var i = 0; i < data.length; i++) {
+                    var fkMaquina = data[i].fkMaquina;
+                    var nomeEtiqueta = data[i].nomeEtiqueta;
+                    var nomeMaquina = data[i].nomeMaquina;
+
+                    listaNomeEtiqueta.push(fkMaquina)
+                    listaIDxMaquina.push(nomeEtiqueta)
+                    listaNomeMaquina.push(nomeMaquina)
+
+                    if (listaNomeEtiqueta[i] == "atarefado") {
+                      modalEtiquetaAtarefado.innerHTML += `${nomeMaquina}`
+                    }
+                    else if (listaNomeEtiqueta[i] == "enciclopedia") {
+                      modalEtiquetaEnciclopedia.innerHTML += `
+                      teste
+                      `
+                    }
+                    else if (listaNomeEtiqueta[i] == "caminhador") {
+                      modalEtiquetaCaminhador.innerHTML += `
+                      teste
+                      `
+                    }
+                    else if (listaNomeEtiqueta[i] == "dorminhoco") {
+                      modalEtiquetaDorminhoco.innerHTML += `
+                      teste
+                      `
+                    }
+                }
+            })
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }

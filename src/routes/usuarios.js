@@ -146,6 +146,10 @@ router.delete("/deletarEtiqueta", function (req, res) {
   usuarioController.deletarEtiqueta(req, res);
 });
 
+router.get("/listarEtiquetas", function (req, res) {
+  usuarioController.listarEtiquetas(req, res);
+});
+
 /*------------------------fim de ETIQUETAS-------------------------------------- */
 
 router.get("/graficoUsoRam", function (req, res) {
