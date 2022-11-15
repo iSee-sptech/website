@@ -15,7 +15,7 @@
   
 </head>
 
-<body onload="imgUsuario(), exibirQtdTotalEtiquetas(), inserirIDCaixasLista(), atribuirEtiquetas()">
+<body onload="imgUsuario(), exibirQtdTotalEtiquetas(), exibirEtiquetas()">
 
   <div class="body_dashboard">
 
@@ -313,7 +313,7 @@ var dataAtual = new Date();
     </div>
     <h3>Atarefado</h3>
 
-    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+    <span id="corpoModalEtiquetaAtarefado" class="corpoModalEtiqueta">
 
       <p>Caixa 3</p>
       <p>Caixa 4</p>
@@ -337,7 +337,7 @@ var dataAtual = new Date();
     </div>
     <h3>Dorminhoco</h3>
 
-    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+    <span id="corpoModalEtiquetaDorminhoco" class="corpoModalEtiqueta">
 
       <p>Caixa 1</p>
 
@@ -360,7 +360,7 @@ var dataAtual = new Date();
     </div>
     <h3>Caminhador</h3>
 
-    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+    <span id="corpoModalEtiquetaCaminhador" class="corpoModalEtiqueta">
 
 
       <p>Caixa 1</p>
@@ -372,7 +372,7 @@ var dataAtual = new Date();
     <button class="button8" onclick="">Visualizar Caixas</button>
   </div>
 </div>
-homeGestor
+
 <script>
 function exibirEtiquetas() {
 
@@ -385,40 +385,56 @@ function exibirEtiquetas() {
             resposta.json().then((data) => {
                 console.log(data);
 
-                modalEtiquetaCaminhador.innerHTML = ``
-                modalEtiquetaAtarefado.innerHTML = ``
-                modalEtiquetaEnciclopedia.innerHTML = ``
-                modalEtiquetaDorminhoco.innerHTML = ``
+                corpoModalEtiquetaAtarefado.innerHTML = ``
+                corpoModalEtiquetaEnciclopedia.innerHTML = ``
+                corpoModalEtiquetaCaminhador.innerHTML = ``
+                corpoModalEtiquetaDorminhoco.innerHTML = ``
 
             listaNomeEtiqueta = []
             listaIDMaquina = []
             listaNomeMaquina = []
+            listaDataAtribuicao = []
 
                 for (var i = 0; i < data.length; i++) {
-                    var fkMaquina = data[i].fkMaquina;
+                    var idMaquina = data[i].idMaquina;
                     var nomeEtiqueta = data[i].nomeEtiqueta;
                     var nomeMaquina = data[i].nomeMaquina;
+                    var dataAtribuicao = data[i].datahoraEtiqueta;
 
-                    listaNomeEtiqueta.push(fkMaquina)
-                    listaIDxMaquina.push(nomeEtiqueta)
+                    var dataHoraFormatada = dataAtribuicao.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
+
+
+                    listaNomeEtiqueta.push(nomeEtiqueta)
+                    listaIDMaquina.push(idMaquina)
                     listaNomeMaquina.push(nomeMaquina)
+                    listaDataAtribuicao.push(dataHoraFormatada);
 
                     if (listaNomeEtiqueta[i] == "atarefado") {
-                      modalEtiquetaAtarefado.innerHTML += `${nomeMaquina}`
+                      corpoModalEtiquetaAtarefado.innerHTML += `
+                      <div class="container_informacoes_etiqueta">
+                        <h6>${nomeMaquina}</h6> <p>${dataHoraFormatada}</p>
+                      </div>
+                      `
                     }
                     else if (listaNomeEtiqueta[i] == "enciclopedia") {
-                      modalEtiquetaEnciclopedia.innerHTML += `
-                      teste
+                      corpoModalEtiquetaEnciclopedia.innerHTML += `
+                      <div class="container_informacoes_etiqueta">
+                      <h6>${nomeMaquina}</h6> <p>${dataHoraFormatada}</p>
+                      </div>
                       `
                     }
                     else if (listaNomeEtiqueta[i] == "caminhador") {
-                      modalEtiquetaCaminhador.innerHTML += `
-                      teste
+                      corpoModalEtiquetaCaminhador.innerHTML += `
+                      <div class="container_informacoes_etiqueta">
+                        <h6>${nomeMaquina}</h6> <p>${dataHoraFormatada}</p>
+                      </div>
                       `
                     }
                     else if (listaNomeEtiqueta[i] == "dorminhoco") {
-                      modalEtiquetaDorminhoco.innerHTML += `
-                      teste
+                      corpoModalEtiquetaDorminhoco.innerHTML += `
+                      <div class="container_informacoes_etiqueta">
+                        <h6>${nomeMaquina}</h6> <p>${dataHoraFormatada}</p>
+                      </div>
                       `
                     }
                 }
@@ -428,3 +444,4 @@ function exibirEtiquetas() {
             console.log(`#ERRO: ${resposta}`);
         });
     }
+</script>

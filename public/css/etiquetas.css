@@ -238,6 +238,9 @@ h6 {
 
 .corpoModalEtiqueta {
     margin: 1vh 0;
+    height: 50vh;
+    overflow-x: auto;
+    margin-left: 2.1vh
 }
 
 .corpoModalEtiqueta p {
@@ -250,3 +253,24 @@ h6 {
     display: flex;
     justify-content: end;
 }
+
+.modalBody h6 {
+    margin-top: 1vh;
+}
+
+.container_informacoes_etiqueta {
+    display: flex;
+    flex-direction: column;
+    /* width: 94%; */
+    justify-content: space-between;
+    margin-left: 6%;
+    margin-right: 4%;
+  }
+
+.container_informacoes_etiqueta h6 {
+    font-style: normal;
+    font-size: calc(0.5em + 1vmin);
+    font-weight: 600;
+}
+
+

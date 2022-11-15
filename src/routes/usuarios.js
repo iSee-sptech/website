@@ -164,4 +164,7 @@ router.get("/exibirPorcentagemRestanteGlobal/:dataAtual", function (req, res) {
   usuarioController.exibirPorcentagemRestanteGlobal(req, res);
 });
 
+router.get("/listarEtiquetasComNomeCaixa", function (req, res) {
+  usuarioController.listarEtiquetasComNomeCaixa(req, res);
+});
 module.exports = router;
