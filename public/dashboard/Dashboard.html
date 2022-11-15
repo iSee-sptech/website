@@ -17,10 +17,14 @@
       href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
-  <body onload="exibirQuantidadeTotalRam(), imgUsuario(), graficoUsoRam(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal()">
+  <body
+    onload="exibirQuantidadeTotalRam(), imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico()"
+  >
     <div class="body_dashboard">
       <div class="sessao_grafico_principal">
         <div class="container_title">
@@ -79,7 +83,9 @@
 
           <div class="grafic_rosca_infos">
             <div class="titulo_grafico_rosca">
-              <h4>Eficiência global restante das máquinas com maior criticidade</h4>
+              <h4>
+                Eficiência global restante das máquinas com maior criticidade
+              </h4>
             </div>
             <div id="cardCaixas">
               <div>
@@ -162,12 +168,12 @@
       </div>
     </div>
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../js/graficosDashboard.js"></script>
 
   <link rel="stylesheet" href="../css/dashboard.css" />
 
   <script>
+    var myBarChart;
     var dataAtual = new Date();
     var hora = dataAtual.getHours();
     var nome = sessionStorage.nomeUsuario;
@@ -201,53 +207,52 @@
       var date = new Date();
       const timeElapsed = Date.now();
       const diaAtual = new Date(timeElapsed).toLocaleDateString();
-      const diaAtualFormatado = diaAtual.split('/').reverse().join('-');
+      const diaAtualFormatado = diaAtual.split("/").reverse().join("-");
       return diaAtualFormatado;
     }
 
     var valorEficienciaGlobal = exibirEficienciaGlobalDoDia();
 
     function exibirEficienciaGlobalDoDia() {
-      const dataAtual = carregarDiaAtual()
+      const dataAtual = carregarDiaAtual();
       fetch(`/usuarios/exibirEficienciaGlobalDoDia/${dataAtual}`, {
-              method: "GET",
-              headers: {
-                  "Content-Type": "application/json"
-              }
-      }).then((resposta) => {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
           resposta.json().then((data) => {
             console.log(data);
             var valorEficiencia = data[0].eficienciaGlobal;
-            eficiencia.innerHTML = valorEficiencia + "%"
-            
+            eficiencia.innerHTML = valorEficiencia + "%";
           });
         })
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
-          finalizarAguardar();
-      });
-   }
+          //finalizarAguardar();
+        });
+    }
 
-   
-    function exibirPorcentagemRestanteGlobal(){
-      const dataAtual = carregarDiaAtual()
+    function exibirPorcentagemRestanteGlobal() {
+      const dataAtual = carregarDiaAtual();
       fetch(`/usuarios/exibirPorcentagemRestanteGlobal/${dataAtual}`, {
-              method: "GET",
-              headers: {
-                  "Content-Type": "application/json"
-              }
-      }).then((resposta) => {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
           resposta.json().then((data) => {
             console.log(data);
             var valorEficiencia = data[0].eficienciaGlobalRestante;
-            porcentagem_restante.innerHTML = valorEficiencia
-            
+            porcentagem_restante.innerHTML = valorEficiencia;
           });
         })
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
-          finalizarAguardar();
-      });
+          //finalizarAguardar();
+        });
     }
 
     function exibirQuantidadeTotalRam() {
@@ -321,51 +326,132 @@
         });
     }
 
-    var lista_caixas = [];
+    function obterDadosGrafico() {
+      fetch(`/medidas/ultimas`, { cache: "no-store" })
+        .then(function (response) {
+          if (response.ok) {
+            response.json().then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              resposta.reverse();
 
-    var nome_caixa1 = "";
-    var nome_caixa2 = "";
-    var nome_caixa3 = "";
-    var nome_caixa4 = "";
-
-    const labels = ["Caixa 1", "Caixa 2", "Caixa 3", "Caixa 4"];
-
-    const data1 = {
-      labels: labels,
-      datasets: [
-        {
-          label: "Gráficos RAM",
-          backgroundColor: "rgb(192, 192, 192)",
-          borderColor: "rgb(255, 99, 132)",
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        },
-      ],
-    };
-
-    const config = {
-      type: "bar",
-      data: data1,
-      options: {},
-    };
-
-    const myBarChart = new Chart(document.getElementById("myBarChart", config));
-
-    function graficoUsoRam() {
-      fetch("/usuarios/graficoUsoRam")
-        .then(function (res1) {
-          if (res1.ok) {
-            console.log(res1);
-            res1.json().then(function (res1) {
-              console.log("Dados recebidos: ", JSON.stringify(res1));
-              nome_caixa1 = res1[0].porcRam;
-              data1.datasets[0].data[0] = nome_caixa1;
+              plotarGrafico(resposta);
             });
           } else {
-            throw "Houve um erro ao pegar info!";
+            console.error("Nenhum dado encontrado ou erro na API");
           }
         })
-        .catch(function (res1) {
-          console.error(res1);
+        .catch(function (error) {
+          console.error(
+            `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+          );
+        });
+    }
+
+    function plotarGrafico(resposta) {
+      console.log("iniciando plotagem do gráfico...");
+      let labels = [];
+      let dados = {
+        labels: labels,
+        datasets: [
+          {
+            label: "Umidade",
+            data: [],
+            fill: false,
+            borderColor: "rgb(75, 192, 192)",
+            tension: 0.1,
+          },
+          {
+            label: "Temperatura",
+            data: [],
+            fill: false,
+            borderColor: "rgb(199, 52, 52)",
+            tension: 0.1,
+          },
+        ],
+      };
+
+      console.log("----------------------------------------------");
+      console.log(
+        'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":'
+      );
+      console.log(resposta);
+
+      for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labels.push(registro.momento_grafico);
+        dados.datasets[0].data.push(registro.usoRam);
+      }
+
+      console.log("----------------------------------------------");
+      console.log("O gráfico será plotado com os respectivos valores:");
+      console.log("Labels:");
+      console.log(labels);
+      console.log("Dados:");
+      console.log(dados.datasets);
+      console.log("----------------------------------------------");
+
+      const config = {
+        type: "bar",
+        data: dados,
+      };
+
+      let myChart = new Chart(document.getElementById("myBarChart"), config);
+      setTimeout(() => atualizarGrafico(dados, myChart), 8000);
+    }
+
+    function atualizarGrafico(dados, myChart) {
+      fetch(`/medidas/tempo-real`, { cache: "no-store" })
+        .then(function (response) {
+          if (response.ok) {
+            response.json().then(function (novoRegistro) {
+              console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+              console.log(`Dados atuais do gráfico:`);
+              console.log(dados);
+
+              if (
+                novoRegistro[0].momento_grafico ==
+                dados.labels[dados.labels.length - 1]
+              ) {
+                console.log(
+                  "---------------------------------------------------------------"
+                );
+                console.log(
+                  "Como não há dados novos para captura, o gráfico não atualizará."
+                );
+
+                console.log("Horário do novo dado capturado:");
+                console.log(novoRegistro[0].momento_grafico);
+                console.log("Horário do último dado capturado:");
+                console.log(dados.labels[dados.labels.length - 1]);
+                console.log(
+                  "---------------------------------------------------------------"
+                );
+              } else {
+                dados.labels.shift();
+                dados.labels.push(novoRegistro[0].momento_grafico);
+
+                dados.datasets[0].data.shift();
+                dados.datasets[0].data.push(novoRegistro[0].usoRam);
+
+                myChart.update();
+              }
+              proximaAtualizacao = setTimeout(
+                () => atualizarGrafico(dados, myChart),
+                8000
+              );
+            });
+          } else {
+            console.error("Nenhum dado encontrado ou erro na API");
+            proximaAtualizacao = setTimeout(
+              () => atualizarGrafico(dados, myChart),
+              8000
+            );
+          }
+        })
+        .catch(function (error) {
+          console.error(
+            `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+          );
         });
     }
   </script>
