@@ -88,7 +88,7 @@ await fetch("/usuarios/deletarEtiqueta", {
       // console.log("resposta: ", resposta);
 
       if (resposta.ok) {
-        console.log(`#SUCESSO: sucesso ao realizar o cadastro da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
+        console.log(`#SUCESSO: sucesso ao realizar deletar a etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
       } else {
         throw "Houve um erro ao tentar realizar o delete da etiqueta!";
       }
