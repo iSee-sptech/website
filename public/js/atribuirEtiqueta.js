@@ -1,6 +1,13 @@
-var qtdCaixa = 0;
-function obterQtdCaixas() {
-    fetch(`/usuarios/exibirCaixas`, {
+var listaIDCaixas = []
+
+// function sleep(seconds) {
+//   var e = new Date().getTime() + (seconds * 1000)
+//   while (new Date().getTime() <= e) {} 
+// }
+
+async function inserirIDCaixasLista() {
+  console.log("Listando caixas...")
+    await fetch(`/usuarios/listarCaixas`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -8,14 +15,19 @@ function obterQtdCaixas() {
     })
       .then((resposta) => {
         resposta.json().then((data) => {
-          qtdCaixa = data[0].qtdCaixa; 
-          console.log("QtdCaixas " + qtdCaixa);
-          return qtdCaixa;
-        });
+          for (var i = 0; i < data.length; i++) {
+            var IDdaVez = data[i].idMaquina;
+            if(!listaIDCaixas.includes(IDdaVez))
+            listaIDCaixas.push(IDdaVez);
+        }});
       })
       .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
+        console.log(`#ERRO: Erro ao listar caixas`);
       });
+
+      console.log(listaIDCaixas)
+      console.log("Listei caixas")
+      
 }
 
 function obterDataHojeAmericano() {
@@ -26,12 +38,12 @@ function obterDataHojeAmericano() {
     return diaAtualFormatadoAmericano;
   }
 
-function inserirEtiqueta(nomeEtiqueta, idDaMaquina) {
+async function inserirEtiqueta(nomeEtiqueta, idDaMaquina) {
   var nomeEtiqueta = nomeEtiqueta;
   var idDaMaquina = idDaMaquina;
 
 
-  fetch("/usuarios/inserirEtiqueta", {
+  await fetch("/usuarios/inserirEtiqueta", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,31 +54,27 @@ function inserirEtiqueta(nomeEtiqueta, idDaMaquina) {
     }),
   })
     .then(function (resposta) {
-      console.log("resposta: ", resposta);
+      // console.log("resposta: ", resposta);
 
       if (resposta.ok) {
-        console.log("Cadastro efetuado com sucesso!");
-
-        setTimeout(() => {
-          window.location = "dashboard/homeGestor.html";
-        }, "1000");
+        console.log(`#SUCESSO: sucesso ao realizar o cadastro da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
       } else {
-        throw "Houve um erro ao tentar realizar o cadastro!";
+        throw "Houve um erro ao tentar realizar o cadastro da etiqueta!";
       }
     })
     .catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
+      console.log(`#ERRO: Houve um erro ao tenta realizar o cadastro da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
     });
 
   return false;
 }
 
-function deletarEtiqueta(nomeEtiqueta, idDaMaquina) {
+async function deletarEtiqueta(nomeEtiqueta, idDaMaquina) {
   var nomeEtiqueta = nomeEtiqueta;
   var idDaMaquina = idDaMaquina;
 
 
-  fetch("/usuarios/deletarEtiqueta", {
+await fetch("/usuarios/deletarEtiqueta", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -77,36 +85,29 @@ function deletarEtiqueta(nomeEtiqueta, idDaMaquina) {
     }),
   })
     .then(function (resposta) {
-      console.log("resposta: ", resposta);
+      // console.log("resposta: ", resposta);
 
       if (resposta.ok) {
-        console.log("Cadastro efetuado com sucesso!");
-
-        setTimeout(() => {
-          window.location = "dashboard/homeGestor.html";
-        }, "1000");
+        console.log(`#SUCESSO: sucesso ao realizar o cadastro da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
       } else {
-        throw "Houve um erro ao tentar realizar o cadastro!";
+        throw "Houve um erro ao tentar realizar o delete da etiqueta!";
       }
     })
     .catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
+      console.log(`#ERRO: Houve um erro ao tenta realizar o delete da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
     });
 
   return false;
 }
 
-function atribuirEtiquetas() {
-    // var qtdCaixa = obterQtdCaixas();
-    
-    var idDoCaixa = 0;
-    
-    for (var i = 31; i <= 33; i++) {
-        idDoCaixa = i;
+ async function atribuirEtiquetas() {
+    await inserirIDCaixasLista();
+    for (var i = 0; i < listaIDCaixas.length; i++) {
+        idDoCaixa = listaIDCaixas[i];
         console.log("Fazendo a chamada do caixa " + idDoCaixa)
         
     //ETIQUETA DE RAM - CAMINHADOR---------------------------------//
-        fetch(`/usuarios/obterQtdAlertaRamLast30dias/${idDoCaixa}`, {
+     await   fetch(`/usuarios/obterQtdAlertaRamLast30dias/${idDoCaixa}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -119,11 +120,11 @@ function atribuirEtiquetas() {
                 
                 if (qtdAlertaRam <= 9) {
                     console.log('Deletar Caminhador');
-                    inserirEtiqueta("caminhador",idDoCaixa);
+                    deletarEtiqueta("caminhador",idDoCaixa);
                 }
                 else {
                     console.log('Inserir Caminhador');
-                    deletarEtiqueta("caminhador",idDoCaixa);
+                     inserirEtiqueta("caminhador",idDoCaixa);
                 }
               });
             })
@@ -132,7 +133,7 @@ function atribuirEtiquetas() {
             });
 
     //ETIQUETA DE CPU - ---------------------------------//
-        fetch(`/usuarios/obterQtdAlertaCpuLast30dias/${idDoCaixa}`, {
+     await fetch(`/usuarios/obterQtdAlertaCpuLast30dias/${idDoCaixa}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -145,11 +146,11 @@ function atribuirEtiquetas() {
                 
                 if (qtdAlertaCpu <= 9) {
                     console.log('Deletar atarefado');
-                    deletarEtiqueta("atarefado",idDoCaixa);
+                     deletarEtiqueta("atarefado",idDoCaixa);
                 }
                 else {
                     console.log('Inserir atarefado');
-                    inserirEtiqueta("atarefado",idDoCaixa);
+                     inserirEtiqueta("atarefado",idDoCaixa);
                 }
               });
             })
@@ -157,8 +158,8 @@ function atribuirEtiquetas() {
               console.log(`#ERRO: ${resposta}`);
             });
 
-            //ETIQUETA DE CPU - ---------------------------------//
-        fetch(`/usuarios/obterQtdRegistroHistoricoLast30dias/${idDoCaixa}`, {
+            //ETIQUETA DE DORMINHOCO - ---------------------------------//
+         await    fetch(`/usuarios/obterQtdRegistroHistoricoLast30dias/${idDoCaixa}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -167,15 +168,15 @@ function atribuirEtiquetas() {
           .then((resposta) => {
             resposta.json().then((data) => {
               console.log("Caixa do id " + idDoCaixa + ": qtdRegistrosLast30dias " +  data[0].qtdRegistrosLast30dias);
-              qtdRegistros = data[1].qtdRegistrosLast30dias; 
+              qtdRegistros = data[0].qtdRegistrosLast30dias; 
               
               if (qtdRegistros > 10800) {
                   console.log('Deletar dorminhoco');
-                  deletarEtiqueta("dorminhoco",idDoCaixa);
+                   deletarEtiqueta("dorminhoco",idDoCaixa);
               }
               else {
                   console.log('Inserir dorminhoco');
-                  inserirEtiqueta("dorminhoco",idDoCaixa);
+                    inserirEtiqueta("dorminhoco",idDoCaixa);
               }
             });
           })
@@ -185,7 +186,7 @@ function atribuirEtiquetas() {
             
             
       //ETIQUETA DE DISCO - Enciclopedia---------------------------------// 
-      fetch(`/usuarios/obterInformacaoDiscoTotal/${idDoCaixa}`, {
+       await fetch(`/usuarios/obterInformacaoDiscoTotal/${idDoCaixa}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -193,11 +194,11 @@ function atribuirEtiquetas() {
       })
         .then((resposta) => {
           resposta.json().then((data) => {
-            console.log("Total de disco do id " + idDoCaixa);
+            console.log("Total de disco do id " + idDoCaixa + ": " + data[0].qtdTotalDisco);
             qtdTotalDisco = data[0].qtdTotalDisco; 
             
-
-            fetch(`/usuarios/obterUltimoUsoDiscoHistorico/${idDoCaixa}`, {
+          
+           fetch(`/usuarios/obterUltimoUsoDiscoHistorico/${idDoCaixa}`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -205,19 +206,19 @@ function atribuirEtiquetas() {
             })
               .then((resposta) => {
                 resposta.json().then((data) => {
-                  console.log("Total de disco do id " + idDoCaixa);
-                  usoDisco = data[0].usoDisco; 
-
+                  console.log("Ultimo registro historico do id " + idDoCaixa + " : " + data[0].usoDisco);
+                  usoDisco = data[0].usoDisco;
                 });
               })
               .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
               });
       
-            
+            // sleep(0.5)
+
             if (qtdTotalDisco * 0.7 < usoDisco) {
-              console.log('Deletar atarefado');
-              deletarEtiqueta("enciclopedia",idDoCaixa);
+              console.log('Deletar enciclopedia');
+               deletarEtiqueta("enciclopedia",idDoCaixa);
             }
             else {
               console.log('Inserir enciclopedia');

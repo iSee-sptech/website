@@ -15,10 +15,9 @@
   
 </head>
 
-<body onload="imgUsuario(), exibirQtdTotalEtiquetas(), atribuirEtiquetas()">
+<body onload="imgUsuario(), exibirQtdTotalEtiquetas(), inserirIDCaixasLista(), atribuirEtiquetas()">
 
   <div class="body_dashboard">
-
 
     <div class="sessao_grafico_principal">
       <div class="container_title">
@@ -197,14 +196,14 @@ var dataAtual = new Date();
         sessionStorage.clear();
         window.location.href = "../login.html";
     }
+    
 
     function tela_home() {
-    if (sessionStorage.cargoUsuario === "Gerente") {
+    if (sessionStorage.cargoUsuario === "Gerente") 
       window.location = "homeGestor.html";
-    } else {
-      window.location = "homeFuncionario.html";
+    else 
+      window.location = "homeFuncionario.html"
     }
-  }
 
   function exibirQtdTotalEtiquetas() {
     fetch(`/usuarios/exibirQtdTotalEtiquetas`, {
@@ -373,7 +372,7 @@ var dataAtual = new Date();
     <button class="button8" onclick="">Visualizar Caixas</button>
   </div>
 </div>
-
+homeGestor
 <script>
 function exibirEtiquetas() {
 
