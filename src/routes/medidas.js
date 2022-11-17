@@ -11,4 +11,7 @@ router.get("/tempo-real", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 
+router.get("/ram", function (req, res) {
+    medidaController.eficienciaRam(req, res);
+});
 module.exports = router;
