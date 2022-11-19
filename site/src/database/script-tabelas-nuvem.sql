@@ -27,7 +27,7 @@ nomeMaquina varchar (100),
 discoMaquina varchar(10),
 ramMaquina varchar(10),
 processadorMaquina varchar(10),
-cepMaquina char (9) unique,
+cepMaquina char (9),
 imgMaquina varchar (255),
 complementoMaquina varchar (50),
 fkUsuario int,
@@ -37,8 +37,8 @@ references Usuarios (idUsuario)
 
 create table Etiqueta (
 idEtiqueta int primary key IDENTITY (1,1),
-fkMaquina int,
-nomeEtiqueta varchar(50),
+fkMaquina int unique,
+nomeEtiqueta varchar(50) unique,
 datahoraEtiqueta datetime,
 foreign key (fkMaquina)
 references Maquinas (idMaquina)
@@ -77,3 +77,4 @@ datahoraAlerta datetime,
 foreign key (fkMaquina)
 references Maquinas (idMaquina)
 );
+

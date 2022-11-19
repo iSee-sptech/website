@@ -15,10 +15,9 @@
   
 </head>
 
-<body onload="imgUsuario(), exibirQtdTotalEtiquetas()">
+<body onload="imgUsuario(), exibirQtdTotalEtiquetas(), exibirEtiquetas()">
 
   <div class="body_dashboard">
-
 
     <div class="sessao_grafico_principal">
       <div class="container_title">
@@ -61,7 +60,7 @@
             Obteve 10 alertas sobre RAM nos últimos 30 dias
         </div>
         
-        <div class="card_etiqueta">
+        <!-- <div class="card_etiqueta">
           <iconify-icon icon="akar-icons:paper" style="color: #7d2de2;" width="40"></iconify-icon>
             <h2>nome</h2>
             descricao
@@ -73,11 +72,12 @@
             descricao
         </div>
         
-        <div class="card_etiqueta">
+         <div class="card_etiqueta">
           <iconify-icon icon="akar-icons:paper" style="color: #7d2de2;" width="40"></iconify-icon>
             <h2>nome</h2>
-            descricao
+            descricao 
         </div>
+        <-->
       </div>
     </div>
 
@@ -196,14 +196,14 @@ var dataAtual = new Date();
         sessionStorage.clear();
         window.location.href = "../login.html";
     }
+    
 
     function tela_home() {
-    if (sessionStorage.cargoUsuario === "Gerente") {
+    if (sessionStorage.cargoUsuario === "Gerente") 
       window.location = "homeGestor.html";
-    } else {
-      window.location = "homeFuncionario.html";
+    else 
+      window.location = "homeFuncionario.html"
     }
-  }
 
   function exibirQtdTotalEtiquetas() {
     fetch(`/usuarios/exibirQtdTotalEtiquetas`, {
@@ -313,7 +313,7 @@ var dataAtual = new Date();
     </div>
     <h3>Atarefado</h3>
 
-    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+    <span id="corpoModalEtiquetaAtarefado" class="corpoModalEtiqueta">
 
       <p>Caixa 3</p>
       <p>Caixa 4</p>
@@ -337,7 +337,7 @@ var dataAtual = new Date();
     </div>
     <h3>Dorminhoco</h3>
 
-    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+    <span id="corpoModalEtiquetaDorminhoco" class="corpoModalEtiqueta">
 
       <p>Caixa 1</p>
 
@@ -360,7 +360,7 @@ var dataAtual = new Date();
     </div>
     <h3>Caminhador</h3>
 
-    <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
+    <span id="corpoModalEtiquetaCaminhador" class="corpoModalEtiqueta">
 
 
       <p>Caixa 1</p>
@@ -373,3 +373,75 @@ var dataAtual = new Date();
   </div>
 </div>
 
+<script>
+function exibirEtiquetas() {
+
+        fetch(`/usuarios/listarEtiquetasComNomeCaixa`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+            resposta.json().then((data) => {
+                console.log(data);
+
+                corpoModalEtiquetaAtarefado.innerHTML = ``
+                corpoModalEtiquetaEnciclopedia.innerHTML = ``
+                corpoModalEtiquetaCaminhador.innerHTML = ``
+                corpoModalEtiquetaDorminhoco.innerHTML = ``
+
+            listaNomeEtiqueta = []
+            listaIDMaquina = []
+            listaNomeMaquina = []
+            listaDataAtribuicao = []
+
+                for (var i = 0; i < data.length; i++) {
+                    var idMaquina = data[i].idMaquina;
+                    var nomeEtiqueta = data[i].nomeEtiqueta;
+                    var nomeMaquina = data[i].nomeMaquina;
+                    var dataAtribuicao = data[i].datahoraEtiqueta;
+
+                    var dataHoraFormatada = dataAtribuicao.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
+
+
+                    listaNomeEtiqueta.push(nomeEtiqueta)
+                    listaIDMaquina.push(idMaquina)
+                    listaNomeMaquina.push(nomeMaquina)
+                    listaDataAtribuicao.push(dataHoraFormatada);
+
+                    if (listaNomeEtiqueta[i] == "atarefado") {
+                      corpoModalEtiquetaAtarefado.innerHTML += `
+                      <div class="container_informacoes_etiqueta">
+                        <h6>${nomeMaquina}</h6> <p>${dataHoraFormatada}</p>
+                      </div>
+                      `
+                    }
+                    else if (listaNomeEtiqueta[i] == "enciclopedia") {
+                      corpoModalEtiquetaEnciclopedia.innerHTML += `
+                      <div class="container_informacoes_etiqueta">
+                      <h6>${nomeMaquina}</h6> <p>${dataHoraFormatada}</p>
+                      </div>
+                      `
+                    }
+                    else if (listaNomeEtiqueta[i] == "caminhador") {
+                      corpoModalEtiquetaCaminhador.innerHTML += `
+                      <div class="container_informacoes_etiqueta">
+                        <h6>${nomeMaquina}</h6> <p>${dataHoraFormatada}</p>
+                      </div>
+                      `
+                    }
+                    else if (listaNomeEtiqueta[i] == "dorminhoco") {
+                      corpoModalEtiquetaDorminhoco.innerHTML += `
+                      <div class="container_informacoes_etiqueta">
+                        <h6>${nomeMaquina}</h6> <p>${dataHoraFormatada}</p>
+                      </div>
+                      `
+                    }
+                }
+            })
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+</script>

@@ -1,293 +1,547 @@
 <!DOCTYPE html>
 <html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../assets/img/iconLogo.ico"
+      type="image/x-icon"
+    />
+    <title>DashBoard - ISee</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
+    <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
-  <title>DashBoard - ISee</title>
+  <body
+    onload="exibirQuantidadeTotalRam(), imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes()"
+  >
+    <div class="body_dashboard">
+      <div class="sessao_grafico_principal">
+        <div class="container_title">
+          <h1>Dashboard</h1>
+          <h6 id="bem_vindo">Bom dia</h6>
+          <div id="imagem_user" class="notificacoes">
+            <img src="../assets/img/alert.svg" />
+            <img src="../assets/img/user.svg" />
+          </div>
+        </div>
+
+        <div class="canvas_grafic_bar">
+          <canvas id="myBarChart" width="466px" height="290px"> </canvas>
+        </div>
+      </div>
+
+      <div class="sessao_filtros">
+        <div class="head_filtros">
+          <div class="selecao_filtro">
+            <h2>Filtro</h2>
+            <button id="filtro_ram" onclick="filtrarApenasRam()">RAM</button>
+            <button id="filtro_cpu" onclick="filtrarApenasCpu()">CPU</button>
+            <button id="filtro_memoria" onclick="filtrarApenasMemoria()">
+              Memória
+            </button>
+          </div>
+
+          <div id="selecao_maquina" class="selecao_maquina">
+
+          </div>
+        </div>
+
+        <div class="container_cards">
+          <div class="card">
+            <h4 id="titulo_card1">Porcentagem global restante</h4>
+            <!--AQUI FICA O TITULO DO PRIMEIRO CARD -->
+            <h2><span id="valor_card1"></span>%</h2>
+          </div>
+
+          <div class="card">
+            <h4 id="titulo_card2">Quantidade de RAM TOTAL</h4>
+            <!--AQUI FICA O TITULO DO SEGUNDO CARD -->
+            <h2><span id="valor_card2">0</span> GB</h2>
+          </div>
+        </div>
+
+        <div class="canvas_grafic_rosca_container">
+          <div class="grafic_rosca">
+            <canvas id="pieChart"></canvas>
+          </div>
+
+          <div class="grafic_rosca_infos">
+            <div class="titulo_grafico_rosca">
+              <h4>
+                Eficiência global restante das máquinas com maior criticidade
+              </h4>
+            </div>
+            <div id="cardCaixas">
+              <div>
+                <div style="background-color: #7d2de2"></div>
+                <p>Caixa 1</p>
+              </div>
+
+              <div>
+                <div style="background-color: #2de23f"></div>
+                <p>Caixa 2</p>
+              </div>
+
+              <div>
+                <div style="background-color: #2db7e2"></div>
+                <p>Caixa 3</p>
+              </div>
+
+              <div>
+                <div style="background-color: #e22d63"></div>
+                <p>Caixa 4</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--NavBar-->
+    <div class="container_navbar">
+      <div class="navbar_bottom">
+        <div class="btn_home" onclick="tela_home()">
+          <img
+            onclick="window.location.href='./homeFuncionario.html'"
+            src="../assets/img/home_icon.svg"
+          />
+          <h2 style="color: #7d2de2" id="effectlist">Home</h2>
+        </div>
+
+        <div
+          class="btn_etiqueta"
+          onclick="window.location.href='../dashboard/etiquetas.html'"
+        >
+          <img src="../assets/img/etiqueta_icon.svg" />
+          <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
+        </div>
+
+        <div class="btn_historico">
+          <img src="../assets/img/historico_icon.svg" />
+          <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
+        </div>
+
+        <div
+          class="btn_dashboard"
+          onclick="window.location.href='../dashboard/Dashboard.html'"
+        >
+          <img src="../assets/img/dashboard_icon.svg" />
+          <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
+        </div>
+
+        <div
+          class="btn_alerta"
+          onclick="window.location.href='../dashboard/alertas.html'"
+        >
+          <img src="../assets/img/alertas_icon.png" />
+          <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
+        </div>
+
+        <div class="btn_perfil">
+          <img
+            onclick="window.location.href='../meuPerfil.html'"
+            src="../assets/img/userNavbar.svg"
+          />
+          <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
+        </div>
+
+        <div class="btn_sair">
+          <img onclick="sair()" src="../assets/img/sair_icon.png" />
+          <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../js/graficosEficienciaDashboard.js"></script>
+
   <link rel="stylesheet" href="../css/dashboard.css" />
-  <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
-  <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
-  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-  <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-  <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
-</head>
 
-<body onload="exibirQtdTotalRam(), imgUsuario()">
+  <script>
+    var filtroSelecionado = '';
+    var idCaixaSelecionado = null;
+    var myBarChart;
+    var dataAtual = new Date();
+    var hora = dataAtual.getHours();
+    var nome = sessionStorage.nomeUsuario;
+    var bemVindo = document.getElementById("bem_vindo");
+    var frase;
 
-  <div class="body_dashboard">
-
-
-    <div class="sessao_grafico_principal">
-      <div class="container_title">
-        <h1>Dashboard</h1>
-        <h6 id="bem_vindo">Bom dia</h6>
-        <div id="imagem_user" class="notificacoes">
-          <img src="../assets/img/alert.svg">
-          <img src="../assets/img/user.svg">
-        </div>
-      </div>
-
-      <div class="canvas_grafic_bar">
-        <canvas id="myBarChart" width="466px" height="290px">
-
-        </canvas>
-      </div>
-    </div>
-
-
-
-
-    <div class="sessao_filtros">
-
-      <div class="head_filtros">
-
-        <div class="selecao_filtro">
-          <h2>Filtro</h2>
-          <button id="filtro_ram" onclick="filtrarApenasRam()">RAM</button>
-          <button id="filtro_cpu" onclick="filtrarApenasCpu()">CPU</button>
-          <button id="filtro_memoria" onclick="filtrarApenasDisco()">Disco</button>
-        </div>
-
-        <div class="selecao_maquina">
-          <button class="" onclick="dadosCaixa1()">Caixa 1</button>
-          <button onclick="dadosCaixa2()">Caixa 2</button>
-          <button onclick="dadosCaixa3()">Caixa 3</button>
-          <button onclick="dadosCaixa4()">Caixa 4</button>
-          <button onclick="dadosCaixa5()">Caixa 5</button>
-          <button onclick="dadosCaixa6()">Caixa 6</button>
-        </div>
-      </div>
-
-
-
-      <div class="container_cards">
-
-        <div class="card">
-          <h4 id="titulo_card1">Quantidade de RAM restante </h4>
-          <!--AQUI FICA O TITULO DO PRIMEIRO CARD -->
-          <h2> 25 GB </h2>
-        </div>
-
-        <div class="card">
-          <h4 id="titulo_card2">Quantidade de RAM TOTAL </h4>
-          <!--AQUI FICA O TITULO DO SEGUNDO CARD -->
-          <h2> <span id="quantidadeTotalRam">0</span> GB </h2>
-        </div>
-      </div>
-
-      <div class="canvas_grafic_rosca_container">
-        <div class="grafic_rosca">
-          <canvas id="pieChart"></canvas>
-        </div>
-
-        <div class="grafic_rosca_infos">
-          <div class="titulo_grafico_rosca">
-            <h4>Uso diário de RAM</h4>
-          </div>
-          <div id="cardCaixas">
-
-            <div>
-              <div style="background-color: #7d2de2;"></div>
-              <p>Caixa 1</p>
-            </div>
-
-            <div>
-              <div style="background-color:#2DE23F;"></div>
-              <p>Caixa 2</p>
-            </div>
-
-            <div>
-              <div style="background-color:#2DB7E2;"></div>
-              <p>Caixa 3</p>
-            </div>
-
-            <div>
-              <div style="background-color:#E22D63;"></div>
-              <p>Caixa 4</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!--NavBar-->
-  <div class="container_navbar">
-    <div class="navbar_bottom">
-      <div class="btn_home" onclick="tela_home()">
-        <img
-          onclick="window.location.href='./homeFuncionario.html'"
-          src="../assets/img/home_icon.svg"
-        />
-        <h2 style="color: #7d2de2" id="effectlist">Home</h2>
-      </div>
-
-      <div
-        class="btn_etiqueta"
-        onclick="window.location.href='../dashboard/etiquetas.html'">
-        <img src="../assets/img/etiqueta_icon.svg" />
-        <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
-      </div>
-
-      <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
-        <img src="../assets/img/historico_icon.svg" />
-        <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
-      </div>
-
-      <div
-        class="btn_dashboard"
-        onclick="window.location.href='../dashboard/Dashboard.html'"
-      >
-        <img src="../assets/img/dashboard_icon.svg" />
-        <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
-      </div>
-
-      <div
-        class="btn_alerta"
-        onclick="window.location.href='../dashboard/alertas.html'"
-      >
-        <img src="../assets/img/alertas_icon.png" />
-        <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
-      </div>
-
-      <div class="btn_perfil">
-        <img
-          onclick="window.location.href='../meuPerfil.html'"
-          src="../assets/img/userNavbar.svg"
-        />
-        <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
-      </div>
-
-      <div class="btn_sair">
-        <img onclick="sair()" src="../assets/img/sair_icon.png" />
-        <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
-      </div>
-    </div>
-  </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../js/graficosDashboard.js"></script>
-
-<link rel="stylesheet" href="../css/dashboard.css" />
-
-
-<script>
-
-  var dataAtual = new Date();
-  var hora = dataAtual.getHours();
-  var nome = sessionStorage.nomeUsuario;
-  var bemVindo = document.getElementById("bem_vindo");
-  var frase;
-
-  if (hora >= 6 && hora < 13) {
-    frase = `Bom dia`;
-  } else if (hora >= 13 && hora < 18) {
-    frase = `Boa tarde`;
-  } else {
-    frase = `Boa noite`;
-  }
-
-  bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje a eficiência global é de <span style="color:#7D2DE2;"> 100%</span>`
-
-  function tela_home() {
-    if (sessionStorage.cargoUsuario === "Gerente") {
-      window.location = "homeGestor.html";
+    if (hora >= 6 && hora < 13) {
+      frase = `Bom dia`;
+    } else if (hora >= 13 && hora < 18) {
+      frase = `Boa tarde`;
     } else {
-      window.location = "homeFuncionario.html";
+      frase = `Boa noite`;
     }
-  }
 
-  function sair() {
-    sessionStorage.clear();
-    window.location.href = "../login.html";
-  }
+    bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje a eficiência global é de <span id="eficiencia" style="color:#7D2DE2;"> ${valorEficienciaGlobal}</span>`;
 
-  function exibirQtdTotalRam() {
-
-    fetch(`/usuarios/exibirQuantidadeTotalRam`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
+    function tela_home() {
+      if (sessionStorage.cargoUsuario === "Gerente") {
+        window.location = "homeGestor.html";
+      } else {
+        window.location = "homeFuncionario.html";
       }
-    }).then((resposta) => {
-      // saldoConta
-      resposta.json().then((data) => {
-        console.log(data);
-        var ram = data[0].totalRam;
-        const resultRam = ram.toString().substr(0, 2);
-        //ram = ram && ram.substr(0, 2);
-        console.log(resultRam);
-        quantidadeTotalRam.innerHTML = resultRam
+    }
+
+    function sair() {
+      sessionStorage.clear();
+      window.location.href = "../login.html";
+    }
+
+    function carregarDiaAtual() {
+      var date = new Date();
+      const timeElapsed = Date.now();
+      const diaAtual = new Date(timeElapsed).toLocaleDateString();
+      const diaAtualFormatado = diaAtual.split("/").reverse().join("-");
+      return diaAtualFormatado;
+    }
+
+    function atribuirBotoes() {
+      fetch(`/usuarios/listarCaixas`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+            resposta.json().then((data) => {
+                console.log(data);
+                selecao_maquina.innerHTML = ``;
+            listaIDMaquina = []
+                for (var i = 0; i < data.length; i++) {
+                    var idMaquina = data[i].idMaquina;
+
+                    listaIDMaquina.push(idMaquina)
+                    
+                    selecao_maquina.innerHTML += 
+                    `<button onclick='recuperarDadosDoCaixa(${idMaquina})'>` + 
+                      `Caixa ${idMaquina}` + 
+                    `</button>`;
+
+                    console.log(`Botão da máquina ${idMaquina} criado`);
+                }
+            })
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+    
+    function recuperarDadosDoCaixa(idMaquina) {
+      idCaixaSelecionado = idMaquina;
+
+      if (filtroSelecionado == 'ram' && idCaixaSelecionado != null) {
+        fetch(`/usuarios/porcentagemderamrestanteEquantidaderamtotal/${idMaquina}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
+        .then((resposta) => {
+          resposta.json().then((data) => {
+            console.log(data);
+             var porcentagemRamRestante = data[0].porcentagemRamRestante;
+             var qtdRamTotal = data[0].qtdRamTotal;
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          //finalizarAguardar();
+        });
 
-    }).catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
-      finalizarAguardar();
-    });
-  }
+        titulo_card1.innerHTML = "Porcentagem de RAM restante";
+        valor_card1.innerHTML = `${porcentagemRamRestante}` + "%";
+        titulo_card2.innerHTML = "Quantidade de RAM TOTAL";
+        valor_card2.innerHTML =  `${qtdRamTotal}` + " Gb";
+      }
+      else if (filtroSelecionado == 'cpu' && idCaixaSelecionado != null) {
+        fetch(`/usuarios/porcentagemdecpuatingidaEvelocidademaximacpu/${idMaquina}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
+          resposta.json().then((data) => {
+            console.log(data);
+            var velocidadeMaxCpu = data[0].velocidadeMaxCpu;
+            var porcentagemCpuAtingida = data[0].porcentagemCpuAtingida;
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          //finalizarAguardar();
+        });
 
-  function filtrarApenasRam() {
-    titulo_card1.innerHTML = "Quantidade de RAM restante"
-    titulo_card2.innerHTML = "Quantidade de RAM TOTAL"
-  }
+        titulo_card1.innerHTML = "Porcentagem da CPU atingida";
+        valor_card1.innerHTML = `${porcentagemCpuAtingida}` + "%";
+        titulo_card2.innerHTML = "Velocidade máxima da CPU";
+        valor_card2.innerHTML = `${velocidadeMaxCpu}` + ' GHz';
+      }
+      else if (filtroSelecionado == 'memoria' && idCaixaSelecionado != null) {
+          //todo fetch passa parametro o idCaixa
+          fetch(`/usuarios/porcentagemdememoriarestanteEquantidadememoriatotal/${idMaquina}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
+          resposta.json().then((data) => {
+            console.log(data);
+            var porcentagemMemoriaRestante = data[0].porcentagemMemoriaRestante;
+            var qtdMemoriaTotal = data[0].qtdMemoriaTotal;
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          //finalizarAguardar();
+        });
+          
+          titulo_card1.innerHTML = "Porcentagem de Memória restante";
+          valor_card1.innerHTML = `${porcentagemMemoriaRestante}` + "%"
+          titulo_card2.innerHTML = "Quantidade de Memória TOTAL";
+          valor_card2.innerHTML = `${qtdMemoriaTotal}` + " Gb"
+      }
+    };
 
-  function filtrarApenasCpu() {
-    titulo_card1.innerHTML = "Quantidade de CPU restante"
-    titulo_card2.innerHTML = "Quantidade de CPU TOTAL"
-  }
+    var valorEficienciaGlobal = exibirEficienciaGlobalDoDia();
 
-  function filtrarApenasDisco() {
-    titulo_card1.innerHTML = 'Quantidade de disco restante'
-    titulo_card2.innerHTML = 'Quantidade de disco TOTAL'
-  }
+    function exibirEficienciaGlobalDoDia() {
+      const dataAtual = carregarDiaAtual();
+      fetch(`/usuarios/exibirEficienciaGlobalDoDia/${dataAtual}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
+          resposta.json().then((data) => {
+            console.log(data);
+            var valorEficiencia = data[0].eficienciaGlobal;
+            eficiencia.innerHTML = valorEficiencia + "%";
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          //finalizarAguardar();
+        });
+    }
 
-  function imgUsuario() {
-    var idUsuario = sessionStorage.idUsuario;
-    fetch(`/usuarios/imgUsuario/${idUsuario}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resposta) => {
-        resposta.json().then((data) => {
-          console.log(data);
-          const imagemUser = data[0].imagemPerfilUsuario;
+    function exibirPorcentagemRestanteGlobal() {
+      const dataAtual = carregarDiaAtual();
+      fetch(`/usuarios/exibirPorcentagemRestanteGlobal/${dataAtual}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
+          resposta.json().then((data) => {
+            console.log(data);
+            var valorEficiencia = data[0].eficienciaGlobalRestante;
+            valor_card1.innerHTML = valorEficiencia;
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          //finalizarAguardar();
+        });
+    }
 
+    function exibirQuantidadeTotalRam() {
+      fetch(`/usuarios/exibirQuantidadeTotalRam`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
+          // saldoConta
+          resposta.json().then((data) => {
+            console.log(data);
+            var ram = data[0].totalRam;
+            const resultRam = ram.toString().substr(0, 2);
+            //ram = ram && ram.substr(0, 2);
+            console.log(resultRam);
+            valor_card2.innerHTML = resultRam;
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          //finalizarAguardar();
+        });
+    }
+    
+    function filtrarApenasCpu() {
+      filtroSelecionado = 'cpu';
+      titulo_card1.innerHTML = "Quantidade de CPU restante";
+      titulo_card2.innerHTML = "Quantidade de CPU TOTAL";
+    }
 
-          if (imagemUser == undefined) {
-            imagem_user.innerHTML = `
+    function filtrarApenasMemoria() {
+      filtroSelecionado = 'memoria';
+      titulo_card1.innerHTML = "Quantidade de Memória restante";
+      titulo_card2.innerHTML = "Quantidade de Memória TOTAL";
+    }
+
+    function imgUsuario() {
+      var idUsuario = sessionStorage.idUsuario;
+      fetch(`/usuarios/imgUsuario/${idUsuario}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
+          resposta.json().then((data) => {
+            console.log(data);
+            const imagemUser = data[0].imagemPerfilUsuario;
+
+            if (imagemUser == undefined) {
+              imagem_user.innerHTML = `
                 <img src="../assets/img/alert.svg" />
                 <img id="imgUser" src="../assets/img/user.svg">
-                `
-          } else {
-            imagem_user.innerHTML = `
+                `;
+            } else {
+              imagem_user.innerHTML = `
                 <img src="../assets/img/alert.svg" />
                 <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
-                `
-          }
-
+                `;
+            }
+          });
         })
-      }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
-  }
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          //finalizarAguardar();
+        });
+    }
 
-  function dadosCaixa1() {
+    function filtrarApenasRam(){
+    // filtro_ram.style.backgroundColor = '#7D2DE2'; 
+    // filtro_ram.style.color = '#FFF'; 
 
-  }
+    // filtro_cpu.style.backgroundColor = '#FFF'; 
+    // filtro_cpu.style.color = '#7D2DE2'; 
 
-  var lista_uso_ram = [];
+    // filtro_memoria.style.backgroundColor = '#FFF'; 
+    // filtro_memoria.style.color = '#7D2DE2'; 
+    filtroSelecionado = 'ram';
+    titulo_card1.innerHTML = "Quantidade de RAM restante";
+    titulo_card2.innerHTML = "Quantidade de RAM TOTAL";
+    var options03 = {
+        color: "#fff",
+        scales: {
+          x: {
+            ticks: {
+              color: "#fff",
+              font: {
+                size: 10,
+              },
+            },
+          },
+          y: {
+            ticks: {
+              color: "#fff",
+              font: {
+                size: 10,
+              },
+            },
+          },
+        },
+      
+        y: {
+          color: "#fff",
+          beginAtZero: true,
+          max: 100,
+          ticks: {
+            maxTicksLimit: 10,
+          },
+        },
+      };
+      
+          function obterDadosGrafico() {
+            fetch(`/medidas/ram`, { cache: "no-store" })
+              .then(function (response) {
+                if (response.ok) {
+                  response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+      
+                    plotarGrafico(resposta);
+                  });
+                } else {
+                  console.error("Nenhum dado encontrado ou erro na API");
+                }
+              })
+              .catch(function (error) {
+                console.error(
+                  `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+                );
+              });
+          }
+      
+          function plotarGrafico(resposta) {
+            console.log("iniciando plotagem do gráfico...");
+            let labels = [];
+            let dados = {
+              labels: labels,
+              datasets: [
+                {
+                  label: "Uso de RAM",
+                  data: [],
+                  fill: false,
+                  backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
+                  tension: 0.1,
+                },
+                {
+                  data: [],
+                  fill: false,
+                  tension: 0.1,
+                },
+              ],
+              options: options03,
+            };
+      
+            console.log("----------------------------------------------");
+            console.log(
+              'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":'
+            );
+            console.log(resposta);
+      
+            for (i = 0; i < resposta.length; i++) {
+              var registro = resposta[i];
+              labels.push(registro.nomeMaquina);
+              dados.datasets[0].data.push(registro.usoRam);
+            }
+      
+            console.log("----------------------------------------------");
+            console.log("O gráfico será plotado com os respectivos valores:");
+            console.log("Labels:");
+            console.log(labels);
+            console.log("Dados:");
+            console.log(dados.datasets);
+            console.log("----------------------------------------------");
+      
+            const config = {
+              type: "bar",
+              data: dados,
+            };
+      
+            let myChart = new Chart(document.getElementById("myBarChart"), config);
+          }
+        }
 
-  function graficoRam(){
-    
-  }
-
-</script>
+  </script>
+</html>

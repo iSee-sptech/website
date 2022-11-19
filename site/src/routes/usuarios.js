@@ -64,6 +64,10 @@ router.get("/exibirCaixas", function (req, res) {
   usuarioController.exibirCaixas(req, res);
 });
 
+router.get("/exibirQtdTotalEtiquetas", function (req, res) {
+  usuarioController.exibirQtdTotalEtiquetas(req, res);
+});
+
 router.get("/exibirQtdHistorico", function (req, res) {
   usuarioController.exibirQtdHistorico(req, res);
 });
@@ -89,4 +93,90 @@ router.get("/imgUsuario/:id", function (req, res) {
 });
 router.post("/adicionarImagem", usuarioController.atualizarImg);
 
+router.get("/obterAlertasPorData/:dataAlerta", function (req, res) {
+  usuarioController.obterAlertasPorData(req, res);
+});
+
+router.get("/exibirQtdTotalAlertasDoDia/:dataAtual", function (req, res) {
+  usuarioController.exibirQtdTotalAlertasDoDia(req, res);
+});
+
+router.get("/exibirQtdTotalCaixasRam/:dataAtual", function (req, res) {
+  usuarioController.exibirQtdTotalCaixasRam(req, res);
+});
+
+router.get("/exibirQtdTotalCaixasCpu/:dataAtual", function (req, res) {
+  usuarioController.exibirQtdTotalCaixasCpu(req, res);
+});
+
+router.get("/exibirQtdTotalCaixasDisco/:dataAtual", function (req, res) {
+  usuarioController.exibirQtdTotalCaixasDisco(req, res);
+});
+
+router.get("/listarIDs", function (req, res) {
+  usuarioController.listarIDs(req, res);
+});
+
+/*------------------------ETIQUETAS-------------------------------------- */
+router.get("/obterQtdAlertaRamLast30dias/:idDoCaixa", function (req, res) {
+  usuarioController.obterQtdAlertaRamLast30dias(req, res);
+});
+
+router.get("/obterQtdAlertaCpuLast30dias/:idDoCaixa", function (req, res) {
+  usuarioController.obterQtdAlertaCpuLast30dias(req, res);
+});
+
+router.get("/obterInformacaoDiscoTotal/:idDoCaixa", function (req, res) {
+  usuarioController.obterInformacaoDiscoTotal(req, res);
+});
+
+router.get("/obterUltimoUsoDiscoHistorico/:idDoCaixa", function (req, res) {
+  usuarioController.obterUltimoUsoDiscoHistorico(req, res);
+});
+
+router.get("/obterQtdRegistroHistoricoLast30dias/:idDoCaixa", function (req, res) {
+  usuarioController.obterQtdRegistroHistoricoLast30dias(req, res);
+});
+
+router.post("/inserirEtiqueta", function (req, res) {
+  usuarioController.inserirEtiqueta(req, res);
+});
+
+router.delete("/deletarEtiqueta", function (req, res) {
+  usuarioController.deletarEtiqueta(req, res);
+});
+
+router.get("/listarEtiquetas", function (req, res) {
+  usuarioController.listarEtiquetas(req, res);
+});
+
+/*------------------------fim de ETIQUETAS-------------------------------------- */
+
+router.get("/graficoUsoRam", function (req, res) {
+  usuarioController.graficoUsoRam(req, res);
+});
+
+router.get("/exibirEficienciaGlobalDoDia/:dataAtual", function (req, res) {
+  usuarioController.exibirEficienciaGlobalDoDia(req, res);
+});
+
+router.get("/exibirPorcentagemRestanteGlobal/:dataAtual", function (req, res) {
+  usuarioController.exibirPorcentagemRestanteGlobal(req, res);
+});
+
+router.get("/listarEtiquetasComNomeCaixa", function (req, res) {
+  usuarioController.listarEtiquetasComNomeCaixa(req, res);
+});
+
+router.get("/porcentagemderamrestanteEquantidaderamtotal/:idDoCaixa", function (req, res) {
+  usuarioController.porcentagemderamrestanteEquantidaderamtotal(req, res);
+});
+
+router.get("/porcentagemdecpuatingidaEvelocidademaximacpu/:idDoCaixa", function (req, res) {
+  usuarioController.porcentagemdecpuatingidaEvelocidademaximacpu(req, res);
+});
+
+router.get("/porcentagemdememoriarestanteEquantidadememoriatotal/:idDoCaixa", function (req, res) {
+  usuarioController.porcentagemdememoriarestanteEquantidadememoriatotal(req, res);
+});
 module.exports = router;

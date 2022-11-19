@@ -1,5 +1,13 @@
 var database = require("../database/config");
 
+function obterDataHojeAmericano() {
+  var date = new Date();
+  const timeElapsed = Date.now();
+  const diaAtual = new Date(timeElapsed).toLocaleDateString();
+  const diaAtualFormatadoAmericano = diaAtual.split("/").reverse().join("-");
+  return diaAtualFormatadoAmericano;
+}
+
 function listar() {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()"
@@ -25,7 +33,6 @@ function entrar(email, senha) {
 }
 
 function atualizarSenha(emailRedefinir, senhaRedefinir) {
-
   var instrucao = `
     UPDATE Usuarios SET senhaUsuario = '${senhaRedefinir}' WHERE emailUsuario = '${emailRedefinir}';
     `;
@@ -79,7 +86,7 @@ function cadastrarCaixa(
   pontoReferencia
 ) {
   var instrucao = `
-  update Maquinas set idMaquina = '${idCaixa}', nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}', imgMaquina = '${imagemCaixa}', serialMaquina = '${numeroSerial}', numeroMaquina = '${numero}',complementoMaquina = '${complemento}', pontoReferenciaMaquina = '${pontoReferencia}' where idMaquina = '${idCaixa}';
+  update Maquinas set idMaquina = '${idCaixa}', nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}', imgMaquina = '${imagemCaixa}', serialMaquina = '${numeroSerial}', numeroMaquina = '${numero}',complementoMaquina = '${complemento}', pontoDeReferencia = '${pontoReferencia}' where idMaquina = '${idCaixa}';
   `;
   return database.executar(instrucao);
 }
@@ -139,7 +146,14 @@ function exibirCaixas() {
   return database.executar(instrucao);
 }
 
-function  exibirQtdHistorico() {
+function exibirQtdTotalEtiquetas() {
+  var instrucao = `
+  SELECT count(idEtiqueta) as 'qtdTotalEtiquetas' FROM Etiqueta;
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirQtdHistorico() {
   var instrucao = `
   SELECT count(idHistorico) as 'idHistorico' from Historico;
   `;
@@ -202,6 +216,180 @@ function pesquisarHistorico(dataHora) {
   return database.executar(instrucao);
 }
 
+function obterAlertasPorData(data) {
+  // var instrucao = `
+  // select * from alerta where datahoraAlerta LIKE '%${data}%'
+  // `;
+  //var instrucao = `
+  //SELECT
+  //[dbo].[Maquinas].nomeMaquina AS 'Nome',
+  //[dbo].[Alerta].componente AS 'Componente', [dbo].[Alerta].nivelAlerta AS 'Nivel', [dbo].[Alerta].dado AS 'Dado', [dbo].[Alerta].datahoraAlerta AS 'DataHora'
+  //FROM [dbo].[Alerta] JOIN [dbo].[Maquinas] ON [dbo].[Maquinas].idMaquina = [dbo].[Alerta].fkMaquina
+  //ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
+  //`;
+  var instrucao = `select Maquinas.nomeMaquina as 'Nome', Alerta.componente as 'Componente', Alerta.nivelAlerta as 'Nivel', Alerta.dado as 'Dado', Alerta.datahoraAlerta as 'DataHora'
+  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where datahoraAlerta LIKE '%${data}%'
+  order by Alerta.nivelAlerta desc, Alerta.datahoraAlerta desc`;
+  return database.executar(instrucao);
+}
+
+function exibirQtdTotalAlertasDoDia(data) {
+  var instrucao = `
+  select count(idAlerta) as 'quantidadeTotalAlertas' from Alerta where datahoraAlerta like '%${data}%';
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirQtdTotalCaixasRam(data) {
+  var instrucao = `
+  select count(distinct Maquinas.idMaquina) as 'quantidadeTotalMaquinas' from Maquinas join Alerta on Maquinas.idMaquina = Alerta.fkMaquina where componente = 'ram' and datahoraAlerta like '%${data}%';
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirQtdTotalCaixasCpu(data) {
+  var instrucao = `
+  select count(distinct Maquinas.idMaquina) as 'quantidadeTotalMaquinas' from Maquinas join Alerta on Maquinas.idMaquina = Alerta.fkMaquina where componente = 'cpu' and datahoraAlerta like '%${data}%';
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirQtdTotalCaixasDisco(data) {
+  var instrucao = `
+  select count(distinct Maquinas.idMaquina) as 'quantidadeTotalMaquinas' from Maquinas join Alerta on Maquinas.idMaquina = Alerta.fkMaquina where componente = 'disco' and datahoraAlerta like '%${data}%';
+  `;
+  return database.executar(instrucao);
+}
+
+function listarIDs() {
+  var instrucao = `
+  select idMaquina as 'identificador' from Maquinas';
+  `;
+  return database.executar(instrucao);
+}
+
+/*------------------------ETIQUETAS-------------------------------------- */
+function obterQtdAlertaRamLast30dias(idDoCaixa) {
+  // var instrucao = `
+  // SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta
+  // WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY) AND CURRENT_DATE()
+  // `;
+
+  var instrucao = `
+  SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta 
+  WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATEADD(DAY, -30, '${obterDataHojeAmericano()}') AND '${obterDataHojeAmericano()}';
+  `;
+  return database.executar(instrucao);
+}
+
+function obterQtdAlertaCpuLast30dias(idDoCaixa) {
+  var instrucao = `
+  SELECT count(idAlerta) AS 'qtdAlertaCpuLast30dias' FROM Alerta 
+  WHERE componente = 'cpu' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATEADD(DAY, -30, '${obterDataHojeAmericano()}') AND '${obterDataHojeAmericano()}';
+  `;
+  return database.executar(instrucao);
+}
+
+function obterQtdRegistroHistoricoLast30dias(idDoCaixa) {
+  var instrucao = `
+  SELECT fkMaquinaHistorico, COUNT(fkMaquinaHistorico) AS 'qtdRegistrosLast30dias' FROM Historico 
+  WHERE fkMaquinaHistorico = ${idDoCaixa} AND datahoraHistorico BETWEEN DATEADD(DAY, -30, '${obterDataHojeAmericano()}') AND '${obterDataHojeAmericano()}'
+  GROUP BY fkMaquinaHistorico;
+  `;
+  return database.executar(instrucao);
+}
+
+function obterInformacaoDiscoTotal(idDoCaixa) {
+  var instrucao = `
+  SELECT discoMaquina as 'qtdTotalDisco' FROM Maquinas
+  WHERE idMaquina = ${idDoCaixa}
+  `;
+  return database.executar(instrucao);
+}
+
+function obterUltimoUsoDiscoHistorico(idDoCaixa) {
+  var instrucao = `
+  SELECT TOP 1 usoDiscoHistorico as 'usoDisco' FROM Historico
+  WHERE fkMaquinaHistorico = ${idDoCaixa}
+  ORDER BY datahoraHistorico desc
+  `;
+  return database.executar(instrucao);
+}
+
+function inserirEtiqueta(nomeEtiqueta, idDaMaquina) {
+  var instrucao = `
+  INSERT INTO Etiqueta VALUES (${idDaMaquina},'${nomeEtiqueta}','${obterDataHojeAmericano()}')
+  `;
+  return database.executar(instrucao);
+}
+
+function deletarEtiqueta(nomeEtiqueta, idDaMaquina) {
+  var instrucao = `
+  DELETE FROM Etiqueta where fkMaquina = ${idDaMaquina} AND nomeEtiqueta = '${nomeEtiqueta}'
+  `;
+  return database.executar(instrucao);
+}
+
+function listarEtiquetasComNomeCaixa() {
+  var instrucao = `
+  SELECT *,nomeMaquina FROM Etiqueta join Maquinas on fkMaquina = idMaquina;
+  `;
+  return database.executar(instrucao);
+}
+
+/*------------------------fim de ETIQUETAS-------------------------------------- */
+
+function graficoUsoRam() {
+  console.log(
+    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function grafico_jogador()"
+  );
+  var instrucao = `
+  select round(((usoRamHistorico * 100) / ramMaquina)) as porcRam,
+  nomeMaquina as nomeCaixa from historico
+  join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
+  order by usoRamHistorico desc limit 4;
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
+function exibirEficienciaGlobalDoDia(data) {
+  var instrucao = `
+  select round(sum(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina)) + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico)) 
+  as "eficienciaGlobal" from Historico join Maquinas on Historico.fkMaquinaHistorico = Maquinas.idMaquina where dataHoraHistorico like '%${data}%' order by idHistorico desc;
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirPorcentagemRestanteGlobal(data) {
+  var instrucao = `
+  select round(100 - (sum(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina)) + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico))) 
+  as "eficienciaGlobalRestante" from Historico join Maquinas on Historico.fkMaquinaHistorico = Maquinas.idMaquina where dataHoraHistorico like '%${data}%' order by idHistorico desc;
+  `;
+  return database.executar(instrucao);
+}
+
+function porcentagemderamrestanteEquantidaderamtotal(idDoCaixa) {
+  var instrucao = `
+
+  `;
+  return database.executar(instrucao);
+}
+
+function porcentagemdecpuatingidaEvelocidademaximacpu(idDoCaixa) {
+  var instrucao = `
+ 
+  `;
+  return database.executar(instrucao);
+}
+
+function porcentagemdememoriarestanteEquantidadememoriatotal(idDoCaixa) {
+  var instrucao = `
+  
+  `;
+  return database.executar(instrucao);
+}
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -217,6 +405,7 @@ module.exports = {
   exibirFuncionarios,
   exibirQuantidadeTotalRam,
   exibirCaixas,
+  exibirQtdTotalEtiquetas,
   listarCaixas,
   listarHistorico,
   imgUsuario,
@@ -226,4 +415,27 @@ module.exports = {
   pesquisarCaixa,
   pesquisarHistorico,
   exibirQtdHistorico,
+  obterAlertasPorData,
+  exibirQtdTotalAlertasDoDia,
+  exibirQtdTotalCaixasRam,
+  exibirQtdTotalCaixasCpu,
+  exibirQtdTotalCaixasDisco,
+  listarIDs,
+
+  /*------------------------ETIQUETAS-------------------------------------- */
+  obterQtdAlertaRamLast30dias,
+  obterQtdAlertaCpuLast30dias,
+  obterInformacaoDiscoTotal,
+  obterUltimoUsoDiscoHistorico,
+  obterQtdRegistroHistoricoLast30dias,
+  inserirEtiqueta,
+  deletarEtiqueta,
+  listarEtiquetasComNomeCaixa,
+  /*------------------------DASHBOARD-------------------------------------- */
+  graficoUsoRam,
+  exibirEficienciaGlobalDoDia,
+  exibirPorcentagemRestanteGlobal,
+  porcentagemderamrestanteEquantidaderamtotal,
+  porcentagemdecpuatingidaEvelocidademaximacpu,
+  porcentagemdememoriarestanteEquantidadememoriatotal
 };
