@@ -23,7 +23,7 @@
   </head>
 
   <body
-    onload="exibirQuantidadeTotalRam(), imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico()"
+    onload="exibirQuantidadeTotalRam(), imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes()"
   >
     <div class="body_dashboard">
       <div class="sessao_grafico_principal">
@@ -52,13 +52,8 @@
             </button>
           </div>
 
-          <div class="selecao_maquina">
-            <button class="" onclick="dadosCaixa1()">Caixa 1</button>
-            <button onclick="dadosCaixa2()">Caixa 2</button>
-            <button onclick="dadosCaixa3()">Caixa 3</button>
-            <button onclick="dadosCaixa4()">Caixa 4</button>
-            <button onclick="dadosCaixa5()">Caixa 5</button>
-            <button onclick="dadosCaixa6()">Caixa 6</button>
+          <div id="selecao_maquina" class="selecao_maquina">
+
           </div>
         </div>
 
@@ -209,6 +204,36 @@
       const diaAtual = new Date(timeElapsed).toLocaleDateString();
       const diaAtualFormatado = diaAtual.split("/").reverse().join("-");
       return diaAtualFormatado;
+    }
+
+    function atribuirBotoes() {
+      fetch(`/usuarios/listarCaixas`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+            resposta.json().then((data) => {
+                console.log(data);
+                selecao_maquina.innerHTML = ``;
+            listaIDMaquina = []
+                for (var i = 0; i < data.length; i++) {
+                    var idMaquina = data[i].idMaquina;
+
+                    listaIDMaquina.push(idMaquina)
+                    
+                    selecao_maquina.innerHTML += 
+                    `<button onclick='recuperarDadosDoCaixa(${idMaquina})'>` + 
+                      `Caixa ${idMaquina}` + 
+                    `</button>`;
+
+                    console.log(`Botão da máquina ${idMaquina} criado`);
+                }
+            })
+
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
     }
 
     var valorEficienciaGlobal = exibirEficienciaGlobalDoDia();
