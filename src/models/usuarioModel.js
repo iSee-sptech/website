@@ -377,6 +377,27 @@ function exibirPorcentagemRestanteGlobal(data) {
   return database.executar(instrucao);
 }
 
+function porcentagemderamrestanteEquantidaderamtotal(idDoCaixa) {
+  var instrucao = `
+
+  `;
+  return database.executar(instrucao);
+}
+
+function porcentagemdecpuatingidaEvelocidademaximacpu(idDoCaixa) {
+  var instrucao = `
+ 
+  `;
+  return database.executar(instrucao);
+}
+
+function porcentagemdememoriarestanteEquantidadememoriatotal(idDoCaixa) {
+  var instrucao = `
+  
+  `;
+  return database.executar(instrucao);
+}
+
 module.exports = {
   entrar,
   atualizarSenha,
@@ -424,5 +445,7 @@ module.exports = {
   graficoUsoRam,
   exibirEficienciaGlobalDoDia,
   exibirPorcentagemRestanteGlobal,
-
+  porcentagemderamrestanteEquantidaderamtotal,
+  porcentagemdecpuatingidaEvelocidademaximacpu,
+  porcentagemdememoriarestanteEquantidadememoriatotal
 };

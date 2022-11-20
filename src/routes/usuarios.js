@@ -175,4 +175,16 @@ router.get("/exibirPorcentagemRestanteGlobal/:dataAtual", function (req, res) {
 router.get("/listarEtiquetasComNomeCaixa", function (req, res) {
   usuarioController.listarEtiquetasComNomeCaixa(req, res);
 });
+
+router.get("/porcentagemderamrestanteEquantidaderamtotal/:idDoCaixa", function (req, res) {
+  usuarioController.porcentagemderamrestanteEquantidaderamtotal(req, res);
+});
+
+router.get("/porcentagemdecpuatingidaEvelocidademaximacpu/:idDoCaixa", function (req, res) {
+  usuarioController.porcentagemdecpuatingidaEvelocidademaximacpu(req, res);
+});
+
+router.get("/porcentagemdememoriarestanteEquantidadememoriatotal/:idDoCaixa", function (req, res) {
+  usuarioController.porcentagemdememoriarestanteEquantidadememoriatotal(req, res);
+});
 module.exports = router;
