@@ -179,7 +179,7 @@ function listarCaixas() {
 function listarHistorico() {
   var instrucao = `
   SELECT fkMaquinaHistorico, idHistorico, usoRamHistorico, usoProcessadorHistorico, usoDiscoHistorico,
-  dataHoraHistorico from historico;
+  dataHoraHistorico from historico order by idHistorico desc;
   `;
   return database.executar(instrucao);
 }
@@ -220,6 +220,14 @@ function pesquisarCaixa(caixa) {
 function pesquisarHistorico(dataHora) {
   var instrucao = `
   select * from historico where dataHoraHistorico like "${dataHora}%";
+  `;
+  return database.executar(instrucao);
+}
+
+
+function filtroCaixaButtom(idCaixa) {
+  var instrucao = `
+  select * from historico where fkMaquinaHistorico = ${idCaixa};
   `;
   return database.executar(instrucao);
 }
@@ -422,6 +430,7 @@ module.exports = {
   lembreteDefault,
   pesquisarCaixa,
   pesquisarHistorico,
+  filtroCaixaButtom,
   exibirQtdHistorico,
   obterAlertasPorData,
   exibirQtdTotalAlertasDoDia,

@@ -1,59 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="../assets/img/iconLogo.ico"
-      type="image/x-icon"
-    />
-    <title>Histórico - ISee</title>
-    <link rel="stylesheet" href="../css/meusCaixas.css" />
-    <link rel="stylesheet" href="../css/historico.css" />
-    <link rel="stylesheet" href="../css/NavBarSemDescricao.css">
-    <link rel="stylesheet" href="../css/efeitoToltipDescricao.css"/>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
+  <title>Histórico - ISee</title>
+  <link rel="stylesheet" href="../css/meusCaixas.css" />
+  <link rel="stylesheet" href="../css/historico.css" />
+  <link rel="stylesheet" href="../css/NavBarSemDescricao.css">
+  <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
 </head>
 
 <body onload="imgUsuario(), exibirQtdHistorico(), listarHistorico()">
-    <div class="divTitulo">
-      <div class="containerTitulo">
-        <h1>Histórico</h1>
-        <h6 id="bem_vindo">Bom dia</h6>
-        <div id="imagem_user" class="notificacoes">
-          <img src="../assets/img/alert.svg" />
-          <img src="../assets/img/user.svg" />
-        </div>
+  <div class="divTitulo">
+    <div class="containerTitulo">
+      <h1>Histórico</h1>
+      <h6 id="bem_vindo">Bom dia</h6>
+      <div id="imagem_user" class="notificacoes">
+        <img src="../assets/img/alert.svg" />
+        <img src="../assets/img/user.svg" />
       </div>
-
-
-        <div class="filtroCaixas">
-          <h2>Filtros</h2>
-            <div class="selecaoCaixas">
-                <button>Caixa 1</button>
-                <button>Caixa 2</button>
-                <button>Caixa 3</button>
-                <button>Caixa 4</button>
-                <button>Caixa 5</button>
-                <button>Caixa 6</button>
-            </div>
-
-            <div id="filtroData">
-                <div id="data">
-                    <input onblur="listarHistorico()" type="date" id="input_data_nasc_func" maxlength="8">
-                </div>
-                <button onclick="pesquisarHistorico()">Filtrar</button>
-            </div>
-
-        </div>
     </div>
 
-    <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
 
-    <div class="tabelaHistorico" id="divDaddy">
+    <div class="filtroCaixas">
+      <h2>Filtros</h2>
+      <div class="selecaoCaixas">
+        <button onclick="filtroCaixaButtom(1)" id="caixa1">Caixa 1</button>
+        <button onclick="filtroCaixaButtom(2)" id="caixa2">Caixa 2</button>
+        <button onclick="filtroCaixaButtom(3)" id="caixa3">Caixa 3</button>
+        <button onclick="filtroCaixaButtom(4)" id="caixa4">Caixa 4</button>
+        <button style="font-size: 14px; background-color: #000; color: #fff;" onclick="limparFiltroCaixaButtom()"
+          >Limpar Filtros</button>
 
-        <!-- <div id="caixa" style="width: 100vw;">
+      </div>
+
+      <div id="filtroData">
+        <div id="data">
+          <input onblur="listarHistorico()" type="date" id="input_data_nasc_func" maxlength="8">
+        </div>
+        <button onclick="pesquisarHistorico()">Filtrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
+
+  <div class="tabelaHistorico" id="divDaddy">
+
+    <!-- <div id="caixa" style="width: 100vw;">
           <div>
             <h2>Status</h2>
             <div id="status"></div>
@@ -91,69 +89,56 @@
           </div>
         </div>  -->
 
-    </div>
+  </div>
 
 
-    <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO ^^^^^^^^^^-->
+  <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO ^^^^^^^^^^-->
 
-    <div class="container_navbar">
-      <div class="navbar_bottom">
-        <div class="btn_home" onclick="tela_home()">
-          <img
-            onclick="window.location.href='./homeFuncionario.html'"
-            src="../assets/img/home_icon.svg"
-          />
-          <h2 style="color: #7d2de2" id="effectlist">Home</h2>
-        </div>
+  <div class="container_navbar">
+    <div class="navbar_bottom">
+      <div class="btn_home" onclick="tela_home()">
+        <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Home</h2>
+      </div>
 
-        <div
-          class="btn_etiqueta"
-          onclick="window.location.href='../dashboard/etiquetas.html'">
-          <img src="../assets/img/etiqueta_icon.svg" />
-          <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
-        </div>
+      <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
+        <img src="../assets/img/etiqueta_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
+      </div>
 
-        <div class="btn_historico">
-          <img src="../assets/img/historico_icon.svg" />
-          <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
-        </div>
+      <div class="btn_historico">
+        <img src="../assets/img/historico_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
+      </div>
 
-        <div
-          class="btn_dashboard"
-          onclick="window.location.href='../dashboard/Dashboard.html'"
-        >
-          <img src="../assets/img/dashboard_icon.svg" />
-          <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
-        </div>
+      <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
+        <img src="../assets/img/dashboard_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
+      </div>
 
-        <div
-          class="btn_alerta"
-          onclick="window.location.href='../dashboard/alertas.html'"
-        >
-          <img src="../assets/img/alertas_icon.png" />
-          <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
-        </div>
+      <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
+        <img src="../assets/img/alertas_icon.png" />
+        <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
+      </div>
 
-        <div class="btn_perfil">
-          <img
-            onclick="window.location.href='../meuPerfil.html'"
-            src="../assets/img/userNavbar.svg"
-          />
-          <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
-        </div>
+      <div class="btn_perfil">
+        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
+      </div>
 
-        <div class="btn_sair">
-          <img onclick="sair()" src="../assets/img/sair_icon.png" />
-          <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
-        </div>
+      <div class="btn_sair">
+        <img onclick="sair()" src="../assets/img/sair_icon.png" />
+        <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 
 <script>
 
-var dataAtual = new Date();
+  var dataAtual = new Date();
   var hora = dataAtual.getHours();
   var nome = sessionStorage.nomeUsuario;
   var bemVindo = document.getElementById("bem_vindo");
@@ -167,7 +152,7 @@ var dataAtual = new Date();
     frase = `Boa noite`;
   }
 
-function exibirQtdHistorico() {
+  function exibirQtdHistorico() {
     fetch(`/usuarios/exibirQtdHistorico`, {
       method: "GET",
       headers: {
@@ -223,62 +208,62 @@ function exibirQtdHistorico() {
                 <img src="../assets/img/alert.svg" />
                 <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
                 `
-                    }
+          }
 
-                })
-            }).catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-                finalizarAguardar();
-            });
-    }
-
-
-    function listarHistorico() {
-
-        fetch(`/usuarios/listarHistorico`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then((resposta) => {
-
-            listaNomeHistorico = []
-            listaID = []
-            listaRam = []
-            listaProcessador = []
-            listaDisco = []
-            listaData = []
-
-            resposta.json().then((data) => {
-                console.log(data);
-                divDaddy.innerHTML = ``
-                for (var i = 0; i < data.length; i++) {
-                    var nomeHistorico = data[i].fkMaquinaHistorico;
-                    var id = data[i].idHistorico;
-                    var ram = data[i].usoRamHistorico;
-                    var processador = data[i].usoProcessadorHistorico;
-                    var disco = data[i].usoDiscoHistorico;
-                    var dataHora = data[i].dataHoraHistorico;
-
-                    ram = ram && ram.substr(0, 2);
-                    ram = parseInt(ram);
-                    ram = ram - 1;
-                    processador = processador && processador.substr(0, 3);
-                    processador = parseInt(processador);
-                    processador = processador + 1;
-                    processador = processador / 100;
-                    disco = disco && disco.substr(0, 3);
-                    dataHora = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
-
-                    listaNomeHistorico.push(nomeHistorico)
-                    listaID.push(id)
-                    listaRam.push(ram)
-                    listaProcessador.push(processador)
-                    listaDisco.push(disco)
-                    listaData.push(dataHora)
+        })
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+  }
 
 
-                    divDaddy.innerHTML += ` 
+  function listarHistorico() {
+
+    fetch(`/usuarios/listarHistorico`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
+
+      listaNomeHistorico = []
+      listaID = []
+      listaRam = []
+      listaProcessador = []
+      listaDisco = []
+      listaData = []
+
+      resposta.json().then((data) => {
+        console.log(data);
+        divDaddy.innerHTML = ``
+        for (var i = 0; i < data.length; i++) {
+          var nomeHistorico = data[i].fkMaquinaHistorico;
+          var id = data[i].idHistorico;
+          var ram = data[i].usoRamHistorico;
+          var processador = data[i].usoProcessadorHistorico;
+          var disco = data[i].usoDiscoHistorico;
+          var dataHora = data[i].dataHoraHistorico;
+
+          ram = ram && ram.substr(0, 2);
+          ram = parseInt(ram);
+          ram = ram - 1;
+          processador = processador && processador.substr(0, 3);
+          processador = parseInt(processador);
+          processador = processador + 1;
+          processador = processador / 100;
+          disco = disco && disco.substr(0, 3);
+          dataHora = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
+
+          listaNomeHistorico.push(nomeHistorico)
+          listaID.push(id)
+          listaRam.push(ram)
+          listaProcessador.push(processador)
+          listaDisco.push(disco)
+          listaData.push(dataHora)
+
+
+          divDaddy.innerHTML += ` 
             <div id="caixa" style="width: 100vw; padding-bottom: 4%;">
           <div>
             <h2>Status</h2>
@@ -316,72 +301,69 @@ function exibirQtdHistorico() {
           </div> 
     
           <div>
-            <h2>LOG</h2>
-            <div class="alignCaixa" onclick="">
-                <img src="../assets/img/messageIcon.svg" alt=""></div>
-          </div>
+            
         </div> `
-                }
-            })
+        }
+      })
 
 
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+  }
 
 
-    function pesquisarHistorico() {
-        var dataHistorico2 = input_data_nasc_func.value
-        console.log(dataHistorico2)
-        const dataHistorico = dataHistorico2;
+  function pesquisarHistorico() {
+    var dataHistorico2 = input_data_nasc_func.value
+    console.log(dataHistorico2)
+    const dataHistorico = dataHistorico2;
 
-        fetch(`/usuarios/pesquisarHistorico${dataHistorico}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then((resposta) => {
-
-
-            listaNomeHistorico = []
-            listaID = []
-            listaRam = []
-            listaProcessador = []
-            listaDisco = []
-            listaData = []
-
-            resposta.json().then((data) => {
-                console.log(data);
-
-                divDaddy.innerHTML = ``
-                for (var i = 0; i < data.length; i++) {
-                    var nomeHistorico = data[i].fkMaquinaHistorico;
-                    var id = data[i].idHistorico;
-                    var ram = data[i].usoRamHistorico;
-                    var processador = data[i].usoProcessadorHistorico;
-                    var disco = data[i].usoDiscoHistorico;
-                    var dataHora = data[i].dataHoraHistorico;
-
-                    ram = ram && ram.substr(0, 2);
-                    ram = parseInt(ram);
-                    ram = ram - 1;
-                    processador = processador && processador.substr(0, 3);
-                    processador = parseInt(processador);
-                    processador = processador + 1;
-                    processador = processador / 100;
-                    disco = disco && disco.substr(0, 3);
-                    dataHora = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
-
-                    listaNomeHistorico.push(nomeHistorico)
-                    listaID.push(id)
-                    listaRam.push(ram)
-                    listaProcessador.push(processador)
-                    listaDisco.push(disco)
-                    listaData.push(dataHora)
+    fetch(`/usuarios/pesquisarHistorico${dataHistorico}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
 
 
-                    divDaddy.innerHTML += ` 
+      listaNomeHistorico = []
+      listaID = []
+      listaRam = []
+      listaProcessador = []
+      listaDisco = []
+      listaData = []
+
+      resposta.json().then((data) => {
+        console.log(data);
+
+        divDaddy.innerHTML = ``
+        for (var i = 0; i < data.length; i++) {
+          var nomeHistorico = data[i].fkMaquinaHistorico;
+          var id = data[i].idHistorico;
+          var ram = data[i].usoRamHistorico;
+          var processador = data[i].usoProcessadorHistorico;
+          var disco = data[i].usoDiscoHistorico;
+          var dataHora = data[i].dataHoraHistorico;
+
+          ram = ram && ram.substr(0, 2);
+          ram = parseInt(ram);
+          ram = ram - 1;
+          processador = processador && processador.substr(0, 3);
+          processador = parseInt(processador);
+          processador = processador + 1;
+          processador = processador / 100;
+          disco = disco && disco.substr(0, 3);
+          dataHora = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
+
+          listaNomeHistorico.push(nomeHistorico)
+          listaID.push(id)
+          listaRam.push(ram)
+          listaProcessador.push(processador)
+          listaDisco.push(disco)
+          listaData.push(dataHora)
+
+
+          divDaddy.innerHTML += ` 
             <div id="caixa" style="width: 100vw; padding-bottom: 4%;">
           <div>
             <h2>Status</h2>
@@ -419,11 +401,144 @@ function exibirQtdHistorico() {
           </div> 
           
         </div> `
-                }
-            })
+        }
+      })
 
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+  }
+
+  var forrest = 0;
+  function filtroCaixaButtom(caixa) {
+    forrest++;
+    if (caixa == 1) {
+      caixa1.style.backgroundColor = "#7d2de2"
+      caixa1.style.color = "#fff"
+    } else if (caixa == 2) {
+      caixa2.style.backgroundColor = "#7d2de2"
+      caixa2.style.color = "#fff"
+    } else if (caixa == 3) {
+      caixa3.style.backgroundColor = "#7d2de2"
+      caixa3.style.color = "#fff"
+    } else {
+      caixa4.style.backgroundColor = "#7d2de2"
+      caixa4.style.color = "#fff"
     }
+
+
+    fetch(`/usuarios/filtroCaixaButtom${caixa}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resposta) => {
+
+
+      listaNomeHistorico = []
+      listaID = []
+      listaRam = []
+      listaProcessador = []
+      listaDisco = []
+      listaData = []
+
+      resposta.json().then((data) => {
+        console.log(data);
+        console.log(forrest);
+
+        if (forrest == 1) {
+          divDaddy.innerHTML = ``
+        } else if (forrest > 4) {
+          forrest = 0;
+          divDaddy.innerHTML = ``
+        }
+
+        for (var i = 0; i < data.length; i++) {
+          var nomeHistorico = data[i].fkMaquinaHistorico;
+          var id = data[i].idHistorico;
+          var ram = data[i].usoRamHistorico;
+          var processador = data[i].usoProcessadorHistorico;
+          var disco = data[i].usoDiscoHistorico;
+          var dataHora = data[i].dataHoraHistorico;
+
+          ram = ram && ram.substr(0, 2);
+          ram = parseInt(ram);
+          ram = ram - 1;
+          processador = processador && processador.substr(0, 3);
+          processador = parseInt(processador);
+          processador = processador + 1;
+          processador = processador / 100;
+          disco = disco && disco.substr(0, 3);
+          dataHora = dataHora.replaceAll("T", " ").replaceAll("Z", "").replaceAll(".000", "");
+
+          listaNomeHistorico.push(nomeHistorico)
+          listaID.push(id)
+          listaRam.push(ram)
+          listaProcessador.push(processador)
+          listaDisco.push(disco)
+          listaData.push(dataHora)
+
+
+          divDaddy.innerHTML += ` 
+            <div id="caixa" style="width: 100vw; padding-bottom: 4%;">
+          <div>
+            <h2>Status</h2>
+            <div id="status"></div>
+          </div>
+    
+          <div>
+            <h2>ID</h2>
+            <h4 class="alignCaixa">${listaID[i]}</h4>
+          </div>
+    
+          <div>
+            <h2>Data</h2>
+            <h4 class="alignCaixa">${listaData[i]}</h4>
+          </div>
+    
+          <div>
+            <h2>ID Maquina</h2>
+            <h4 class="alignCaixa">${listaNomeHistorico[i]}</h4>
+          </div>
+
+          <div>
+            <h2>Uso RAM</h2>
+            <h4 class="alignCaixa">${listaRam[i]}</h4>
+          </div>
+    
+           <div> 
+            <h2>Uso Processador</h2>
+            <h4 class="alignCaixa">${listaProcessador[i]}</h4>
+          </div> 
+    
+           <div> 
+            <h2>Uso Disco</h2>
+            <h4 class="alignCaixa">${listaDisco[i]}</h4>
+          </div> 
+          
+        </div> `
+        }
+      })
+
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+  }
+
+  function limparFiltroCaixaButtom() {
+    listarHistorico()
+    forrest = 0;
+
+    caixa1.style.backgroundColor = "#fff"
+    caixa1.style.color = "#7d2de2"
+
+    caixa2.style.backgroundColor = "#fff"
+    caixa2.style.color = "#7d2de2"
+
+    caixa3.style.backgroundColor = "#fff"
+    caixa3.style.color = "#7d2de2"
+
+    caixa4.style.backgroundColor = "#fff"
+    caixa4.style.color = "#7d2de2"
+  }
 </script>

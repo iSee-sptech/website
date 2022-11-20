@@ -84,6 +84,10 @@ router.get("/pesquisarHistorico:dataHistorico", function (req, res) {
   usuarioController.pesquisarHistorico(req, res);
 });
 
+router.get("/filtroCaixaButtom:caixa", function (req, res) {
+  usuarioController.filtroCaixaButtom(req, res);
+});
+
 router.get("/pesquisarCaixa:idCaixa", function (req, res) {
   usuarioController.pesquisarCaixa(req, res);
 });
