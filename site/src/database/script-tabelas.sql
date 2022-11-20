@@ -17,8 +17,6 @@ numeroLocalUsuario varchar (6),
 complementoLocalUsuario varchar (25)
 );
 
-select * from Usuarios;
-
 create table Maquinas (
 idMaquina int primary key auto_increment,
 serialMaquina varchar(25),
