@@ -1,120 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="assets/img/iconLogo.ico"
-      type="image/x-icon"
-    />
-    <title>Cadastro Caixa Eletrônico - ISee</title>
-    <link rel="stylesheet" href="./css/cadastroMaquina.css" />
-    <link rel="stylesheet" href="./css/styleModal.css" />
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="texto">
-        <h1>Cadastre sua máquina</h1>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/img/iconLogo.ico" type="image/x-icon" />
+  <title>Cadastro Caixa Eletrônico - ISee</title>
+  <link rel="stylesheet" href="./css/cadastroMaquina.css" />
+  <link rel="stylesheet" href="./css/styleModal.css" />
+</head>
 
-      <form action="" id="form_cadastro_maquina" method="post">
-        <div class="campo_um">
-          <label for="">ID Máquina</label>
-          <input type="text" id="input_id_maquina" />
-
-          <label for="">Nome da Máquina</label>
-          <input type="Máquina g" id="input_nome_maquina" />
-
-          <label for="">Imagem da Máquina</label>
-          <input placeholder="URL" type="text" id="input_url_maquina" />
-
-          <label for="">Número serial</label>
-          <input
-            placeholder="-----------"
-            type="text"
-            id="input_numero_serial"
-          />
-        </div>
-        <div class="campo_dois">
-          <label for="">CEP</label>
-          <span class="span_container">
-            <input
-              placeholder="_____-___"
-              type="text"
-              id="input_endereco_maquina"
-              maxlength="9"
-            />
-            <div class="envoltorioIconHelp" onclick="modalServicesCEP()">
-              <img src="assets/img/iconHelp.svg" />
-            </div>
-          </span>
-
-          <label for="">Número</label>
-          <input
-            placeholder="n°"
-            type="text"
-            id="input_num_endereco_maquina"
-            maxlength="6"
-          />
-
-          <label for="">Complemento</label>
-          <input
-            placeholder="Bloco, Setor, Andar..."
-            type="text"
-            id="input_complemento_endereco_maquina"
-            maxlength="20"
-          />
-
-          <label for="">Ponto de Referência</label>
-          <input
-            placeholder="Próximo à entrada, localizado no setor 1A..."
-            type="text"
-            id="input_ponto_referencia_endereco_maquina"
-            maxlength="25"
-          />
-        </div>
-      </form>
-
-      <div class="botoes">
-        <div class="botao_cadastro">
-          <button
-            id="botao_cadastrar"
-            class="buttonContact"
-            type="button"
-            onclick="cadastrarCaixa()"
-          >
-            Cadastrar
-          </button>
-        </div>
-
-        <div class="botao_sair">
-          <button
-            class="button1"
-            id="botao_sair"
-            onclick="window.location.href='./dashboard/homeGestor.html'"
-          >
-            Sair
-          </button>
-        </div>
-      </div>
+<body>
+  <div class="container">
+    <div class="texto">
+      <h1>Cadastre sua máquina</h1>
     </div>
-  </body>
 
-  <div id="modal" class="modalBody">
-    <div class="modalReadPlus">
-      <div class="containerReadPlus">
-        <div class="modalCheck">
-          <img id="modalImg" src="" alt="check" />
-        </div>
-        <button onclick="buttonBack()" class="modalBack">&times;</button>
+    <form action="" id="form_cadastro_maquina" method="post">
+      <div class="campo_um">
+        <label for="">ID Máquina</label>
+        <input type="text" id="input_id_maquina" />
+
+        <label for="">Nome da Máquina</label>
+        <input type="Máquina g" id="input_nome_maquina" />
+
+        <label for="">Imagem da Máquina</label>
+        <input placeholder="URL" type="text" id="input_url_maquina" />
+
       </div>
-      <span id="modalText"></span>
-      <button class="button8" onclick="buttonBack()">Fechar</button>
+      <div class="campo_dois">
+        <label for="">CEP</label>
+        <span class="span_container">
+          <input placeholder="_____-___" type="text" id="input_endereco_maquina" maxlength="9" />
+          <div class="envoltorioIconHelp" onclick="modalServicesCEP()">
+            <img src="assets/img/iconHelp.svg" />
+          </div>
+        </span>
+
+        <label for="">Número</label>
+        <input placeholder="n°" type="text" id="input_num_endereco_maquina" maxlength="6" />
+
+        <label for="">Complemento</label>
+        <input placeholder="Bloco, Setor, Andar..." type="text" id="input_complemento_endereco_maquina"
+          maxlength="20" />
+
+      </div>
+    </form>
+
+    <div class="botoes">
+      <div class="botao_cadastro">
+        <button id="botao_cadastrar" class="buttonContact" type="button" onclick="cadastrarCaixa()">
+          Cadastrar
+        </button>
+      </div>
+
+      <div class="botao_sair">
+        <button class="button1" id="botao_sair" onclick="window.location.href='./dashboard/homeGestor.html'">
+          Sair
+        </button>
+      </div>
     </div>
   </div>
+</body>
+
+<div id="modal" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck">
+        <img id="modalImg" src="" alt="check" />
+      </div>
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+    <span id="modalText"></span>
+    <button class="button8" onclick="buttonBack()">Fechar</button>
+  </div>
+</div>
+
 </html>
 
 <script src="./js/mascarasMaquina.js"></script>
@@ -129,20 +91,16 @@
     var nomeCaixaVar = input_nome_maquina.value;
     var enderecoCaixaVar = input_endereco_maquina.value;
     var imagemCaixaVar = input_url_maquina.value;
-    var numeroSerialCaixaVar = input_numero_serial.value;
     var numeroEnderecoCaixaVar = input_num_endereco_maquina.value;
     var complementoEnderecoCaixaVar = input_complemento_endereco_maquina.value;
-    var pontoReferenciaEnderecoCaixaVar =
-      input_ponto_referencia_endereco_maquina.value;
 
     if (
       idCaixaVar == "" ||
       nomeCaixaVar == "" ||
       enderecoCaixaVar == "" ||
-      numeroSerialCaixaVar == "" ||
+      imagemCaixaVar == "" ||
       numeroEnderecoCaixaVar == "" ||
-      complementoEnderecoCaixaVar == "" ||
-      pontoReferenciaEnderecoCaixaVar == ""
+      complementoEnderecoCaixaVar == ""
     ) {
       modal.style.display = "block";
       modalImg.src = "assets/img/iconDanger.svg";
@@ -164,7 +122,7 @@
       modalText.innerHTML = "Cadastro efetuado com sucesso!";
     }
 
-    fetch("/usuarios/cadastrarCaixa", {
+    fetch(`/usuarios/cadastrarCaixas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -174,10 +132,8 @@
         nomeCaixaServer: nomeCaixaVar,
         enderecoCaixaServer: enderecoCaixaVar,
         imagemCaixaServer: imagemCaixaVar,
-        numeroSerialServer: numeroSerialCaixaVar,
         numeroEnderecoServer: numeroEnderecoCaixaVar,
         complementoEnderecoServer: complementoEnderecoCaixaVar,
-        pontoReferenciaEnderecoServer: pontoReferenciaEnderecoCaixaVar,
       }),
     })
       .then(function (resposta) {

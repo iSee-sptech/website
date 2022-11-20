@@ -1,44 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="../assets/img/iconLogo.ico"
-      type="image/x-icon"
-    />
-    <title>Meus Caixas - ISee</title>
-    <link rel="stylesheet" href="../css/meusCaixas.css" />
-    <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
-    <link rel="stylesheet" href="../css/efeitoToltipDescricao.css"/>
-  </head>
+<html lang="pt-br">
 
-  <body onload="exibirCaixas(), listarCaixas(), imgUsuario()">
-    <div class="divTitulo">
-      <div class="containerTitulo">
-        <h1>Meus Caixas</h1>
-        <h6 id="bem_vindo"></h6>
-        <div id="imagem_user" class="notificacoes">
-          <img src="../assets/img/alert.svg" />
-          <img src="../assets/img/user.svg" />
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
+  <title>Meus Caixas - ISee</title>
+  <link rel="stylesheet" href="../css/meusCaixas.css" />
+  <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
+  <link rel="stylesheet" href="../css/styleModal.css" />
+  <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
+</head>
+
+<body onload="exibirCaixas(), listarCaixas(), imgUsuario()">
+  <div class="divTitulo">
+    <div class="containerTitulo">
+      <h1>Meus Caixas</h1>
+      <h6 id="bem_vindo"></h6>
+      <div id="imagem_user" class="notificacoes">
+        <img src="../assets/img/alert.svg" />
+        <img src="../assets/img/user.svg" />
       </div>
+    </div>
 
     <div class="divPesquisa">
       <div>
         <h3>Pesquisar Caixa</h3>
         <input type="text" id="pesquisarCaixaID">
-        <button class="button1" onblur="listarCaixas()" onclick="pesquisarCaixa()">Pesquisar</button>
+        <button class="button1" onblur="
+         setTimeout(() => {
+          listarCaixas()
+            }, 500);
+        " onclick="pesquisarCaixa()">Pesquisar</button>
       </div>
     </div>
   </div>
 
-    <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
+  <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO -->
 
-    <div class="meusCaixas" id="divDaddy">
-      <!-- <div id="caixa">
+  <div class="meusCaixas" id="divDaddy">
+    <!-- <div id="caixa">
       <div>
         <h2>Status</h2>
         <div id="status"></div>
@@ -114,66 +116,72 @@
         <div class="alignCaixa" id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
       </div>
     </div> -->
-    </div>
+  </div>
 
-    <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO ^^^^^^^^^^-->
+  <!-- ADICIONAR MAIS CAIXAS COM FUNÇÃO ^^^^^^^^^^-->
 
-    <div class="container_navbar">
-      <div class="navbar_bottom">
-        <div class="btn_home" onclick="tela_home()">
-          <img
-            onclick="window.location.href='./homeFuncionario.html'"
-            src="../assets/img/home_icon.svg"
-          />
-          <h2 style="color: #7d2de2" id="effectlist">Home</h2>
-        </div>
+  <div class="container_navbar">
+    <div class="navbar_bottom">
+      <div class="btn_home" onclick="tela_home()">
+        <img onclick="window.location.href='./homeFuncionario.html'" src="../assets/img/home_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Home</h2>
+      </div>
 
-        <div
-          class="btn_etiqueta"
-          onclick="window.location.href='../dashboard/etiquetas.html'">
-          <img src="../assets/img/etiqueta_icon.svg" />
-          <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
-        </div>
+      <div class="btn_etiqueta" onclick="window.location.href='../dashboard/etiquetas.html'">
+        <img src="../assets/img/etiqueta_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
+      </div>
 
-        <div class="btn_historico">
-          <img src="../assets/img/historico_icon.svg" />
-          <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
-        </div>
+      <div class="btn_historico">
+        <img src="../assets/img/historico_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
+      </div>
 
-        <div
-          class="btn_dashboard"
-          onclick="window.location.href='../dashboard/Dashboard.html'"
-        >
-          <img src="../assets/img/dashboard_icon.svg" />
-          <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
-        </div>
+      <div class="btn_dashboard" onclick="window.location.href='../dashboard/Dashboard.html'">
+        <img src="../assets/img/dashboard_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
+      </div>
 
-        <div
-          class="btn_alerta"
-          onclick="window.location.href='../dashboard/alertas.html'"
-        >
-          <img src="../assets/img/alertas_icon.png" />
-          <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
-        </div>
+      <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
+        <img src="../assets/img/alertas_icon.png" />
+        <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
+      </div>
 
-        <div class="btn_perfil">
-          <img
-            onclick="window.location.href='../meuPerfil.html'"
-            src="../assets/img/userNavbar.svg"
-          />
-          <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
-        </div>
+      <div class="btn_perfil">
+        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
+      </div>
 
-        <div class="btn_sair">
-          <img onclick="sair()" src="../assets/img/sair_icon.png" />
-          <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
-        </div>
+      <div class="btn_sair">
+        <img onclick="sair()" src="../assets/img/sair_icon.png" />
+        <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
       </div>
     </div>
-  </body>
+  </div>
+
+  <div id="modal" class="modalBody">
+    <div id="modal2" class="modalReadPlus">
+      <div class="containerReadPlus">
+        <div class="modalCheck">
+          <img id="modalImg" src="" alt="check" />
+        </div>
+        <button onclick="buttonBack()" class="modalBack">&times;</button>
+      </div>
+      <span id="modalText"></span>
+      <button class="button8" onclick="buttonBack()">Fechar</button>
+    </div>
+  </div>
+
+</body>
+
 </html>
 
 <script>
+
+  function buttonBack() {
+    modal.style.display = "none";
+  }
+
   var dataAtual = new Date();
   var hora = dataAtual.getHours();
   var nome = sessionStorage.nomeUsuario;
@@ -244,45 +252,47 @@
         listaArquitetura = [];
         listaImg = [];
 
-      resposta.json().then((data) => {
-        console.log(data);
-        divDaddy.innerHTML = ``
-        for (var i = 0; i < data.length; i++) {
-          var id = data[i].idMaquina;
-          var nome = data[i].nomeMaquina;
-          var cep = data[i].cepMaquina;
-          var ram = data[i].ramMaquina;
-          ram = ram && ram.substr(0, 2);
-          ram = parseInt(ram);
-          ram = ram - 1;
-          var disco = data[i].discoMaquina;
-          disco = disco && disco.substr(0, 3);
-          var processador = data[i].processadorMaquina;
-          processador = processador && processador.substr(0, 3);
-          processador = parseInt(processador);
-          processador = processador + 1;
-          processador = processador / 100;
-          var tempo = data[i].tempoDeAtividade;
-          tempo = parseInt(tempo)
-          tempo = tempo / 3600
-          tempo = Math.round(tempo)
-          var so = data[i].sistemaOperacionalMaquina;
-          var fabricante = data[i].fabricanteMaquina;
-          var arquitetura = data[i].arquiteturaMaquina;
-          var img = data[i].imgMaquina;
-          listaID.push(id)
-          listaNome.push(nome)
-          listaCep.push(cep)
-          listaRam.push(ram)
-          listaDisco.push(disco)
-          listaProcessador.push(processador)
-          listaTempo.push(tempo)
-          listaSO.push(so)
-          listaFabricante.push(fabricante)
-          listaArquitetura.push(arquitetura)
-          listaImg.push(img)
+        resposta.json().then((data) => {
+          console.log(data);
+          divDaddy.innerHTML = ``
+          for (var i = 0; i < data.length; i++) {
+            var id = data[i].idMaquina;
+            var nome = data[i].nomeMaquina;
+            var cep = data[i].cepMaquina;
+            var ram = data[i].ramMaquina;
+            ram = ram && ram.substr(0, 2);
+            ram = parseInt(ram);
+            ram = ram - 1;
+            var disco = data[i].discoMaquina;
+            disco = disco && disco.substr(0, 3);
+            var processador = data[i].processadorMaquina;
+            processador = processador && processador.substr(0, 3);
+            processador = parseInt(processador);
+            processador = processador + 1;
+            processador = processador / 100;
+            var tempo = data[i].tempoDeAtividade;
+            tempo = parseInt(tempo)
+            tempo = tempo / 3600
+            tempo = Math.round(tempo)
+            var so = data[i].sistemaOperacionalMaquina;
+            var fabricante = data[i].fabricanteMaquina;
+            var arquitetura = data[i].arquiteturaMaquina;
+            var img = data[i].imgMaquina;
+            listaID.push(id)
+            listaNome.push(nome)
+            listaCep.push(cep)
+            listaRam.push(ram)
+            listaDisco.push(disco)
+            listaProcessador.push(processador)
+            listaTempo.push(tempo)
+            listaSO.push(so)
+            listaFabricante.push(fabricante)
+            listaArquitetura.push(arquitetura)
+            listaImg.push(img)
 
-          divDaddy.innerHTML += ` <div id="caixa" style="padding-bottom: 4%;">
+
+
+            divDaddy.innerHTML += ` <div id="caixa" style="padding-bottom: 4%;">
       <div>
         <h2>Status</h2>
         <div id="status"></div>
@@ -350,12 +360,13 @@
 
       <div>
         <h2>Imagem</h2>
-        <div class="alignCaixa" id="ImagemCaixa"><img src="../assets/img/imgCaixa.svg"></div>
+        
+        <div class="alignCaixa" id="ImagemCaixa" onclick="openModal('${listaImg[i]}')"><img src="../assets/img/imgCaixa.svg"></div>
       </div>
 
       <div>
         <h2>Remover</h2>
-        <div class="alignCaixa" id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
+        <div class="alignCaixa" id="removerCaixa" onclick="removerCaixa(${listaID[i]})"><img src="../assets/img/trashIcon.svg" alt=""></div>
       </div>
     </div>`;
           }
@@ -478,7 +489,7 @@
 
       <div>
         <h2>Remover</h2>
-        <div class="alignCaixa" id="removerCaixa" onclick=""><img src="../assets/img/trashIcon.svg" alt=""></div>
+        <div class="alignCaixa" id="removerCaixa" onclick="removerCaixaFiltro()"><img src="../assets/img/trashIcon.svg" alt=""></div>
       </div>
     </div>`;
         });
@@ -519,4 +530,95 @@
         finalizarAguardar();
       });
   }
+
+
+  function removerCaixa(id) {
+    var idVar = id;
+
+    fetch("/usuarios/removerCaixa", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idServer: idVar,
+      }),
+    }).then((response) => {
+      response.json().then((data) => {
+        const msg = data.mensagem;
+
+        console.log(msg);
+        if (msg == "success") {
+          listarCaixas()
+          modal.style.display = "block";
+          modal.style.witdh = "block";
+          modalImg.src = "../assets/img/iconCheck.svg";
+          modalText.innerHTML = `Sucesso ao deletar caixa ${id}`;
+
+        } else {
+          console.log("Houve um erro ao tentardeletar caixa");
+        }
+      });
+    });
+  }
+
+  function removerCaixaFiltro() {
+    var idVar = pesquisarCaixaID.value;
+    console.log(idVar)
+
+
+    fetch("/usuarios/removerCaixaFiltro", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idServer: idVar,
+      }),
+    }).then((response) => {
+      response.json().then((data) => {
+        const msg = data.mensagem;
+
+        console.log(msg);
+        if (msg == "success") {
+          listarCaixas()
+          modal.style.display = "block";
+          modalImg.src = "../assets/img/iconCheck.svg";
+          modalText.innerHTML = `Sucesso ao deletar caixa ${idVar}`;
+
+        } else {
+          console.log("Houve um erro ao tentardeletar caixa");
+        }
+      });
+    });
+  }
+
+  function openModal(url) {
+    urlImage = url;
+    modal.style.display = "block";
+    var modal2 = document.querySelector(".modalReadPlus"); m = modal2.style;
+    
+    m.width = "50%";
+    m.height = "60%";
+   // m.gap = "34%";
+
+   var modal3 = document.querySelector(".modalCheck"); m3 = modal3.style;
+
+    m3.width = "42vw";
+    m3.height = "42vh";
+    m3.marginTop = "0vh";
+    m3.paddingBottom = "0%";
+    // m3.alignItems = "center";
+    // m3.justifyContent = "center";
+     
+
+    var modal4 = document.querySelector(".button8"); m4 = modal4.style;
+    
+    m4.marginTop = "36vh";
+
+    modalImg.src = `${urlImage}`;
+    
+  }
+
+
 </script>
