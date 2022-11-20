@@ -20,8 +20,8 @@ router.post("/cadastrarFunc", function (req, res) {
   usuarioController.cadastrarFunc(req, res);
 });
 
-router.post("/cadastrarCaixa", function (req, res) {
-  usuarioController.cadastrarCaixa(req, res);
+router.post("/cadastrarCaixas", function (req, res) {
+  usuarioController.cadastrarCaixas(req, res);
 });
 
 router.post("/adicionarLembrete", function (req, res) {
@@ -38,6 +38,14 @@ router.post("/autenticar", function (req, res) {
 
 router.post("/updatePerfil", function (req, res) {
   usuarioController.updatePerfil(req, res);
+});
+
+router.post("/removerCaixa", function (req, res) {
+  usuarioController.removerCaixa(req, res);
+});
+
+router.post("/removerCaixaFiltro", function (req, res) {
+  usuarioController.removerCaixaFiltro(req, res);
 });
 
 router.post("/atualizarSenha", function (req, res) {
@@ -74,6 +82,10 @@ router.get("/exibirQtdHistorico", function (req, res) {
 
 router.get("/pesquisarHistorico:dataHistorico", function (req, res) {
   usuarioController.pesquisarHistorico(req, res);
+});
+
+router.get("/filtroCaixaButtom:caixa", function (req, res) {
+  usuarioController.filtroCaixaButtom(req, res);
 });
 
 router.get("/pesquisarCaixa:idCaixa", function (req, res) {

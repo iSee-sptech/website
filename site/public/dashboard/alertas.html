@@ -47,8 +47,8 @@
           <img src="../assets/img/ilustracao_alerta_ram.svg" class="ilustracao">
           <div class="corpo_alerta">
             <h2>RAM</h2>
-            <h6>uso maior que 20% - nivel Amarelo <br>
-                uso maior que 30% - nivel Vermelho</h6>
+            <h6>uso maior que 70% - nivel Amarelo <br>
+                uso maior que 80% - nivel Vermelho</h6>
                 Verifique os processos que estão ativos em sua máquina.
           </div>
           <div class="corpo_quantidade">
@@ -63,9 +63,9 @@
           <img src="../assets/img/ilustracao_alerta_cpu.svg" class="ilustracao">
           <div class="corpo_alerta">
             <h2>CPU</h2>
-            <h6>uso maior que 20% - nivel Amarelo <br>
-              uso maior que 30% - nivel Vermelho</h6>
-            texto de descricao
+            <h6>uso maior que 60% - nivel Amarelo <br>
+              uso maior que 80% - nivel Vermelho</h6>
+            Verifique os processos executados por sua máquina.
           </div>
           <div class="corpo_quantidade">
             <h2 class="qtd_caixas_tipo_alerta" id="qtd_caixas_cpu">XX</h2>
@@ -78,8 +78,8 @@
           <img src="../assets/img/ilustracao_alerta_reserva2.svg" class="ilustracao">
           <div class="corpo_alerta">
             <h2>Disco</h2>
-            <h6>uso maior que 20% - nivel Amarelo <br>
-                uso maior que 30% - nivel Vermelho</h6>
+            <h6>uso maior que 70% - nivel Amarelo <br>
+                uso maior que 90% - nivel Vermelho</h6>
               Verifique aplicativos e arquivos presentes em sua máquina.
           </div>
           <div class="corpo_quantidade">
@@ -87,7 +87,7 @@
             caixas
           </div>
         </div>
-
+<!-- 
         <div class="card_alerta" onclick="aparecerModalAlerta(modalAlertaQuatro)">
           <img src="../assets/img/ilustracao_alerta_reserva.svg" class="ilustracao">
           <div class="corpo_alerta">
@@ -99,7 +99,7 @@
             <h2 class="qtd_caixas_tipo_alerta">XX</h2>
             caixas
           </div>
-        </div>
+        </div> -->
 
 
 
@@ -241,7 +241,7 @@
   <div class="modalReadPlus">
     <div class="containerReadPlus">
       <div class="modalCheck" onclick="fecharModalAlerta(modalAlertaUm)">
-        Close
+         &times;
       </div>
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
@@ -250,27 +250,27 @@
 
     <span id="corpoModalAlertaUm" class="corpoModalAlerta">
       <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
-
+      <p>Não foi encontrado nenhum!</p>
       <!--EXEMPLO DE CONTEUDO-->
-      <div class="container_informacoes_alerta">
+      <!-- <div class="container_informacoes_alerta">
         <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
         <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
-      </div>
+      </div> -->
       <!--FIM EXEMPLO DE CONTEUDO-->
 
-      <div class="container_informacoes_alerta">
+      <!-- <div class="container_informacoes_alerta">
         <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
         <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
-      </div>
+      </div> -->
 
-      <div class="container_informacoes_alerta">
+      <!-- <div class="container_informacoes_alerta">
         <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
         <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
-      </div>
+      </div> -->
 
     </span>
 
-    <button class="button8" onclick="">Visualizar Caixas</button>
+    <button class="button8" onclick="redirecionarMeusCaixas()">Visualizar Caixas</button>
     <!--PASSA O ID DO MODAL-->
   </div>
 </div>
@@ -280,7 +280,7 @@
   <div class="modalReadPlus">
     <div class="containerReadPlus">
       <div class="modalCheck" onclick="fecharModalAlerta(modalAlertaDois)">
-        Close
+         &times;
       </div>
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
@@ -289,15 +289,15 @@
 
     <span id="corpoModalAlertaDois" class="corpoModalAlerta">
       <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
-
+      <p>Não foi encontrado nenhum!</p>
       <!--EXEMPLO DE CONTEUDO-->
-      <div class="container_informacoes_alerta">
-        <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+      <!-- <div class="container_informacoes_alerta"> -->
+        <!-- <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
         <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
-      </div>
+      </div> -->
       <!--FIM EXEMPLO DE CONTEUDO-->
 
-      <div class="container_informacoes_alerta">
+      <!-- <div class="container_informacoes_alerta">
         <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
         <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
       </div>
@@ -305,11 +305,11 @@
       <div class="container_informacoes_alerta">
         <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
         <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
-      </div>
+      </div> -->
 
     </span>
 
-    <button class="button8" onclick="">Visualizar Caixas</button>
+    <button class="button8" onclick="redirecionarMeusCaixas()">Visualizar Caixas</button>
   </div>
 </div>
 
@@ -317,7 +317,7 @@
   <div class="modalReadPlus">
     <div class="containerReadPlus">
       <div class="modalCheck" onclick="fecharModalAlerta(modalAlertaTres)">
-        Close
+         &times;
       </div>
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
@@ -326,29 +326,29 @@
 
     <span id="corpoModalAlertaTres" class="corpoModalAlerta">
       <!--ESSA É A PARTE QUE VAI RECEBER OS DADOS-->
-
+      <p>Não foi encontrado nenhum!</p>
       <!--EXEMPLO DE CONTEUDO-->
-      <div class="container_informacoes_alerta">
+      <!-- <div class="container_informacoes_alerta">
         <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
         <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
-      </div>
+      </div> -->
       <!--FIM EXEMPLO DE CONTEUDO-->
 
       <div class="container_informacoes_alerta">
-        <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
-        <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+        <!-- <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+        <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p> -->
       </div>
 
       <div class="container_informacoes_alerta">
-        <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
-        <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p>
+        <!-- <h6>NOME_CAIXA - <a>NIVEL_ALERTA</a></h6>
+        <p>USO_DE_X% <a>DATA_HORA_REGISTRO</a></p> -->
       </div>
 
     </span>
 
 
 
-    <button class="button8" onclick="">Visualizar Caixas</button>
+    <button class="button8" onclick="redirecionarMeusCaixas()">Visualizar Caixas</button>
   </div>
 </div>
 
@@ -356,7 +356,7 @@
   <div class="modalReadPlus">
     <div class="containerReadPlus">
       <div class="modalCheck" onclick="fecharModalAlerta(modalAlertaQuatro)">
-        Close
+         &times;
       </div>
 
       <button onclick="buttonBack()" class="modalBack">&times;</button>
@@ -386,7 +386,7 @@
 
 
 
-    <button class="button8" onclick="">Visualizar Caixas</button>
+    <button class="button8" onclick="redirecionarMeusCaixas()">Visualizar Caixas</button>
   </div>
 </div>
 
@@ -420,6 +420,10 @@
     const diaAtual = new Date(timeElapsed).toLocaleDateString();
     const diaAtualFormatado = diaAtual.split('/').reverse().join('-');
     input_filtro_data.value = diaAtualFormatado;
+  }
+
+  function redirecionarMeusCaixas(){
+    window.location.href = "./meusCaixas.html";
   }
 
   function filtrarData() {
@@ -551,6 +555,13 @@
                 corpoModalAlertaDois.innerHTML = ``
                 corpoModalAlertaTres.innerHTML = ``
                 corpoModalAlertaQuatro.innerHTML = ``
+
+                // corpoModalAlertaUm.innerHTML = `                <p>Não foi encontrado nenhum!</p>`
+                // corpoModalAlertaDois.innerHTML = `                <p>Não foi encontrado nenhum!</p>`
+                // corpoModalAlertaTres.innerHTML = `                <p>Não foi encontrado nenhum!</p>`
+                // corpoModalAlertaQuatro.innerHTML = `                <p>Não foi encontrado nenhum!</p>`
+
+                console.log("limpei os innerHTML")
 
                 for (var i = 0; i < data.length; i++) {
                     var nomeCaixa = data[i].Nome;

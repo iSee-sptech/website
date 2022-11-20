@@ -75,19 +75,17 @@ function cadastrarFunc(
   return database.executar(instrucao);
 }
 
-function cadastrarCaixa(
+function cadastrarCaixas(
   idCaixa,
   nomeCaixa,
   enderecoCaixa,
   imagemCaixa,
-  numeroSerial,
   numero,
   complemento,
-  pontoReferencia
 ) {
   var instrucao = `
-  update Maquinas set idMaquina = '${idCaixa}', nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}', imgMaquina = '${imagemCaixa}', serialMaquina = '${numeroSerial}', numeroMaquina = '${numero}',complementoMaquina = '${complemento}', pontoDeReferencia = '${pontoReferencia}' where idMaquina = '${idCaixa}';
-  `;
+  update Maquinas set nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}',
+ imgMaquina = '${imagemCaixa}', numeroEnderecoMaquina = '${numero}', complementoMaquina = '${complemento}' where idMaquina = ${idCaixa};`;
   return database.executar(instrucao);
 }
 
@@ -108,6 +106,16 @@ function mostrarLembrete(idUsuario) {
 function updatePerfil(id, nome, telefone, email, cep, numero, complemento) {
   const query = `UPDATE usuarios SET nomeUsuario = '${nome}', telefoneUsuario = '${telefone}',
   emailUsuario = '${email}', cepUsuario = '${cep}', numeroLocalUsuario = '${numero}', complementoLocalUsuario = '${complemento}' WHERE idUsuario = ${id} `;
+  return database.executar(query);
+}
+
+function removerCaixa(id) {
+  const query = `DELETE FROM maquinas WHERE idMaquina = ${id};`;
+  return database.executar(query);
+}
+
+function removerCaixaFiltro(id) {
+  const query = `DELETE FROM maquinas WHERE idMaquina = ${id};`;
   return database.executar(query);
 }
 
@@ -171,7 +179,7 @@ function listarCaixas() {
 function listarHistorico() {
   var instrucao = `
   SELECT fkMaquinaHistorico, idHistorico, usoRamHistorico, usoProcessadorHistorico, usoDiscoHistorico,
-  dataHoraHistorico from historico;
+  dataHoraHistorico from historico order by idHistorico desc;
   `;
   return database.executar(instrucao);
 }
@@ -212,6 +220,14 @@ function pesquisarCaixa(caixa) {
 function pesquisarHistorico(dataHora) {
   var instrucao = `
   select * from historico where dataHoraHistorico like "${dataHora}%";
+  `;
+  return database.executar(instrucao);
+}
+
+
+function filtroCaixaButtom(idCaixa) {
+  var instrucao = `
+  select * from historico where fkMaquinaHistorico = ${idCaixa};
   `;
   return database.executar(instrucao);
 }
@@ -396,7 +412,7 @@ module.exports = {
   cadastrar,
   listar,
   cadastrarFunc,
-  cadastrarCaixa,
+  cadastrarCaixas,
   adicionarLembrete,
   mostrarLembrete,
   updatePerfil,
@@ -414,6 +430,7 @@ module.exports = {
   lembreteDefault,
   pesquisarCaixa,
   pesquisarHistorico,
+  filtroCaixaButtom,
   exibirQtdHistorico,
   obterAlertasPorData,
   exibirQtdTotalAlertasDoDia,
@@ -421,6 +438,8 @@ module.exports = {
   exibirQtdTotalCaixasCpu,
   exibirQtdTotalCaixasDisco,
   listarIDs,
+  removerCaixa,
+  removerCaixaFiltro,
 
   /*------------------------ETIQUETAS-------------------------------------- */
   obterQtdAlertaRamLast30dias,

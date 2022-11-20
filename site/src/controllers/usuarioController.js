@@ -199,16 +199,14 @@ function cadastrarFunc(req, res) {
   }
 }
 
-function cadastrarCaixa(req, res) {
+function cadastrarCaixas(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var idCaixa = req.body.idCaixaServer;
   var nomeCaixa = req.body.nomeCaixaServer;
   var enderecoCaixa = req.body.enderecoCaixaServer;
   var imagemCaixa = req.body.imagemCaixaServer;
-  var numeroSerial = req.body.numeroSerialServer;
   var numero = req.body.numeroEnderecoServer;
   var complemento = req.body.complementoEnderecoServer;
-  var pontoReferencia = req.body.pontoReferenciaEnderecoServer;
 
   // Faça as validações dos valores
   if (nomeCaixa == undefined) {
@@ -220,15 +218,13 @@ function cadastrarCaixa(req, res) {
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
-      .cadastrarCaixa(
+      .cadastrarCaixas(
         idCaixa,
         nomeCaixa,
         enderecoCaixa,
         imagemCaixa,
-        numeroSerial,
         numero,
-        complemento,
-        pontoReferencia
+        complemento
       )
       .then(function (resultado) {
         res.json(resultado);
@@ -297,6 +293,50 @@ function updatePerfil(req, res) {
       }
     });
 }
+
+
+function removerCaixa(req, res) {
+  var id = req.body.idServer;
+  
+
+  usuarioModel
+    .removerCaixa(id)
+    .then((response) => {
+      const tamanho = response.affectedRows;
+
+      if (tamanho > 0) {
+        res.json({
+          mensagem: "success",
+        });
+      } else {
+        res.json({
+          mensagem: "error",
+        });
+      }
+    });
+}
+
+function removerCaixaFiltro(req, res) {
+  var id = req.body.idServer;
+  
+
+  usuarioModel
+    .removerCaixaFiltro(id)
+    .then((response) => {
+      const tamanho = response.affectedRows;
+
+      if (tamanho > 0) {
+        res.json({
+          mensagem: "success",
+        });
+      } else {
+        res.json({
+          mensagem: "error",
+        });
+      }
+    });
+}
+
 
 function listarPerfil(req, res) {
   const idUser = req.params.id;
@@ -592,6 +632,30 @@ function pesquisarHistorico(req, res) {
       res.status(500).json(erro.sqlMessage);
     });
 }
+
+
+function filtroCaixaButtom(req, res) {
+  const idCaixa = req.params.caixa;
+
+  usuarioModel
+    .filtroCaixaButtom(idCaixa)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 function obterAlertasPorData(req, res) {
   const data = req.params.dataAlerta;
@@ -1065,7 +1129,7 @@ module.exports = {
   listar,
   testar,
   cadastrarFunc,
-  cadastrarCaixa,
+  cadastrarCaixas,
   updatePerfil,
   adicionarLembrete,
   listarPerfil,
@@ -1080,6 +1144,7 @@ module.exports = {
   atualizarImg,
   pesquisarCaixa,
   pesquisarHistorico,
+  filtroCaixaButtom,
   exibirQtdHistorico,
   obterAlertasPorData,
   exibirQtdTotalAlertasDoDia,
@@ -1087,6 +1152,8 @@ module.exports = {
   exibirQtdTotalCaixasCpu,
   exibirQtdTotalCaixasDisco,
   listarIDs,
+  removerCaixa,
+  removerCaixaFiltro,
   
 
   /*------------------------ETIQUETAS-------------------------------------- */

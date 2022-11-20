@@ -7,10 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
   <title>Etiquetas - ISee</title>
-  <link rel="stylesheet" href="../css/etiquetas.css" />
+  <!-- <link rel="stylesheet" href="../css/etiquetas.css" /> -->
   <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
   <link rel="stylesheet" href="../css/efeitoToltipDescricao.css">
   <link rel="stylesheet" href="../css/styleModal.css">
+  <link rel="stylesheet" href="../css/etiquetas.css" />
   <script src="../js/atribuirEtiqueta.js"></script>
   
 </head>
@@ -290,13 +291,12 @@ var dataAtual = new Date();
     <span id="corpoModalEtiquetaEnciclopedia" class="corpoModalEtiqueta">
 
 
-      <p>Caixa 1</p>
-      <p>Caixa 3</p>
-      <p>Caixa 6</p>
+      <p>Não foi encontrado nenhuma!</p>
+
 
     </span>
 
-    <button class="button8" onclick="">Visualizar Caixas</button>
+    <button class="button8" onclick="redirecionarMeusCaixas()">Visualizar Caixas</button>
   </div>
 </div>
 <!-- FIM EXEMPLO DO CARD MODAL DE ETIQUETA--------------->
@@ -315,12 +315,11 @@ var dataAtual = new Date();
 
     <span id="corpoModalEtiquetaAtarefado" class="corpoModalEtiqueta">
 
-      <p>Caixa 3</p>
-      <p>Caixa 4</p>
+      <p>Não foi encontrado nenhuma!</p>
 
     </span>
 
-    <button class="button8" onclick="">Visualizar Caixas</button>
+    <button class="button8" onclick="redirecionarMeusCaixas()">Visualizar Caixas</button>
   </div>
 </div>
 
@@ -338,12 +337,11 @@ var dataAtual = new Date();
     <h3>Dorminhoco</h3>
 
     <span id="corpoModalEtiquetaDorminhoco" class="corpoModalEtiqueta">
-
-      <p>Caixa 1</p>
+      <p>Não foi encontrado nenhuma!</p>
 
     </span>
 
-    <button class="button8" onclick="">Visualizar Caixas</button>
+    <button class="button8" onclick="redirecionarMeusCaixas()">Visualizar Caixas</button>
   </div>
 </div>
 
@@ -363,13 +361,11 @@ var dataAtual = new Date();
     <span id="corpoModalEtiquetaCaminhador" class="corpoModalEtiqueta">
 
 
-      <p>Caixa 1</p>
-      <p>Caixa 3</p>
-      <p>Caixa 6</p>
+      <p>Não foi encontrado nenhuma!</p>
 
     </span>
 
-    <button class="button8" onclick="">Visualizar Caixas</button>
+    <button class="button8" onclick="redirecionarMeusCaixas()">Visualizar Caixas</button>
   </div>
 </div>
 
@@ -444,4 +440,8 @@ function exibirEtiquetas() {
             console.log(`#ERRO: ${resposta}`);
         });
     }
+
+    function redirecionarMeusCaixas(){
+    window.location.href = "./meusCaixas.html";
+  }
 </script>

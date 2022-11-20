@@ -481,7 +481,11 @@
             console.log("sucesso ao tentar atualizar os dados do Perfil!");
             modal.style.display = "block";
             modalImg.src = "assets/img/iconCheck.svg";
-            modalText.innerHTML = "Alterado com sucesso!";
+            modalText.innerHTML = `Alterado com sucesso! <br> Você sera redirecionado para tela de Login!`;
+            setTimeout(() => {
+              window.location.href = `login.html`;
+            }, 1500);
+            
           } else {
             console.log("Houve um erro ao tentar atualizar os dados do Perfil");
           }
