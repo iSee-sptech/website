@@ -1,219 +1,160 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="assets/img/iconLogo.ico"
-      type="image/x-icon"
-    />
-    <title>Meu Perfil - ISee</title>
-    <link rel="stylesheet" href="css/meuPerfil.css" />
-    <link rel="stylesheet" href="css/styleModal.css" />
-    <link rel="stylesheet" href="css/NavBarSemDescricao.css" />
-    <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
-  </head>
 
-  <body onload="listarPerfil()">
-    <div class="first_section">
-      <div class="container_card container_dados">
-        <div
-          class=""
-          style="
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/img/iconLogo.ico" type="image/x-icon" />
+  <title>Meu Perfil - ISee</title>
+  <link rel="stylesheet" href="css/meuPerfil.css" />
+  <link rel="stylesheet" href="css/styleModal.css" />
+  <link rel="stylesheet" href="css/NavBarSemDescricao.css" />
+  <link rel="stylesheet" href="css/efeitoToltipDescricao.css" />
+</head>
+
+<body onload="listarPerfil()">
+  <div class="first_section">
+    <div class="container_card container_dados">
+      <div class="" style="
             height: 20vh;
             width: 10vw;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 15%;
-          "
-          id="imagemUsuarioPerfil"
-        ></div>
-        <span>
-          <input
-            type="text"
-            id="attImagem"
-            placeholder="URL"
-            onkeyup="mostrarImagem()"
-          />
-        </span>
-        <h2 id="nome_usuario"></h2>
+          " id="imagemUsuarioPerfil"></div>
+      <span>
+        <input type="text" id="attImagem" placeholder="URL" onkeyup="mostrarImagem()" />
+      </span>
+      <h2 id="nome_usuario"></h2>
 
-        <button type="button" class="buttonContact" onclick="adcionnarImagem()">
-          Adicionar imagem
-        </button>
-      </div>
+      <button type="button" class="buttonContact" onclick="adcionnarImagem()">
+        Adicionar imagem
+      </button>
+    </div>
 
-      <!-- Meu Perfil -->
-      <div class="container_card container_meu_perfil">
-        <h2>Meu Perfil</h2>
+    <!-- Meu Perfil -->
+    <div class="container_card container_meu_perfil">
+      <h2>Meu Perfil</h2>
 
-        <form action="" id="" method="" onsubmit="">
-          <div class="container_inputs_head">
-            <label>Nome Completo</label>
-            <input
-              placeholder="Nome e Sobrenome"
-              type="text"
-              id="inputNome"
-              class="input_type1"
-            />
-          </div>
+      <form action="" id="" method="" onsubmit="">
+        <div class="container_inputs_head">
+          <label>Nome Completo</label>
+          <input placeholder="Nome e Sobrenome" type="text" id="inputNome" class="input_type1" />
+        </div>
 
-          <div class="container_inputs_sidebyside">
-            <span>
-              <label>E-mail</label>
-              <input
-                placeholder="iSee@example.com"
-                type="text"
-                id="inputEmail"
-              />
-            </span>
-            <span>
-              <label>CPF</label>
-              <input
-                type="text"
-                id="inputCPF"
-                placeholder="___.___.___-__"
-                disabled
-              />
-            </span>
-
-            <span>
-              <label>Telefone</label>
-              <input
-                type="text"
-                id="inputTelefone"
-                placeholder="(__) _____-____"
-                maxlength="15"
-              />
-            </span>
-
-            <span>
-              <label>CEP</label>
-              <input
-                type="text"
-                id="inputCep"
-                placeholder="_____-___"
-                maxlength="9"
-              />
-            </span>
-
-            <span>
-              <label>Número</label>
-              <input placeholder="n°" type="text" id="inputNumeroEndereco" />
-            </span>
-
-            <span>
-              <label>Complemento</label>
-              <input
-                type="text"
-                id="inputComplementoEndereco"
-                placeholder="Apto, Bloco, Casa..."
-              />
-            </span>
-          </div>
-        </form>
-
-        <button style="cursor: pointer" class="buttonContact" onclick="updatePerfil()">
-          Alterar informações
-        </button>
-      </div>
-      <!-- Lembrete -->
-      <div class="container_card">
-        <h2>Lembrete</h2>
-
-        <div class="body_lembrete">
+        <div class="container_inputs_sidebyside">
           <span>
-            <label>Mensagem</label>
-            <textarea
-              id="mensagemLembrete"
-              placeholder="Texto atual"
-            ></textarea>
+            <label>E-mail</label>
+            <input placeholder="iSee@example.com" type="text" id="inputEmail" />
+          </span>
+          <span>
+            <label>CPF</label>
+            <input type="text" id="inputCPF" placeholder="___.___.___-__" disabled />
           </span>
 
+          <span>
+            <label>Telefone</label>
+            <input type="text" id="inputTelefone" placeholder="(__) _____-____" maxlength="15" />
+          </span>
+
+          <span>
+            <label>CEP</label>
+            <input type="text" id="inputCep" placeholder="_____-___" maxlength="9" />
+          </span>
+
+          <span>
+            <label>Número</label>
+            <input placeholder="n°" type="text" id="inputNumeroEndereco" />
+          </span>
+
+          <span>
+            <label>Complemento</label>
+            <input type="text" id="inputComplementoEndereco" placeholder="Apto, Bloco, Casa..." />
+          </span>
+        </div>
+      </form>
+
+      <button style="cursor: pointer" class="buttonContact" onclick="updatePerfil()">
+        Alterar informações
+      </button>
+    </div>
+    <!-- Lembrete -->
+    <div class="container_card">
+      <h2>Lembrete</h2>
+
+      <div class="body_lembrete">
+        <span>
+          <label>Mensagem</label>
+          <textarea id="mensagemLembrete" placeholder="Texto atual"></textarea>
+        </span>
+
         <label>Data e Hora</label>
-        <input  min="2022-10-18" value="18-10-2022" type="datetime-local" id="dataHoraLembrete" placeholder="AAAA-MM-DD HH:MI:SS" />
+        <input min="2022-10-18" value="18-10-2022" type="datetime-local" id="dataHoraLembrete"
+          placeholder="AAAA-MM-DD HH:MI:SS" />
       </div>
 
-        <button
-          style="cursor: pointer"
-          class="buttonContact" id="btnLembrete"
-          onclick="adicionarLembrete()"
-          type="button"
-        >
-          Criar
-        </button>
-      </div>
-    </div>
-
-    <div class="container_navbar" style="margin-top: 4vh;">
-      <div class="navbar_bottom">
-        <div class="btn_home" onclick="tela_home()">
-          <img
-            onclick="window.location.href='./homeFuncionario.html'"
-            src="../assets/img/home_icon.svg"
-          />
-          <h2 style="color: #7d2de2" id="effectlist">Home</h2>
-        </div>
-  
-        <div
-          class="btn_etiqueta"
-          onclick="window.location.href='../dashboard/etiquetas.html'">
-          <img src="../assets/img/etiqueta_icon.svg" />
-          <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
-        </div>
-  
-        <div class="btn_historico">
-          <img src="../assets/img/historico_icon.svg" />
-          <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
-        </div>
-  
-        <div
-          class="btn_dashboard"
-          onclick="window.location.href='../dashboard/Dashboard.html'"
-        >
-          <img src="../assets/img/dashboard_icon.svg" />
-          <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
-        </div>
-  
-        <div
-          class="btn_alerta"
-          onclick="window.location.href='../dashboard/alertas.html'"
-        >
-          <img src="../assets/img/alertas_icon.png" />
-          <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
-        </div>
-  
-        <div class="btn_perfil">
-          <img
-            onclick="window.location.href='../meuPerfil.html'"
-            src="../assets/img/userNavbar.svg"
-          />
-          <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
-        </div>
-  
-        <div class="btn_sair">
-          <img onclick="sair()" src="../assets/img/sair_icon.png" />
-          <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
-        </div>
-      </div>
-    </div>
-  </body>
-
-  <div id="modal" class="modalBody">
-    <div class="modalReadPlus">
-      <div class="containerReadPlus">
-        <div class="modalCheck">
-          <img id="modalImg" src="" alt="check" />
-        </div>
-        <button onclick="buttonBack()" class="modalBack">&times;</button>
-      </div>
-      <span id="modalText"></span>
-      <button class="button8" onclick="buttonBack()">Fechar</button>
+      <button style="cursor: pointer" class="buttonContact" id="btnLembrete" onclick="adicionarLembrete()"
+        type="button">
+        Criar
+      </button>
     </div>
   </div>
+
+  <div class="container_navbar" style="margin-top: 4vh;">
+    <div class="navbar_bottom">
+      <div class="btn_home" onclick="tela_home()">
+        <img onclick="window.location.href='./homeFuncionario.html'" src="assets/img/home_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Home</h2>
+      </div>
+
+      <div class="btn_etiqueta" onclick="window.location.href='dashboard/etiquetas.html'">
+        <img src="assets/img/etiqueta_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
+      </div>
+
+      <div class="btn_historico" onclick="window.location.href='dashboard/historico.html'">
+        <img src="assets/img/historico_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
+      </div>
+
+      <div class="btn_dashboard" onclick="window.location.href='dashboard/Dashboard.html'">
+        <img src="assets/img/dashboard_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
+      </div>
+
+      <div class="btn_alerta" onclick="window.location.href='dashboard/alertas.html'">
+        <img src="assets/img/alertas_icon.png" />
+        <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
+      </div>
+
+      <div class="btn_perfil">
+        <img onclick="window.location.href='meuPerfil.html'" src="assets/img/userNavbar.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
+      </div>
+
+      <div class="btn_sair">
+        <img onclick="sair()" src="assets/img/sair_icon.png" />
+        <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
+      </div>
+    </div>
+  </div>
+</body>
+
+<div id="modal" class="modalBody">
+  <div class="modalReadPlus">
+    <div class="containerReadPlus">
+      <div class="modalCheck">
+        <img id="modalImg" src="" alt="check" />
+      </div>
+      <button onclick="buttonBack()" class="modalBack">&times;</button>
+    </div>
+    <span id="modalText"></span>
+    <button class="button8" onclick="buttonBack()">Fechar</button>
+  </div>
+</div>
+
 </html>
 
 <script src="./js/mascarasMeuPerfil.js"></script>
@@ -485,7 +426,7 @@
             setTimeout(() => {
               window.location.href = `login.html`;
             }, 1500);
-            
+
           } else {
             console.log("Houve um erro ao tentar atualizar os dados do Perfil");
           }
