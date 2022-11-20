@@ -236,9 +236,9 @@ h6 {
   cursor: pointer;
 }
 
-.modalBody h3 {
+/* .modalBody h3 {
   color: #7d2de2;
-}
+} */
 
 .containerReadPlus {
   width: auto;
@@ -258,6 +258,10 @@ h6 {
   font-family: poppins;
   font-weight: 300;
   font-size: 12px;
+  margin: 1vh 0;
+  height: 50vh;
+  overflow-x: auto;
+  margin-left: 2.1vh
 }
 
 .modalBody h6 {
@@ -274,6 +278,10 @@ h6 {
 .corpoModalAlerta {
   display: flex;
   flex-direction: column;
+  margin: 1vh 0;
+  height: 50vh;
+  overflow-x: auto;
+  margin-left: 2.1vh
 }
 
 .container_informacoes_alerta {
