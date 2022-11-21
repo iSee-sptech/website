@@ -68,6 +68,10 @@ router.get("/exibirQuantidadeTotalRam", function (req, res) {
   usuarioController.exibirQuantidadeTotalRam(req, res);
 });
 
+router.get("/exibirQuantidadeRestanteRam", function (req, res) {
+  usuarioController.exibirQuantidadeRestanteRam(req, res);
+});
+
 router.get("/exibirCaixas", function (req, res) {
   usuarioController.exibirCaixas(req, res);
 });

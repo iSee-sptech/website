@@ -5,7 +5,7 @@ function buscarUltimasMedidas() {
   + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) as "eficienciaGlobal",
   nomeMaquina as "nomeMaquina" from historico
   join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
-  group by nomeMaquina order by eficienciaGlobal desc limit 4;`;
+  group by nomeMaquina order by eficienciaGlobal limit 4;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

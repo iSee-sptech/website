@@ -147,6 +147,14 @@ function exibirQuantidadeTotalRam() {
   return database.executar(instrucao);
 }
 
+function exibirQuantidadeRestanteRam() {
+  var instrucao = `
+  select round((usoRamHistorico * 100) / ramMaquina) as 'porcentagemRam' from historico
+  join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina group by nomeMaquina;
+  `;
+  return database.executar(instrucao);
+}
+
 function exibirCaixas() {
   var instrucao = `
   SELECT count(idMaquina) as 'qtdCaixa' from Maquinas;
@@ -385,9 +393,9 @@ function exibirPorcentagemRestanteGlobal(data) {
   return database.executar(instrucao);
 }
 
-function porcentagemderamrestanteEquantidaderamtotal(idDoCaixa) {
+function porcentagemderamrestanteEquantidaderamtotal(idMaquina) {
   var instrucao = `
-
+  
   `;
   return database.executar(instrucao);
 }
@@ -456,5 +464,6 @@ module.exports = {
   exibirPorcentagemRestanteGlobal,
   porcentagemderamrestanteEquantidaderamtotal,
   porcentagemdecpuatingidaEvelocidademaximacpu,
-  porcentagemdememoriarestanteEquantidadememoriatotal
+  porcentagemdememoriarestanteEquantidadememoriatotal,
+  exibirQuantidadeRestanteRam,
 };

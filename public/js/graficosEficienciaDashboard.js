@@ -63,11 +63,6 @@ var options01 = {
             backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
             tension: 0.1,
           },
-          {
-            data: [],
-            fill: false,
-            tension: 0.1,
-          },
         ],
         options: options01,
       };
