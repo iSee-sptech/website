@@ -29,71 +29,69 @@ var options01 = {
   },
 };
 
-    function obterDadosGrafico() {
-      fetch(`/medidas/ultimas`, { cache: "no-store" })
-        .then(function (response) {
-          if (response.ok) {
-            response.json().then(function (resposta) {
-              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-              resposta.reverse();
+function obterDadosGrafico() {
+  fetch(`/medidas/ultimas`, { cache: "no-store" })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          resposta.reverse();
 
-              plotarGrafico(resposta);
-            });
-          } else {
-            console.error("Nenhum dado encontrado ou erro na API");
-          }
-        })
-        .catch(function (error) {
-          console.error(
-            `Erro na obtenção dos dados p/ gráfico: ${error.message}`
-          );
+          plotarGrafico(resposta);
         });
-    }
-
-    function plotarGrafico(resposta) {
-      console.log("iniciando plotagem do gráfico...");
-      let labels = [];
-      let dados = {
-        labels: labels,
-        datasets: [
-          {
-            label: "Eficiência global",
-            data: [],
-            fill: false,
-            backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
-            tension: 0.1,
-          },
-        ],
-        options: options01,
-      };
-
-      console.log("----------------------------------------------");
-      console.log(
-        'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":'
-      );
-      console.log(resposta);
-
-      for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        labels.push(registro.nomeMaquina);
-        dados.datasets[0].data.push(registro.eficienciaGlobal);
+      } else {
+        console.error("Nenhum dado encontrado ou erro na API");
       }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
 
-      console.log("----------------------------------------------");
-      console.log("O gráfico será plotado com os respectivos valores:");
-      console.log("Labels:");
-      console.log(labels);
-      console.log("Dados:");
-      console.log(dados.datasets);
-      console.log("----------------------------------------------");
+function plotarGrafico(resposta) {
+  console.log("iniciando plotagem do gráfico...");
+  let labels = [];
+  let dados = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Eficiência global",
+        data: [],
+        fill: false,
+        backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
+        tension: 0.1,
+      },
+    ],
+    options: options01,
+  };
 
-      const config = {
-        type: "bar",
-        data: dados,
-      };
+  console.log("----------------------------------------------");
+  console.log(
+    'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":'
+  );
+  console.log(resposta);
 
-      let myChart = new Chart(document.getElementById("myBarChart"), config);
-    }
+  for (i = 0; i < resposta.length; i++) {
+    var registro = resposta[i];
+    labels.push(registro.nomeMaquina);
+    dados.datasets[0].data.push(registro.eficienciaGlobal);
+  }
+
+  console.log("----------------------------------------------");
+  console.log("O gráfico será plotado com os respectivos valores:");
+  console.log("Labels:");
+  console.log(labels);
+  console.log("Dados:");
+  console.log(dados.datasets);
+  console.log("----------------------------------------------");
+
+  const config = {
+    type: "bar",
+    data: dados,
+  };
+
+  let myChart = new Chart(document.getElementById("myBarChart"), config);
+}
 
 // // GRAFICOS DA ESQUEDA
 
