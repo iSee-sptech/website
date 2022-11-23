@@ -1,8 +1,8 @@
-function filtrarApenasRam() {
-    filtroSelecionado = "ram";
-    titulo_card1.innerHTML = "Porcenetagem RAM restante";
-    titulo_card2.innerHTML = "Quantidade de RAM TOTAL";
-    var options03 = {
+function filtrarApenasMemoria() {
+    filtroSelecionado = "memoria";
+    titulo_card1.innerHTML = "Quantidade de DISCO restante";
+    titulo_card2.innerHTML = "Quantidade de DISCO TOTAL";
+    var options05 = {
       color: "#fff",
       scales: {
         x: {
@@ -36,7 +36,7 @@ function filtrarApenasRam() {
     obterDadosGrafico();
 
     function obterDadosGrafico() {
-      fetch(`/medidas/ram`, { cache: "no-store" })
+      fetch(`/medidas/memoria`, { cache: "no-store" })
         .then(function (response) {
           if (response.ok) {
             response.json().then(function (resposta) {
@@ -63,14 +63,14 @@ function filtrarApenasRam() {
         labels: labels,
         datasets: [
           {
-            label: "Uso de RAM (%)",
+            label: "Uso de DISCO (%)",
             data: [],
             fill: false,
             backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
             tension: 0.1,
           },
         ],
-        options: options03,
+        options: options05,
       };
 
       console.log("----------------------------------------------");
@@ -82,7 +82,7 @@ function filtrarApenasRam() {
       for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         labels.push(registro.nomeMaquina);
-        dados.datasets[0].data.push(registro.usoRam);
+        dados.datasets[0].data.push(registro.usoDisco);
       }
 
       console.log("----------------------------------------------");

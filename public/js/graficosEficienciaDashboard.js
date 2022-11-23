@@ -55,7 +55,7 @@ function plotarGrafico(resposta) {
     labels: labels,
     datasets: [
       {
-        label: "Eficiência global",
+        label: "Eficiência global (%)",
         data: [],
         fill: false,
         backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
@@ -89,8 +89,7 @@ function plotarGrafico(resposta) {
     type: "bar",
     data: dados,
   };
-
-  let myChart = new Chart(document.getElementById("myBarChart"), config);
+  myChart = new Chart(document.getElementById("myBarChart"), config);
 }
 
 // // GRAFICOS DA ESQUEDA

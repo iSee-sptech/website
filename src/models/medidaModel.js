@@ -24,7 +24,23 @@ return database.executar(instrucaoSql);
 function eficienciaRam() {
   instrucaoSql = `select round((usoRamHistorico * 100)/ramMaquina) as "usoRam", nomeMaquina as "nomeMaquina"
   from historico join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
-  group by nomeMaquina order by usoRam desc limit 4;`;
+  group by nomeMaquina order by usoRam limit 4;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function eficienciaCpu() {
+  instrucaoSql = `select round((usoProcessadorHistorico * 100)/processadorMaquina) as "usoCpu", nomeMaquina as "nomeMaquina"
+  from historico join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
+  group by nomeMaquina order by usoCpu limit 4;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function eficienciaMemoria() {
+  instrucaoSql = `select round((usoDiscoHistorico * 100)/discoMaquina) as "usoDisco", nomeMaquina as "nomeMaquina"
+  from historico join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
+  group by nomeMaquina order by usoDisco limit 4;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -33,4 +49,6 @@ module.exports = {
   buscarUltimasMedidas,
   buscarMedidasEmTempoReal,
   eficienciaRam,
+  eficienciaCpu,
+  eficienciaMemoria,
 }

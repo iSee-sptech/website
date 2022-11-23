@@ -23,8 +23,7 @@
   </head>
 
   <body
-    onload="imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes()"
-  >
+    onload="imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes()">
     <div class="body_dashboard">
       <div class="sessao_grafico_principal">
         <div class="container_title">
@@ -45,16 +44,9 @@
         <div class="head_filtros">
           <div class="selecao_filtro">
             <h2>Filtro</h2>
-            <button
-              id="filtro_ram"
-              onclick="filtrarApenasRam(), exibirQuantidadeTotalRam()"
-            >
-              RAM
-            </button>
-            <button id="filtro_cpu" onclick="filtrarApenasRam()">CPU</button>
-            <button id="filtro_memoria" onclick="filtrarApenasMemoria()">
-              Memória
-            </button>
+            <button id="filtro_ram" onclick="filtrarApenasRam(), exibirQuantidadeTotalRam()">RAM</button>
+            <button id="filtro_cpu" onclick="filtrarApenasCpu()">CPU</button>
+            <button id="filtro_memoria" onclick="filtrarApenasMemoria()">Memória</button>
           </div>
 
           <div id="selecao_maquina" class="selecao_maquina"></div>
@@ -170,14 +162,13 @@
     </div>
   </body>
 
-  <script src="../js/graficosRamDashboard.js"></script>
-  <script src="../js/graficosEficienciaDashboard.js"></script>
+  
   <link rel="stylesheet" href="../css/dashboard.css" />
 
   <script>
     var filtroSelecionado = "";
     var idCaixaSelecionado = null;
-    var myBarChart;
+    var myChart;
     var dataAtual = new Date();
     var hora = dataAtual.getHours();
     var nome = sessionStorage.nomeUsuario;
@@ -333,18 +324,6 @@
         });
     }
 
-    function filtrarApenasCpu() {
-      filtroSelecionado = "cpu";
-      titulo_card1.innerHTML = "Quantidade de CPU restante";
-      titulo_card2.innerHTML = "Quantidade de CPU TOTAL";
-    }
-
-    function filtrarApenasMemoria() {
-      filtroSelecionado = "memoria";
-      titulo_card1.innerHTML = "Quantidade de Memória restante";
-      titulo_card2.innerHTML = "Quantidade de Memória TOTAL";
-    }
-
     function imgUsuario() {
       var idUsuario = sessionStorage.idUsuario;
       fetch(`/usuarios/imgUsuario/${idUsuario}`, {
@@ -462,107 +441,10 @@
         valor_card2.innerHTML = `${qtdMemoriaTotal}` + " Gb";
       }
     }
-
-    function filtrarApenasRam() {
-      filtroSelecionado = "ram";
-      titulo_card1.innerHTML = "Porcenetagem RAM restante";
-      titulo_card2.innerHTML = "Quantidade de RAM TOTAL";
-      var options03 = {
-        color: "#fff",
-        scales: {
-          x: {
-            ticks: {
-              color: "#fff",
-              font: {
-                size: 10,
-              },
-            },
-          },
-          y: {
-            ticks: {
-              color: "#fff",
-              font: {
-                size: 10,
-              },
-            },
-          },
-        },
-
-        y: {
-          color: "#fff",
-          beginAtZero: true,
-          max: 100,
-          ticks: {
-            maxTicksLimit: 10,
-          },
-        },
-      };
-
-      function obterDadosGrafico() {
-        fetch(`/medidas/ram`, { cache: "no-store" })
-          .then(function (response) {
-            if (response.ok) {
-              response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
-
-                plotarGrafico(resposta);
-              });
-            } else {
-              console.error("Nenhum dado encontrado ou erro na API");
-            }
-          })
-          .catch(function (error) {
-            console.error(
-              `Erro na obtenção dos dados p/ gráfico: ${error.message}`
-            );
-          });
-      }
-
-      function plotarGrafico(resposta) {
-        console.log("iniciando plotagem do gráfico...");
-        let labels = [];
-        let dados = {
-          labels: labels,
-          datasets: [
-            {
-              label: "Uso de RAM",
-              data: [],
-              fill: false,
-              backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
-              tension: 0.1,
-            },
-          ],
-          options: options03,
-        };
-
-        console.log("----------------------------------------------");
-        console.log(
-          'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":'
-        );
-        console.log(resposta);
-
-        for (i = 0; i < resposta.length; i++) {
-          var registro = resposta[i];
-          labels.push(registro.nomeMaquina);
-          dados.datasets[0].data.push(registro.usoRam);
-        }
-
-        console.log("----------------------------------------------");
-        console.log("O gráfico será plotado com os respectivos valores:");
-        console.log("Labels:");
-        console.log(labels);
-        console.log("Dados:");
-        console.log(dados.datasets);
-        console.log("----------------------------------------------");
-
-        const config = {
-          type: "bar",
-          data: dados,
-        };
-
-        let myChart = new Chart(document.getElementById("myBarChart"), config);
-      }
-    }
   </script>
+
+  <script src="../js/graficosRamDashboard.js"></script>
+  <script src="../js/graficosEficienciaDashboard.js"></script>
+  <script src="../js/graficosCpuDashboard.js"></script>
+  <script src="../js/graficosMemoriaDashboard.js"></script>
 </html>
