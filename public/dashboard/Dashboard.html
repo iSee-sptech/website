@@ -23,7 +23,8 @@
   </head>
 
   <body
-    onload="imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes()">
+    onload="imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes()"
+  >
     <div class="body_dashboard">
       <div class="sessao_grafico_principal">
         <div class="container_title">
@@ -44,9 +45,16 @@
         <div class="head_filtros">
           <div class="selecao_filtro">
             <h2>Filtro</h2>
-            <button id="filtro_ram" onclick="filtrarApenasRam(), exibirQuantidadeTotalRam()">RAM</button>
+            <button
+              id="filtro_ram"
+              onclick="filtrarApenasRam(), exibirQuantidadeTotalRam()"
+            >
+              RAM
+            </button>
             <button id="filtro_cpu" onclick="filtrarApenasCpu()">CPU</button>
-            <button id="filtro_memoria" onclick="filtrarApenasMemoria()">Memória</button>
+            <button id="filtro_memoria" onclick="filtrarApenasMemoria()">
+              Memória
+            </button>
           </div>
 
           <div id="selecao_maquina" class="selecao_maquina"></div>
@@ -56,13 +64,13 @@
           <div class="card">
             <h4 id="titulo_card1">Porcentagem global restante</h4>
             <!--AQUI FICA O TITULO DO PRIMEIRO CARD -->
-            <h2><span id="valor_card1"></span>%</h2>
+            <h2><span id="valor_card1"></span></h2>
           </div>
 
           <div class="card">
-            <h4 id="titulo_card2">Quantidade de RAM TOTAL</h4>
+            <h4 id="titulo_card2">Porcentagem global recomendada</h4>
             <!--AQUI FICA O TITULO DO SEGUNDO CARD -->
-            <h2><span id="valor_card2">0</span> GB</h2>
+            <h2><span id="valor_card2">55%</span></h2>
           </div>
         </div>
 
@@ -162,7 +170,6 @@
     </div>
   </body>
 
-  
   <link rel="stylesheet" href="../css/dashboard.css" />
 
   <script>
@@ -256,7 +263,6 @@
         })
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
-          //finalizarAguardar();
         });
     }
 
@@ -272,12 +278,11 @@
           resposta.json().then((data) => {
             console.log(data);
             var valorEficiencia = data[0].eficienciaGlobalRestante;
-            valor_card1.innerHTML = valorEficiencia;
+            valor_card1.innerHTML = valorEficiencia + "%";
           });
         })
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
-          //finalizarAguardar();
         });
     }
 
@@ -289,19 +294,16 @@
         },
       })
         .then((resposta) => {
-          // saldoConta
           resposta.json().then((data) => {
             console.log(data);
             var ram = data[0].totalRam;
             const resultRam = ram.toString().substr(0, 2);
-            //ram = ram && ram.substr(0, 2);
             console.log(resultRam);
             valor_card2.innerHTML = resultRam;
           });
         })
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
-          //finalizarAguardar();
         });
     }
 
@@ -352,7 +354,6 @@
         })
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
-          //finalizarAguardar();
         });
     }
 
@@ -374,17 +375,16 @@
               console.log(data);
               var porcentagemRamRestante = data[0].porcentagemRamRestante;
               var qtdRamTotal = data[0].qtdRamTotal;
+
+              titulo_card1.innerHTML = "Porcentagem RAM restante";
+              valor_card1.innerHTML = `${porcentagemRamRestante}` + "%";
+              titulo_card2.innerHTML = "Quantidade de RAM TOTAL";
+              valor_card2.innerHTML = `${qtdRamTotal}` + " Gb";
             });
           })
           .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            //finalizarAguardar();
           });
-
-        titulo_card1.innerHTML = "Porcentagem RAM restante";
-        valor_card1.innerHTML = `${porcentagemRamRestante}` + "%";
-        titulo_card2.innerHTML = "Quantidade de RAM TOTAL";
-        valor_card2.innerHTML = `${qtdRamTotal}` + " Gb";
       } else if (filtroSelecionado == "cpu" && idCaixaSelecionado != null) {
         fetch(
           `/usuarios/porcentagemdecpuatingidaEvelocidademaximacpu/${idMaquina}`,
@@ -400,19 +400,17 @@
               console.log(data);
               var velocidadeMaxCpu = data[0].velocidadeMaxCpu;
               var porcentagemCpuAtingida = data[0].porcentagemCpuAtingida;
+
+              titulo_card1.innerHTML = "Porcentagem da CPU atingida";
+              valor_card1.innerHTML = `${porcentagemCpuAtingida}` + "%";
+              titulo_card2.innerHTML = "Velocidade máxima da CPU";
+              valor_card2.innerHTML = `${velocidadeMaxCpu}` + " GHz";
             });
           })
           .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            //finalizarAguardar();
           });
-
-        titulo_card1.innerHTML = "Porcentagem da CPU atingida";
-        valor_card1.innerHTML = `${porcentagemCpuAtingida}` + "%";
-        titulo_card2.innerHTML = "Velocidade máxima da CPU";
-        valor_card2.innerHTML = `${velocidadeMaxCpu}` + " GHz";
       } else if (filtroSelecionado == "memoria" && idCaixaSelecionado != null) {
-        //todo fetch passa parametro o idCaixa
         fetch(
           `/usuarios/porcentagemdememoriarestanteEquantidadememoriatotal/${idMaquina}`,
           {
@@ -428,17 +426,16 @@
               var porcentagemMemoriaRestante =
                 data[0].porcentagemMemoriaRestante;
               var qtdMemoriaTotal = data[0].qtdMemoriaTotal;
+
+              titulo_card1.innerHTML = "Porcentagem de Memória restante";
+              valor_card1.innerHTML = `${porcentagemMemoriaRestante}` + "%";
+              titulo_card2.innerHTML = "Quantidade de Memória TOTAL";
+              valor_card2.innerHTML = `${qtdMemoriaTotal}` + " Gb";
             });
           })
           .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            //finalizarAguardar();
           });
-
-        titulo_card1.innerHTML = "Porcentagem de Memória restante";
-        valor_card1.innerHTML = `${porcentagemMemoriaRestante}` + "%";
-        titulo_card2.innerHTML = "Quantidade de Memória TOTAL";
-        valor_card2.innerHTML = `${qtdMemoriaTotal}` + " Gb";
       }
     }
   </script>

@@ -81,7 +81,7 @@ function cadastrarCaixas(
   enderecoCaixa,
   imagemCaixa,
   numero,
-  complemento,
+  complemento
 ) {
   var instrucao = `
   update Maquinas set nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}',
@@ -231,7 +231,6 @@ function pesquisarHistorico(dataHora) {
   `;
   return database.executar(instrucao);
 }
-
 
 function filtroCaixaButtom(idCaixa) {
   var instrucao = `
@@ -393,23 +392,26 @@ function exibirPorcentagemRestanteGlobal(data) {
   return database.executar(instrucao);
 }
 
-function porcentagemderamrestanteEquantidaderamtotal(idMaquina) {
+function porcentagemderamrestanteEquantidaderamtotal(idDoCaixa) {
   var instrucao = `
-  
+  select round(100 - (usoRamHistorico * 100 / ramMaquina)) as porcentagemRamRestante, ramMaquina as qtdRamTotal from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
+  where idMaquina = '${idDoCaixa}' order by idHistorico desc limit 1;
   `;
   return database.executar(instrucao);
 }
 
 function porcentagemdecpuatingidaEvelocidademaximacpu(idDoCaixa) {
   var instrucao = `
- 
+  select round((usoProcessadorHistorico * 100) / processadorMaquina) as porcentagemCpuAtingida, processadorMaquina as velocidadeMaxCpu from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
+  where idMaquina = '${idDoCaixa}'  order by idHistorico desc limit 1;
   `;
   return database.executar(instrucao);
 }
 
 function porcentagemdememoriarestanteEquantidadememoriatotal(idDoCaixa) {
   var instrucao = `
-  
+  select round(100 - (usoDiscoHistorico * 100 / discoMaquina)) as porcentagemMemoriaRestante, discoMaquina as qtdMemoriaTotal from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
+  where idMaquina = '${idDoCaixa}' order by idHistorico desc limit 1;
   `;
   return database.executar(instrucao);
 }
