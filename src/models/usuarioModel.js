@@ -239,7 +239,7 @@ function filtroCaixaButtom(idCaixa) {
   return database.executar(instrucao);
 }
 
-function obterAlertasPorData(data) {
+function obterAlertasPorData(ano, mes, dia) {
   // var instrucao = `
   // select * from alerta where datahoraAlerta LIKE '%${data}%'
   // `;
@@ -251,7 +251,7 @@ function obterAlertasPorData(data) {
   //ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
   //`;
   var instrucao = `select Maquinas.nomeMaquina as 'Nome', Alerta.componente as 'Componente', Alerta.nivelAlerta as 'Nivel', Alerta.dado as 'Dado', Alerta.datahoraAlerta as 'DataHora'
-  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where datahoraAlerta LIKE '%${data}%'
+  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where datahoraAlerta LIKE '%${ano}-${mes}-${dia}%'
   order by Alerta.nivelAlerta desc, Alerta.datahoraAlerta desc`;
   return database.executar(instrucao);
 }
@@ -297,7 +297,7 @@ function obterQtdAlertaRamLast30dias(idDoCaixa) {
   // SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta
   // WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY) AND CURRENT_DATE()
   // `;
-
+  
   var instrucao = `
   SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta 
   WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATEADD(DAY, -30, '${obterDataHojeAmericano()}') AND '${obterDataHojeAmericano()}';

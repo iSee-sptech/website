@@ -109,7 +109,7 @@ router.get("/imgUsuario/:id", function (req, res) {
 });
 router.post("/adicionarImagem", usuarioController.atualizarImg);
 
-router.get("/obterAlertasPorData/:dataAlerta", function (req, res) {
+router.get("/obterAlertasPorData/:ano/:mes/:dia", function (req, res) {
   usuarioController.obterAlertasPorData(req, res);
 });
 
