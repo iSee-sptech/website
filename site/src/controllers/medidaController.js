@@ -39,9 +39,37 @@ function buscarMedidasEmTempoReal(req, res) {
 
 function eficienciaRam(req, res) {
 
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
     medidaModel.eficienciaRam().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function eficienciaCpu(req, res) {
+
+    medidaModel.eficienciaCpu().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function eficienciaMemoria(req, res) {
+
+    medidaModel.eficienciaMemoria().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -58,4 +86,6 @@ module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     eficienciaRam,
+    eficienciaCpu,
+    eficienciaMemoria,
 }
