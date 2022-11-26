@@ -12,6 +12,8 @@
     <title>Home Administrador - ISee</title>
     <link rel="stylesheet" href="../css/homeGestor.css" />
     <link rel="stylesheet" href="../css/NavBar.css" />
+    <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
+    <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
     <script src="../js/atribuirEtiqueta.js"></script>
   </head>
 
@@ -107,59 +109,58 @@
       </div>
     </div>
 
-    <div class="container_navbar">
-      <div class="navbar_bottom">
-        <div class="btn_home">
-          <img
-            onclick="window.location.href='./homeGestor.html'"
-            src="../assets/img/home_icon.svg"
-          />
-          <h2 style="color: #7d2de2">Home</h2>
-        </div>
+    <!--NavBar-->
+    <div class="container_navbar" style="margin-top: 4vh;">
+    <div class="navbar_bottom">
+      <div class="btn_home" onclick="tela_home()">
+        <img
+          onclick="window.location.href='./homeGestor.html'"
+          src="../assets/img/iconesRoxos/home_iconRoxo.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Home</h2>
+      </div>
 
-        <div
-          class="btn_etiqueta"
-          onclick="window.location.href='./etiquetas.html'"
-        >
-          <img src="../assets/img/etiqueta_icon.svg" />
-          <h2 class="effectlist">Etiquetas</h2>
-        </div>
+      <div
+        class="btn_etiqueta"
+        onclick="window.location.href='../dashboard/etiquetas.html'">
+        <img src="../assets/img/etiqueta_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
+      </div>
 
-        <div
-          class="btn_historico"
-          onclick="window.location.href='./historico.html'"
-        >
-          <img src="../assets/img/historico_icon.svg" />
-          <h2 class="effectlist">Histórico</h2>
-        </div>
+      <div class="btn_historico" onclick="window.location.href='../dashboard/historico.html'">
+        <img src="../assets/img/historico_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
+      </div>
 
-        <div
-          class="btn_dashboard"
-          onclick="window.location.href='./Dashboard.html'"
-        >
-          <img src="../assets/img/dashboard_icon.svg" />
-          <h2 class="effectlist">Dashboard</h2>
-        </div>
+      <div
+        class="btn_dashboard"
+        onclick="window.location.href='../dashboard/Dashboard.html'">
+        <img src="../assets/img/dashboard_icon.svg" />
+        <h2 style="color: #7d2de2" id="effectlist">Dashboard</h2>
+      </div>
 
-        <div class="btn_alerta" onclick="window.location.href='./alertas.html'">
-          <img src="../assets/img/alertas_icon.png" />
-          <h2 class="effectlist">Alertas</h2>
-        </div>
+      <div
+        class="btn_alerta"
+        onclick="window.location.href='../dashboard/alertas.html'"
+      >
+        <img src="../assets/img/alertas_icon.png" />
+        <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
+      </div>
 
-        <div class="btn_perfil" onclick="window.location.href='../meuPerfil.html'">
-          <img
-            onclick="window.location.href='../meuPerfil.html'"
-            src="../assets/img/userNavbar.svg"
-          />
-          <h2 class="effectlist">Perfil</h2>
-        </div>
+      <div class="btn_perfil">
+        <img
+          onclick="window.location.href='../meuPerfil.html'"
+          src="../assets/img/userNavbar.svg"
+        />
+        <h2 style="color: #7d2de2" id="effectlist">Perfil</h2>
+      </div>
 
-        <div class="btn_sair">
-          <img onclick="sair()" src="../assets/img/sair_icon.png" />
-          <h2 class="effectlist">Sair</h2>
-        </div>
+      <div class="btn_sair">
+        <img onclick="sair()" src="../assets/img/sair_icon.png" />
+        <h2 style="color: #7d2de2" id="effectlist">Sair</h2>
       </div>
     </div>
+  </div>
   </body>
 </html>
 
