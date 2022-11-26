@@ -316,7 +316,7 @@ function obterQtdAlertaRamLast30dias(idDoCaixa) {
   // SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta
   // WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY) AND CURRENT_DATE()
   // `;
-  
+
   var instrucao = `
   SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta 
   WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATEADD(DAY, -30, '${obterDataHojeAmericano()}') AND '${obterDataHojeAmericano()}';
