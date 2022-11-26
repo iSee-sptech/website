@@ -102,5 +102,60 @@ function filtrarApenasCpu() {
 
     myChart.destroy();
     myChart = new Chart(document.getElementById("myBarChart"), config);
+    setTimeout(() => atualizarGrafico(dados, myChart), 9000);
+  }
+
+  function atualizarGrafico(dados, myChart) {
+    fetch(`/medidas/tempo-real-cpu`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (novoRegistro) {
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico:`);
+            console.log(dados);
+
+            if (
+              novoRegistro[0].momento_grafico ==
+              dados.labels[dados.labels.length - 1]
+            ) {
+              console.log(
+                "---------------------------------------------------------------"
+              );
+              console.log(
+                "Como não há dados novos para captura, o gráfico não atualizará."
+              );
+              console.log("Horário do novo dado capturado:");
+              console.log(novoRegistro[0].momento_grafico);
+              console.log("Horário do último dado capturado:");
+              console.log(dados.labels[dados.labels.length - 1]);
+              console.log(
+                "---------------------------------------------------------------"
+              );
+            } else {
+              dados.labels.shift();
+              dados.labels.push(novoRegistro[0].nomeMaquina);
+
+              dados.datasets[0].data.shift();
+              dados.datasets[0].data.push(novoRegistro[0].usoCpu);
+              myChart.update();
+            }
+            proximaAtualizacao = setTimeout(
+              () => atualizarGrafico(dados, myChart),
+              9000
+            );
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+          proximaAtualizacao = setTimeout(
+            () => atualizarGrafico(dados, myChart),
+            9000
+          );
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
   }
 }
