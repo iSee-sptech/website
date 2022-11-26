@@ -6,7 +6,7 @@ var listaIDCaixas = []
 // }
 
 async function inserirIDCaixasLista() {
-  console.log("Listando caixas...")
+ // console.log("Listando caixas...")
     await fetch(`/usuarios/listarCaixas`, {
       method: "GET",
       headers: {
@@ -22,11 +22,11 @@ async function inserirIDCaixasLista() {
         }});
       })
       .catch(function (resposta) {
-        console.log(`#ERRO: Erro ao listar caixas`);
+      //  console.log(`#ERRO: Erro ao listar caixas`);
       });
 
-      console.log(listaIDCaixas)
-      console.log("Listei caixas")
+     // console.log(listaIDCaixas)
+     // console.log("Listei caixas")
       
 }
 
@@ -57,13 +57,13 @@ async function inserirEtiqueta(nomeEtiqueta, idDaMaquina) {
       // console.log("resposta: ", resposta);
 
       if (resposta.ok) {
-        console.log(`#SUCESSO: sucesso ao realizar o cadastro da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
+     //   console.log(`#SUCESSO: sucesso ao realizar o cadastro da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
       } else {
         throw "Houve um erro ao tentar realizar o cadastro da etiqueta!";
       }
     })
     .catch(function (resposta) {
-      console.log(`#ERRO: Houve um erro ao tenta realizar o cadastro da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
+    //  console.log(`#ERRO: Houve um erro ao tenta realizar o cadastro da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
     });
 
   return false;
@@ -88,13 +88,13 @@ await fetch("/usuarios/deletarEtiqueta", {
       // console.log("resposta: ", resposta);
 
       if (resposta.ok) {
-        console.log(`#SUCESSO: sucesso ao realizar deletar a etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
+       // console.log(`#SUCESSO: sucesso ao realizar deletar a etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
       } else {
         throw "Houve um erro ao tentar realizar o delete da etiqueta!";
       }
     })
     .catch(function (resposta) {
-      console.log(`#ERRO: Houve um erro ao tenta realizar o delete da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
+    //  console.log(`#ERRO: Houve um erro ao tenta realizar o delete da etiqueta ${nomeEtiqueta} no caixa ${idDaMaquina}`);
     });
 
   return false;
@@ -104,7 +104,7 @@ await fetch("/usuarios/deletarEtiqueta", {
     await inserirIDCaixasLista();
     for (var i = 0; i < listaIDCaixas.length; i++) {
         idDoCaixa = listaIDCaixas[i];
-        console.log("Fazendo a chamada do caixa " + idDoCaixa)
+      //  console.log("Fazendo a chamada do caixa " + idDoCaixa)
         
     //ETIQUETA DE RAM - CAMINHADOR---------------------------------//
      await   fetch(`/usuarios/obterQtdAlertaRamLast30dias/${idDoCaixa}`, {
@@ -115,21 +115,21 @@ await fetch("/usuarios/deletarEtiqueta", {
           })
             .then((resposta) => {
               resposta.json().then((data) => {
-                console.log("Caixa do id " + idDoCaixa + ": QtdAlertaRamLast30dias " +  data[0].qtdAlertaRamLast30dias);
+               // console.log("Caixa do id " + idDoCaixa + ": QtdAlertaRamLast30dias " +  data[0].qtdAlertaRamLast30dias);
                 qtdAlertaRam = data[0].qtdAlertaRamLast30dias; 
                 
                 if (qtdAlertaRam <= 9) {
-                    console.log('Deletar Caminhador');
+                 //   console.log('Deletar Caminhador');
                     deletarEtiqueta("caminhador",idDoCaixa);
                 }
                 else {
-                    console.log('Inserir Caminhador');
+                 //   console.log('Inserir Caminhador');
                      inserirEtiqueta("caminhador",idDoCaixa);
                 }
               });
             })
             .catch(function (resposta) {
-              console.log(`#ERRO: ${resposta}`);
+          //    console.log(`#ERRO: ${resposta}`);
             });
 
     //ETIQUETA DE CPU - ---------------------------------//
@@ -141,21 +141,21 @@ await fetch("/usuarios/deletarEtiqueta", {
           })
             .then((resposta) => {
               resposta.json().then((data) => {
-                console.log("Caixa do id " + idDoCaixa + ": QtdAlertaCpuLast30dias " +  data[0].qtdAlertaCpuLast30dias);
+              //  console.log("Caixa do id " + idDoCaixa + ": QtdAlertaCpuLast30dias " +  data[0].qtdAlertaCpuLast30dias);
                 qtdAlertaCpu = data[0].qtdAlertaCpuLast30dias; 
                 
                 if (qtdAlertaCpu <= 9) {
-                    console.log('Deletar atarefado');
+                 //   console.log('Deletar atarefado');
                      deletarEtiqueta("atarefado",idDoCaixa);
                 }
                 else {
-                    console.log('Inserir atarefado');
+                 //   console.log('Inserir atarefado');
                      inserirEtiqueta("atarefado",idDoCaixa);
                 }
               });
             })
             .catch(function (resposta) {
-              console.log(`#ERRO: ${resposta}`);
+           //   console.log(`#ERRO: ${resposta}`);
             });
 
             //ETIQUETA DE DORMINHOCO - ---------------------------------//
@@ -167,21 +167,21 @@ await fetch("/usuarios/deletarEtiqueta", {
         })
           .then((resposta) => {
             resposta.json().then((data) => {
-              console.log("Caixa do id " + idDoCaixa + ": qtdRegistrosLast30dias " +  data[0].qtdRegistrosLast30dias);
+             // console.log("Caixa do id " + idDoCaixa + ": qtdRegistrosLast30dias " +  data[0].qtdRegistrosLast30dias);
               qtdRegistros = data[0].qtdRegistrosLast30dias; 
               
               if (qtdRegistros > 10800) {
-                  console.log('Deletar dorminhoco');
+              //    console.log('Deletar dorminhoco');
                    deletarEtiqueta("dorminhoco",idDoCaixa);
               }
               else {
-                  console.log('Inserir dorminhoco');
+              //    console.log('Inserir dorminhoco');
                     inserirEtiqueta("dorminhoco",idDoCaixa);
               }
             });
           })
           .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
+          //  console.log(`#ERRO: ${resposta}`);
           });
             
             
@@ -194,7 +194,7 @@ await fetch("/usuarios/deletarEtiqueta", {
       })
         .then((resposta) => {
           resposta.json().then((data) => {
-            console.log("Total de disco do id " + idDoCaixa + ": " + data[0].qtdTotalDisco);
+           // console.log("Total de disco do id " + idDoCaixa + ": " + data[0].qtdTotalDisco);
             qtdTotalDisco = data[0].qtdTotalDisco; 
             
           
@@ -206,28 +206,28 @@ await fetch("/usuarios/deletarEtiqueta", {
             })
               .then((resposta) => {
                 resposta.json().then((data) => {
-                  console.log("Ultimo registro historico do id " + idDoCaixa + " : " + data[0].usoDisco);
+                //  console.log("Ultimo registro historico do id " + idDoCaixa + " : " + data[0].usoDisco);
                   usoDisco = data[0].usoDisco;
                 });
               })
               .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
+               // console.log(`#ERRO: ${resposta}`);
               });
       
             // sleep(0.5)
 
             if (qtdTotalDisco * 0.7 < usoDisco) {
-              console.log('Deletar enciclopedia');
+             // console.log('Deletar enciclopedia');
                deletarEtiqueta("enciclopedia",idDoCaixa);
             }
             else {
-              console.log('Inserir enciclopedia');
+           //   console.log('Inserir enciclopedia');
               inserirEtiqueta("enciclopedia",idDoCaixa);
             }
           });
         })
         .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
+        //  console.log(`#ERRO: ${resposta}`);
         });
     }
 }

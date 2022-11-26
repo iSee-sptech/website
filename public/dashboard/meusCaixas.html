@@ -11,16 +11,19 @@
   <link rel="stylesheet" href="../css/NavBarSemDescricao.css" />
   <link rel="stylesheet" href="../css/styleModal.css" />
   <link rel="stylesheet" href="../css/efeitoToltipDescricao.css" />
+  <link rel="stylesheet" href="../css/modalNotificacao.css" />
+  <script src="../js/notificacao.js"></script>
 </head>
 
-<body onload="exibirCaixas(), listarCaixas(), imgUsuario()">
+<body onload="exibirCaixas(), listarCaixas(), imgUsuario(), notificacaoCountAlertas()">
   <div class="divTitulo">
     <div class="containerTitulo">
       <h1>Meus Caixas</h1>
       <h6 id="bem_vindo"></h6>
+
       <div id="imagem_user" class="notificacoes">
-        <img src="../assets/img/alert.svg" />
-        <img src="../assets/img/user.svg" />
+        <!-- <img src="../assets/img/alert.svg" />
+        <img src="../assets/img/user.svg" /> -->
       </div>
     </div>
 
@@ -171,6 +174,21 @@
       <button class="button8" onclick="buttonBack()">Fechar</button>
     </div>
   </div>
+
+  <div class="container_notificacao" id="daddyNotificacao1">
+    <div class="navbar_notificacao">
+      <h4 class="tituloNotificacao">Notificações</h4>
+    </div>
+
+    <div class="container_rollbar" id="daddyNotificacao">
+
+
+      <!-- <div class="notificacao" onclick="window.location.href = 'alertas.html'">
+        <h6>Cadastro de suporte</h6>
+        <p>27/08/2022 ás 14:18</p>
+        </div>  -->
+
+    </div>
 
 </body>
 
@@ -499,7 +517,19 @@
       });
   }
 
+  var i = 0;
+  var j = 0;
+
+  function myAudioFunction() {
+    var x = document.createElement("AUDIO");
+    x.setAttribute("src", "../assets/img/notification.mp3");
+    x.setAttribute("autoplay", "");
+    document.body.appendChild(x);
+  }
   function imgUsuario() {
+
+    j = localStorage.getItem(1);
+    console.log(j)
     var idUsuario = sessionStorage.idUsuario;
     fetch(`/usuarios/imgUsuario/${idUsuario}`, {
       method: "GET",
@@ -512,23 +542,40 @@
           console.log(data);
           const imagemUser = data[0].imagemPerfilUsuario;
 
-          if (imagemUser == undefined) {
+          if (j == undefined) {
+            myAudioFunction()
             imagem_user.innerHTML = `
-                <img src="../assets/img/alert.svg" />
-                <img id="imgUser" src="../assets/img/user.svg">
-                `;
+            <img src="../assets/img/alertVermelho.svg"  onclick="ativarModalNotificacao()"/>
+            <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
+            `;
+            localStorage.setItem(1, 3);
+            localStorage.getItem(1);
           } else {
+            myAudioFunction()
             imagem_user.innerHTML = `
-                <img src="../assets/img/alert.svg" />
+                <img src="../assets/img/alert.svg"  onclick="ativarModalNotificacao()"/>
                 <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
-                `;
+            `;
           }
+
         });
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
+  }
+
+
+  function ativarModalNotificacao() {
+    imgUsuario()
+    if (i == 0) {
+      daddyNotificacao1.style.display = "block";
+      i++;
+    } else {
+      daddyNotificacao1.style.display = "none";
+      i = 0;
+    }
   }
 
 
@@ -597,12 +644,12 @@
     urlImage = url;
     modal.style.display = "block";
     var modal2 = document.querySelector(".modalReadPlus"); m = modal2.style;
-    
+
     m.width = "50%";
     m.height = "60%";
-   // m.gap = "34%";
+    // m.gap = "34%";
 
-   var modal3 = document.querySelector(".modalCheck"); m3 = modal3.style;
+    var modal3 = document.querySelector(".modalCheck"); m3 = modal3.style;
 
     m3.width = "42vw";
     m3.height = "42vh";
@@ -610,10 +657,10 @@
     m3.paddingBottom = "0%";
     // m3.alignItems = "center";
     // m3.justifyContent = "center";
-     
+
 
     var modal4 = document.querySelector(".button8"); m4 = modal4.style;
-    
+
     m4.marginTop = "36vh";
 
     modalImg.src = `${urlImage}`;

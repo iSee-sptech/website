@@ -154,6 +154,22 @@ function exibirCaixas() {
   return database.executar(instrucao);
 }
 
+function notificacaoCountAlertas() {
+  var instrucao = `
+  select count(idAlerta) as countAlerta from alerta where datahoraAlerta > CURDATE();
+  `;
+  return database.executar(instrucao);
+}
+
+function notificacaoCaixasAdd() {
+  var instrucao = `
+  select count(idMaquina) as countMaquinas from maquinas where nomeMaquina is null
+  union
+  select idMaquina from maquinas where nomeMaquina is null; 
+  `;
+  return database.executar(instrucao);
+}
+
 function exibirQtdTotalEtiquetas() {
   var instrucao = `
   SELECT count(idEtiqueta) as 'qtdTotalEtiquetas' FROM Etiqueta;
@@ -421,6 +437,7 @@ module.exports = {
   exibirFuncionarios,
   exibirQuantidadeTotalRam,
   exibirCaixas,
+  notificacaoCountAlertas,
   exibirQtdTotalEtiquetas,
   listarCaixas,
   listarHistorico,
@@ -440,6 +457,7 @@ module.exports = {
   listarIDs,
   removerCaixa,
   removerCaixaFiltro,
+  notificacaoCaixasAdd,
 
   /*------------------------ETIQUETAS-------------------------------------- */
   obterQtdAlertaRamLast30dias,
