@@ -12,11 +12,13 @@
   <link rel="stylesheet" href="../css/efeitoToltipDescricao.css">
   <link rel="stylesheet" href="../css/styleModal.css">
   <link rel="stylesheet" href="../css/etiquetas.css" />
+  <link rel="stylesheet" href="../css/modalNotificacao.css" />
   <script src="../js/atribuirEtiqueta.js"></script>
+  <script src="../js/notificacao.js"></script>
   
 </head>
 
-<body onload="imgUsuario(), exibirQtdTotalEtiquetas(), exibirEtiquetas()">
+<body onload="imgUsuario(), exibirQtdTotalEtiquetas(), exibirEtiquetas(), notificacaoCountAlertas()">
 
   <div class="body_dashboard">
 
@@ -134,7 +136,7 @@
         class="btn_alerta"
         onclick="window.location.href='../dashboard/alertas.html'"
       >
-        <img src="../assets/img/alertas_icon.png" />
+        <img src="../assets/img/alertas_icon.svg" />
         <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
       </div>
 
@@ -152,6 +154,13 @@
       </div>
     </div>
   </div>
+
+  <div class="container_notificacao" id="daddyNotificacao1">
+    <div class="navbar_notificacao">
+      <h4 class="tituloNotificacao">Notificações</h4>
+    </div>
+    </div>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../js/graficosDashboard.js"></script>
@@ -227,7 +236,19 @@ var dataAtual = new Date();
       });
   }
 
+  var i = 0;
+  var j = 0;
+
+  function myAudioFunction() {
+    var x = document.createElement("AUDIO");
+    x.setAttribute("src", "../assets/img/notification.mp3");
+    x.setAttribute("autoplay", "");
+    document.body.appendChild(x);
+  }
   function imgUsuario() {
+
+    j = localStorage.getItem(1);
+    console.log(j)
     var idUsuario = sessionStorage.idUsuario;
     fetch(`/usuarios/imgUsuario/${idUsuario}`, {
       method: "GET",
@@ -240,21 +261,25 @@ var dataAtual = new Date();
           console.log(data);
           const imagemUser = data[0].imagemPerfilUsuario;
 
-
-          if (imagemUser == undefined) {
+          if (j == undefined) {
+            myAudioFunction()
             imagem_user.innerHTML = `
-                <img src="../assets/img/alert.svg" />
-                <img id="imgUser" src="../assets/img/user.svg">
-                `
+            <img src="../assets/img/alertVermelho.svg"  onclick="ativarModalNotificacao()"/>
+            <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
+            `;
+            localStorage.setItem(1, 3);
+            localStorage.getItem(1);
           } else {
+            myAudioFunction()
             imagem_user.innerHTML = `
-                <img src="../assets/img/alert.svg" />
+                <img src="../assets/img/alert.svg"  onclick="ativarModalNotificacao()"/>
                 <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
-                `
+            `;
           }
 
-        })
-      }).catch(function (resposta) {
+        });
+      })
+      .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
