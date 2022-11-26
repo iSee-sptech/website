@@ -387,6 +387,7 @@
       idCaixaSelecionado = idMaquina;
 
       if (filtroSelecionado == "ram" && idCaixaSelecionado != null) {
+        alert("teste")
         fetch(
           `/usuarios/porcentagemderamrestanteEquantidaderamtotal/${idMaquina}`,
           {
@@ -464,6 +465,42 @@
           });
       }
     }
+
+  //mudar cores dos botoes de filtro (ram cpu memoria)
+  var el = document.querySelector('.selecao_filtro');
+el.addEventListener('click', function(e) {
+  var id = e.target.id;
+  switch (id) {
+    case 'filtro_ram':
+      filtro_ram.style.backgroundColor = '#7D2DE2'
+      filtro_ram.style.color = 'white'
+      filtro_cpu.style.backgroundColor = 'white'
+      filtro_cpu.style.color = '#7D2DE2'
+      filtro_memoria.style.backgroundColor = 'white'
+      filtro_memoria.style.color = '#7D2DE2'
+      break;
+  case 'filtro_cpu':
+    filtro_ram.style.backgroundColor = 'white'
+    filtro_ram.style.color = '#7D2DE2'
+    filtro_cpu.style.backgroundColor = '#7D2DE2'
+    filtro_cpu.style.color = 'white'
+    filtro_memoria.style.backgroundColor = 'white'
+    filtro_memoria.style.color = '#7D2DE2'
+    break;
+
+    case 'filtro_memoria':
+      filtro_ram.style.backgroundColor = 'white'
+      filtro_ram.style.color = '#7D2DE2'
+      filtro_cpu.style.backgroundColor = 'white'
+      filtro_cpu.style.color = '#7D2DE2'
+      filtro_memoria.style.backgroundColor = '#7D2DE2'
+      filtro_memoria.style.color = 'white'
+      break;
+    default:
+      break;
+  }
+});
+ //mudar cores dos botoes de filtro
   </script>
 
   <script src="../js/graficosRamDashboard.js"></script>
