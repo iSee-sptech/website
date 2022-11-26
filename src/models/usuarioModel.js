@@ -251,7 +251,10 @@ function obterAlertasPorData(ano, mes, dia) {
   //ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
   //`;
   var instrucao = `select Maquinas.nomeMaquina as 'Nome', Alerta.componente as 'Componente', Alerta.nivelAlerta as 'Nivel', Alerta.dado as 'Dado', Alerta.datahoraAlerta as 'DataHora'
-  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where datahoraAlerta LIKE '%${ano}-${mes}-${dia}%'
+  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where 
+  DATEPART(yyyy,datahoraAlerta) = ${ano}
+  AND DATEPART(mm,datahoraAlerta) = ${mes}
+  AND DATEPART(dd,datahoraAlerta) = ${dia}
   order by Alerta.nivelAlerta desc, Alerta.datahoraAlerta desc`;
   return database.executar(instrucao);
 }
