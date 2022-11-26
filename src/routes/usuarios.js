@@ -68,6 +68,10 @@ router.get("/exibirQuantidadeTotalRam", function (req, res) {
   usuarioController.exibirQuantidadeTotalRam(req, res);
 });
 
+router.get("/exibirQuantidadeRestanteRam", function (req, res) {
+  usuarioController.exibirQuantidadeRestanteRam(req, res);
+});
+
 router.get("/exibirCaixas", function (req, res) {
   usuarioController.exibirCaixas(req, res);
 });
@@ -114,7 +118,7 @@ router.get("/imgUsuario/:id", function (req, res) {
 });
 router.post("/adicionarImagem", usuarioController.atualizarImg);
 
-router.get("/obterAlertasPorData/:dataAlerta", function (req, res) {
+router.get("/obterAlertasPorData/:ano/:mes/:dia", function (req, res) {
   usuarioController.obterAlertasPorData(req, res);
 });
 

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="../assets/img/iconLogo.ico" type="image/x-icon" />
-  <title>Home Administrador - ISee</title>
-  <link rel="stylesheet" href="../css/homeGestor.css" />
-  <link rel="stylesheet" href="../css/NavBar.css" />
-  <script src="../js/atribuirEtiqueta.js"></script>
-  <script src="../js/notificacao.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../assets/img/iconLogo.ico"
+      type="image/x-icon"
+    />
+    <title>Home Administrador - ISee</title>
+    <link rel="stylesheet" href="../css/homeGestor.css" />
+    <link rel="stylesheet" href="../css/NavBar.css" />
+    <script src="../js/atribuirEtiqueta.js"></script>
+  </head>
 
 <body
   onload="listarLembrete(), notificacaoCountAlertas(), exibirQtdFuncionarios(), exibirQtdCaixas(), imgUsuario(),inserirIDCaixasLista(), atribuirEtiquetas()">
@@ -75,46 +77,60 @@
     </div>
   </div>
 
-  <div class="container_navbar">
-    <div class="navbar_bottom">
-      <div class="btn_home">
-        <img onclick="window.location.href='./homeGestor.html'" src="../assets/img/home_icon.svg" />
-        <h2 style="color: #7d2de2">Home</h2>
-      </div>
+    <div class="container_navbar">
+      <div class="navbar_bottom">
+        <div class="btn_home">
+          <img
+            onclick="window.location.href='./homeGestor.html'"
+            src="../assets/img/home_icon.svg"
+          />
+          <h2 style="color: #7d2de2">Home</h2>
+        </div>
 
-      <div class="btn_etiqueta" onclick="window.location.href='./etiquetas.html'">
-        <img src="../assets/img/etiqueta_icon.svg" />
-        <h2 class="effectlist">Etiquetas</h2>
-      </div>
+        <div
+          class="btn_etiqueta"
+          onclick="window.location.href='./etiquetas.html'"
+        >
+          <img src="../assets/img/etiqueta_icon.svg" />
+          <h2 class="effectlist">Etiquetas</h2>
+        </div>
 
-      <div class="btn_historico" onclick="window.location.href='./historico.html'">
-        <img src="../assets/img/historico_icon.svg" />
-        <h2 class="effectlist">Histórico</h2>
-      </div>
+        <div
+          class="btn_historico"
+          onclick="window.location.href='./historico.html'"
+        >
+          <img src="../assets/img/historico_icon.svg" />
+          <h2 class="effectlist">Histórico</h2>
+        </div>
 
-      <div class="btn_dashboard" onclick="window.location.href='./Dashboard.html'">
-        <img src="../assets/img/dashboard_icon.svg" />
-        <h2 class="effectlist">Dashboard</h2>
-      </div>
+        <div
+          class="btn_dashboard"
+          onclick="window.location.href='./Dashboard.html'"
+        >
+          <img src="../assets/img/dashboard_icon.svg" />
+          <h2 class="effectlist">Dashboard</h2>
+        </div>
 
-      <div class="btn_alerta" onclick="window.location.href='./alertas.html'">
-        <img src="../assets/img/alertas_icon.png" />
-        <h2 class="effectlist">Alertas</h2>
-      </div>
+        <div class="btn_alerta" onclick="window.location.href='./alertas.html'">
+          <img src="../assets/img/alertas_icon.png" />
+          <h2 class="effectlist">Alertas</h2>
+        </div>
 
-      <div class="btn_perfil" onclick="window.location.href='../meuPerfil.html'">
-        <img onclick="window.location.href='../meuPerfil.html'" src="../assets/img/userNavbar.svg" />
-        <h2 class="effectlist">Perfil</h2>
-      </div>
+        <div class="btn_perfil" onclick="window.location.href='../meuPerfil.html'">
+          <img
+            onclick="window.location.href='../meuPerfil.html'"
+            src="../assets/img/userNavbar.svg"
+          />
+          <h2 class="effectlist">Perfil</h2>
+        </div>
 
-      <div class="btn_sair">
-        <img onclick="sair()" src="../assets/img/sair_icon.png" />
-        <h2 class="effectlist">Sair</h2>
+        <div class="btn_sair">
+          <img onclick="sair()" src="../assets/img/sair_icon.png" />
+          <h2 class="effectlist">Sair</h2>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
 
 <script>

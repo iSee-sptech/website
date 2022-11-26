@@ -127,7 +127,8 @@
         <h2 style="color: #7d2de2" id="effectlist">Etiquetas</h2>
       </div>
 
-      <div class="btn_historico">
+      <div class="btn_historico"
+      onclick="window.location.href='../dashboard/historico.html'">
         <img src="../assets/img/historico_icon.svg" />
         <h2 style="color: #7d2de2" id="effectlist">Histórico</h2>
       </div>
@@ -144,7 +145,7 @@
         class="btn_alerta"
         onclick="window.location.href='../dashboard/alertas.html'"
       >
-        <img src="../assets/img/alertas_icon.png" />
+        <img src="../assets/img/iconesRoxos/" />
         <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
       </div>
 
@@ -436,6 +437,7 @@
 
   function exibirQtdTotalAlertasDoDia() {
     const dataAtual = input_filtro_data.value
+    
     fetch(`/usuarios/exibirQtdTotalAlertasDoDia/${dataAtual}`, {
             method: "GET",
             headers: {
@@ -527,29 +529,33 @@
     return today;
   }
 
-  function carregarAlertas() {
+    function carregarAlertas() {
       if (input_filtro_data.value =='') {
         input_filtro_data.value == "'" + exibirDataAtual() + "'";
       }
         var dataAlerta = input_filtro_data.value;
         console.log(dataAlerta)
 
-        fetch(`/usuarios/obterAlertasPorData/${dataAlerta}`, {
+    var anoAtual = dataAlerta[0] + dataAlerta[1] + dataAlerta[2] + dataAlerta[3]
+    var mesAtual = dataAlerta[5] + dataAlerta[6]
+    var diaAtual = dataAlerta[8] + dataAlerta[9]
+    console.log(`Ano atual: ${anoAtual} Mes atual: ${mesAtual} Dia atual: ${diaAtual}`)
+      
+        fetch(`/usuarios/obterAlertasPorData/${anoAtual}/${mesAtual}/${diaAtual}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then((resposta) => {
+          }).then((resposta) => {
+          resposta.json().then((data) => {
+          console.log(data);
 
-
+                
             listaNomeCaixa = []
             listaComponente = []
             listaNivelAlerta = []
             listaValor = []
             listaData = []
-
-            resposta.json().then((data) => {
-                console.log(data);
 
                 corpoModalAlertaUm.innerHTML = ``
                 corpoModalAlertaDois.innerHTML = ``

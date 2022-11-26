@@ -81,7 +81,7 @@ function cadastrarCaixas(
   enderecoCaixa,
   imagemCaixa,
   numero,
-  complemento,
+  complemento
 ) {
   var instrucao = `
   update Maquinas set nomeMaquina = '${nomeCaixa}', cepMaquina = '${enderecoCaixa}',
@@ -143,6 +143,14 @@ function exibirFuncionarios() {
 function exibirQuantidadeTotalRam() {
   var instrucao = `
   SELECT sum(ramMaquina) as 'totalRam' FROM Maquinas;
+  `;
+  return database.executar(instrucao);
+}
+
+function exibirQuantidadeRestanteRam() {
+  var instrucao = `
+  select round((usoRamHistorico * 100) / ramMaquina) as 'porcentagemRam' from historico
+  join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina group by nomeMaquina;
   `;
   return database.executar(instrucao);
 }
@@ -240,7 +248,6 @@ function pesquisarHistorico(dataHora) {
   return database.executar(instrucao);
 }
 
-
 function filtroCaixaButtom(idCaixa) {
   var instrucao = `
   select * from historico where fkMaquinaHistorico = ${idCaixa};
@@ -248,7 +255,7 @@ function filtroCaixaButtom(idCaixa) {
   return database.executar(instrucao);
 }
 
-function obterAlertasPorData(data) {
+function obterAlertasPorData(ano, mes, dia) {
   // var instrucao = `
   // select * from alerta where datahoraAlerta LIKE '%${data}%'
   // `;
@@ -260,7 +267,10 @@ function obterAlertasPorData(data) {
   //ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
   //`;
   var instrucao = `select Maquinas.nomeMaquina as 'Nome', Alerta.componente as 'Componente', Alerta.nivelAlerta as 'Nivel', Alerta.dado as 'Dado', Alerta.datahoraAlerta as 'DataHora'
-  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where datahoraAlerta LIKE '%${data}%'
+  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where 
+  DATEPART(yyyy,datahoraAlerta) = ${ano}
+  AND DATEPART(mm,datahoraAlerta) = ${mes}
+  AND DATEPART(dd,datahoraAlerta) = ${dia}
   order by Alerta.nivelAlerta desc, Alerta.datahoraAlerta desc`;
   return database.executar(instrucao);
 }
@@ -306,7 +316,7 @@ function obterQtdAlertaRamLast30dias(idDoCaixa) {
   // SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta
   // WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY) AND CURRENT_DATE()
   // `;
-
+  
   var instrucao = `
   SELECT count(idAlerta) AS 'qtdAlertaRamLast30dias' FROM Alerta 
   WHERE componente = 'ram' AND fkMaquina = ${idDoCaixa} AND datahoraAlerta BETWEEN DATEADD(DAY, -30, '${obterDataHojeAmericano()}') AND '${obterDataHojeAmericano()}';
@@ -403,21 +413,24 @@ function exibirPorcentagemRestanteGlobal(data) {
 
 function porcentagemderamrestanteEquantidaderamtotal(idDoCaixa) {
   var instrucao = `
-
+  select round(100 - (usoRamHistorico * 100 / ramMaquina)) as porcentagemRamRestante, ramMaquina as qtdRamTotal from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
+  where idMaquina = '${idDoCaixa}' order by idHistorico desc limit 1;
   `;
   return database.executar(instrucao);
 }
 
 function porcentagemdecpuatingidaEvelocidademaximacpu(idDoCaixa) {
   var instrucao = `
- 
+  select round((usoProcessadorHistorico * 100) / processadorMaquina) as porcentagemCpuAtingida, processadorMaquina as velocidadeMaxCpu from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
+  where idMaquina = '${idDoCaixa}'  order by idHistorico desc limit 1;
   `;
   return database.executar(instrucao);
 }
 
 function porcentagemdememoriarestanteEquantidadememoriatotal(idDoCaixa) {
   var instrucao = `
-  
+  select round(100 - (usoDiscoHistorico * 100 / discoMaquina)) as porcentagemMemoriaRestante, discoMaquina as qtdMemoriaTotal from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
+  where idMaquina = '${idDoCaixa}' order by idHistorico desc limit 1;
   `;
   return database.executar(instrucao);
 }
@@ -474,5 +487,6 @@ module.exports = {
   exibirPorcentagemRestanteGlobal,
   porcentagemderamrestanteEquantidaderamtotal,
   porcentagemdecpuatingidaEvelocidademaximacpu,
-  porcentagemdememoriarestanteEquantidadememoriatotal
+  porcentagemdememoriarestanteEquantidadememoriatotal,
+  exibirQuantidadeRestanteRam,
 };

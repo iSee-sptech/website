@@ -467,6 +467,27 @@ function exibirQuantidadeTotalRam(req, res) {
     });
 }
 
+function exibirQuantidadeRestanteRam(req, res) {
+  const usuarioIdentificador = req.params.id;
+  usuarioModel
+    .exibirQuantidadeRestanteRam(usuarioIdentificador)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao realizar a consulta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function exibirCaixas(req, res) {
   //const usuarioIdentificador = req.params.id;
   usuarioModel
@@ -702,12 +723,16 @@ function filtroCaixaButtom(req, res) {
 
 function obterAlertasPorData(req, res) {
   const data = req.params.dataAlerta;
+  const ano = req.params.ano;
+  const mes = req.params.mes;
+  const dia = req.params.dia;
+
 
   usuarioModel
-    .obterAlertasPorData(data)
+    .obterAlertasPorData(ano, mes, dia)
     .then((resultado) => {
       if (resultado.length > 0) {
-        res.status(200).json(resultado);
+        res.status(200).json(resultado)
       } else {
         res.status(204).send("Nenhum resultado encontrado!");
       }
@@ -1216,5 +1241,6 @@ module.exports = {
   exibirPorcentagemRestanteGlobal,
   porcentagemderamrestanteEquantidaderamtotal,
   porcentagemdecpuatingidaEvelocidademaximacpu,
-  porcentagemdememoriarestanteEquantidadememoriatotal
+  porcentagemdememoriarestanteEquantidadememoriatotal,
+  exibirQuantidadeRestanteRam,
 };
