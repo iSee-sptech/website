@@ -162,6 +162,22 @@ function exibirCaixas() {
   return database.executar(instrucao);
 }
 
+function notificacaoCountAlertas() {
+  var instrucao = `
+  select count(idAlerta) as countAlerta from alerta where datahoraAlerta > CURDATE();
+  `;
+  return database.executar(instrucao);
+}
+
+function notificacaoCaixasAdd() {
+  var instrucao = `
+  select count(idMaquina) as countMaquinas from maquinas where nomeMaquina is null
+  union
+  select idMaquina from maquinas where nomeMaquina is null; 
+  `;
+  return database.executar(instrucao);
+}
+
 function exibirQtdTotalEtiquetas() {
   var instrucao = `
   SELECT count(idEtiqueta) as 'qtdTotalEtiquetas' FROM Etiqueta;
@@ -251,7 +267,10 @@ function obterAlertasPorData(ano, mes, dia) {
   //ORDER BY [dbo].[Alerta].nivelAlerta desc, [dbo].[Alerta].datahoraAlerta desc
   //`;
   var instrucao = `select Maquinas.nomeMaquina as 'Nome', Alerta.componente as 'Componente', Alerta.nivelAlerta as 'Nivel', Alerta.dado as 'Dado', Alerta.datahoraAlerta as 'DataHora'
-  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where datahoraAlerta LIKE '%${ano}-${mes}-${dia}%'
+  from Alerta join Maquinas on Maquinas.idMaquina = Alerta.fkMaquina where 
+  DATEPART(yyyy,datahoraAlerta) = ${ano}
+  AND DATEPART(mm,datahoraAlerta) = ${mes}
+  AND DATEPART(dd,datahoraAlerta) = ${dia}
   order by Alerta.nivelAlerta desc, Alerta.datahoraAlerta desc`;
   return database.executar(instrucao);
 }
@@ -431,6 +450,7 @@ module.exports = {
   exibirFuncionarios,
   exibirQuantidadeTotalRam,
   exibirCaixas,
+  notificacaoCountAlertas,
   exibirQtdTotalEtiquetas,
   listarCaixas,
   listarHistorico,
@@ -450,6 +470,7 @@ module.exports = {
   listarIDs,
   removerCaixa,
   removerCaixaFiltro,
+  notificacaoCaixasAdd,
 
   /*------------------------ETIQUETAS-------------------------------------- */
   obterQtdAlertaRamLast30dias,

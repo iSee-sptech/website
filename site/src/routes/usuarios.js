@@ -100,6 +100,15 @@ router.get("/listarCaixas", function (req, res) {
   usuarioController.listarCaixas(req, res);
 });
 
+router.get("/notificacaoCaixasAdd", function (req, res) {
+  usuarioController.notificacaoCaixasAdd(req, res);
+});
+
+router.get("/notificacaoCountAlertas", function (req, res) {
+  usuarioController.notificacaoCountAlertas(req, res);
+});
+
+
 router.get("/listarHistorico", function (req, res) {
   usuarioController.listarHistorico(req, res);
 });

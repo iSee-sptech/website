@@ -13,99 +13,71 @@
     <link rel="stylesheet" href="../css/homeGestor.css" />
     <link rel="stylesheet" href="../css/NavBar.css" />
     <script src="../js/atribuirEtiqueta.js"></script>
+    <script src="../js/notificacao.js"></script>
+
   </head>
 
-  <body
-    onload="listarLembrete(), exibirQtdFuncionarios(), exibirQtdCaixas(), imgUsuario(),inserirIDCaixasLista(), atribuirEtiquetas()"
-  >
-    <div class="first_section">
-      <div class="container_funcionario">
-        <h1 id="bem_vindo">Bem vindo</h1>
-        <div class="modal_botao">
-          <div>
-            <h3>Funcionários</h3>
-            <span id="quantidadeFuncionarios">0</span>
-          </div>
-
-          <div onclick="window.location.href='./meusCaixas.html'">
-            <h3>Meus Caixas</h3>
-            <span id="quantidadeCaixas">0</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="container_cadastrar">
-        <div class="modal_cadastrar">
-          <h3>Cadastrar e adicionar</h3>
-          <div class="container_btn_add">
-            <div>
-              <h4>Caixa</h4>
-              <div class="btn_add">
-                <img
-                  onclick="window.location.href='../cadastroMaquina.html'"
-                  src="../assets/img/icon_atm.svg"
-                />
-              </div>
-            </div>
-
-            <div class="container_btn_add">
-              <h4>Funcionários</h4>
-              <div class="btn_add">
-                <img
-                  onclick="window.location.href='../cadastroFuncionario.html'"
-                  src="../assets/img/user_add.svg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container_notificacao">
-        <div class="navbar_notificacao">
-          <h4>Notificações</h4>
-          <div id="imagem_user">
-            <img src="../assets/img/alert.svg" />
-          </div>
+<body
+  onload="listarLembrete(), notificacaoCountAlertas(), exibirQtdFuncionarios(), exibirQtdCaixas(), imgUsuario(),inserirIDCaixasLista(), atribuirEtiquetas()">
+  <div class="first_section">
+    <div class="container_funcionario">
+      <h1 id="bem_vindo">Bem vindo</h1>
+      <div class="modal_botao">
+        <div>
+          <h3>Funcionários</h3>
+          <span id="quantidadeFuncionarios">0</span>
         </div>
 
-        <div class="container_rollbar">
-          <div class="notificacao">
-            <h6>Cadastro de suporte</h6>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-
-          <div class="notificacao">
-            <h6>Cadastro de suporte</h6>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h6>Cadastro de suporte</h6>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h6>Cadastro de suporte</h6>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h6>Cadastro de suporte</h6>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h6>Cadastro de suporte</h6>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-          <div class="notificacao">
-            <h6>Cadastro de suporte</h6>
-            <p>27/08/2022 ás 14:18</p>
-          </div>
-        </div>
-
-        <div class="btn_cadastrar_estag" onclick="window.location.href = `../meuPerfil.html`">
-          <h3 id="mensagemLembreteId">AquiFicaOLembrete</h3>
-          <p id="dataLembreteId">AquiFicaAData</p>
+        <div onclick="window.location.href='./meusCaixas.html'">
+          <h3>Meus Caixas</h3>
+          <span id="quantidadeCaixas">0</span>
         </div>
       </div>
     </div>
+
+    <div class="container_cadastrar">
+      <div class="modal_cadastrar">
+        <h3>Cadastrar e adicionar</h3>
+        <div class="container_btn_add">
+          <div>
+            <h4>Caixa</h4>
+            <div class="btn_add">
+              <img onclick="window.location.href='../cadastroMaquina.html'" src="../assets/img/icon_atm.svg" />
+            </div>
+          </div>
+
+          <div class="container_btn_add">
+            <h4>Funcionários</h4>
+            <div class="btn_add">
+              <img onclick="window.location.href='../cadastroFuncionario.html'" src="../assets/img/user_add.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container_notificacao">
+      <div class="navbar_notificacao">
+        <h4>Notificações</h4>
+        <div id="imagem_user">
+          <img src="../assets/img/alert.svg" />
+        </div>
+      </div>
+
+      <div class="container_rollbar" id="daddyNotificacao">
+
+         <!-- <div class="notificacao" onclick="window.location.href = 'alertas.html'">
+          <h6>Cadastro de suporte</h6>
+          <p>27/08/2022 ás 14:18</p>
+          </div> -->
+
+      </div>
+
+      <div class="btn_cadastrar_estag" onclick="window.location.href = `../meuPerfil.html`">
+        <h3 id="mensagemLembreteId">AquiFicaOLembrete</h3>
+        <p id="dataLembreteId">AquiFicaAData</p>
+      </div>
+    </div>
+  </div>
 
     <div class="container_navbar">
       <div class="navbar_bottom">
@@ -198,14 +170,14 @@
       .then((resposta) => {
         // saldoConta
         resposta.json().then((data) => {
-          console.log(data);
+          // console.log(data);
           qtdFuncionario = data[0].idUsuario;
-          console.log(qtdFuncionario);
+          // console.log(qtdFuncionario);
           quantidadeFuncionarios.innerHTML = qtdFuncionario;
         });
       })
       .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
+        // console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
   }
@@ -220,13 +192,13 @@
       .then((resposta) => {
         // saldoConta
         resposta.json().then((data) => {
-          console.log(data);
+          //  console.log(data);
           qtdCaixa = data[0].qtdCaixa;
           quantidadeCaixas.innerHTML = qtdCaixa;
         });
       })
       .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
+        //  console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
   }
@@ -242,19 +214,19 @@
     })
       .then((resposta) => {
         resposta.json().then((data) => {
-          console.log(data);
+          // console.log(data);
           dataHoraLembrete = data[0].dataHoraLembrete;
           mensagemLembrete = data[0].mensagemLembrete;
-          console.log(dataHoraLembrete);
+          //console.log(dataHoraLembrete);
 
-          dataHoraLembrete2 = dataHoraLembrete.replaceAll("T", " ").replaceAll("Z", "").replaceAll(":00.000","");
+          dataHoraLembrete2 = dataHoraLembrete.replaceAll("T", " ").replaceAll("Z", "").replaceAll(":00.000", "");
           mensagemLembreteId.innerHTML = mensagemLembrete;
           dataLembreteId.innerHTML = dataHoraLembrete2;
         });
       })
       .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        // console.log(`#ERRO: ${resposta}`);
+       //finalizarAguardar();
       });
   }
 
@@ -268,7 +240,7 @@
     })
       .then((resposta) => {
         resposta.json().then((data) => {
-          console.log(data);
+          //console.log(data);
           const imagemUser = data[0].imagemPerfilUsuario;
 
           if (imagemUser == undefined) {
@@ -285,8 +257,14 @@
         });
       })
       .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
+        //  console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
   }
+
+
+
+ 
+
+
 </script>
