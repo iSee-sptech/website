@@ -14,7 +14,7 @@ function notificacaoCountAlertas() {
             resposta.json().then((data) => {
                 console.log(data);
                 qntdAlertas = data[0].countAlerta;
-                if (qntdAlertas >= 5) {
+                if (qntdAlertas >= 4) {
                     daddyNotificacao.innerHTML += `
            <div class="notificacao" onclick="window.location.href = 'alertas.html'">
           <h6>Você teve mais de ${qntdAlertas - 1} alertas hoje!!!</h6>
