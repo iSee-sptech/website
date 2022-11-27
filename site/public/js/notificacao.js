@@ -1,6 +1,17 @@
 
 const date = new Date();
 
+function ativarModalNotificacao() {
+    imgUsuario()
+    if (i == 0) {
+      daddyNotificacao1.style.display = "block";
+      i++;
+    } else {
+      daddyNotificacao1.style.display = "none";
+      i = 0;
+    }
+  }
+
 function notificacaoCountAlertas() {
 
     fetch(`/usuarios/notificacaoCountAlertas`, {
@@ -67,3 +78,4 @@ function notificacaoCaixasAdd() {
             finalizarAguardar();
         });
 }
+

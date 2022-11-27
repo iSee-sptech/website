@@ -146,7 +146,7 @@
       </div>
 
       <div class="btn_alerta" onclick="window.location.href='../dashboard/alertas.html'">
-        <img src="../assets/img/alertas_icon.png" />
+        <img src="../assets/img/alertas_icon.svg" />
         <h2 style="color: #7d2de2" id="effectlist">Alertas</h2>
       </div>
 
@@ -179,15 +179,6 @@
     <div class="navbar_notificacao">
       <h4 class="tituloNotificacao">Notificações</h4>
     </div>
-
-    <div class="container_rollbar" id="daddyNotificacao">
-
-
-      <!-- <div class="notificacao" onclick="window.location.href = 'alertas.html'">
-        <h6>Cadastro de suporte</h6>
-        <p>27/08/2022 ás 14:18</p>
-        </div>  -->
-
     </div>
 
 </body>
@@ -278,16 +269,16 @@
             var nome = data[i].nomeMaquina;
             var cep = data[i].cepMaquina;
             var ram = data[i].ramMaquina;
-            // ram = ram && ram.substr(0, 2);
-            // ram = parseInt(ram);
-            // ram = ram - 1;
+            ram = ram && ram.substr(0, 2);
+            ram = parseInt(ram);
+            ram = ram - 1;
             var disco = data[i].discoMaquina;
             disco = disco && disco.substr(0, 3);
             var processador = data[i].processadorMaquina;
-            // processador = processador && processador.substr(0, 3);
-            // processador = parseInt(processador);
-            // processador = processador + 1;
-            //processador = processador / 100;
+            processador = processador && processador.substr(0, 3);
+            processador = parseInt(processador);
+            processador = processador + 1;
+            processador = processador / 100;
             var tempo = data[i].tempoDeAtividade;
             tempo = parseInt(tempo)
             tempo = tempo / 3600
@@ -567,16 +558,7 @@
   }
 
 
-  function ativarModalNotificacao() {
-    imgUsuario()
-    if (i == 0) {
-      daddyNotificacao1.style.display = "block";
-      i++;
-    } else {
-      daddyNotificacao1.style.display = "none";
-      i = 0;
-    }
-  }
+
 
 
   function removerCaixa(id) {
