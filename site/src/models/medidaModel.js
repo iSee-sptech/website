@@ -2,11 +2,11 @@ var database = require("../database/config");
 
 //-----------------------------------------SELECTS EFICIENCIA---------------------------------------------------------
 function buscarUltimasMedidas() {
-  instrucaoSql = `select round(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina))
-  + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) as "eficienciaGlobal",
+  instrucaoSql = `select  top 4 round((((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina))
+  + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) ,2) as "eficienciaGlobal",
   nomeMaquina as "nomeMaquina" from historico
-  join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
-  group by nomeMaquina order by eficienciaGlobal limit 4;`;
+  join [dbo].[Maquinas] on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
+ order by eficienciaGlobal`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
