@@ -149,8 +149,10 @@ function exibirQuantidadeTotalRam() {
 
 function exibirQuantidadeRestanteRam() {
   var instrucao = `
-  select round((usoRamHistorico * 100) / ramMaquina) as 'porcentagemRam' from historico
-  join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina group by nomeMaquina;
+  select round(((usoRamHistorico * 100) / ramMaquina),2) as 'porcentagemRam' 
+  from historico
+  join maquinas 
+  on historico.fkMaquinaHistorico = maquinas.idMaquina order by nomeMaquina;
   `;
   return database.executar(instrucao);
 }
@@ -229,7 +231,8 @@ function listarUser(cpf) {
 }
 
 function lembreteDefault(idUser) {
-  const query = `INSERT INTO lembrete VALUES (null, "Crie um lembrete!", "2022-01-01 10:00:00", null, '${idUser}');`;
+  const query = `INSERT INTO [dbo].[Lembrete] (mensagemLembrete, dataHoraLembrete,fkUsuario)
+  VALUES ('Crie um lembrete!', '2022-01-01 10:00:00', '${idUser}');`;
 
   return database.executar(query);
 }
@@ -386,10 +389,10 @@ function graficoUsoRam() {
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function grafico_jogador()"
   );
   var instrucao = `
-  select round(((usoRamHistorico * 100) / ramMaquina)) as porcRam,
-  nomeMaquina as nomeCaixa from historico
-  join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
-  order by usoRamHistorico desc limit 4;
+  select top 4 round((((usoRamHistorico * 100) / ramMaquina)),2) as porcRam,
+nomeMaquina as nomeCaixa from historico
+join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
+order by usoRamHistorico desc;
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -413,8 +416,9 @@ function exibirPorcentagemRestanteGlobal(data) {
 
 function porcentagemderamrestanteEquantidaderamtotal(idDoCaixa) {
   var instrucao = `
-  select round(100 - (usoRamHistorico * 100 / ramMaquina)) as porcentagemRamRestante, ramMaquina as qtdRamTotal from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
-  where idMaquina = '${idDoCaixa}' order by idHistorico desc limit 1;
+  select top 1 round((100 - (usoRamHistorico * 100 / ramMaquina)), 2) as porcentagemRamRestante, ramMaquina as qtdRamTotal
+from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
+where idMaquina = '${idDoCaixa}' order by idHistorico desc;
   `;
   return database.executar(instrucao);
 }
@@ -429,8 +433,9 @@ function porcentagemdecpuatingidaEvelocidademaximacpu(idDoCaixa) {
 
 function porcentagemdememoriarestanteEquantidadememoriatotal(idDoCaixa) {
   var instrucao = `
-  select round(100 - (usoDiscoHistorico * 100 / discoMaquina)) as porcentagemMemoriaRestante, discoMaquina as qtdMemoriaTotal from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
-  where idMaquina = '${idDoCaixa}' order by idHistorico desc limit 1;
+  select top 1 round((100 - (usoDiscoHistorico * 100 / discoMaquina)),2) as porcentagemMemoriaRestante, discoMaquina as qtdMemoriaTotal 
+  from [dbo].[Historico] join [dbo].[Maquinas] on [dbo].[Maquinas].idMaquina = [dbo].[Historico].fkMaquinaHistorico
+    where idMaquina = '${idDoCaixa}' order by idHistorico desc;
   `;
   return database.executar(instrucao);
 }
