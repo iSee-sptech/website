@@ -158,4 +158,103 @@ function filtrarApenasCpu() {
         );
       });
   }
+
+  var options10 = {
+    color: "#fff",
+    scales: {
+      x: {
+        ticks: {
+          color: "#fff",
+          font: {
+            size: 10,
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: "#fff",
+          font: {
+            size: 10,
+          },
+        },
+      },
+    },
+
+    y: {
+      color: "#fff",
+      beginAtZero: true,
+      max: 100,
+      ticks: {
+        maxTicksLimit: 10,
+      },
+    },
+  };
+
+  obterDadosGraficoPizza();
+
+  function obterDadosGraficoPizza() {
+    fetch(`/medidas/cpu-pizza`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            plotarGrafico2(resposta);
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
+
+  function plotarGrafico2(resposta) {
+    console.log("iniciando plotagem do gráfico...");
+    let labels = [];
+    let dados = {
+      labels: labels,
+      datasets: [
+        {
+          label: "Uso de CPU ontem(%)",
+          data: [],
+          fill: false,
+          backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
+          tension: 0.1,
+        },
+      ],
+      options: options10,
+    };
+
+    console.log("----------------------------------------------");
+    console.log(
+      'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":'
+    );
+    console.log(resposta);
+
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      labels.push(registro.nomeMaquinaPizza);
+      dados.datasets[0].data.push(registro.usoCpuPizza);
+    }
+
+    console.log("----------------------------------------------");
+    console.log("O gráfico será plotado com os respectivos valores:");
+    console.log("Labels:");
+    console.log(labels);
+    console.log("Dados:");
+    console.log(dados.datasets);
+    console.log("----------------------------------------------");
+
+    const config2 = {
+      type: "doughnut",
+      data: dados,
+    };
+    doughnutChart.destroy();
+    doughnutChart = new Chart(document.getElementById("myDoughChart"), config2);
+  }
 }

@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-//-----------------------------------------SELECTS EFICIENCIA---------------------------------------------------------
+//-----------------------------------------SELECTS EFICIENCIA--------------------------------------------------------
 function buscarUltimasMedidas() {
   instrucaoSql = `select round(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina))
   + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) as "eficienciaGlobal",
@@ -20,9 +20,20 @@ function buscarMedidasEmTempoReal() {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
-//-----------------------------------------FIM SELECTS EFICIENCIA-----------------------------------------------------
 
-//-----------------------------------------SELECTS RAM----------------------------------------------------------------
+function medidasEficienciaPizza() {
+  instrucaoSql = `
+  select round(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina))
+  + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) as "eficienciaGlobalPizza",
+  nomeMaquina as "nomeMaquinaPizza" from historico
+  join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
+  WHERE DATE(dataHoraHistorico) = SUBDATE(CURDATE(), 1) group by nomeMaquina order by eficienciaGlobalPizza limit 4;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+//-----------------------------------------FIM SELECTS EFICIENCIA----------------------------------------------------
+
+//-----------------------------------------SELECTS RAM---------------------------------------------------------------
 function eficienciaRam() {
   instrucaoSql = `select round((usoRamHistorico * 100)/ramMaquina) as 'usoRam', nomeMaquina as 'nomeMaquina'
   from historico join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
@@ -41,9 +52,18 @@ function medidasRam() {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
-//-----------------------------------------FIM SELECTS RAM------------------------------------------------------------
 
-//-----------------------------------------SELECTS CPU----------------------------------------------------------------
+function medidasRamPizza() {
+  instrucaoSql = `select round((usoRamHistorico * 100)/ramMaquina) as 'usoRamPizza', nomeMaquina as 'nomeMaquinaPizza'
+  from historico join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina 
+  WHERE DATE(dataHoraHistorico) = SUBDATE(CURDATE(), 1)
+  group by nomeMaquina order by usoRamPizza limit 4;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+//-----------------------------------------FIM SELECTS RAM-----------------------------------------------------------
+
+//-----------------------------------------SELECTS CPU---------------------------------------------------------------
 function eficienciaCpu() {
   instrucaoSql = `select round((usoProcessadorHistorico * 100)/processadorMaquina) as 'usoCpu', nomeMaquina as 'nomeMaquina'
   from historico join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
@@ -62,9 +82,18 @@ function medidasCpu() {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
-//-----------------------------------------FIM SELECTS CPU------------------------------------------------------------
 
-//-----------------------------------------SELECTS MEMORIA------------------------------------------------------------
+function medidasCpuPizza() {
+  instrucaoSql = `select round((usoProcessadorHistorico * 100)/processadorMaquina) as 'usoCpuPizza', nomeMaquina as 'nomeMaquinaPizza'
+  from historico join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina 
+  WHERE DATE(dataHoraHistorico) = SUBDATE(CURDATE(), 1)
+  group by nomeMaquina order by usoCpuPizza limit 4;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+//-----------------------------------------FIM SELECTS CPU-----------------------------------------------------------
+
+//-----------------------------------------SELECTS MEMORIA-----------------------------------------------------------
 function eficienciaMemoria() {
   instrucaoSql = `select round((usoDiscoHistorico * 100)/discoMaquina) as "usoDisco", nomeMaquina as "nomeMaquina"
   from historico join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
@@ -83,7 +112,17 @@ function medidasMemoria() {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
-//-----------------------------------------FIM SELECTS MEMORIA--------------------------------------------------------
+
+function medidasMemoriaPizza() {
+  instrucaoSql = `select round((usoDiscoHistorico * 100)/discoMaquina) as "usoDiscoPizza", 
+  nomeMaquina as "nomeMaquinaPizza"
+  from historico join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina 
+  WHERE DATE(dataHoraHistorico) = SUBDATE(CURDATE(), 1)
+  group by nomeMaquina order by usoDiscoPizza limit 4;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+//-----------------------------------------FIM SELECTS MEMORIA-------------------------------------------------------
 
 module.exports = {
   buscarUltimasMedidas,
@@ -94,4 +133,8 @@ module.exports = {
   medidasRam,
   medidasCpu,
   medidasMemoria,
+  medidasEficienciaPizza,
+  medidasRamPizza,
+  medidasCpuPizza,
+  medidasMemoriaPizza,
 };

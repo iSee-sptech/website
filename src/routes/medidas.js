@@ -34,4 +34,20 @@ router.get("/memoria", function (req, res) {
 router.get("/tempo-real-memoria", function (req, res) {
   medidaController.medidasMemoria(req, res);
 });
+
+router.get("/eficiencia-pizza", function (req, res) {
+  medidaController.medidasEficienciaPizza(req, res);
+});
+
+router.get("/ram-pizza", function (req, res) {
+  medidaController.medidasRamPizza(req, res);
+});
+
+router.get("/cpu-pizza", function (req, res) {
+  medidaController.medidasCpuPizza(req, res);
+});
+
+router.get("/memoria-pizza", function (req, res) {
+  medidaController.medidasMemoriaPizza(req, res);
+});
 module.exports = router;
