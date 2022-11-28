@@ -1,7 +1,7 @@
 function filtrarApenasMemoria() {
   filtroSelecionado = "memoria";
-  titulo_card1.innerHTML = "Porcentagem de Memória restante";
-  titulo_card2.innerHTML = "Quantidade de Memória TOTAL";
+  titulo_card1.innerHTML = "Memória de Disco restante";
+  titulo_card2.innerHTML = "Memória de Disco total";
   valor_card1.innerHTML = "";
   valor_card2.innerHTML = "";
   var options05 = {
@@ -219,7 +219,6 @@ function filtrarApenasMemoria() {
     console.log("iniciando plotagem do gráfico...");
     let labels = [];
     let dados = {
-      labels: labels,
       datasets: [
         {
           label: "Uso de MEMÓRIA ontem(%)",

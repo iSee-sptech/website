@@ -1,6 +1,6 @@
 function filtrarApenasCpu() {
   filtroSelecionado = "cpu";
-  titulo_card1.innerHTML = "Porcentagem da CPU atingida";
+  titulo_card1.innerHTML = "CPU Atingida";
   titulo_card2.innerHTML = "Velocidade máxima da CPU";
   valor_card1.innerHTML = "";
   valor_card2.innerHTML = "";
@@ -217,7 +217,7 @@ function filtrarApenasCpu() {
     console.log("iniciando plotagem do gráfico...");
     let labels = [];
     let dados = {
-      labels: labels,
+
       datasets: [
         {
           label: "Uso de CPU ontem(%)",

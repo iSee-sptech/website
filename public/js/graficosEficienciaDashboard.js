@@ -201,7 +201,6 @@ function plotarGrafico2(resposta) {
   console.log("iniciando plotagem do gráfico...");
   let labels = [];
   let dados = {
-    labels: labels,
     datasets: [
       {
         label: "Eficiência global ontem(%)",
@@ -220,8 +219,13 @@ function plotarGrafico2(resposta) {
   );
   console.log(resposta);
 
+
+
+
+
   for (i = 0; i < resposta.length; i++) {
     var registro = resposta[i];
+    console.log(registro)
     labels.push(registro.nomeMaquinaPizza);
     dados.datasets[0].data.push(registro.eficienciaGlobalPizza);
   }

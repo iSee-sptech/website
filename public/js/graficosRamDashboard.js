@@ -1,7 +1,8 @@
 function filtrarApenasRam() {
+  
   filtroSelecionado = "ram";
-  titulo_card1.innerHTML = "Porcentagem RAM restante";
-  titulo_card2.innerHTML = "Quantidade de RAM TOTAL";
+  titulo_card1.innerHTML = "Memória RAM restante";
+  titulo_card2.innerHTML = "Memória RAM total";
   valor_card1.innerHTML = "";
   valor_card2.innerHTML = "";
   var options03 = {
@@ -219,7 +220,7 @@ function filtrarApenasRam() {
     console.log("iniciando plotagem do gráfico...");
     let labels = [];
     let dados = {
-      labels: labels,
+
       datasets: [
         {
           label: "Uso de RAM ontem(%)",
