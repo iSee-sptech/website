@@ -4,8 +4,10 @@ var database = require("../database/config");
 function buscarUltimasMedidas() {
   instrucaoSql = `select  top 4 round((((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico
   + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) ,0) as "eficienciaGlobal",
-  nomeMaquina as "nomeMaquina" from historico
-  join [dbo].[Maquinas] on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
+  nomeMaquina as "nomeMaquina" 
+  from historico
+  join [dbo].[Maquinas] 
+  on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
   order by eficienciaGlobal`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -14,14 +16,14 @@ function buscarUltimasMedidas() {
 function buscarMedidasEmTempoReal() {
   instrucaoSql = `
   select top 1 round((((usoRamHistorico * 100) / ramMaquina)) +
-(usoProcessadorHistorico), 0) as 'eficienciaGlobal',
-dataHoraHistorico as 'momento_grafico', 
-FORMAT(dataHoraHistorico,'%H:%i:%s'),
-nomeMaquina as 'nomeMaquina'
-from historico 
-join maquinas 
-on historico.fkMaquinaHistorico = maquinas.idMaquina 
-order by dataHoraHistorico desc;`;
+  (usoProcessadorHistorico) + (((usodiscoHistorico * 100) / discoMaquina)), 0) as 'eficienciaGlobal',
+  dataHoraHistorico as 'momento_grafico', 
+  FORMAT(dataHoraHistorico,'%H:%i:%s'),
+  nomeMaquina as 'nomeMaquina'
+  from historico 
+  join maquinas 
+  on historico.fkMaquinaHistorico = maquinas.idMaquina 
+  order by dataHoraHistorico desc;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -29,9 +31,11 @@ order by dataHoraHistorico desc;`;
 
 //-----------------------------------------SELECTS RAM----------------------------------------------------------------
 function eficienciaRam() {
-  instrucaoSql = `select top 4 round(((usoRamHistorico * 100)/ramMaquina), 2) as 'usoRam', nomeMaquina as 'nomeMaquina'
-  from [dbo].[Historico] join [dbo].[Maquinas] on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
-order by usoRam;`;
+  instrucaoSql = `select top 4 round(((usoRamHistorico * 100)/ramMaquina), 2) as 'usoRam', nomeMaquina as 'nomeMaquina', idMaquina
+  from [dbo].[Historico] 
+  join [dbo].[Maquinas] 
+  on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
+  order by usoRam;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -77,8 +81,10 @@ function medidasCpu() {
 //-----------------------------------------SELECTS MEMORIA------------------------------------------------------------
 function eficienciaMemoria() {
   instrucaoSql = `select top 4 round(((usoDiscoHistorico * 100)/discoMaquina), 2) as "usoDisco", nomeMaquina as "nomeMaquina"
-  from [dbo].[Historico] join [dbo].[Maquinas] on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
-order by usoDisco;`;
+  from [dbo].[Historico] 
+  join [dbo].[Maquinas] 
+  on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
+  order by usoDisco;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -88,7 +94,8 @@ function medidasMemoria() {
   dataHoraHistorico as 'momento_grafico', 
   format(dataHoraHistorico,'%H:%i:%s'),
   nomeMaquina as 'nomeMaquina'
-  from [dbo].[Historico] join [dbo].[Maquinas] 
+  from [dbo].[Historico] 
+  join [dbo].[Maquinas] 
   on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
   order by dataHoraHistorico desc;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);

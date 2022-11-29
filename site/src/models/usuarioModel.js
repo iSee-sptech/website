@@ -408,7 +408,7 @@ from Historico
 join Maquinas 
 on Historico.fkMaquinaHistorico = Maquinas.idMaquina 
 where dataHoraHistorico 
-like '%2022-11-27%' 
+like '${data}' 
 group by idMaquina
 order by eficienciaGlobal desc;
   `;
@@ -422,7 +422,7 @@ as "eficienciaGlobalRestante"
 from Historico 
 join Maquinas 
 on Historico.fkMaquinaHistorico = Maquinas.idMaquina 
-where dataHoraHistorico like '%2022-11-27%' 
+where dataHoraHistorico like '${data}' 
 order by eficienciaGlobalRestante desc;
   `;
   return database.executar(instrucao);
@@ -430,11 +430,11 @@ order by eficienciaGlobalRestante desc;
 
 function porcentagemderamrestanteEquantidaderamtotal(idDoCaixa) {
   var instrucao = `
-  select top 1 round((100 - (usoRamHistorico * 100 / ramMaquina)), 2) as porcentagemRamRestante, ramMaquina as qtdRamTotal
+select top 1 round((100 - (usoRamHistorico * 100 / ramMaquina)), 2) as porcentagemRamRestante, ramMaquina as qtdRamTotal
 from Historico 
 join Maquinas 
 on Maquinas.idMaquina = Historico.fkMaquinaHistorico
-where idMaquina = '${idDoCaixa}' 
+where idMaquina = '${idDoCaixa}'
 order by idHistorico desc;
   `;
   return database.executar(instrucao);
@@ -455,8 +455,11 @@ order by idHistorico desc;
 function porcentagemdememoriarestanteEquantidadememoriatotal(idDoCaixa) {
   var instrucao = `
   select top 1 round((100 - (usoDiscoHistorico * 100 / discoMaquina)),2) as porcentagemMemoriaRestante, discoMaquina as qtdMemoriaTotal 
-  from [dbo].[Historico] join [dbo].[Maquinas] on [dbo].[Maquinas].idMaquina = [dbo].[Historico].fkMaquinaHistorico
-    where idMaquina = '${idDoCaixa}' order by idHistorico desc;
+  from [dbo].[Historico] 
+  join [dbo].[Maquinas] 
+  on [dbo].[Maquinas].idMaquina = [dbo].[Historico].fkMaquinaHistorico
+  where idMaquina = '${idDoCaixa}'
+  order by idHistorico desc;
   `;
   return database.executar(instrucao);
 }
