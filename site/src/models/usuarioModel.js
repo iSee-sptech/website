@@ -166,7 +166,7 @@ function exibirCaixas() {
 
 function notificacaoCountAlertas() {
   var instrucao = `
-  select count(idAlerta) as countAlerta from alerta where datahoraAlerta > CURDATE();
+  select count(idAlerta) as countAlerta from alerta where datahoraAlerta > GETDATE();
   `;
   return database.executar(instrucao);
 }
@@ -356,7 +356,7 @@ function obterUltimoUsoDiscoHistorico(idDoCaixa) {
   var instrucao = `
   SELECT TOP 1 usoDiscoHistorico as 'usoDisco' FROM Historico
   WHERE fkMaquinaHistorico = ${idDoCaixa}
-  ORDER BY datahoraHistorico desc
+  ORDER BY datahoraHistorico desc;
   `;
   return database.executar(instrucao);
 }
@@ -400,8 +400,14 @@ order by usoRamHistorico desc;
 
 function exibirEficienciaGlobalDoDia(data) {
   var instrucao = `
-  select round(sum(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina)) + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico)) 
-  as "eficienciaGlobal" from Historico join Maquinas on Historico.fkMaquinaHistorico = Maquinas.idMaquina where dataHoraHistorico like '%${data}%' order by idHistorico desc;
+  select sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico)
+as "eficienciaGlobal"
+from Historico 
+join Maquinas 
+on Historico.fkMaquinaHistorico = Maquinas.idMaquina 
+where dataHoraHistorico 
+like '%2022-11-27%' 
+group by idMaquina;
   `;
   return database.executar(instrucao);
 }
@@ -417,16 +423,23 @@ function exibirPorcentagemRestanteGlobal(data) {
 function porcentagemderamrestanteEquantidaderamtotal(idDoCaixa) {
   var instrucao = `
   select top 1 round((100 - (usoRamHistorico * 100 / ramMaquina)), 2) as porcentagemRamRestante, ramMaquina as qtdRamTotal
-from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
-where idMaquina = '${idDoCaixa}' order by idHistorico desc;
+from Historico 
+join Maquinas 
+on Maquinas.idMaquina = Historico.fkMaquinaHistorico
+where idMaquina = '${idDoCaixa}' 
+order by idHistorico desc;
   `;
   return database.executar(instrucao);
 }
 
 function porcentagemdecpuatingidaEvelocidademaximacpu(idDoCaixa) {
   var instrucao = `
-  select round((usoProcessadorHistorico * 100) / processadorMaquina) as porcentagemCpuAtingida, processadorMaquina as velocidadeMaxCpu from Historico join Maquinas on Maquinas.idMaquina = Historico.fkMaquinaHistorico
-  where idMaquina = '${idDoCaixa}'  order by idHistorico desc limit 1;
+  select top 1 usoProcessadorHistorico as porcentagemCpuAtingida, processadorMaquina as velocidadeMaxCpu 
+from [dbo].[Historico] 
+join [dbo].[Maquinas] 
+on Maquinas.idMaquina = Historico.fkMaquinaHistorico
+where idMaquina = '${idDoCaixa}'
+order by idHistorico desc;
   `;
   return database.executar(instrucao);
 }
