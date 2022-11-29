@@ -88,7 +88,8 @@ function medidasMemoria() {
   dataHoraHistorico as 'momento_grafico', 
   format(dataHoraHistorico,'%H:%i:%s'),
   nomeMaquina as 'nomeMaquina'
-  from [dbo].[Historico] join [dbo].[Maquinas] on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
+  from [dbo].[Historico] join [dbo].[Maquinas] 
+  on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
   order by dataHoraHistorico desc;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

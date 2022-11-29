@@ -389,9 +389,11 @@ function graficoUsoRam() {
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function grafico_jogador()"
   );
   var instrucao = `
-  select top 4 round((((usoRamHistorico * 100) / ramMaquina)),2) as porcRam,
-nomeMaquina as nomeCaixa from historico
-join maquinas on historico.fkMaquinaHistorico = maquinas.idMaquina
+  select top 4 round((((usoRamHistorico * 100) / ramMaquina)), 2) as porcRam,
+nomeMaquina as nomeCaixa 
+from historico
+join maquinas 
+on historico.fkMaquinaHistorico = maquinas.idMaquina
 order by usoRamHistorico desc;
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
@@ -400,22 +402,28 @@ order by usoRamHistorico desc;
 
 function exibirEficienciaGlobalDoDia(data) {
   var instrucao = `
-  select sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico)
+select round(sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico), 2)
 as "eficienciaGlobal"
 from Historico 
 join Maquinas 
 on Historico.fkMaquinaHistorico = Maquinas.idMaquina 
 where dataHoraHistorico 
 like '%2022-11-27%' 
-group by idMaquina;
+group by idMaquina
+order by eficienciaGlobal desc;
   `;
   return database.executar(instrucao);
 }
 
 function exibirPorcentagemRestanteGlobal(data) {
   var instrucao = `
-  select round(100 - (sum(((((usoRamHistorico * 100) / ramMaquina)) + (((usoProcessadorHistorico * 100) / processadorMaquina)) + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico))) 
-  as "eficienciaGlobalRestante" from Historico join Maquinas on Historico.fkMaquinaHistorico = Maquinas.idMaquina where dataHoraHistorico like '%${data}%' order by idHistorico desc;
+  select round((100 - (sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico))), 2)
+as "eficienciaGlobalRestante" 
+from Historico 
+join Maquinas 
+on Historico.fkMaquinaHistorico = Maquinas.idMaquina 
+where dataHoraHistorico like '%2022-11-27%' 
+order by eficienciaGlobalRestante desc;
   `;
   return database.executar(instrucao);
 }
