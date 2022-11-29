@@ -145,26 +145,102 @@ function atualizarGrafico(dados, myChart) {
     });
 }
 
-// // GRAFICOS DA ESQUEDA
-
-var data02 = [
-  {
-    label: "Uso de RAM",
-    data: [50, 80, 90, 30],
-    backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
-    borderColor: false,
-  },
-];
+// GRÁFICO DE ROSCA
 
 var options02 = {
   color: "#fff",
+  scales: {
+    x: {
+      ticks: {
+        color: "#fff",
+        font: {
+          size: 10,
+        },
+      },
+    },
+    y: {
+      ticks: {
+        color: "#fff",
+        font: {
+          size: 10,
+        },
+      },
+    },
+  },
+
+  y: {
+    color: "#fff",
+    beginAtZero: true,
+    max: 100,
+    ticks: {
+      maxTicksLimit: 10,
+    },
+  },
 };
 
-var ctx = document.getElementById("pieChart").getContext("2d");
-var myChart = new Chart(ctx, {
-  type: "doughnut",
-  data: {
-    datasets: data02,
-  },
-  options: options02,
-});
+function obterDadosGraficoPizza() {
+  fetch(`/medidas/eficiencia-pizza`, { cache: "no-store" })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          resposta.reverse();
+
+          plotarGrafico2(resposta);
+        });
+      } else {
+        console.error("Nenhum dado encontrado ou erro na API");
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
+
+function plotarGrafico2(resposta) {
+  console.log("iniciando plotagem do gráfico...");
+  let labels = [];
+  let dados = {
+    datasets: [
+      {
+        label: "Eficiência global ontem(%)",
+        data: [],
+        fill: false,
+        backgroundColor: ["#7d2de2", "#2DE23F", "#2DB7E2", "#E22D63"],
+        tension: 0.1,
+      },
+    ],
+    options: options02,
+  };
+
+  console.log("----------------------------------------------");
+  console.log(
+    'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":'
+  );
+  console.log(resposta);
+
+
+
+
+
+  for (i = 0; i < resposta.length; i++) {
+    var registro = resposta[i];
+    console.log(registro)
+    labels.push(registro.nomeMaquinaPizza);
+    dados.datasets[0].data.push(registro.eficienciaGlobalPizza);
+  }
+
+  console.log("----------------------------------------------");
+  console.log("O gráfico será plotado com os respectivos valores:");
+  console.log("Labels:");
+  console.log(labels);
+  console.log("Dados:");
+  console.log(dados.datasets);
+  console.log("----------------------------------------------");
+
+  const config2 = {
+    type: "doughnut",
+    data: dados,
+  };
+  doughnutChart = new Chart(document.getElementById("myDoughChart"), config2);
+}

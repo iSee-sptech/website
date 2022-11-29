@@ -25,7 +25,7 @@
   </head>
 
   <body
-    onload="imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes(), notificacaoCountAlertas()"
+    onload="imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes(), notificacaoCountAlertas(), obterDadosGraficoPizza(), obterDadosGraficoPizza2()"
   >
     <div class="body_dashboard">
       <div class="sessao_grafico_principal">
@@ -64,47 +64,47 @@
 
         <div class="container_cards">
           <div class="card">
-            <h4 id="titulo_card1">Porcentagem global restante</h4>
+            <h4 id="titulo_card1">Eficiência global restante</h4>
             <!--AQUI FICA O TITULO DO PRIMEIRO CARD -->
             <h2><span id="valor_card1"></span></h2>
           </div>
 
           <div class="card">
-            <h4 id="titulo_card2">Porcentagem global recomendada</h4>
+            <h4 id="titulo_card2">Eficiência global recomendada</h4>
             <!--AQUI FICA O TITULO DO SEGUNDO CARD -->
             <h2><span id="valor_card2">55%</span></h2>
           </div>
         </div>
 
         <div class="canvas_grafic_rosca_container">
-          <div class="grafic_rosca">
-            <canvas id="pieChart"></canvas>
+          <div class="grafic_rosca" style="width: 180px; height: 180px;">
+            <canvas id="myDoughChart"></canvas>
           </div>
 
           <div class="grafic_rosca_infos">
             <div class="titulo_grafico_rosca">
-              <h4>
-                Eficiência global restante das máquinas com maior criticidade
+              <h4 id="titulo_card_caixas">
+                Eficiência global do dia anterior
               </h4>
             </div>
             <div id="cardCaixas">
               <div>
-                <div style="background-color: #7d2de2"></div>
+                <div  id="caixa1"  style="background-color: #7d2de2"></div>
                 <p>Caixa 1</p>
               </div>
 
               <div>
-                <div style="background-color: #2de23f"></div>
+                <div  id="caixa2" style="background-color: #2de23f"></div>
                 <p>Caixa 2</p>
               </div>
 
               <div>
-                <div style="background-color: #2db7e2"></div>
+                <div id="caixa3" style="background-color: #2db7e2"></div>
                 <p>Caixa 3</p>
               </div>
 
               <div>
-                <div style="background-color: #e22d63"></div>
+                <div  id="caixa4" style="background-color: #e22d63"></div>
                 <p>Caixa 4</p>
               </div>
             </div>
@@ -175,7 +175,7 @@
       <div class="navbar_notificacao">
         <h4 class="tituloNotificacao">Notificações</h4>
       </div>
-      </div>
+    </div>
   </body>
 
   <link rel="stylesheet" href="../css/dashboard.css" />
@@ -184,6 +184,7 @@
     var filtroSelecionado = "";
     var idCaixaSelecionado = null;
     var myChart;
+    var doughnutChart;
     var dataAtual = new Date();
     var hora = dataAtual.getHours();
     var nome = sessionStorage.nomeUsuario;
@@ -335,59 +336,56 @@
     }
 
     var i = 0;
-  var j = 0;
+    var j = 0;
 
-  function myAudioFunction() {
-    var x = document.createElement("AUDIO");
-    x.setAttribute("src", "../assets/img/notification.mp3");
-    x.setAttribute("autoplay", "");
-    document.body.appendChild(x);
-  }
-  function imgUsuario() {
+    function myAudioFunction() {
+      var x = document.createElement("AUDIO");
+      x.setAttribute("src", "../assets/img/notification.mp3");
+      x.setAttribute("autoplay", "");
+      document.body.appendChild(x);
+    }
+    function imgUsuario() {
+      j = localStorage.getItem(1);
+      console.log(j);
+      var idUsuario = sessionStorage.idUsuario;
+      fetch(`/usuarios/imgUsuario/${idUsuario}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resposta) => {
+          resposta.json().then((data) => {
+            console.log(data);
+            const imagemUser = data[0].imagemPerfilUsuario;
 
-    j = localStorage.getItem(1);
-    console.log(j)
-    var idUsuario = sessionStorage.idUsuario;
-    fetch(`/usuarios/imgUsuario/${idUsuario}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resposta) => {
-        resposta.json().then((data) => {
-          console.log(data);
-          const imagemUser = data[0].imagemPerfilUsuario;
-
-          if (j == undefined) {
-            myAudioFunction()
-            imagem_user.innerHTML = `
+            if (j == undefined) {
+              myAudioFunction();
+              imagem_user.innerHTML = `
             <img src="../assets/img/alertVermelho.svg"  onclick="ativarModalNotificacao()"/>
             <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
             `;
-            localStorage.setItem(1, 3);
-            localStorage.getItem(1);
-          } else {
-            myAudioFunction()
-            imagem_user.innerHTML = `
+              localStorage.setItem(1, 3);
+              localStorage.getItem(1);
+            } else {
+              myAudioFunction();
+              imagem_user.innerHTML = `
                 <img src="../assets/img/alert.svg"  onclick="ativarModalNotificacao()"/>
                 <img id="imgUser" src="${data[0].imagemPerfilUsuario}" style="border-radius: 92px; height: 9vh; width: 4.3vw">
             `;
-          }
-
+            }
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
         });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
-  }
+    }
 
     function recuperarDadosDoCaixa(idMaquina) {
       idCaixaSelecionado = idMaquina;
 
       if (filtroSelecionado == "ram" && idCaixaSelecionado != null) {
-        alert("teste")
         fetch(
           `/usuarios/porcentagemderamrestanteEquantidaderamtotal/${idMaquina}`,
           {
@@ -403,9 +401,9 @@
               var porcentagemRamRestante = data[0].porcentagemRamRestante;
               var qtdRamTotal = data[0].qtdRamTotal;
 
-              titulo_card1.innerHTML = "Porcentagem RAM restante";
+              titulo_card1.innerHTML = "Memória RAM restante";
               valor_card1.innerHTML = `${porcentagemRamRestante}` + "%";
-              titulo_card2.innerHTML = "Quantidade de RAM TOTAL";
+              titulo_card2.innerHTML = "Memória RAM total";
               valor_card2.innerHTML = `${qtdRamTotal}` + " Gb";
             });
           })
@@ -428,9 +426,9 @@
               var velocidadeMaxCpu = data[0].velocidadeMaxCpu;
               var porcentagemCpuAtingida = data[0].porcentagemCpuAtingida;
 
-              titulo_card1.innerHTML = "Porcentagem da CPU atingida";
+              titulo_card1.innerHTML = "CPU Atingida";
               valor_card1.innerHTML = `${porcentagemCpuAtingida}` + "%";
-              titulo_card2.innerHTML = "Velocidade máxima da CPU";
+              titulo_card2.innerHTML = "Velocidade Máxima de CPU";
               valor_card2.innerHTML = `${velocidadeMaxCpu}` + " GHz";
             });
           })
@@ -454,9 +452,9 @@
                 data[0].porcentagemMemoriaRestante;
               var qtdMemoriaTotal = data[0].qtdMemoriaTotal;
 
-              titulo_card1.innerHTML = "Porcentagem de Memória restante";
+              titulo_card1.innerHTML = "Memória de Disco restante";
               valor_card1.innerHTML = `${porcentagemMemoriaRestante}` + "%";
-              titulo_card2.innerHTML = "Quantidade de Memória TOTAL";
+              titulo_card2.innerHTML = "Memória de Disco total";
               valor_card2.innerHTML = `${qtdMemoriaTotal}` + " Gb";
             });
           })
@@ -466,45 +464,50 @@
       }
     }
 
-  //mudar cores dos botoes de filtro (ram cpu memoria)
-  var el = document.querySelector('.selecao_filtro');
-el.addEventListener('click', function(e) {
-  var id = e.target.id;
-  switch (id) {
-    case 'filtro_ram':
-      filtro_ram.style.backgroundColor = '#7D2DE2'
-      filtro_ram.style.color = 'white'
-      filtro_cpu.style.backgroundColor = 'white'
-      filtro_cpu.style.color = '#7D2DE2'
-      filtro_memoria.style.backgroundColor = 'white'
-      filtro_memoria.style.color = '#7D2DE2'
-      break;
-  case 'filtro_cpu':
-    filtro_ram.style.backgroundColor = 'white'
-    filtro_ram.style.color = '#7D2DE2'
-    filtro_cpu.style.backgroundColor = '#7D2DE2'
-    filtro_cpu.style.color = 'white'
-    filtro_memoria.style.backgroundColor = 'white'
-    filtro_memoria.style.color = '#7D2DE2'
-    break;
+    //mudar cores dos botoes de filtro (ram cpu memoria)
+    var el = document.querySelector(".selecao_filtro");
+    el.addEventListener("click", function (e) {
+      var id = e.target.id;
+      switch (id) {
+        case "filtro_ram":
+          titulo_card_caixas.innerHTML = 'RAM do dia anterior'
+          filtro_ram.style.backgroundColor = "#7D2DE2";
+          filtro_ram.style.color = "white";
+          filtro_cpu.style.backgroundColor = "white";
+          filtro_cpu.style.color = "#7D2DE2";
+          filtro_memoria.style.backgroundColor = "white";
+          filtro_memoria.style.color = "#7D2DE2";
+          break;
+        case "filtro_cpu":
+          titulo_card_caixas.innerHTML = 'CPU do dia anterior'
+          filtro_ram.style.backgroundColor = "white";
+          filtro_ram.style.color = "#7D2DE2";
+          filtro_cpu.style.backgroundColor = "#7D2DE2";
+          filtro_cpu.style.color = "white";
+          filtro_memoria.style.backgroundColor = "white";
+          filtro_memoria.style.color = "#7D2DE2";
+          break;
 
-    case 'filtro_memoria':
-      filtro_ram.style.backgroundColor = 'white'
-      filtro_ram.style.color = '#7D2DE2'
-      filtro_cpu.style.backgroundColor = 'white'
-      filtro_cpu.style.color = '#7D2DE2'
-      filtro_memoria.style.backgroundColor = '#7D2DE2'
-      filtro_memoria.style.color = 'white'
-      break;
-    default:
-      break;
-  }
-});
- //mudar cores dos botoes de filtro
+        case "filtro_memoria":
+          titulo_card_caixas.innerHTML = 'Memória de Disco do dia anterior'
+          filtro_ram.style.backgroundColor = "white";
+          filtro_ram.style.color = "#7D2DE2";
+          filtro_cpu.style.backgroundColor = "white";
+          filtro_cpu.style.color = "#7D2DE2";
+          filtro_memoria.style.backgroundColor = "#7D2DE2";
+          filtro_memoria.style.color = "white";
+          break;
+        default:
+          break;
+      }
+    });
+    //Função mudar cores dos botoes de filtro e Função mudar titulo do card dos caixas
+    
   </script>
 
   <script src="../js/graficosRamDashboard.js"></script>
   <script src="../js/graficosEficienciaDashboard.js"></script>
   <script src="../js/graficosCpuDashboard.js"></script>
   <script src="../js/graficosMemoriaDashboard.js"></script>
+  <script src="../js/graficosEficienciaDashboardPizza.js"></script>
 </html>

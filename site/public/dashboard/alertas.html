@@ -608,14 +608,14 @@
                     listaData.push(dataHora)
 
                     if (listaComponente[i] == "ram") {
-                      corpoModalAlertaUm.innerHTML += ` <div class="container_informacoes_alerta"> <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6> <p>USO_DE_${valorDado}% <a>${dataHoraFormatada}</a></p> </div> `
+                      corpoModalAlertaUm.innerHTML += ` <div class="container_informacoes_alerta"> <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6> <p>Uso de ${valorDado}% <a>${dataHoraFormatada}</a></p> </div> `
                       console.log("Inserir um alerta ram")
                     }
                     else if (listaComponente[i] == "cpu") {
                       corpoModalAlertaDois.innerHTML += `
                       <div class="container_informacoes_alerta">
                       <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
-                      <p>USO_DE_${valorDado}% <a>${dataHoraFormatada}</a></p>
+                      <p>Uso de ${valorDado}% <a>${dataHoraFormatada}</a></p>
                       </div>
                       `
                     }
@@ -623,7 +623,7 @@
                       corpoModalAlertaTres.innerHTML += `
                       <div class="container_informacoes_alerta">
                       <h6>${nomeCaixa} - <a>${nivelAlerta}</a></h6>
-                      <p>USO_DE_X${valorDado} <a>${dataHoraFormatada}</a></p>
+                      <p>Uso de ${valorDado} <a>${dataHoraFormatada}</a></p>
                       </div>
                       `
                     }
