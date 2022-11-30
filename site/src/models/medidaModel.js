@@ -2,8 +2,8 @@ var database = require("../database/config");
 
 //-----------------------------------------SELECTS EFICIENCIA---------------------------------------------------------
 function buscarUltimasMedidas() {
-  instrucaoSql = `  select  top 4 AVG(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico
-  + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) as 'eficienciaGlobal',
+  instrucaoSql = `  select  top 4 AVG(((((usoRamHistorico * 10) / ramMaquina)) + usoProcessadorHistorico
+  + (((usoDiscoHistorico * 10) / discoMaquina))) / 3) as 'eficienciaGlobal',
   nomeMaquina as 'nomeMaquina' 
   from [dbo].[Historico]
   join [dbo].[Maquinas] 
@@ -15,8 +15,8 @@ function buscarUltimasMedidas() {
 
 function buscarMedidasEmTempoReal() {
   instrucaoSql = `
-  select top 1 round((((usoRamHistorico * 100) / ramMaquina)) +
-  (usoProcessadorHistorico) + (((usodiscoHistorico * 100) / discoMaquina)), 0) as 'eficienciaGlobal',
+  select top 1 round((((usoRamHistorico * 10) / ramMaquina)) +
+  (usoProcessadorHistorico) + (((usodiscoHistorico * 10) / discoMaquina)), 0) as 'eficienciaGlobal',
   dataHoraHistorico as 'momento_grafico', 
   FORMAT(dataHoraHistorico,'%H:%i:%s'),
   nomeMaquina as 'nomeMaquina'
@@ -30,8 +30,8 @@ function buscarMedidasEmTempoReal() {
 
 function medidasEficienciaPizza() {
   instrucaoSql = `
-  select top 4 AVG(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico
-+ (((usoDiscoHistorico * 100) / discoMaquina))) / 3) as 'eficienciaGlobalPizza',
+  select top 4 AVG(((((usoRamHistorico * 10) / ramMaquina)) + usoProcessadorHistorico
++ (((usoDiscoHistorico * 10) / discoMaquina))) / 3) as 'eficienciaGlobalPizza',
 nomeMaquina as 'nomeMaquinaPizza' from [dbo].[Historico]
 join [dbo].[Maquinas] on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
 WHERE CONVERT(DATE, dataHoraHistorico) = CONVERT(DATE, DATEADD(DAY, 0, GETDATE()))
@@ -44,7 +44,7 @@ group by nomeMaquina order by eficienciaGlobalPizza;`;
 //-----------------------------------------SELECTS RAM----------------------------------------------------------------
 function eficienciaRam() {
   instrucaoSql = `
-  select top 4 AVG((usoRamHistorico * 100)/ramMaquina) as 'usoRam', nomeMaquina as 'nomeMaquina'
+  select top 4 AVG((usoRamHistorico * 10)/ramMaquina) as 'usoRam', nomeMaquina as 'nomeMaquina'
   from [dbo].[Historico] 
   join [dbo].[Maquinas] 
   on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
@@ -54,7 +54,7 @@ function eficienciaRam() {
 }
 
 function medidasRam() {
-  instrucaoSql = `select top 1 round(((usoRamHistorico * 100)/ramMaquina), 2) as 'usoRam',
+  instrucaoSql = `select top 1 round(((usoRamHistorico * 10)/ramMaquina), 2) as 'usoRam',
   dataHoraHistorico as 'momento_grafico', 
   format(dataHoraHistorico,'%H:%i:%s'),
   nomeMaquina as 'nomeMaquina'
@@ -66,7 +66,7 @@ function medidasRam() {
 
 function medidasRamPizza() {
   instrucaoSql = `
-  select top 4 AVG(((usoRamHistorico * 100)/ramMaquina)) as 'usoRamPizza', 
+  select top 4 AVG(((usoRamHistorico * 10)/ramMaquina)) as 'usoRamPizza', 
   nomeMaquina as 'nomeMaquinaPizza'
   from [dbo].[Historico] 
   join [dbo].[Maquinas] 
@@ -120,7 +120,7 @@ function medidasCpuPizza() {
 //-----------------------------------------SELECTS MEMORIA------------------------------------------------------------
 function eficienciaMemoria() {
   instrucaoSql = `
-  select top 4 AVG((usoDiscoHistorico * 100)/discoMaquina) as 'usoDisco', nomeMaquina as 'nomeMaquina'
+  select top 4 AVG((usoDiscoHistorico * 10)/discoMaquina) as 'usoDisco', nomeMaquina as 'nomeMaquina'
   from [dbo].[Historico] 
   join [dbo].[Maquinas] 
   on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
@@ -130,7 +130,7 @@ function eficienciaMemoria() {
 }
 
 function medidasMemoria() {
-  instrucaoSql = `select top 1 round(((usoDiscoHistorico * 100)/discoMaquina), 2) as 'usoMemoria',
+  instrucaoSql = `select top 1 round(((usoDiscoHistorico * 10)/discoMaquina), 2) as 'usoMemoria',
   dataHoraHistorico as 'momento_grafico', 
   format(dataHoraHistorico,'%H:%i:%s'),
   nomeMaquina as 'nomeMaquina'
@@ -144,7 +144,7 @@ function medidasMemoria() {
 
 function medidasMemoriaPizza() {
   instrucaoSql = `
-  select top 4 AVG(((usoDiscoHistorico * 100)/discoMaquina)) as 'usoDiscoPizza', 
+  select top 4 AVG(((usoDiscoHistorico * 10)/discoMaquina)) as 'usoDiscoPizza', 
   nomeMaquina as 'nomeMaquinaPizza'
   from [dbo].[Historico] 
   join [dbo].[Maquinas] 
