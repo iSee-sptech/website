@@ -91,7 +91,7 @@ function cadastrarCaixas(
 
 function adicionarLembrete(mensagemLembrete, dataHoraLembrete, idUsuario) {
   var instrucao = `
-  update Lembrete set mensagemLembrete = '${mensagemLembrete}', dataHoraLembrete = '${dataHoraLembrete}' where fkUsuario = '${idUsuario}';
+  update Lembrete set mensagemLembrete = '${mensagemLembrete}', dataHoraLembrete = '${dataHoraLembrete}' where fkUsuario = ${idUsuario};
   `;
   return database.executar(instrucao);
 }
@@ -232,7 +232,7 @@ function listarUser(cpf) {
 
 function lembreteDefault(idUser) {
   const query = `INSERT INTO [dbo].[Lembrete] (mensagemLembrete, dataHoraLembrete,fkUsuario)
-  VALUES ('Crie um lembrete!', '2022-01-01 10:00:00', '${idUser}');`;
+  VALUES ('Crie um lembrete!', '2022-01-01 10:00:00', ${idUser});`;
 
   return database.executar(query);
 }
@@ -246,7 +246,7 @@ function pesquisarCaixa(caixa) {
 
 function pesquisarHistorico(dataHora) {
   var instrucao = `
-  select * from historico where dataHoraHistorico like "${dataHora}%";
+  select * from historico where dataHoraHistorico like '${dataHora}%';
   `;
   return database.executar(instrucao);
 }
@@ -403,7 +403,7 @@ order by usoRamHistorico desc;
 function exibirEficienciaGlobalDoDia(data) {
   var instrucao = `
 select round(sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico), 2)
-as "eficienciaGlobal"
+as 'eficienciaGlobal'
 from Historico 
 join Maquinas 
 on Historico.fkMaquinaHistorico = Maquinas.idMaquina 
@@ -418,7 +418,7 @@ order by eficienciaGlobal desc;
 function exibirPorcentagemRestanteGlobal(data) {
   var instrucao = `
   select round((100 - (sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico))), 2)
-as "eficienciaGlobalRestante" 
+as 'eficienciaGlobalRestante'
 from Historico 
 join Maquinas 
 on Historico.fkMaquinaHistorico = Maquinas.idMaquina 
