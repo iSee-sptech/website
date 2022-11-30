@@ -348,6 +348,8 @@
   function adicionarLembrete() {
     var mensagemLembreteVar = mensagemLembrete.value;
     var dataHoraLembreteVar = dataHoraLembrete.value;
+    dataHoraLembreteVar = dataHoraLembreteVar.replaceAll("T", " ");
+    console.log(dataHoraLembreteVar)
 
     if (mensagemLembreteVar == "" || dataHoraLembreteVar == "") {
       console.log("Prencha todos os campos!");
@@ -391,7 +393,7 @@
         })
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
-          r();
+          //r();
         });
 
       return false;

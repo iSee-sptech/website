@@ -4,13 +4,14 @@ const date = new Date();
 function ativarModalNotificacao() {
     imgUsuario()
     if (i == 0) {
-      daddyNotificacao1.style.display = "block";
-      i++;
+        daddyNotificacao1.style.display = "block";
+        i++;
     } else {
-      daddyNotificacao1.style.display = "none";
-      i = 0;
+        daddyNotificacao1.style.display = "none";
+        i = 0;
     }
-  }
+}
+
 
 function notificacaoCountAlertas() {
 
@@ -22,17 +23,19 @@ function notificacaoCountAlertas() {
     })
         .then((resposta) => {
             notificacaoCaixasAdd()
+
             resposta.json().then((data) => {
-                console.log(data);
+                //console.log(data);
                 qntdAlertas = data[0].countAlerta;
                 if (qntdAlertas >= 4) {
-                    daddyNotificacao.innerHTML += `
+                    daddyNotificacao1.innerHTML = `
            <div class="notificacao" onclick="window.location.href = 'alertas.html'">
           <h6>Você teve mais de ${qntdAlertas - 1} alertas hoje!!!</h6>
           <p>${date.toLocaleDateString()}</p>
           </div> 
             `
                 }
+                
             });
         })
         .catch(function (resposta) {
@@ -64,7 +67,7 @@ function notificacaoCaixasAdd() {
                 }
 
                 if (countCaixas >= 1) {
-                    daddyNotificacao.innerHTML += `
+                    daddyNotificacao1.innerHTML += `
            <div class="notificacao" onclick="window.location.href = '../cadastroMaquina.html'">
           <h6>A ${countCaixas} Caixas a serem cadastrados!!!</h6>
           <p>IDs: ${listaIdCaixas}</p>

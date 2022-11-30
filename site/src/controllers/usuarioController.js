@@ -68,18 +68,20 @@ function atualizarSenha(req, res) {
 
   usuarioModel
     .atualizarSenha(emailRedefinir, senhaRedefinir)
-    .then((response) => {
-      const tamanho = response.affectedRows;
-
-      if (tamanho > 0) {
-        res.json({
-          mensagem: "success",
-        });
-      } else {
-        res.json({
-          mensagem: "error",
-        });
-      }
+    .then(() => {
+      //const tamanho = response.affectedRows;
+      res.json({
+        mensagem: "success",
+      });
+      // if (tamanho > 0) {
+      //   res.json({
+      //     mensagem: "success",
+      //   });
+      // } else {
+      //   res.json({
+      //     mensagem: "error",
+      //   });
+      // }
     });
 }
 
@@ -116,20 +118,21 @@ function cadastrar(req, res) {
         numeroEndereco,
         complementoEndereco
       )
-      .then(function (resultado) {
-        const tamanho = resultado.affectedRows;
+      .then(function () {
 
-        if (tamanho > 0) {
-          usuarioModel.listarUser(cpf).then((response) => {
-            const idUser = response[0].idUsuario;
+        // const tamanho = resultado.rowsAffected;
 
-            usuarioModel.lembreteDefault(idUser).then((resEffect) => {
-              console.log(resEffect);
-              res.json(resEffect);
-            });
+        //  if (tamanho > 0) {
+        usuarioModel.listarUser(cpf).then((response) => {
+          const idUser = response[0].idUsuario;
+
+          usuarioModel.lembreteDefault(idUser).then((resEffect) => {
+            console.log(resEffect);
+            res.json(resEffect);
           });
-        }
+        });
       })
+      // })
       .catch(function (erro) {
         console.log(erro);
         console.log(
@@ -174,20 +177,20 @@ function cadastrarFunc(req, res) {
         celularFunc,
         senhaFunc
       )
-      .then(function (resultado) {
-        const tamanho = resultado.affectedRows;
+      .then(function () {
+        //const tamanho = resultado.affectedRows;
 
-        if (tamanho > 0) {
-          usuarioModel.listarUser(cpf).then((response) => {
-            const idUser = response[0].idUsuario;
+        //if (tamanho > 0) {
+        usuarioModel.listarUser(cpf).then((response) => {
+          const idUser = response[0].idUsuario;
 
-            usuarioModel.lembreteDefault(idUser).then((resEffect) => {
-              console.log(resEffect);
-              res.json(resEffect);
-            });
+          usuarioModel.lembreteDefault(idUser).then((resEffect) => {
+            console.log(resEffect);
+            res.json(resEffect);
           });
-        }
+        });
       })
+      // }
       .catch(function (erro) {
         console.log(erro);
         console.log(
@@ -279,61 +282,68 @@ function updatePerfil(req, res) {
 
   usuarioModel
     .updatePerfil(id, nome, telefone, email, cep, numero, complemento)
-    .then((response) => {
-      const tamanho = response.affectedRows;
+    .then(() => {
+      res.json({
+        mensagem: "success",
+      });
+      // const tamanho = response.affectedRows;
 
-      if (tamanho > 0) {
-        res.json({
-          mensagem: "success",
-        });
-      } else {
-        res.json({
-          mensagem: "error",
-        });
-      }
+      // if (tamanho > 0) {
+      //   res.json({
+      //     mensagem: "success",
+      //   });
+      // } else {
+      //   res.json({
+      //     mensagem: "error",
+      //   });
+      // }
     });
 }
 
 
 function removerCaixa(req, res) {
   var id = req.body.idServer;
-  
+
 
   usuarioModel
     .removerCaixa(id)
-    .then((response) => {
-      const tamanho = response.affectedRows;
-
-      if (tamanho > 0) {
-        res.json({
-          mensagem: "success",
-        });
-      } else {
-        res.json({
-          mensagem: "error",
-        });
-      }
+    .then(() => {
+      // const tamanho = response.affectedRows;
+      res.json({
+        mensagem: "success",
+      });
+      // if (tamanho > 0) {
+      //   res.json({
+      //     mensagem: "success",
+      //   });
+      // } else {
+      //   res.json({
+      //     mensagem: "error",
+      //   });
+      // }
     });
 }
 
 function removerCaixaFiltro(req, res) {
   var id = req.body.idServer;
-  
+
 
   usuarioModel
     .removerCaixaFiltro(id)
-    .then((response) => {
-      const tamanho = response.affectedRows;
-
-      if (tamanho > 0) {
-        res.json({
-          mensagem: "success",
-        });
-      } else {
-        res.json({
-          mensagem: "error",
-        });
-      }
+    .then(() => {
+      // const tamanho = response.affectedRows;
+      res.json({
+        mensagem: "success",
+      });
+      // if (tamanho > 0) {
+      //   res.json({
+      //     mensagem: "success",
+      //   });
+      // } else {
+      //   res.json({
+      //     mensagem: "error",
+      //   });
+      // }
     });
 }
 
@@ -617,18 +627,20 @@ function atualizarImg(req, res) {
   const idUser = req.body.id;
   const img = req.body.img;
 
-  usuarioModel.atualizarImg(idUser, img).then((response) => {
-    const tamanho = response.affectedRows;
-
-    if (tamanho > 0) {
-      res.json({
-        mensagem: "success",
-      });
-    } else {
-      res.json({
-        mensagem: "error",
-      });
-    }
+  usuarioModel.atualizarImg(idUser, img).then(() => {
+    // const tamanho = response.affectedRows;
+    res.json({
+      mensagem: "success",
+    });
+    // if (tamanho > 0) {
+    //   res.json({
+    //     mensagem: "success",
+    //   });
+    // } else {
+    //   res.json({
+    //     mensagem: "error",
+    //   });
+    // }
   });
 }
 
@@ -949,15 +961,15 @@ function obterUltimoUsoDiscoHistorico(req, res) {
 function inserirEtiqueta(req, res) {
   var nomeEtiqueta = req.body.nomeEtiquetaServer;
   var idDaMaquina = req.body.idDaMaquinaServer;
-  
+
   if (nomeEtiqueta == undefined && idDaMaquina == undefined) {
     res.status(400).send("idDaMaquina ou nomeEtiqueta undefined");
-  } 
+  }
   else {
     usuarioModel
       .inserirEtiqueta(nomeEtiqueta, idDaMaquina)
-        .then(function (resultado) {
-          res.json(resultado);
+      .then(function (resultado) {
+        res.json(resultado);
       })
       .catch(function (erro) {
         console.log(erro);
@@ -973,15 +985,15 @@ function inserirEtiqueta(req, res) {
 function deletarEtiqueta(req, res) {
   var nomeEtiqueta = req.body.nomeEtiquetaServer;
   var idDaMaquina = req.body.idDaMaquinaServer;
-  
+
   if (nomeEtiqueta == undefined && idDaMaquina == undefined) {
     res.status(400).send("idDaMaquina ou nomeEtiqueta undefined");
-  } 
+  }
   else {
     usuarioModel
       .deletarEtiqueta(nomeEtiqueta, idDaMaquina)
-        .then(function (resultado) {
-          res.json(resultado);
+      .then(function (resultado) {
+        res.json(resultado);
       })
       .catch(function (erro) {
         console.log(erro);
@@ -1224,7 +1236,7 @@ module.exports = {
   removerCaixaFiltro,
   notificacaoCountAlertas,
   notificacaoCaixasAdd,
-  
+
 
   /*------------------------ETIQUETAS-------------------------------------- */
   obterQtdAlertaRamLast30dias,

@@ -1,5 +1,5 @@
 .container_notificacao {
-  width: 20vw;
+  width: 18vw;
   height: 65vh;
   background-color: #292929de;
   border-radius: 16px;
@@ -16,6 +16,7 @@
   transition: 0.3s;
   overflow-x: hidden;
   padding-left: 1%;
+  padding-top: 2%;
 }
 
  .tituloNotificacao {
