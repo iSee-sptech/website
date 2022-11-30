@@ -108,7 +108,6 @@ router.get("/notificacaoCountAlertas", function (req, res) {
   usuarioController.notificacaoCountAlertas(req, res);
 });
 
-
 router.get("/listarHistorico", function (req, res) {
   usuarioController.listarHistorico(req, res);
 });
@@ -159,9 +158,12 @@ router.get("/obterUltimoUsoDiscoHistorico/:idDoCaixa", function (req, res) {
   usuarioController.obterUltimoUsoDiscoHistorico(req, res);
 });
 
-router.get("/obterQtdRegistroHistoricoLast30dias/:idDoCaixa", function (req, res) {
-  usuarioController.obterQtdRegistroHistoricoLast30dias(req, res);
-});
+router.get(
+  "/obterQtdRegistroHistoricoLast30dias/:idDoCaixa",
+  function (req, res) {
+    usuarioController.obterQtdRegistroHistoricoLast30dias(req, res);
+  }
+);
 
 router.post("/inserirEtiqueta", function (req, res) {
   usuarioController.inserirEtiqueta(req, res);
@@ -181,11 +183,11 @@ router.get("/graficoUsoRam", function (req, res) {
   usuarioController.graficoUsoRam(req, res);
 });
 
-router.get("/exibirEficienciaGlobalDoDia/:dataAtual", function (req, res) {
+router.get("/exibirEficienciaGlobalDoDia", function (req, res) {
   usuarioController.exibirEficienciaGlobalDoDia(req, res);
 });
 
-router.get("/exibirPorcentagemRestanteGlobal/:dataAtual", function (req, res) {
+router.get("/exibirPorcentagemRestanteGlobal", function (req, res) {
   usuarioController.exibirPorcentagemRestanteGlobal(req, res);
 });
 
@@ -193,15 +195,27 @@ router.get("/listarEtiquetasComNomeCaixa", function (req, res) {
   usuarioController.listarEtiquetasComNomeCaixa(req, res);
 });
 
-router.get("/porcentagemderamrestanteEquantidaderamtotal/:idDoCaixa", function (req, res) {
-  usuarioController.porcentagemderamrestanteEquantidaderamtotal(req, res);
-});
+router.get(
+  "/porcentagemderamrestanteEquantidaderamtotal/:idDoCaixa",
+  function (req, res) {
+    usuarioController.porcentagemderamrestanteEquantidaderamtotal(req, res);
+  }
+);
 
-router.get("/porcentagemdecpuatingidaEvelocidademaximacpu/:idDoCaixa", function (req, res) {
-  usuarioController.porcentagemdecpuatingidaEvelocidademaximacpu(req, res);
-});
+router.get(
+  "/porcentagemdecpuatingidaEvelocidademaximacpu/:idDoCaixa",
+  function (req, res) {
+    usuarioController.porcentagemdecpuatingidaEvelocidademaximacpu(req, res);
+  }
+);
 
-router.get("/porcentagemdememoriarestanteEquantidadememoriatotal/:idDoCaixa", function (req, res) {
-  usuarioController.porcentagemdememoriarestanteEquantidadememoriatotal(req, res);
-});
+router.get(
+  "/porcentagemdememoriarestanteEquantidadememoriatotal/:idDoCaixa",
+  function (req, res) {
+    usuarioController.porcentagemdememoriarestanteEquantidadememoriatotal(
+      req,
+      res
+    );
+  }
+);
 module.exports = router;

@@ -2,13 +2,13 @@ var database = require("../database/config");
 
 //-----------------------------------------SELECTS EFICIENCIA---------------------------------------------------------
 function buscarUltimasMedidas() {
-  instrucaoSql = `select  top 4 round((((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico
-  + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) ,0) as "eficienciaGlobal",
-  nomeMaquina as "nomeMaquina" 
-  from historico
+  instrucaoSql = `  select  top 4 AVG(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico
+  + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) as 'eficienciaGlobal',
+  nomeMaquina as 'nomeMaquina' 
+  from [dbo].[Historico]
   join [dbo].[Maquinas] 
   on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
-  order by eficienciaGlobal`;
+  group by nomeMaquina order by eficienciaGlobal;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -23,7 +23,19 @@ function buscarMedidasEmTempoReal() {
   from historico 
   join maquinas 
   on historico.fkMaquinaHistorico = maquinas.idMaquina 
-  order by dataHoraHistorico desc;`;
+  order by dataHoraHistorico;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function medidasEficienciaPizza() {
+  instrucaoSql = `
+  select top 4 AVG(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico
++ (((usoDiscoHistorico * 100) / discoMaquina))) / 3) as 'eficienciaGlobalPizza',
+nomeMaquina as 'nomeMaquinaPizza' from [dbo].[Historico]
+join [dbo].[Maquinas] on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
+WHERE CONVERT(DATE, dataHoraHistorico) = CONVERT(DATE, DATEADD(DAY, 0, GETDATE()))
+group by nomeMaquina order by eficienciaGlobalPizza;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -31,11 +43,12 @@ function buscarMedidasEmTempoReal() {
 
 //-----------------------------------------SELECTS RAM----------------------------------------------------------------
 function eficienciaRam() {
-  instrucaoSql = `select top 4 round(((usoRamHistorico * 100)/ramMaquina), 2) as 'usoRam', nomeMaquina as 'nomeMaquina', idMaquina
+  instrucaoSql = `
+  select top 4 AVG((usoRamHistorico * 100)/ramMaquina) as 'usoRam', nomeMaquina as 'nomeMaquina'
   from [dbo].[Historico] 
   join [dbo].[Maquinas] 
   on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
-  order by usoRam;`;
+  group by nomeMaquina order by usoRam;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -46,7 +59,20 @@ function medidasRam() {
   format(dataHoraHistorico,'%H:%i:%s'),
   nomeMaquina as 'nomeMaquina'
   from [dbo].[Historico] join [dbo].[Maquinas] on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
-  order by dataHoraHistorico desc;`;
+  order by dataHoraHistorico;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function medidasRamPizza() {
+  instrucaoSql = `
+  select top 4 AVG(((usoRamHistorico * 100)/ramMaquina)) as 'usoRamPizza', 
+  nomeMaquina as 'nomeMaquinaPizza'
+  from [dbo].[Historico] 
+  join [dbo].[Maquinas] 
+  on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina 
+  WHERE CONVERT(DATE, dataHoraHistorico) = CONVERT(DATE, DATEADD(DAY, -1, GETDATE()))
+  group by nomeMaquina order by 'usoRamPizza';`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -72,7 +98,20 @@ function medidasCpu() {
   from historico 
   join maquinas 
   on historico.fkMaquinaHistorico = maquinas.idMaquina
-  order by dataHoraHistorico desc;`;
+  order by dataHoraHistorico;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function medidasCpuPizza() {
+  instrucaoSql = `
+  select top 4 AVG(usoProcessadorHistorico) as 'usoProcessadorPizza', 
+  nomeMaquina as 'nomeMaquinaPizza'
+  from [dbo].[Historico] 
+  join [dbo].[Maquinas] 
+  on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina 
+  WHERE CONVERT(DATE, dataHoraHistorico) = CONVERT(DATE, DATEADD(DAY, -1, GETDATE()))
+  group by nomeMaquina order by 'usoProcessadorPizza';`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -80,11 +119,12 @@ function medidasCpu() {
 
 //-----------------------------------------SELECTS MEMORIA------------------------------------------------------------
 function eficienciaMemoria() {
-  instrucaoSql = `select top 4 round(((usoDiscoHistorico * 100)/discoMaquina), 2) as "usoDisco", nomeMaquina as "nomeMaquina"
+  instrucaoSql = `
+  select top 4 AVG((usoDiscoHistorico * 100)/discoMaquina) as 'usoDisco', nomeMaquina as 'nomeMaquina'
   from [dbo].[Historico] 
   join [dbo].[Maquinas] 
   on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
-  order by usoDisco;`;
+  group by nomeMaquina order by usoDisco;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -97,7 +137,20 @@ function medidasMemoria() {
   from [dbo].[Historico] 
   join [dbo].[Maquinas] 
   on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina
-  order by dataHoraHistorico desc;`;
+  order by dataHoraHistorico;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function medidasMemoriaPizza() {
+  instrucaoSql = `
+  select top 4 AVG(((usoDiscoHistorico * 100)/discoMaquina)) as 'usoDiscoPizza', 
+  nomeMaquina as 'nomeMaquinaPizza'
+  from [dbo].[Historico] 
+  join [dbo].[Maquinas] 
+  on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina 
+  WHERE CONVERT(DATE, dataHoraHistorico) = CONVERT(DATE, DATEADD(DAY, -1, GETDATE()))
+  group by nomeMaquina order by 'usoDiscoPizza';`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
@@ -112,4 +165,8 @@ module.exports = {
   medidasRam,
   medidasCpu,
   medidasMemoria,
+  medidasEficienciaPizza,
+  medidasRamPizza,
+  medidasCpuPizza,
+  medidasMemoriaPizza,
 };

@@ -405,30 +405,26 @@ order by usoRamHistorico desc;
   return database.executar(instrucao);
 }
 
-function exibirEficienciaGlobalDoDia(data) {
+function exibirEficienciaGlobalDoDia() {
   var instrucao = `
-select round(sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico), 2)
-as 'eficienciaGlobal'
-from Historico 
-join Maquinas 
-on Historico.fkMaquinaHistorico = Maquinas.idMaquina 
-where dataHoraHistorico 
-like '${data}' 
-group by idMaquina
-order by eficienciaGlobal desc;
+  select 100 - sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idMaquina)
+  as 'eficienciaGlobal'
+  from [dbo].[Historico] 
+  join [dbo].[Maquinas] 
+  on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina 
+  where CONVERT(DATE, dataHoraHistorico) = CONVERT(DATE, DATEADD(DAY, 0, GETDATE()));
   `;
   return database.executar(instrucao);
 }
 
-function exibirPorcentagemRestanteGlobal(data) {
+function exibirPorcentagemRestanteGlobal() {
   var instrucao = `
-  select round((100 - (sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico))), 2)
-as 'eficienciaGlobalRestante'
-from Historico 
-join Maquinas 
-on Historico.fkMaquinaHistorico = Maquinas.idMaquina 
-where dataHoraHistorico like '${data}' 
-order by eficienciaGlobalRestante desc;
+  select sum(((((usoRamHistorico * 100) / ramMaquina)) + usoProcessadorHistorico + (((usoDiscoHistorico * 100) / discoMaquina))) / 3) / count(idHistorico)
+  as 'eficienciaGlobalRestante'
+  from [dbo].[Historico] 
+  join [dbo].[Maquinas] 
+  on [dbo].[Historico].fkMaquinaHistorico = [dbo].[Maquinas].idMaquina 
+  where CONVERT(DATE, dataHoraHistorico) = CONVERT(DATE, DATEADD(DAY, 0, GETDATE()));
   `;
   return database.executar(instrucao);
 }
