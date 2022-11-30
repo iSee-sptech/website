@@ -25,7 +25,7 @@
   </head>
 
   <body
-    onload="imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes(), notificacaoCountAlertas(), obterDadosGraficoPizza(), obterDadosGraficoPizza2()"
+    onload="imgUsuario(), exibirEficienciaGlobalDoDia(), exibirPorcentagemRestanteGlobal(), obterDadosGrafico(), atribuirBotoes(), notificacaoCountAlertas(), obterDadosGraficoPizza()"
   >
     <div class="body_dashboard">
       <div class="sessao_grafico_principal">
@@ -77,24 +77,22 @@
         </div>
 
         <div class="canvas_grafic_rosca_container">
-          <div class="grafic_rosca" style="width: 180px; height: 180px;">
+          <div class="grafic_rosca" style="width: 180px; height: 180px">
             <canvas id="myDoughChart"></canvas>
           </div>
 
           <div class="grafic_rosca_infos">
             <div class="titulo_grafico_rosca">
-              <h4 id="titulo_card_caixas">
-                Eficiência global do dia anterior
-              </h4>
+              <h4 id="titulo_card_caixas">Eficiência global do dia anterior</h4>
             </div>
             <div id="cardCaixas">
               <div>
-                <div  id="caixa1"  style="background-color: #7d2de2"></div>
+                <div id="caixa1" style="background-color: #7d2de2"></div>
                 <p>Caixa 1</p>
               </div>
 
               <div>
-                <div  id="caixa2" style="background-color: #2de23f"></div>
+                <div id="caixa2" style="background-color: #2de23f"></div>
                 <p>Caixa 2</p>
               </div>
 
@@ -104,7 +102,7 @@
               </div>
 
               <div>
-                <div  id="caixa4" style="background-color: #e22d63"></div>
+                <div id="caixa4" style="background-color: #e22d63"></div>
                 <p>Caixa 4</p>
               </div>
             </div>
@@ -199,7 +197,7 @@
       frase = `Boa noite`;
     }
 
-    bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje a eficiência global é de <span id="eficiencia" style="color:#7D2DE2;"> ${valorEficienciaGlobal}</span>`;
+    bem_vindo.innerHTML = `${frase}<span style="color:#7D2DE2;"> ${nome}</span>, hoje a eficiência global é de <span id="eficiencia" style="color:#7D2DE2;">${eficienciaGlobalDia}</span>`;
 
     function tela_home() {
       if (sessionStorage.cargoUsuario === "Gerente") {
@@ -253,11 +251,10 @@
         });
     }
 
-    var valorEficienciaGlobal = exibirEficienciaGlobalDoDia();
+    var eficienciaGlobalDia = exibirEficienciaGlobalDoDia();
 
     function exibirEficienciaGlobalDoDia() {
-      const dataAtual = carregarDiaAtual();
-      fetch(`/usuarios/exibirEficienciaGlobalDoDia/${dataAtual}`, {
+      fetch(`/usuarios/exibirEficienciaGlobalDoDia`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -276,8 +273,7 @@
     }
 
     function exibirPorcentagemRestanteGlobal() {
-      const dataAtual = carregarDiaAtual();
-      fetch(`/usuarios/exibirPorcentagemRestanteGlobal/${dataAtual}`, {
+      fetch(`/usuarios/exibirPorcentagemRestanteGlobal`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -470,7 +466,7 @@
       var id = e.target.id;
       switch (id) {
         case "filtro_ram":
-          titulo_card_caixas.innerHTML = 'RAM do dia anterior'
+          titulo_card_caixas.innerHTML = "RAM do dia anterior";
           filtro_ram.style.backgroundColor = "#7D2DE2";
           filtro_ram.style.color = "white";
           filtro_cpu.style.backgroundColor = "white";
@@ -479,7 +475,7 @@
           filtro_memoria.style.color = "#7D2DE2";
           break;
         case "filtro_cpu":
-          titulo_card_caixas.innerHTML = 'CPU do dia anterior'
+          titulo_card_caixas.innerHTML = "CPU do dia anterior";
           filtro_ram.style.backgroundColor = "white";
           filtro_ram.style.color = "#7D2DE2";
           filtro_cpu.style.backgroundColor = "#7D2DE2";
@@ -489,7 +485,7 @@
           break;
 
         case "filtro_memoria":
-          titulo_card_caixas.innerHTML = 'Memória de Disco do dia anterior'
+          titulo_card_caixas.innerHTML = "Memória de Disco do dia anterior";
           filtro_ram.style.backgroundColor = "white";
           filtro_ram.style.color = "#7D2DE2";
           filtro_cpu.style.backgroundColor = "white";
@@ -502,7 +498,6 @@
       }
     });
     //Função mudar cores dos botoes de filtro e Função mudar titulo do card dos caixas
-    
   </script>
 
   <script src="../js/graficosRamDashboard.js"></script>
